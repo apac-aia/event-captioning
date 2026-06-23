@@ -41,14 +41,14 @@
 
 <div class="page-break"></div>
 
-來源索引：[ai-captioning-ballroom-sources.md](ai-captioning-ballroom-sources.md)  
+來源索引：[ai-captioning-ballroom-sources.html](ai-captioning-ballroom-sources.html)  
 
 ## 0. 版本與章節導覽 {#sec-navigation}
 
 <div class="version-switch" role="navigation" aria-label="閱讀版本">
 <a href="ai-captioning-ballroom-solution.mobile.html">手機版 HTML</a>
 <a href="ai-captioning-ballroom-solution.desktop.html">桌面版 HTML</a>
-<a href="ai-captioning-ballroom-sources.md">來源索引</a>
+<a href="ai-captioning-ballroom-sources.html">來源索引</a>
 </div>
 
 <div class="section-highlight section-highlight-primary">
@@ -1412,7 +1412,7 @@ ADALS 最務實的路線是：
 
 本報告沒有把每一個來源都塞在正文裡，因為那會讓非技術讀者很難讀。完整來源整理在：
 
-[ai-captioning-ballroom-sources.md](ai-captioning-ballroom-sources.md)
+[ai-captioning-ballroom-sources.html](ai-captioning-ballroom-sources.html)
 
 採購前請用 來源索引 做三件事：
 

@@ -21,4 +21,13 @@ pandoc "${common[@]}" -o ai-captioning-ballroom-solution.html
 pandoc "${common[@]}" -c report-desktop.css -o ai-captioning-ballroom-solution.desktop.html
 pandoc "${common[@]}" -c report-mobile.css -o ai-captioning-ballroom-solution.mobile.html
 
-echo "built 3 HTML variants"
+# Sources index as its own styled HTML page.
+pandoc ai-captioning-ballroom-sources.md \
+  -s --toc --toc-depth=2 \
+  --metadata pagetitle="ADALS 2026 來源索引" \
+  --include-before-body=partials/skiplink-sources.html \
+  --include-after-body=partials/nav.html \
+  -c report-enhanced.css \
+  -o ai-captioning-ballroom-sources.html
+
+echo "built 3 report HTML variants + sources page"

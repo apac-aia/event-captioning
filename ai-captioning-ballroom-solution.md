@@ -41,7 +41,7 @@
 
 <div class="page-break"></div>
 
-來源索引：[ai-captioning-ballroom-sources.md](ai-captioning-ballroom-sources.md)  
+來源索引：[ai-captioning-ballroom-sources.html](ai-captioning-ballroom-sources.html)  
 
 這份文件以 ADALS 2026 台北實體活動為主要例子，也可拆成小型活動模組。寫法不是通用工具大全，而是先把 ADALS 的場地、收音、工具、人力、QR 碼、志工修正講清楚，再標出哪些部分可縮小。
 
@@ -1252,7 +1252,7 @@ ADALS 最務實的路線是：
 
 本報告沒有把每一個來源都塞在正文裡，因為那會讓非技術讀者很難讀。完整來源整理在：
 
-[ai-captioning-ballroom-sources.md](ai-captioning-ballroom-sources.md)
+[ai-captioning-ballroom-sources.html](ai-captioning-ballroom-sources.html)
 
 採購前請用 來源索引 做三件事：
 

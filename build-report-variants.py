@@ -158,7 +158,7 @@ def nav_html() -> str:
             '<div class="version-switch" role="navigation" aria-label="閱讀版本">',
             '<a href="ai-captioning-ballroom-solution.mobile.html">手機版 HTML</a>',
             '<a href="ai-captioning-ballroom-solution.desktop.html">桌面版 HTML</a>',
-            '<a href="ai-captioning-ballroom-sources.md">來源索引</a>',
+            '<a href="ai-captioning-ballroom-sources.html">來源索引</a>',
             "</div>",
             "",
             '<div class="section-highlight section-highlight-primary">',
