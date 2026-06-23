@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>台北場地現場人工智慧字幕與多語翻譯：ADALS 2026
+白話操作報告</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="report-enhanced.css" />
+</head>
+<body>
+<a id="top"></a>
+<a class="skip-link" href="#sec-decision">跳到內容</a>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#台北場地現場人工智慧字幕與多語翻譯adals-2026-白話操作報告"
+id="toc-台北場地現場人工智慧字幕與多語翻譯adals-2026-白話操作報告">台北場地現場人工智慧字幕與多語翻譯：ADALS
+2026 白話操作報告</a>
+<ul>
+<li><a href="#sec-decision" id="toc-sec-decision">決策頁：ADALS
+該怎麼決定</a>
+<ul>
+<li><a href="#預設adals-最可能的情況就照這個做"
+id="toc-預設adals-最可能的情況就照這個做">預設：ADALS
+最可能的情況就照這個做</a></li>
+<li><a href="#微調你的情況不同就看這裡"
+id="toc-微調你的情況不同就看這裡">微調：你的情況不同就看這裡</a></li>
+<li><a href="#其餘是參考層做完上面再往下查"
+id="toc-其餘是參考層做完上面再往下查">其餘是參考層，做完上面再往下查</a></li>
+</ul></li>
+<li><a href="#sec-navigation" id="toc-sec-navigation">0.
+版本與章節導覽</a></li>
+<li><a href="#sec-conclusion" id="toc-sec-conclusion">1.
+一句話結論</a></li>
+<li><a href="#sec-how-to-read" id="toc-sec-how-to-read">2.
+這份報告怎麼讀</a></li>
+<li><a href="#sec-six-blocks" id="toc-sec-six-blocks">3. ADALS
+要解決的不是一件事，而是六塊積木</a></li>
+<li><a href="#sec-clean-訊號" id="toc-sec-clean-訊號">4.
+為什麼「混音器乾淨人聲訊號」是主角</a>
+<ul>
+<li><a href="#用水管來想" id="toc-用水管來想">4.1 用水管來想</a></li>
+<li><a href="#不要讓字幕系統聽喇叭" id="toc-不要讓字幕系統聽喇叭">4.2
+不要讓字幕系統聽喇叭</a></li>
+<li><a href="#要跟場地-影音團隊說的關鍵字"
+id="toc-要跟場地-影音團隊說的關鍵字">4.3 要跟場地 /
+影音團隊說的關鍵字</a></li>
+</ul></li>
+<li><a href="#sec-scale" id="toc-sec-scale">5. 不同規模怎麼小型化</a>
+<ul>
+<li><a href="#xs20-50-人小型工作坊" id="toc-xs20-50-人小型工作坊">5.1
+XS：20-50 人，小型工作坊</a></li>
+<li><a href="#s50-150-人低成本試跑" id="toc-s50-150-人低成本試跑">5.2
+S：50-150 人，低成本試跑</a></li>
+<li><a href="#m150-300-人adals-正式建議級"
+id="toc-m150-300-人adals-正式建議級">5.3 M：150-300 人，ADALS
+正式建議級</a></li>
+<li><a href="#l300-500-人正式國際會議"
+id="toc-l300-500-人正式國際會議">5.4 L：300-500+
+人，正式國際會議</a></li>
+</ul></li>
+<li><a href="#sec-access-levels" id="toc-sec-access-levels">6.
+無障礙基準服務、方便功能、實驗功能，要分開說</a>
+<ul>
+<li><a href="#無障礙基準服務" id="toc-無障礙基準服務">6.1
+無障礙基準服務</a></li>
+<li><a href="#便利補充功能" id="toc-便利補充功能">6.2
+便利補充功能</a></li>
+<li><a href="#實驗試跑" id="toc-實驗試跑">6.3 實驗試跑</a></li>
+<li><a href="#不可作為唯一方案" id="toc-不可作為唯一方案">6.4
+不可作為唯一方案</a></li>
+</ul></li>
+<li><a href="#sec-audio-路由" id="toc-sec-audio-路由">7.
+現場音訊怎麼接：用圖看就好</a>
+<ul>
+<li><a href="#最小可用接法" id="toc-最小可用接法">7.1
+最小可用接法</a></li>
+<li><a href="#正式宴會廳接法" id="toc-正式宴會廳接法">7.2
+正式宴會廳接法</a></li>
+<li><a href="#有備機的接法" id="toc-有備機的接法">7.3
+有備機的接法</a></li>
+<li><a href="#問答是最容易漏掉的洞" id="toc-問答是最容易漏掉的洞">7.4
+問答是最容易漏掉的洞</a></li>
+</ul></li>
+<li><a href="#sec-tools" id="toc-sec-tools">8.
+工具比較：先看適不適合現場，不要只看人工智慧很強</a>
+<ul>
+<li><a href="#台灣優先候選vurbo.ai" id="toc-台灣優先候選vurbo.ai">8.1
+台灣優先候選：Vurbo.ai</a></li>
+<li><a href="#台灣優先候選kkco-人工智慧翻譯"
+id="toc-台灣優先候選kkco-人工智慧翻譯">8.2 台灣優先候選：KKCO
+人工智慧翻譯</a></li>
+<li><a href="#台灣候選雅婷逐字稿-yating"
+id="toc-台灣候選雅婷逐字稿-yating">8.3 台灣候選：雅婷逐字稿 /
+Yating</a></li>
+<li><a href="#日本候選udtalk" id="toc-日本候選udtalk">8.4
+日本候選：UDTalk</a></li>
+<li><a href="#日本低價候選yysystem-yy-文字起こし"
+id="toc-日本低價候選yysystem-yy-文字起こし">8.5 日本低價候選：YYSystem /
+YY 文字起こし</a></li>
+<li><a href="#韓國優先備援eventcat" id="toc-韓國優先備援eventcat">8.6
+韓國優先備援：EventCAT</a></li>
+<li><a href="#韓國候選sovoro" id="toc-韓國候選sovoro">8.7
+韓國候選：SOVORO</a></li>
+<li><a href="#低成本國際候選akkadu" id="toc-低成本國際候選akkadu">8.8
+低成本國際候選：Akkadu</a></li>
+<li><a href="#免費或近免費microsoft-translator"
+id="toc-免費或近免費microsoft-translator">8.9 免費或近免費：Microsoft
+Translator</a></li>
+<li><a href="#正式國際供應商wordly" id="toc-正式國際供應商wordly">8.10
+正式國際供應商：Wordly</a></li>
+<li><a href="#正式字幕-廣播供應商ai-media-lexi"
+id="toc-正式字幕-廣播供應商ai-media-lexi">8.11 正式字幕 /
+廣播供應商：AI-Media LEXI</a></li>
+<li><a href="#cart-即時人工字幕-專業字幕平台streamtext-3play-media"
+id="toc-cart-即時人工字幕-專業字幕平台streamtext-3play-media">8.12 CART
+即時人工字幕 / 專業字幕平台：StreamText / 3Play Media</a></li>
+</ul></li>
+<li><a href="#sec-shortlist" id="toc-sec-shortlist">9. ADALS
+工具短名單</a>
+<ul>
+<li><a href="#第一輪試測-名單" id="toc-第一輪試測-名單">第一輪試測
+名單</a></li>
+<li><a href="#推薦排序" id="toc-推薦排序">推薦排序</a></li>
+</ul></li>
+<li><a href="#sec-packages" id="toc-sec-packages">10. 三套可落地方案</a>
+<ul>
+<li><a href="#低成本試跑" id="toc-低成本試跑">10.1 低成本試跑</a></li>
+<li><a href="#正式建議方案" id="toc-正式建議方案">10.2
+正式建議方案</a></li>
+<li><a href="#高穩定低風險較貴但穩的正式國際會議方案"
+id="toc-高穩定低風險較貴但穩的正式國際會議方案">10.3
+高穩定低風險：較貴但穩的正式國際會議方案</a></li>
+</ul></li>
+<li><a href="#sec-venues" id="toc-sec-venues">11.
+台北場地：公開價格、飯店報價與總成本比較</a>
+<ul>
+<li><a href="#先看怎麼比" id="toc-先看怎麼比">11.1 先看怎麼比</a></li>
+<li><a href="#非飯店與會議場地公開價格"
+id="toc-非飯店與會議場地公開價格">11.2 非飯店與會議場地公開價格</a></li>
+<li><a href="#飯店與宴會場地公開每日-半日報價"
+id="toc-飯店與宴會場地公開每日-半日報價">11.3 飯店與宴會場地公開每日 /
+半日報價</a></li>
+<li><a href="#用-200-人粗算差距會很明顯"
+id="toc-用-200-人粗算差距會很明顯">11.4 用 200
+人粗算，差距會很明顯</a></li>
+<li><a href="#建議詢價方式" id="toc-建議詢價方式">11.5
+建議詢價方式</a></li>
+</ul></li>
+<li><a href="#sec-rfp" id="toc-sec-rfp">12. 可以直接寄給場地 /
+影音團隊的問題清單</a>
+<ul>
+<li><a href="#短版-電子郵件" id="toc-短版-電子郵件">12.1 短版
+電子郵件</a></li>
+<li><a href="#給影音團隊的白話需求單"
+id="toc-給影音團隊的白話需求單">12.2 給影音團隊的白話需求單</a></li>
+<li><a href="#彩排時一定要測" id="toc-彩排時一定要測">12.3
+彩排時一定要測</a></li>
+</ul></li>
+<li><a href="#sec-timeline" id="toc-sec-timeline">13. 時程檢查清單</a>
+<ul>
+<li><a href="#活動前-60-天" id="toc-活動前-60-天">活動前 60 天</a></li>
+<li><a href="#活動前-30-天" id="toc-活動前-30-天">活動前 30 天</a></li>
+<li><a href="#活動前-14-天" id="toc-活動前-14-天">活動前 14 天</a></li>
+<li><a href="#活動前-7-天" id="toc-活動前-7-天">活動前 7 天</a></li>
+<li><a href="#活動前-1-天" id="toc-活動前-1-天">活動前 1 天</a></li>
+</ul></li>
+<li><a href="#sec-現場操作手冊" id="toc-sec-現場操作手冊">14.
+現場操作流程</a>
+<ul>
+<li><a href="#開場前-90-分鐘" id="toc-開場前-90-分鐘">14.1 開場前 90
+分鐘</a></li>
+<li><a href="#開場前-15-分鐘" id="toc-開場前-15-分鐘">14.2 開場前 15
+分鐘</a></li>
+<li><a href="#字幕操作員-操作流程" id="toc-字幕操作員-操作流程">14.3
+字幕操作員 操作流程</a></li>
+<li><a href="#志工修正-操作流程" id="toc-志工修正-操作流程">14.4
+志工修正 操作流程</a></li>
+<li><a href="#問答麥克風遞送人員-操作流程"
+id="toc-問答麥克風遞送人員-操作流程">14.5 問答麥克風遞送人員
+操作流程</a></li>
+</ul></li>
+<li><a href="#sec-failures" id="toc-sec-failures">15. 壞掉時怎麼救</a>
+<ul>
+<li><a href="#沒聲音" id="toc-沒聲音">15.1 沒聲音</a></li>
+<li><a href="#聲音爆掉" id="toc-聲音爆掉">15.2 聲音爆掉</a></li>
+<li><a href="#字幕延遲" id="toc-字幕延遲">15.3 字幕延遲</a></li>
+<li><a href="#wi-fi-壞掉" id="toc-wi-fi-壞掉">15.4 Wi-Fi 壞掉</a></li>
+<li><a href="#qr-碼掃不到" id="toc-qr-碼掃不到">15.5 QR
+碼掃不到</a></li>
+<li><a href="#講者沒拿麥克風" id="toc-講者沒拿麥克風">15.6
+講者沒拿麥克風</a></li>
+<li><a href="#人工智慧翻錯專有名詞" id="toc-人工智慧翻錯專有名詞">15.7
+人工智慧翻錯專有名詞</a></li>
+</ul></li>
+<li><a href="#sec-術語表" id="toc-sec-術語表">16.
+術語表：這是讓人工智慧少犯傻的字典</a></li>
+<li><a href="#sec-隱私" id="toc-sec-隱私">17. 資料與隱私</a></li>
+<li><a href="#sec-recommendation" id="toc-sec-recommendation">18.
+最終建議</a></li>
+<li><a href="#sec-decision-table" id="toc-sec-decision-table">19.
+採購決策表</a></li>
+<li><a href="#sec-host-script" id="toc-sec-host-script">20.
+附錄：給主持人的提醒詞</a>
+<ul>
+<li><a href="#開場" id="toc-開場">開場</a></li>
+<li><a href="#問答前" id="toc-問答前">問答前</a></li>
+<li><a href="#字幕出錯時" id="toc-字幕出錯時">字幕出錯時</a></li>
+</ul></li>
+<li><a href="#sec-test-script" id="toc-sec-test-script">21.
+附錄：測試腳本</a></li>
+<li><a href="#sec-source-index" id="toc-sec-source-index">22.
+附錄：來源索引怎麼用</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1
+id="台北場地現場人工智慧字幕與多語翻譯adals-2026-白話操作報告">台北場地現場人工智慧字幕與多語翻譯：ADALS
+2026 白話操作報告</h1>
+<p>更新日期：2026-06-23<br />
+對象：ADALS
+主辦團隊、場地業務、場地或外包影音團隊、字幕操作員、志工修正團隊</p>
+<h2 id="sec-decision">決策頁：ADALS 該怎麼決定</h2>
+<div class="section-highlight section-highlight-primary">
+<strong>30 秒看懂怎麼用這份報告</strong>
+<p>
+這份報告要幫你做三個決定：<strong>選場地、選字幕工具、選方案等級</strong>。下面先給「最可能情況」的預設答案；情況不同就看「微調」；要細節再往下查參考章節。
+</p>
+</div>
+<h3 id="預設adals-最可能的情況就照這個做">預設：ADALS
+最可能的情況就照這個做</h3>
+<p>假設：約 150-300
+人、台北、要把字幕當「正式無障礙服務」的一天活動。情況不同就看下面「微調」。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>要決定的</th>
+<th>預設答案</th>
+<th>一句話理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方案等級</td>
+<td>正式建議方案（M 級）</td>
+<td>對應 150-300 人，平衡成本與穩定</td>
+</tr>
+<tr>
+<td>場地（優先詢價這 3 個）</td>
+<td>集思交通部國際會議中心、集思台大會議中心、集思北科大感恩廳</td>
+<td>容量對、公開價清楚、會議與字幕流程熟，部分還附電子字幕機與無線麥</td>
+</tr>
+<tr>
+<td>字幕工具</td>
+<td>主測 Vurbo.ai 與 KKCO，擇一正式；EventCAT 當備援</td>
+<td>台灣優先，可詢現場支援與 QR 觀眾端</td>
+</tr>
+<tr>
+<td>現在就做的下一步</td>
+<td>用<a href="#sec-rfp">第 12 節</a>的詢價信，寄給上面 3 個場地，並向
+Vurbo.ai 與 KKCO 詢價</td>
+<td>一個動作就啟動</td>
+</tr>
+</tbody>
+</table>
+<div class="section-highlight">
+<strong>每個場地都要問的同一句話</strong>
+<p>
+能不能從混音器給字幕電腦一條只含人聲的乾淨訊號。這是成敗關鍵，不分場地、不分工具。
+</p>
+</div>
+<h3 id="微調你的情況不同就看這裡">微調：你的情況不同就看這裡</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>你的情況</th>
+<th>改成</th>
+<th>看哪節</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>少於 150 人，或只是試跑</td>
+<td>低成本試跑方案（S），工具先試 Akkadu</td>
+<td><a href="#sec-packages">10.1</a></td>
+</tr>
+<tr>
+<td>300-500+ 人、國際場、已知有聾人或聽障需求</td>
+<td>高穩定方案（L），且一定要加
+CART、手語或專業字幕，不能只靠人工智慧</td>
+<td><a href="#sec-packages">10.3</a>、<a href="#sec-access-levels">第 6
+節</a></td>
+</tr>
+<tr>
+<td>預算很緊</td>
+<td>公有場館（大同運動中心、新北市政府多功能集會堂公益價）加
+Akkadu，但先確認能接乾淨人聲</td>
+<td><a href="#sec-venues">第 11 節</a></td>
+</tr>
+<tr>
+<td>還沒決定要不要當「正式無障礙服務」</td>
+<td>先看第 6 節，這一步決定承諾等級與風險</td>
+<td><a href="#sec-access-levels">第 6 節</a></td>
+</tr>
+</tbody>
+</table>
+<h3
+id="其餘是參考層做完上面再往下查">其餘是參考層，做完上面再往下查</h3>
+<p>場地細表看<a href="#sec-venues">第 11 節</a>；工具細比看<a
+href="#sec-tools">第 8</a>、<a href="#sec-shortlist">9
+節</a>；現場接線與壞掉怎麼救看<a href="#sec-audio-路由">第 7</a>、<a
+href="#sec-現場操作手冊">14</a>、<a href="#sec-failures">15
+節</a>；詢價信範本看<a href="#sec-rfp">第 12 節</a>；時程清單看<a
+href="#sec-timeline">第 13 節</a>。</p>
+<div class="page-break">
+
+</div>
+<p>來源索引：<a
+href="ai-captioning-ballroom-sources.md">ai-captioning-ballroom-sources.md</a></p>
+<h2 id="sec-navigation">0. 版本與章節導覽</h2>
+<div class="version-switch" role="navigation" aria-label="閱讀版本">
+<p><a href="ai-captioning-ballroom-solution.mobile.html">手機版 HTML</a>
+<a href="ai-captioning-ballroom-solution.desktop.html">桌面版 HTML</a>
+<a href="ai-captioning-ballroom-sources.md">來源索引</a></p>
+</div>
+<div class="section-highlight section-highlight-primary">
+<strong>閱讀建議</strong>
+<p>
+手機上先開手機版 HTML；桌面閱讀用桌面版 HTML。需要穩定分享時，先分享整個
+HTML 套裝與來源索引，PDF 等定稿後再產生。
+</p>
+</div>
+<p>下方只列最常用的 8
+個入口。完整章節在桌面版左側目錄，或用瀏覽器搜尋章節名稱。</p>
+<div class="chapter-guide" aria-label="章節導覽">
+<p><a class="chapter-card" href="#sec-conclusion"><strong>1.
+一句話結論</strong><span>先確認混音器乾淨人聲訊號，再比較人工智慧工具；沒有乾淨聲音，後面都是猜。</span></a>
+<a class="chapter-card" href="#sec-clean-訊號"><strong>4.
+為什麼「混音器乾淨人聲訊號」是主角</strong><span>人工智慧不是在聽現場空氣，而是在吃一條音訊；這條音訊越乾淨，字幕越穩。</span></a>
+<a class="chapter-card" href="#sec-scale"><strong>5.
+不同規模怎麼小型化</strong><span>同一套架構可從 20 人小測試放大到 500
+人正式會議，差別在每塊積木的厚度。</span></a>
+<a class="chapter-card" href="#sec-tools"><strong>8.
+工具比較：先看適不適合現場，不要只看人工智慧很強</strong><span>比較工具時先看現場流程、QR
+觀眾端、術語表、人工修正與採購難度，而不是只看模型名稱。</span></a>
+<a class="chapter-card" href="#sec-packages"><strong>10.
+三套可落地方案</strong><span>低成本試跑、正式建議方案、高穩定低風險
+三套方案對應不同人數、風險與預算。</span></a>
+<a class="chapter-card" href="#sec-rfp"><strong>12. 可以直接寄給場地 /
+影音團隊的問題清單</strong><span>這一章可直接複製寄給場地與影音團隊，用來確認現場能否支援字幕音訊與網路需求。</span></a>
+<a class="chapter-card" href="#sec-現場操作手冊"><strong>14.
+現場操作流程</strong><span>開場前 90
+分鐘的測試、主持提醒、字幕操作員、志工修正和問答麥克風遞送人員都要有固定動作。</span></a>
+<a class="chapter-card" href="#sec-failures"><strong>15.
+壞掉時怎麼救</strong><span>先判斷是沒聲音、爆音、延遲、Wi-Fi、QR、沒拿麥克風，然後用對應流程救回來。</span></a></p>
+</div>
+<div class="page-break">
+
+</div>
+<p>這份文件以 ADALS 2026
+台北實體活動為主要例子，也可拆成小型活動模組。寫法不是通用工具大全，而是先把
+ADALS 的場地、收音、工具、人力、QR
+碼、志工修正講清楚，再標出哪些部分可縮小。</p>
+<p>目標是讓主辦、場地、影音團隊、字幕操作員與志工用同一套流程溝通。現場字幕成功的關鍵不是某個應用程式，而是每句重要發言都進麥克風，並由混音器送出乾淨人聲給字幕電腦。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-conclusion">1. 一句話結論</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+先確認混音器乾淨人聲訊號，再比較人工智慧工具；沒有乾淨聲音，後面都是猜。
+</p>
+</div>
+<p>ADALS 不該先問「哪個人工智慧字幕工具最好？」<br />
+ADALS
+應該先問「我們能不能從現場混音器拿到一條乾淨、穩定、只包含人聲的音訊？」</p>
+<p>這條乾淨音訊是整套系統的主幹。音訊乾淨，便宜工具也能測出價值；音訊混雜，企業級工具也會不穩。</p>
+<p>現場字幕的第一原則：</p>
+<pre class="text"><code>所有會說話的人
+  -&gt; 都要用麥克風
+  -&gt; 麥克風都要進混音器
+  -&gt; 混音器分一條乾淨人聲給字幕電腦
+  -&gt; 字幕電腦送進人工智慧字幕 / 翻譯工具
+  -&gt; 觀眾掃 QR 碼在手機上看字幕</code></pre>
+<p>不要把筆電或手機放在會場角落聽喇叭。它會收到冷氣、回音、椅子聲、咳嗽、掌聲和喇叭延遲，字幕品質會大幅下降。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-how-to-read">2. 這份報告怎麼讀</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+依角色讀不同段落：決策者看結論，執行者看方案與操作流程，對外溝通看白話版本。
+</p>
+</div>
+<p>非 ADALS
+活動也可使用這份文件：把「ADALS」換成自己的活動名稱，再依規模取用第 3
+節、第 5 節與第 12 節。</p>
+<p>先確認三件事：</p>
+<ol type="1">
+<li>這場字幕是「方便大家理解」，還是「有人需要它才能平等參與」？如果是後者，就不能只靠人工智慧字幕，要加
+CART、手語或專業字幕服務。</li>
+<li>場地能不能給字幕電腦一條乾淨人聲？如果不行，先不要比較工具。</li>
+<li>你的活動是哪個尺寸？20 人工作坊、100 人說明會、300
+人大型場地活動，需要的是同一套積木，但厚度不一樣。</li>
+</ol>
+<p>不同角色可以這樣看：</p>
+<ul>
+<li>主辦或決策者：先看 <a href="#sec-access-levels">6.
+無障礙基準服務、方便功能、實驗功能</a> 和 <a href="#sec-packages">10.
+三套可落地方案</a>，決定承諾等級和預算。</li>
+<li>場地或影音團隊：先看 <a href="#sec-clean-訊號">4.
+混音器乾淨人聲訊號</a>、<a href="#sec-audio-路由">7. 現場音訊怎麼接</a>
+和 <a href="#sec-rfp">12. 可以直接寄給場地 /
+影音團隊的問題清單</a>。</li>
+<li>實際執行的人：先看 <a href="#sec-timeline">13. 時程檢查清單</a>、<a
+href="#sec-現場操作手冊">14. 現場操作流程</a> 和 <a
+href="#sec-failures">15. 壞掉時怎麼救</a>。</li>
+<li>找工具的人：等收音問題確認後，再看 <a href="#sec-tools">8.
+工具比較</a> 和 <a href="#sec-shortlist">9.
+工具短名單</a>。先看工具很容易被功能表帶走，忘記現場最常壞的是聲音。</li>
+</ul>
+<p>對外可直接這樣說：</p>
+<blockquote>
+<p>我們不是買一個應用程式就好。現場字幕是一套流程：所有發言進麥克風，麥克風進混音器，混音器分一條乾淨聲音給字幕電腦，觀眾再用
+QR 碼看字幕。人工智慧工具只是最後一段。</p>
+</blockquote>
+<div class="page-break">
+
+</div>
+<h2 id="sec-six-blocks">3. ADALS 要解決的不是一件事，而是六塊積木</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+把現場字幕拆成麥克風、乾淨聲音、字幕電腦、工具、觀眾入口、人力修正六塊，才容易放大或縮小。
+</p>
+</div>
+<p>把整套現場字幕拆成六塊，事情會清楚很多。</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>積木</th>
+<th>白話意思</th>
+<th>最小版本</th>
+<th>正式版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. 麥克風</td>
+<td>誰說話，誰就要被清楚收音</td>
+<td>主講者用手持或領夾麥</td>
+<td>主講者、主持、座談、問答全部有麥</td>
+</tr>
+<tr>
+<td>B. 乾淨聲音</td>
+<td>從混音器分一條只含人聲的線</td>
+<td>一條 AUX / REC OUT</td>
+<td>獨立 AUX / MATRIX OUT，必要時 Dante</td>
+</tr>
+<tr>
+<td>C. 字幕電腦</td>
+<td>接收聲音並送進工具</td>
+<td>一台筆電 + USB 音訊介面</td>
+<td>主機 + 備機 + 操作員</td>
+</tr>
+<tr>
+<td>D. 字幕工具</td>
+<td>把聲音變成字幕 / 翻譯</td>
+<td>Akkadu / Microsoft Translator / UDTalk 試跑</td>
+<td>Vurbo.ai / KKCO / EventCAT / Wordly / AI-Media</td>
+</tr>
+<tr>
+<td>E. 觀眾入口</td>
+<td>讓觀眾掃 QR 碼看字幕</td>
+<td>一張投影片 QR</td>
+<td>場外海報、椅背卡、簡訊、節目手冊</td>
+</tr>
+<tr>
+<td>F. 人力修正</td>
+<td>讓專有名詞不要一直錯</td>
+<td>一位志工看畫面</td>
+<td>操作員 + 術語表 + 修正志工</td>
+</tr>
+</tbody>
+</table>
+<p>小活動需要六塊都在；大活動需要把每一塊加厚。最常見的失敗，是只買 D
+字幕工具，忘記 A、B、C、E、F。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-clean-訊號">4. 為什麼「混音器乾淨人聲訊號」是主角</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+人工智慧不是在聽現場空氣，而是在吃一條音訊；這條音訊越乾淨，字幕越穩。
+</p>
+</div>
+<h3 id="用水管來想">4.1 用水管來想</h3>
+<p>現場會有兩種聲音：</p>
+<ul>
+<li>給人聽的聲音：從喇叭放出來，讓全場聽見。</li>
+<li>給機器聽的聲音：從混音器直接拉出來，讓字幕系統聽見。</li>
+</ul>
+<p>人工智慧字幕需要第二種：近、乾淨、直接。</p>
+<h3 id="不要讓字幕系統聽喇叭">4.2 不要讓字幕系統聽喇叭</h3>
+<p>筆電麥克風或手機麥克風聽喇叭，會碰到這些問題：</p>
+<ul>
+<li>聲音已經被喇叭和房間「煮過一次」。</li>
+<li>大廳堂有回音，字會黏在一起。</li>
+<li>冷氣、椅子、掌聲、咳嗽都會混進去。</li>
+<li>講者離喇叭遠近不同，音量忽大忽小。</li>
+<li>座談時多人輪流說話，人工智慧很難分辨誰在說。</li>
+<li>問答時觀眾如果不用麥克風，幾乎等於消失。</li>
+</ul>
+<p>這種方式可作臨時測試，不適合正式流程。</p>
+<h3 id="要跟場地-影音團隊說的關鍵字">4.3 要跟場地 /
+影音團隊說的關鍵字</h3>
+<p>主辦不必懂所有設備名詞，但要知道該問什麼。</p>
+<p>請問場地或影音團隊：</p>
+<blockquote>
+<p>我們需要從現場混音器提供一條 只含人聲的乾淨訊號 給字幕電腦。可以用
+AUX OUT、MATRIX OUT、REC OUT、USB
+音訊介面，或你們現場可提供的等效方式。這條訊號
+要包含所有講者、主持人、座談和
+問答麥克風，但不要包含背景音樂、影片音效或現場喇叭回音。</p>
+</blockquote>
+<p>中文白話版：</p>
+<blockquote>
+<p>請給字幕電腦一條從混音器直接出來的乾淨人聲，不要讓電腦去聽會場喇叭。</p>
+</blockquote>
+<p>第一段給影音團隊，第二段給場地業務或活動窗口。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-scale">5. 不同規模怎麼小型化</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+同一套架構可從 20 人小測試放大到 500 人正式會議，差別在每塊積木的厚度。
+</p>
+</div>
+<p>這套系統可以縮小。小型活動先測流程，正式活動再加厚設備、人力與備援。</p>
+<h3 id="xs20-50-人小型工作坊">5.1 XS：20-50 人，小型工作坊</h3>
+<p>適合：內部測試、志工訓練、小型旁會。</p>
+<p>做法：</p>
+<ul>
+<li>一支手持麥或會議室麥克風。</li>
+<li>一台筆電接聲音。</li>
+<li>使用 Akkadu、Microsoft Translator、UDTalk、YYSystem
+這類低成本工具試跑。</li>
+<li>觀眾掃 QR 碼或開網址。</li>
+<li>一位志工看字幕是否大致可用。</li>
+</ul>
+<p>風險：</p>
+<ul>
+<li>這不是正式無障礙服務。</li>
+<li>如果房間吵，效果會變差。</li>
+<li>適合測流程，不適合承諾品質。</li>
+</ul>
+<h3 id="s50-150-人低成本試跑">5.2 S：50-150 人，低成本試跑</h3>
+<p>適合：小型公開活動、ADALS 前導場、贊助商說明會。</p>
+<p>做法：</p>
+<ul>
+<li>所有台上講者都用麥克風。</li>
+<li>從混音器拉一條乾淨聲音給字幕電腦。</li>
+<li>使用 Akkadu / EventCAT / Vurbo.ai 試用或低階方案。</li>
+<li>一位字幕操作員。</li>
+<li>一位志工修正專有名詞。</li>
+<li>QR 碼放投影片和報到桌。</li>
+</ul>
+<p>重點：</p>
+<ul>
+<li>這一級開始，就不要讓筆電聽喇叭。</li>
+<li>要開始建立術語表，例如
+ADALS、a11y、ARIA、WCAG、身心障礙、合理調整、台日韓講者姓名。</li>
+</ul>
+<h3 id="m150-300-人adals-正式建議級">5.3 M：150-300 人，ADALS
+正式建議級</h3>
+<p>適合：台北大型實體場地，一天或半天正式活動。</p>
+<p>做法：</p>
+<ul>
+<li>主持、講者、座談、問答都有麥克風。</li>
+<li>影音團隊提供專用乾淨人聲訊號。</li>
+<li>字幕工具優先測 Vurbo.ai / KKCO；同時把 EventCAT
+當價格透明備援；Akkadu 當最低成本備援。</li>
+<li>至少一位字幕操作員。</li>
+<li>至少一至兩位志工做術語表 / 專有名詞修正。</li>
+<li>至少一位 問答麥克風遞送人員，確保觀眾問題也進麥克風。</li>
+<li>場內 Wi-Fi 要能支援觀眾手機開字幕頁。</li>
+</ul>
+<h3 id="l300-500-人正式國際會議">5.4 L：300-500+ 人，正式國際會議</h3>
+<p>適合：國際嘉賓多、媒體或政府參與、已知有聾人 /
+聽覺障礙者無障礙需求。</p>
+<p>做法：</p>
+<ul>
+<li>使用 Wordly / AI-Media / StreamText / 3Play 等正式供應商，或搭配
+CART 即時人工字幕。</li>
+<li>字幕與翻譯不只靠人工智慧，要有人力監看或專業字幕員。</li>
+<li>主機與備機分開。</li>
+<li>網路有備援。</li>
+<li>現場有明確服務台。</li>
+<li>如果有明確無障礙需求，人工智慧不能當唯一服務。</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="sec-access-levels">6.
+無障礙基準服務、方便功能、實驗功能，要分開說</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+人工智慧字幕很好用，但不等於正式無障礙服務；有明確需求時要補
+CART、手語或專業字幕。
+</p>
+</div>
+<p>這一段影響風險、預算和對外承諾。</p>
+<h3 id="無障礙基準服務">6.1 無障礙基準服務</h3>
+<p>意思是：如果有人需要這個服務才能平等參與，主辦要提供可靠服務。</p>
+<p>例子：</p>
+<ul>
+<li>CART 即時人工字幕 / 同步聽打。</li>
+<li>手語翻譯。</li>
+<li>專業字幕服務。</li>
+<li>已測過、有人力監看的字幕服務。</li>
+</ul>
+<p>如果 ADALS 已經知道有聾人 /
+聽覺障礙參與者，不能只說「我們有人工智慧字幕，所以可以了」。</p>
+<h3 id="便利補充功能">6.2 便利補充功能</h3>
+<p>意思是：很多人會覺得好用，但它不是正式保證。</p>
+<p>例子：</p>
+<ul>
+<li>觀眾掃 QR 碼看人工智慧即時翻譯。</li>
+<li>外國觀眾看繁中 / 日文 / 韓文機器翻譯。</li>
+<li>聽力正常但想看字幕的人用手機跟讀。</li>
+</ul>
+<p>這很有價值。只是不要把它說成保證無障礙。</p>
+<h3 id="實驗試跑">6.3 實驗試跑</h3>
+<p>意思是：我們想試，可能很好，也可能出錯，所以要有備案。</p>
+<p>例子：</p>
+<ul>
+<li>第一次用 Akkadu 或 EventCAT 做台北大型實體活動。</li>
+<li>第一次讓志工即時修正人工智慧字幕。</li>
+<li>第一次把術語表 放進工具。</li>
+</ul>
+<p>實驗可以做，但要清楚標示，並準備備案。</p>
+<h3 id="不可作為唯一方案">6.4 不可作為唯一方案</h3>
+<p>這些做法不要當唯一正式方案：</p>
+<ul>
+<li>筆電內建麥克風聽喇叭。</li>
+<li>手機放講台旁邊收音。</li>
+<li>沒有彩排就直接開 人工智慧字幕。</li>
+<li>沒有 問答麥克風，期待人工智慧聽到觀眾喊話。</li>
+<li>沒有術語表，期待人工智慧自己懂 ADALS 和 a11y 術語。</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="sec-audio-路由">7. 現場音訊怎麼接：用圖看就好</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+所有講話都要進麥克風，再從混音器送給字幕電腦；問答麥克風是最容易漏掉的洞。
+</p>
+</div>
+<h3 id="最小可用接法">7.1 最小可用接法</h3>
+<pre class="text"><code>講者麥克風
+  -&gt; 場地混音器
+  -&gt; 一條乾淨人聲輸出
+  -&gt; USB 音訊介面
+  -&gt; 字幕筆電
+  -&gt; 人工智慧字幕工具
+  -&gt; QR 碼
+  -&gt; 觀眾手機</code></pre>
+<p>這是 ADALS 最應該記住的版本。</p>
+<h3 id="正式宴會廳接法">7.2 正式宴會廳接法</h3>
+<pre class="text"><code>講者 頭戴麥克風 / 領夾麥克風 / 手持麥克風
+主持 手持麥克風
+座談桌上麥或手持麥
+問答無線手持麥
+  -&gt; 場地 / 外包影音混音器
+  -&gt; 現場喇叭
+  -&gt; 投影 / LED
+  -&gt; 獨立 AUX / MATRIX 乾淨人聲訊號
+  -&gt; USB 音訊介面
+  -&gt; 字幕主機
+  -&gt; 人工智慧字幕 / 翻譯平台
+  -&gt; QR 碼 / 網址
+  -&gt; 觀眾手機 / 平板 / 筆電</code></pre>
+<h3 id="有備機的接法">7.3 有備機的接法</h3>
+<pre class="text"><code>混音器乾淨人聲訊號
+  -&gt; 音訊分配器 或 混音器第二路輸出
+      -&gt; 字幕主機
+      -&gt; 字幕備機
+
+主機出問題：換 QR 碼 / 網址 或切備用字幕工具</code></pre>
+<p>如果預算有限，不一定要一開始就做備機。但正式國際會議最好有。</p>
+<h3 id="問答是最容易漏掉的洞">7.4 問答是最容易漏掉的洞</h3>
+<p>很多活動前半段字幕很好，問答一開始就崩。原因不是工具突然變笨，而是觀眾沒有進麥克風。</p>
+<p>規則要很簡單：</p>
+<ul>
+<li>觀眾發問前，麥克風遞送人員把麥克風送到手上。</li>
+<li>主持人提醒：「為了字幕和線上紀錄，請等麥克風到再發問。」</li>
+<li>如果觀眾直接喊，主持人要重述問題。</li>
+<li>問答麥克風也要進混音器，也要進字幕訊號。</li>
+</ul>
+<p>字幕系統只會處理進入混音器的聲音；問答麥克風漏掉，字幕就會漏掉。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-tools">8.
+工具比較：先看適不適合現場，不要只看人工智慧很強</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+比較工具時先看現場流程、QR
+觀眾端、術語表、人工修正與採購難度，而不是只看模型名稱。
+</p>
+</div>
+<p>以下不是「誰最厲害」排名，而是「ADALS
+在台北大型實體場地比較容易落地」排序。</p>
+<p>來源、價格線索與官方連結集中在來源索引；正文只保留採購判斷。</p>
+<p>評估標準：</p>
+<ul>
+<li>觀眾能不能掃 QR 碼用手機看？</li>
+<li>能不能吃 混音器來的聲音？</li>
+<li>能不能支援繁中、英文、日文、韓文？</li>
+<li>能不能放術語表？</li>
+<li>能不能人工修正？</li>
+<li>價格是否透明或至少可控？</li>
+<li>非技術人員能不能操作？</li>
+<li>台灣是否容易採購或支援？</li>
+</ul>
+<p>先看這張表。價格感是採購判斷，不是正式報價；正式採購前仍要向供應商確認。</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>工具 / 服務</th>
+<th>ADALS 角色</th>
+<th>價格感</th>
+<th>操作難度</th>
+<th>第一個要問的問題</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vurbo.ai</td>
+<td>台灣優先主方案候選</td>
+<td>需報價</td>
+<td>中</td>
+<td>能否支援台北場地現場、混音器輸入、QR 觀眾端與人工修正？</td>
+</tr>
+<tr>
+<td>KKCO 人工智慧翻譯</td>
+<td>台灣服務型主方案候選</td>
+<td>需報價</td>
+<td>低至中</td>
+<td>是否能提供現場操作員，並支援英中日韓和志工修正？</td>
+</tr>
+<tr>
+<td>EventCAT</td>
+<td>價格透明正式備援</td>
+<td>中</td>
+<td>中</td>
+<td>繁中品質、術語表和人工修正流程是否足夠？</td>
+</tr>
+<tr>
+<td>Akkadu</td>
+<td>低成本試跑與緊急備援</td>
+<td>低至中</td>
+<td>中</td>
+<td>正式活動價格、觀眾數和術語表能力是否符合需求？</td>
+</tr>
+<tr>
+<td>UDTalk</td>
+<td>日本人力修正流程參考</td>
+<td>中</td>
+<td>中至高</td>
+<td>台灣採購、跨國支援和觀眾端使用方式是否可行？</td>
+</tr>
+<tr>
+<td>YYSystem / YY 文字起こし</td>
+<td>日本低成本試跑</td>
+<td>低</td>
+<td>中至高</td>
+<td>非日文團隊能否順利操作，英中日韓品質是否可接受？</td>
+</tr>
+<tr>
+<td>Microsoft Translator</td>
+<td>小型免費備援</td>
+<td>低</td>
+<td>低</td>
+<td>是否只拿來測試或備援，而不是正式主方案？</td>
+</tr>
+<tr>
+<td>雅婷逐字稿 / Yating</td>
+<td>台灣語音辨識能力候選</td>
+<td>低至中</td>
+<td>中</td>
+<td>是否有正式會議觀眾端、多語翻譯與人工修正？</td>
+</tr>
+<tr>
+<td>SOVORO</td>
+<td>韓國方向研究候選</td>
+<td>需確認</td>
+<td>需確認</td>
+<td>是否適合國際會議，且能在台灣採購與支援？</td>
+</tr>
+<tr>
+<td>Wordly</td>
+<td>高穩定國際會議候選</td>
+<td>高 / 需報價</td>
+<td>中</td>
+<td>報價、語言數、術語表與台灣現場支援方式為何？</td>
+</tr>
+<tr>
+<td>AI-Media LEXI</td>
+<td>專業字幕 / 大型活動候選</td>
+<td>高 / 需報價</td>
+<td>中至高</td>
+<td>是否適合 ADALS 的現場影音流程與預算？</td>
+</tr>
+<tr>
+<td>StreamText / 3Play Media</td>
+<td>CART / 專業字幕平台候選</td>
+<td>高 / 需排程</td>
+<td>高</td>
+<td>是否能找到合適語言的人工字幕員，並配合時區與流程？</td>
+</tr>
+</tbody>
+</table>
+<h3 id="台灣優先候選vurbo.ai">8.1 台灣優先候選：Vurbo.ai</h3>
+<p>定位：第一批試測候選，較接近會議現場工具。</p>
+<p>適合：台灣會議、繁中、多語、QR 觀眾端、術語需求。</p>
+<p>確認：混音器接法、人工修正、現場支援、觀看人數、資料政策、報價。</p>
+<p>ADALS
+建議：放入第一輪試測；若價格和支援合理，可作正式方案主方案。</p>
+<h3 id="台灣優先候選kkco-人工智慧翻譯">8.2 台灣優先候選：KKCO
+人工智慧翻譯</h3>
+<p>定位：台灣活動翻譯服務候選，適合與 Vurbo.ai 一起詢價。</p>
+<p>適合：需要台灣服務窗口、QR 手機觀看、術語表與活動支援的主辦。</p>
+<p>確認：台北場地現場服務、混音器接法、英中日韓、志工修正權限、報價。</p>
+<p>ADALS 建議：與 Vurbo.ai
+一起詢價；若能提供現場操作員，對非技術團隊更友善。</p>
+<h3 id="台灣候選雅婷逐字稿-yating">8.3 台灣候選：雅婷逐字稿 /
+Yating</h3>
+<p>定位：台灣語音辨識能力候選，但不一定是完整活動字幕平台。</p>
+<p>適合：繁中語音辨識測試或備援。</p>
+<p>確認：正式會議 QR 觀眾端、多語翻譯、人工修正、150-300
+人宴會廳適用性。</p>
+<p>ADALS
+建議：當作台灣語音辨識能力候選，但不要預設它就是完整現場方案。</p>
+<div class="page-break">
+
+</div>
+<h3 id="日本候選udtalk">8.4 日本候選：UDTalk</h3>
+<p>定位：日本現場字幕加人力修正模式的主要參考。</p>
+<p>適合：想採用「工具加人力修正」流程的活動。</p>
+<p>確認：台灣採購與支援、繁中英文韓文表現、觀眾端是否需安裝應用程式、自行操作門檻。</p>
+<p>ADALS 建議：可作 A11y Tokyo
+類型流程參考；正式採用前要確認跨國支援和現場操作員。</p>
+<h3 id="日本低價候選yysystem-yy-文字起こし">8.5 日本低價候選：YYSystem /
+YY 文字起こし</h3>
+<p>定位：低成本試跑候選，但主辦要承擔較多操作。</p>
+<p>適合：小型低成本測試。</p>
+<p>確認：英中日韓品質、多人觀看上限、非日文團隊操作難度、台灣宴會廳適用性。</p>
+<p>ADALS 建議：適合低成本試跑，不建議第一次正式 ADALS 直接當主方案。</p>
+<h3 id="韓國優先備援eventcat">8.6 韓國優先備援：EventCAT</h3>
+<p>定位：價格透明的正式備援候選。</p>
+<p>適合：需要價格可估、QR 觀眾端與會議流程的 150-300 人活動。</p>
+<p>確認：繁中品質、英中日韓混合場景、術語表、人工修正、台灣付款方式。</p>
+<p>ADALS 建議：如果台灣廠商報價不清楚或太高，EventCAT 是 正式建議方案
+的強備援。</p>
+<h3 id="韓國候選sovoro">8.7 韓國候選：SOVORO</h3>
+<p>定位：韓國無障礙與即時字幕產品，先列研究候選。</p>
+<p>適合：韓文無障礙與即時字幕方向研究。</p>
+<p>確認：國際會議現場、QR 觀眾端、台灣採購、繁中英文日文品質。</p>
+<p>ADALS 建議：研究候選，不放第一輪主方案。</p>
+<div class="page-break">
+
+</div>
+<h3 id="低成本國際候選akkadu">8.8 低成本國際候選：Akkadu</h3>
+<p>定位：低成本試跑與緊急備援工具。</p>
+<p>適合：快速試跑、低成本備援、主方案失效時的第二條路。</p>
+<p>確認：正式活動價格、觀眾數限制、術語表、人工修正、繁中日韓品質。</p>
+<p>ADALS 建議：放入低成本試跑和緊急備援。</p>
+<h3 id="免費或近免費microsoft-translator">8.9 免費或近免費：Microsoft
+Translator</h3>
+<p>定位：免費或低成本備援，適合小型測試，不適合作正式唯一方案。</p>
+<p>限制：術語表、人工修正、現場影音對接能力有限。</p>
+<p>ADALS 建議：當作小型測試或 備援，不當正式主方案。</p>
+<h3 id="正式國際供應商wordly">8.10 正式國際供應商：Wordly</h3>
+<p>定位：正式國際會議多語字幕服務，成本較高。</p>
+<p>適合：國際會議、QR 觀眾端、自訂術語表、較成熟的正式流程。</p>
+<p>限制：通常需報價，成本可能高，不一定是台灣最便宜選項。</p>
+<p>ADALS 建議：高穩定低風險方案候選。<br />
+如果 ADALS 有正式國際贊助或高風險無障礙需求，可以詢價。</p>
+<h3 id="正式字幕-廣播供應商ai-media-lexi">8.11 正式字幕 /
+廣播供應商：AI-Media LEXI</h3>
+<p>定位：正式直播、廣播與大型活動字幕服務候選。</p>
+<p>適合：專業字幕、高風險活動、較正式的影音流程。</p>
+<p>限制：成本較高，對小型主辦可能太重，需要較早採購與技術對接。</p>
+<p>ADALS 建議：高風險或大型正式會議才放入短名單。</p>
+<h3 id="cart-即時人工字幕-專業字幕平台streamtext-3play-media">8.12 CART
+即時人工字幕 / 專業字幕平台：StreamText / 3Play Media</h3>
+<p>定位：正式無障礙需求候選，可靠性高於單純人工智慧字幕。</p>
+<p>適合：已知有聾人 / 聽覺障礙者需求，或需要人工字幕員的正式場。</p>
+<p>限制：費用較高；英文字幕員較容易，繁中 / 日 / 韓可能要另外找。</p>
+<p>ADALS 建議：如果已知有正式無障礙需求，不要只靠人工智慧。<br />
+這類服務應列入 高穩定低風險。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-shortlist">9. ADALS 工具短名單</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+第一輪試測建議測 Vurbo.ai、KKCO、EventCAT、Akkadu、UDTalk，並用同一段
+ADALS 測試稿比較。
+</p>
+</div>
+<h3 id="第一輪試測-名單">第一輪試測 名單</h3>
+<p>建議先測五個：</p>
+<ol type="1">
+<li>Vurbo.ai</li>
+<li>KKCO</li>
+<li>EventCAT</li>
+<li>Akkadu</li>
+<li>UDTalk</li>
+</ol>
+<p>選這五個，是為了同時測到五種不同風險，不是因為它們一定是最終排名前五。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>工具</th>
+<th>為什麼進第一輪</th>
+<th>第一輪要證明什麼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vurbo.ai</td>
+<td>台灣優先主方案候選，較接近會議現場工具</td>
+<td>能不能接場地混音器、讓觀眾掃 QR 看字幕、支援術語和人工修正</td>
+</tr>
+<tr>
+<td>KKCO</td>
+<td>台灣服務型候選，可能降低非技術團隊操作負擔</td>
+<td>是否能提供現場操作支援，並處理英中日韓與志工修正流程</td>
+</tr>
+<tr>
+<td>EventCAT</td>
+<td>價格和會議流程較透明，適合作正式備援</td>
+<td>繁中品質、術語表、人工修正和台灣付款是否可行</td>
+</tr>
+<tr>
+<td>Akkadu</td>
+<td>低成本、可快速試跑，也可作緊急備援</td>
+<td>觀眾數、延遲、術語表和繁中 / 日 / 韓品質是否足夠</td>
+</tr>
+<tr>
+<td>UDTalk</td>
+<td>對照 A11y Tokyo 類型的「工具 + 人力修正」流程</td>
+<td>台灣採購、跨國支援、觀眾端使用方式和志工修正流程是否可行</td>
+</tr>
+</tbody>
+</table>
+<p>Microsoft Translator
+適合小型免費備援，但不適合作正式主方案，所以不放第一輪核心試測。Wordly、AI-Media、CART
+類服務較適合高風險正式會議，等 ADALS
+確認預算與無障礙承諾等級後再詢價。</p>
+<p>測試方式不要太複雜。準備一段 10-15 分鐘的 ADALS 模擬內容：</p>
+<ul>
+<li>英文開場。</li>
+<li>繁中專有名詞。</li>
+<li>日文人名或機構名。</li>
+<li>韓文人名或機構名。</li>
+<li>一段 座談式互動。</li>
+<li>一段 問答。</li>
+</ul>
+<p>然後看：</p>
+<ul>
+<li>字幕延遲幾秒？</li>
+<li>繁中是否自然？</li>
+<li>a11y、WCAG、ARIA、ADALS 是否會亂翻？</li>
+<li>觀眾掃 QR 碼是否順？</li>
+<li>志工能否修正？</li>
+<li>手機畫面是否看得清楚？</li>
+<li>如果聲音突然變小，系統會怎樣？</li>
+</ul>
+<h3 id="推薦排序">推薦排序</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>使用情境</th>
+<th>優先候選</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>台灣優先正式方案</td>
+<td>Vurbo.ai / KKCO</td>
+<td>本地溝通成本低，可能有現場支援</td>
+</tr>
+<tr>
+<td>價格透明正式備援</td>
+<td>EventCAT</td>
+<td>會議價格和 QR 流程清楚</td>
+</tr>
+<tr>
+<td>低成本試跑</td>
+<td>Akkadu</td>
+<td>快速、便宜、活動情境明確</td>
+</tr>
+<tr>
+<td>A11y Tokyo 類人力修正流程</td>
+<td>UDTalk</td>
+<td>有日本現場修正文化與服務脈絡</td>
+</tr>
+<tr>
+<td>小型免費備援</td>
+<td>Microsoft Translator</td>
+<td>容易開始，但不適合作唯一正式方案</td>
+</tr>
+<tr>
+<td>高風險正式會議</td>
+<td>Wordly / AI-Media / StreamText / 3Play</td>
+<td>更成熟，但較貴</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break">
+
+</div>
+<h2 id="sec-packages">10. 三套可落地方案</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+低成本試跑、正式建議方案、高穩定低風險
+三套方案對應不同人數、風險與預算。
+</p>
+</div>
+<h3 id="低成本試跑">10.1 低成本試跑</h3>
+<p>適合人數：50-150 人<br />
+適合場景：前導活動、小型工作坊、內部測試、不是正式無障礙基準服務
+的活動</p>
+<h4 id="音訊路由">音訊路由</h4>
+<pre class="text"><code>講者麥克風
+  -&gt; 小型混音器 或場地混音器
+  -&gt; 乾淨人聲訊號
+  -&gt; USB 音訊介面
+  -&gt; 字幕筆電
+  -&gt; Akkadu / EventCAT / Microsoft Translator / UDTalk
+  -&gt; QR 碼
+  -&gt; 觀眾手機</code></pre>
+<h4 id="設備">設備</h4>
+<ul>
+<li>講者麥克風。</li>
+<li>小型混音器 或場地混音器。</li>
+<li>USB 音訊介面。</li>
+<li>字幕筆電。</li>
+<li>HDMI 線和備用轉接頭。</li>
+<li>QR 碼投影片。</li>
+<li>4G / 5G 熱點當備援。</li>
+</ul>
+<h4 id="人力">人力</h4>
+<ul>
+<li>1 位字幕操作員。</li>
+<li>1 位志工看字幕品質。</li>
+<li>1 位問答麥克風遞送人員，可兼任場務。</li>
+</ul>
+<h4 id="工具">工具</h4>
+<p>優先測：</p>
+<ul>
+<li>Akkadu。</li>
+<li>EventCAT 小時計費。</li>
+<li>Microsoft Translator 做備援。</li>
+<li>UDTalk / YYSystem 做日本流程參考。</li>
+</ul>
+<h4 id="預算粗估">預算粗估</h4>
+<p>工具與操作：NT$0-25,000。<br />
+影音額外費用：視場地，可能 NT$5,000-30,000。<br />
+若需外包影音或租設備，另計。</p>
+<h4 id="適合怎麼用">適合怎麼用</h4>
+<p>目標是確認：</p>
+<ul>
+<li>場地能不能給乾淨人聲訊號。</li>
+<li>觀眾掃 QR 是否順。</li>
+<li>工具對 ADALS 詞彙是否可接受。</li>
+<li>志工修正流程是否跑得起來。</li>
+</ul>
+<h3 id="正式建議方案">10.2 正式建議方案</h3>
+<p>適合人數：150-300 人<br />
+適合場景：台北大型實體場地的正式 ADALS 活動</p>
+<h4 id="音訊路由-1">音訊路由</h4>
+<pre class="text"><code>主持 / 講者 / 座談 / 問答：全部麥克風
+  -&gt; 場地或外包影音混音器
+  -&gt; 現場喇叭
+  -&gt; 專用 AUX / MATRIX 只含人聲訊號
+  -&gt; USB 音訊介面
+  -&gt; 字幕主機
+  -&gt; Vurbo.ai / KKCO / EventCAT
+  -&gt; QR 碼 / 網址
+  -&gt; 觀眾手機
+
+備援：
+  -&gt; Akkadu 或 Microsoft Translator
+  -&gt; 備用 QR 碼</code></pre>
+<h4 id="設備-1">設備</h4>
+<ul>
+<li>每位講者可用的麥克風。</li>
+<li>座談桌上麥或足夠手持麥。</li>
+<li>問答無線手持麥 1-2 支。</li>
+<li>影音混音器。</li>
+<li>專用乾淨人聲訊號。</li>
+<li>USB 音訊介面。</li>
+<li>字幕主機與備用筆電。</li>
+<li>充電器、延長線、轉接頭。</li>
+<li>場內 Wi-Fi，另備 5G 熱點。</li>
+<li>QR 碼海報、投影片、報到桌小卡。</li>
+</ul>
+<h4 id="人力-1">人力</h4>
+<ul>
+<li>1 位字幕操作員。</li>
+<li>1 位影音對接窗口。</li>
+<li>1-2 位志工修正術語表 / 專有名詞。</li>
+<li>1-2 位問答麥克風遞送人員。</li>
+<li>1 位報到桌志工會說明 QR 碼。</li>
+</ul>
+<h4 id="工具-1">工具</h4>
+<p>優先順序：</p>
+<ol type="1">
+<li>Vurbo.ai 或 KKCO，如果台灣支援和報價合理。</li>
+<li>EventCAT，如果需要價格透明和正式會議流程。</li>
+<li>Akkadu，作為低成本備援。</li>
+<li>UDTalk，作為有志工修正的人力流程參考或試測。</li>
+</ol>
+<h4 id="預算粗估-1">預算粗估</h4>
+<p>工具與操作：NT$35,000-150,000。<br />
+影音額外費用：NT$20,000-80,000
+可能區間，視場地包套與外包影音而定。<br />
+若廠商提供現場操作員，總價可能再提高。</p>
+<h4 id="適合怎麼用-1">適合怎麼用</h4>
+<p>這是最推薦的平衡點：台灣或亞洲工具優先，保留 EventCAT / Akkadu
+備援，並把音訊流程做穩。</p>
+<h3 id="高穩定低風險較貴但穩的正式國際會議方案">10.3
+高穩定低風險：較貴但穩的正式國際會議方案</h3>
+<p>適合人數：200-500+ 人<br />
+適合場景：國際嘉賓多、正式無障礙需求、政府或大型贊助商參與</p>
+<h4 id="音訊路由-2">音訊路由</h4>
+<pre class="text"><code>所有麥克風
+  -&gt; 專業影音混音器
+  -&gt; 現場擴音系統
+  -&gt; 乾淨人聲訊號 1：人工智慧字幕平台
+  -&gt; 乾淨人聲訊號 2：人工字幕員 / CART / 備用字幕平台
+  -&gt; 字幕主機 + 備機
+  -&gt; 主 QR 碼 / 備用 QR 碼</code></pre>
+<h4 id="設備-2">設備</h4>
+<ul>
+<li>完整影音控台。</li>
+<li>兩路 乾淨人聲訊號。</li>
+<li>主字幕機與備機。</li>
+<li>專用網路或優先 Wi-Fi。</li>
+<li>現場字幕服務台。</li>
+<li>備用投影方案。</li>
+<li>備用 QR 碼。</li>
+</ul>
+<h4 id="人力-2">人力</h4>
+<ul>
+<li>專業影音技術負責人。</li>
+<li>字幕平台操作員。</li>
+<li>人工字幕員 或 CART 協調人員。</li>
+<li>志工修正小組。</li>
+<li>問答麥克風遞送人員 2 位以上。</li>
+<li>無障礙服務窗口。</li>
+</ul>
+<h4 id="工具-2">工具</h4>
+<p>可詢：</p>
+<ul>
+<li>Wordly。</li>
+<li>AI-Media LEXI。</li>
+<li>StreamText。</li>
+<li>3Play Media。</li>
+<li>搭配台灣同步聽打 / CART / 手語服務。</li>
+</ul>
+<h4 id="預算粗估-2">預算粗估</h4>
+<p>工具與操作：NT$180,000-600,000+。<br />
+影音與人力另計。<br />
+若有多語人工字幕服務，費用會再上升。</p>
+<h4 id="適合怎麼用-2">適合怎麼用</h4>
+<p>如果 ADALS
+對外承諾正式無障礙服務，這套比較接近正確方向；一般活動不必一開始採用這個等級。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-venues">11. 台北場地：公開價格、飯店報價與總成本比較</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+飯店沒有被排除；把非飯店場地、飯店公開會議專案、需詢價場地和已知報價放在一起看總成本。
+</p>
+</div>
+<p>先修正一件事：飯店沒有被排除。飯店宴會廳的好處很明確，擴音、麥克風、投影或大螢幕、餐飲、接待動線通常都有固定流程。問題不是飯店不好，而是飯店常用「每人會議專案」或餐飲低消報價，總成本容易被人數放大。</p>
+<p>所以 ADALS 應該同時看兩條路：</p>
+<ol type="1">
+<li>飯店宴會廳：服務完整，適合重視接待、餐飲、形象與一站式窗口的活動。</li>
+<li>非飯店場地：場租比較透明，常能把場租、影音、網路、餐飲拆開談，適合預算敏感或公益性活動。</li>
+</ol>
+<p>以下公開價格查詢時間為
+2026-06-17；臺北表演藝術中心、新北市政府多功能集會堂與兩座巨蛋為
+2026-06-23
+補查。飯店與場地報價常因日期、人數、餐飲、稅金、服務費、假日、檔期和設備而變動；表格只能當第一輪比較，不能當簽約價格。</p>
+<h3 id="先看怎麼比">11.1 先看怎麼比</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>報價形式</th>
+<th>代表場地</th>
+<th>讀法</th>
+<th>容易漏掉的成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每時段場租</td>
+<td>TICC、集思、臺大醫院、客家劇場、北藝中心、新北市府集會堂</td>
+<td>上午、下午、晚上分開算；上午加下午通常就是一天主時段</td>
+<td>影音技術人員、投影、額外麥克風、網路、餐飲、清潔費</td>
+</tr>
+<tr>
+<td>每日場租</td>
+<td>松山文創園區展演空間</td>
+<td>看起來像整天便宜，但通常不含清潔、撤場、完整影音</td>
+<td>空調電力、加時、場布限制、第三方影音、保全</td>
+</tr>
+<tr>
+<td>每人會議專案</td>
+<td>喜來登、文華東方、香格里拉、萬怡等飯店</td>
+<td>像餐廳套餐，通常含場地、餐飲和基本設備</td>
+<td>服務費、最低人數、午餐形式、升等費、外接字幕設備</td>
+</tr>
+<tr>
+<td>需詢價</td>
+<td>萬豪、希爾頓、晶華、圓山、大巨蛋、小巨蛋等</td>
+<td>公開頁面多半只寫容量和服務，價格要業務回覆</td>
+<td>沒有書面細項時，很難和其他場地公平比較</td>
+</tr>
+</tbody>
+</table>
+<h3 id="非飯店與會議場地公開價格">11.2 非飯店與會議場地公開價格</h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>場地</th>
+<th>公開價格</th>
+<th>價格說明</th>
+<th>適合情境</th>
+<th>字幕與影音注意事項</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TICC 台北國際會議中心</td>
+<td>NT$5,000-159,000 / 時段</td>
+<td>大會堂全場平日 NT$149,000、週末 NT$159,000；101 / 201 全室平日
+NT$63,000、週末 NT$75,000；中小型會議室平日約 NT$5,000-55,000</td>
+<td>大型正式會議、國際會議、需要高形象的主場</td>
+<td>視聽器材通常不得自帶，餐飲也有限制；字幕電腦接線要提早談</td>
+</tr>
+<tr>
+<td>集思台大會議中心</td>
+<td>NT$44,000-48,000 / 時段</td>
+<td>B1 國際會議廳平日 NT$44,000、假日 NT$48,000；另加 10% 清潔費</td>
+<td>300-400 人正式會議</td>
+<td>容量合適，需確認乾淨人聲輸出和外部字幕電腦</td>
+</tr>
+<tr>
+<td>集思交通部國際會議中心</td>
+<td>NT$9,000-31,000 / 時段</td>
+<td>國際會議廳平日 NT$28,000、假日 NT$31,000；201 會議室平日
+NT$9,000、假日 NT$10,000；另加 10% 清潔費</td>
+<td>80-400 人研討會或分場</td>
+<td>集思系統熟悉會議活動，但仍要確認音訊路由</td>
+</tr>
+<tr>
+<td>集思北科大會議中心</td>
+<td>NT$5,000-27,000 / 時段</td>
+<td>卡博廳平日 NT$5,000、假日 NT$5,500；感恩廳平日 NT$24,500、假日
+NT$27,000；另加 10% 清潔費</td>
+<td>50-200 人講座、工作坊、正式說明會</td>
+<td>價格清楚，是低成本正式場的好候選；仍要確認混音器輸出</td>
+</tr>
+<tr>
+<td>臺大醫院國際會議中心</td>
+<td>NT$17,000-19,000 / 時段</td>
+<td>402AB 平日 NT$17,000、假日 NT$19,000；免費提供無線麥克風 2
+支、報到桌、主講台</td>
+<td>醫療、公共議題、正式研討會</td>
+<td>禁止外食；同步翻譯設備不得自備。外部字幕設備要先確認</td>
+</tr>
+<tr>
+<td>臺大圖書館國際會議廳</td>
+<td>NT$12,000 / 半日</td>
+<td>校外平日價；場地費含水電、空調、照明、無線網路</td>
+<td>預算有限的講座或研討會</td>
+<td>官方注意事項提到無法外接其他影音線材或設備，可能不適合作字幕主場</td>
+</tr>
+<tr>
+<td>國立臺北商業大學國際會議廳</td>
+<td>NT$30,250 / 時段</td>
+<td>承曦樓 10 樓國際會議廳 208 人；時段為上午、下午、晚間</td>
+<td>150-200 人校園研討會</td>
+<td>有投影機、麥克風、空調；校園場地通常要更早確認借用資格與外部設備</td>
+</tr>
+<tr>
+<td>臺北市客家文化主題公園劇場</td>
+<td>NT$12,000-16,000 / 時段</td>
+<td>300 人劇場；演出上午 NT$12,000、下午 NT$14,000、晚上 NT$16,000；排練
+/ 拆裝台每時段 NT$6,000</td>
+<td>200-300 人公共議題活動</td>
+<td>容量和價格都值得問；要確認劇場音控能否給字幕電腦乾淨人聲</td>
+</tr>
+<tr>
+<td>大同運動中心國際會議廳</td>
+<td>NT$2,100 / 小時</td>
+<td>199 座加 4 個輪椅席；另加 10% 清潔費</td>
+<td>100-200 人低成本正式講座</td>
+<td>禁止飲食；有投影、音響和控制室，但仍要確認音訊輸出</td>
+</tr>
+<tr>
+<td>台北 NPO 聚落</td>
+<td>NT$800-5,000 / 小時</td>
+<td>會議空間 NT$800、活動空間約
+NT$2,500-5,000；公益與社會創新組織有優惠</td>
+<td>志工訓練、工作坊、工具試跑</td>
+<td>不適合大型主場；很適合先做字幕流程和志工訓練</td>
+</tr>
+<tr>
+<td>社會創新實驗中心</td>
+<td>需申請、未公開</td>
+<td>官方空間租借系統採線上申請、場次計費與審核；公開頁面未直接列完整價格</td>
+<td>社創、公益、無障礙相關前導活動</td>
+<td>可能適合 ADALS 議題，但要先確認申請資格、容量、影音設備</td>
+</tr>
+<tr>
+<td>松山文創園區多功能展演廳</td>
+<td>NT$63,000-90,000 / 日</td>
+<td>原價 NT$90,000、優惠價 NT$63,000；電力空調 NT$7,000 / 日；加時每小時
+NT$4,000</td>
+<td>展示型、文化型、論壇型活動</td>
+<td>不含清潔撤場；古蹟與歷史建築限制多，場布和電力要早談</td>
+</tr>
+<tr>
+<td>松山文創園區 1 / 4 / 5 號倉庫</td>
+<td>NT$73,500-105,000 / 日</td>
+<td>原價 NT$105,000、優惠價 NT$73,500；電力空調 NT$7,000 /
+日；加時每小時 NT$4,000</td>
+<td>大型展演、產品發表、交流展區</td>
+<td>空間大但不是飯店宴會廳；影音、座椅、餐飲、動線都要另估</td>
+</tr>
+<tr>
+<td>臺北表演藝術中心 TPAC（北藝中心）</td>
+<td>NT$1,500-10,000 / 時段起</td>
+<td>太陽廳（130 坪）NT$10,000 起、11 樓天臺 NT$8,000 起、排練場
+NT$1,500-3,700 起；大劇院 1,460 席、球劇場 776 席、藍盒子 499
+席等主劇場需洽詢</td>
+<td>論壇、發表、表演型活動；藍盒子或太陽廳適合中型場，球劇場為球形空間、外觀近似巨蛋</td>
+<td>表演場館非純會議室，座位與動線要先確認；劇場有專業音控，需確認能否給字幕電腦乾淨人聲並外接字幕筆電</td>
+</tr>
+<tr>
+<td>新北市政府多功能集會堂</td>
+<td>NT$20,000 / 場（3 小時）</td>
+<td>無售票每場 NT$20,000、有售票 NT$30,000；公益 / 政府 / 公立學校 7
+折（無售票約 NT$14,000）；保證金 NT$50,000；佈置彩排撤場每小時
+NT$3,000；設備均另計；容量 1,408 人</td>
+<td>板橋、容量大的演藝廳型活動；合法立案協會、法人可申請，但活動須以公益、文化、社會教育為原則，純商業不受理</td>
+<td>禁止飲食（白開水除外）；外接設備含字幕筆電、USB
+音訊介面須事前申請列入清單；既有音響能否給乾淨人聲輸出官方未載明，需向場務窗口確認；場內
+Wi-Fi 規格未公開、需確認</td>
+</tr>
+<tr>
+<td>台北大巨蛋 Taipei Dome（遠雄）</td>
+<td>需詢價</td>
+<td>約 4 萬席；無公開單場價；媒體報導演藝類單日場租約 NT$2,100,000
+並抽票房 10%</td>
+<td>大型賽事、演唱會、展覽；規模遠超 150-300 人會議，非會議場地</td>
+<td>列為對照，不建議作 ADALS 會議主場</td>
+</tr>
+<tr>
+<td>台北小巨蛋 Taipei Arena</td>
+<td>需詢價</td>
+<td>主場館約 1.5 萬席；官網有場租試算但未公開定價</td>
+<td>演唱會、體育賽事等大型活動；非會議場地</td>
+<td>列為對照，不建議作 ADALS 會議主場</td>
+</tr>
+</tbody>
+</table>
+<h3 id="飯店與宴會場地公開每日-半日報價">11.3 飯店與宴會場地公開每日 /
+半日報價</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>飯店或宴會場地</th>
+<th>公開報價</th>
+<th>報價說明</th>
+<th>對 ADALS 的讀法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>台北君悅酒店</td>
+<td>全日每人 NT$2,300 起</td>
+<td>官方全日會議 PDF 價；公開頁面仍需向業務確認年度、日期與條件</td>
+<td>價格接近使用者取得的希爾頓半日時段報價，但要確認是否含服務費、午餐、茶點、基本影音</td>
+</tr>
+<tr>
+<td>台北喜來登大飯店</td>
+<td>每人 NT$1,600-2,600 + 10%</td>
+<td>2026 平日會議專案：晨聚 NT$1,600、半日 NT$2,200、全日 NT$2,600（均 +
+10%）</td>
+<td>中大型飯店中資訊透明，適合作為飯店比價基準</td>
+</tr>
+<tr>
+<td>台北萬豪酒店</td>
+<td>需詢價</td>
+<td>公開頁面有容量與活動空間資料，未找到公開每日會議專案價格</td>
+<td>保留為飯店選項，但第一輪要直接詢價</td>
+</tr>
+<tr>
+<td>台北寒舍艾美酒店</td>
+<td>需詢價</td>
+<td>有會議專案頁，公開頁面未列明每日 / 半日價格</td>
+<td>保留為飯店選項；需請業務提供書面半日、全日、餐飲與影音細項</td>
+</tr>
+<tr>
+<td>台北艾麗 希爾頓格芮精選酒店</td>
+<td>需詢價</td>
+<td>有會議專案頁與 2025 會議專案入口，公開頁面未直接列價格</td>
+<td>信義區、百人級活動可問，但需書面報價</td>
+</tr>
+<tr>
+<td>台北文華東方酒店</td>
+<td>每人 NT$3,080-3,680 起 + 10%</td>
+<td>半日每人 NT$3,080 起、全日每人 NT$3,680 起（均 + 10%）</td>
+<td>高端飯店，適合形象需求高的場次；不會是低成本首選</td>
+</tr>
+<tr>
+<td>台北遠東香格里拉飯店</td>
+<td>每人 NT$2,600-2,900 + 10%</td>
+<td>2026 商務會議專案：半日 NT$2,600、全日 NT$2,900（均 + 10%）；30
+人以上</td>
+<td>價格公開，適合和喜來登、君悅、萬怡比較</td>
+</tr>
+<tr>
+<td>台北新板希爾頓酒店</td>
+<td>個案每人 NT$2,300 / 半日</td>
+<td>官方活動頁僅提供「查詢價格」入口；使用者個案報價上午 NT$2,300 /
+人、下午 NT$2,300 / 人</td>
+<td>若上午加下午都收，等於每人約
+NT$4,600，還要確認是否另加服務費、是否含午餐、茶點、場租與影音</td>
+</tr>
+<tr>
+<td>台北六福萬怡酒店</td>
+<td>每人 NT$1,400-2,900 + 10%</td>
+<td>平日全日 NT$2,500、半日含午餐 NT$1,900、半日不含午餐
+NT$1,400；假日全日 NT$2,900、半日含午餐 NT$2,300、半日不含午餐
+NT$1,800（均 + 10%）</td>
+<td>公開資訊完整，適合當作低於五星核心區飯店的比較基準</td>
+</tr>
+<tr>
+<td>台北國泰萬怡酒店</td>
+<td>需詢價</td>
+<td>公開頁面有活動空間資料，未找到公開每日會議專案價格</td>
+<td>保留詢價；同時問清楚是否能外接字幕筆電</td>
+</tr>
+<tr>
+<td>台北晶華酒店</td>
+<td>需詢價</td>
+<td>未找到官方公開每日會議專案價格；第三方場地資料只能當容量參考</td>
+<td>若要保留高端飯店候選，需直接詢價</td>
+</tr>
+<tr>
+<td>台北士林萬麗酒店</td>
+<td>每人 NT$2,400-2,800 + 10%</td>
+<td>平日會議專案半日每人 NT$2,400、全日每人 NT$2,800（均 + 10%）</td>
+<td>士林區選項，可作飯店比價；需確認專案有效日期與最低人數</td>
+</tr>
+<tr>
+<td>圓山大飯店</td>
+<td>需詢價</td>
+<td>公開頁面有宴會廳資訊，未找到公開每日會議專案價格</td>
+<td>形象強，但價格需直接詢問</td>
+</tr>
+<tr>
+<td>台北花園大酒店</td>
+<td>每人 NT$1,200-3,200 + 10%</td>
+<td>半日不含午餐 NT$1,200、半日含午餐 NT$1,400-2,600、全日含午餐
+NT$2,000-3,200（均 + 10%）</td>
+<td>公開價格低於許多五星飯店，可當預算飯店基準</td>
+</tr>
+<tr>
+<td>JR 東日本大飯店台北</td>
+<td>每人 NT$1,800-2,400 + 10%</td>
+<td>半日每人 NT$1,800、全日每人 NT$2,400（均 + 10%）；保證 20 位起</td>
+<td>公開價格清楚，可列入飯店短名單</td>
+</tr>
+<tr>
+<td>福容大飯店淡水漁人碼頭</td>
+<td>每人 NT$950-2,300 + 10%</td>
+<td>2026 平日半日不含午餐 NT$950、半日含午餐 NT$1,600、全日 NT$2,300（均
++ 10%）</td>
+<td>不在台北市中心，但若可接受淡水交通，是低價飯店比價錨點</td>
+</tr>
+</tbody>
+</table>
+<h3 id="用-200-人粗算差距會很明顯">11.4 用 200 人粗算，差距會很明顯</h3>
+<p>下面不是正式預算，只是讓決策者快速感覺級距：</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>場地算法</th>
+<th style="text-align: right;">200 人粗估</th>
+<th>代表意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>台北新板希爾頓個案報價，上午 + 下午各 NT$2,300 / 人</td>
+<td style="text-align: right;">約 NT$920,000，尚未確認服務費與細項</td>
+<td>如果兩個半日都用人頭價，總額會很快放大</td>
+</tr>
+<tr>
+<td>台北喜來登全日 NT$2,600 + 10% / 人</td>
+<td style="text-align: right;">約 NT$572,000</td>
+<td>飯店全日公開價的中間基準</td>
+</tr>
+<tr>
+<td>台北六福萬怡平日全日 NT$2,500 + 10% / 人</td>
+<td style="text-align: right;">約 NT$550,000</td>
+<td>飯店中相對可比較的低一階選項</td>
+</tr>
+<tr>
+<td>TICC 3 樓宴會廳平日上午 + 下午兩時段</td>
+<td style="text-align: right;">約 NT$158,000，另估影音、網路、餐飲</td>
+<td>場租低於飯店人頭價，但要補很多服務</td>
+</tr>
+<tr>
+<td>臺大醫院國際會議中心 402AB 平日兩時段</td>
+<td style="text-align: right;">約 NT$34,000，另估餐飲與影音限制</td>
+<td>場租很低，但規範與外接設備限制要先確認</td>
+</tr>
+<tr>
+<td>客家文化主題公園劇場上午 + 下午</td>
+<td style="text-align: right;">約 NT$26,000，另估影音、場布、餐飲</td>
+<td>公共場館可能很省，但需要更強的現場統籌</td>
+</tr>
+<tr>
+<td>新北市政府多功能集會堂無售票上午 + 下午兩場（每場 3 小時）</td>
+<td style="text-align: right;">約 NT$40,000，公益費率 7 折約
+NT$28,000，另估設備與清潔</td>
+<td>公有場館場租低，但音響、字幕音訊與外接設備須事前申請並確認</td>
+</tr>
+</tbody>
+</table>
+<p>這就是為什麼不能只問「哪個場地比較便宜」。飯店像買便當套餐，方便但人越多越貴；會議中心像租廚房，場租便宜但鍋碗瓢盆要自己算清楚。對
+ADALS 來說，最重要的是把「場租 + 影音 + 網路 + 餐飲 + 字幕工具 +
+人力」加總成同一張表。</p>
+<h3 id="建議詢價方式">11.5 建議詢價方式</h3>
+<p>每個場地都用同一份格式詢價，不要只問「一個人多少錢」：</p>
+<ol type="1">
+<li>場租：上午、下午、晚上、全日各多少？若是飯店，每人半日與全日各多少？</li>
+<li>服務費：是否另加 10%？稅是否已含在價格內？</li>
+<li>餐飲：是否含午餐與茶點？可否外叫？若不可，最低消費或人頭價是多少？</li>
+<li>影音：麥克風、混音器、投影、技術人員是否另計？</li>
+<li>字幕：能否給字幕電腦一條只含人聲的乾淨訊號？</li>
+<li>網路：能否支援 150-300 位觀眾同時開字幕頁？</li>
+<li>場布：能否放 QR 碼海報、報到桌、字幕服務台？</li>
+<li>無障礙：輪椅席、無障礙廁所、電梯、動線是否足夠？</li>
+<li>第三方廠商：是否允許外部字幕、影音或網路廠商進場？</li>
+</ol>
+<p>ADALS
+的低成本方向不是只找「最便宜場地」，而是找「總成本清楚、乾淨人聲能接出來、網路可用、現場團隊願意配合彩排」的場地。飯店可以繼續保留；非飯店場地也應該同時詢問，讓決策不是被第一份飯店人頭價綁住。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-rfp">12. 可以直接寄給場地 / 影音團隊的問題清單</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+這一章可直接複製寄給場地與影音團隊，用來確認現場能否支援字幕音訊與網路需求。
+</p>
+</div>
+<h3 id="短版-電子郵件">12.1 短版 電子郵件</h3>
+<p>主旨：ADALS 2026 現場人工智慧字幕與多語翻譯影音需求確認</p>
+<p>您好，我們正在評估於貴場地舉辦 ADALS 2026
+活動。活動需要現場人工智慧即時字幕與多語翻譯，觀眾會掃 QR
+碼在手機上觀看字幕。</p>
+<p>為確認可行性，想請貴方影音團隊協助確認以下事項：</p>
+<ol type="1">
+<li>現場混音器 是否可提供一條 只含人聲的乾淨訊號 給字幕筆電？</li>
+<li>這條訊號 是否可包含主持人、講者、座談、問答麥克風？</li>
+<li>是否可避免把背景音樂、影片音效、現場喇叭回音混入字幕訊號？</li>
+<li>可提供的輸出介面是 AUX OUT、MATRIX OUT、REC
+OUT、USB、Dante，或其他方式？</li>
+<li>現場是否允許我們接一台字幕筆電與 USB 音訊介面？</li>
+<li>150-300 位觀眾同時使用手機開字幕頁時，場內 Wi-Fi 是否足夠？</li>
+<li>問答是否可提供 1-2 支無線手持麥，並讓 問答聲音也進入字幕訊號？</li>
+<li>是否可安排活動前彩排，測試麥克風、字幕訊號、投影和 QR 碼？</li>
+<li>若使用外部字幕 / 翻譯廠商，是否有接入規範或額外費用？</li>
+</ol>
+<p>謝謝。</p>
+<h3 id="給影音團隊的白話需求單">12.2 給影音團隊的白話需求單</h3>
+<p>請幫字幕系統準備一條「乾淨人聲」。</p>
+<p>這條聲音要有：</p>
+<ul>
+<li>主持人。</li>
+<li>所有講者。</li>
+<li>座談成員。</li>
+<li>問答麥克風。</li>
+</ul>
+<p>這條聲音不要有：</p>
+<ul>
+<li>背景音樂。</li>
+<li>影片音效。</li>
+<li>現場喇叭回音。</li>
+<li>觀眾雜音。</li>
+<li>沒有拿麥克風的人在台下喊話。</li>
+</ul>
+<p>字幕筆電需要：</p>
+<ul>
+<li>一條穩定音訊輸入。</li>
+<li>一個固定位置。</li>
+<li>電源。</li>
+<li>網路。</li>
+<li>可以看到字幕工具畫面。</li>
+<li>需要時可投影 QR 碼。</li>
+</ul>
+<h3 id="彩排時一定要測">12.3 彩排時一定要測</h3>
+<ul>
+<li>主持人講話，字幕有沒有收到？</li>
+<li>主講者講話，字幕有沒有收到？</li>
+<li>座談每個座位講話，字幕有沒有收到？</li>
+<li>問答麥克風講話，字幕有沒有收到？</li>
+<li>播影片時，字幕訊號 會不會混到影片聲音？</li>
+<li>麥克風突然很大聲，字幕會不會爆掉？</li>
+<li>麥克風很小聲，字幕會不會消失？</li>
+<li>觀眾掃 QR 碼是否能進入？</li>
+<li>場內 Wi-Fi 是否穩？</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="sec-timeline">13. 時程檢查清單</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+用 60 / 30 / 14 / 7 / 1 天節奏拆工作，避免活動前一天才發現沒有聲音路由。
+</p>
+</div>
+<h3 id="活動前-60-天">活動前 60 天</h3>
+<ul>
+<li>決定活動規模：XS / S / M / L。</li>
+<li>決定字幕定位：試跑、便利補充功能、或 無障礙基準服務。</li>
+<li>問場地是否能提供 乾淨人聲訊號。</li>
+<li>初步詢價 Vurbo.ai、KKCO、EventCAT、Akkadu。</li>
+<li>如果有已知無障礙需求，開始找 CART / 手語 / 專業字幕服務。</li>
+<li>建立 ADALS 術語表初版。</li>
+</ul>
+<h3 id="活動前-30-天">活動前 30 天</h3>
+<ul>
+<li>選出主字幕工具與備援工具。</li>
+<li>確認場地影音接法。</li>
+<li>確認 Wi-Fi 條件。</li>
+<li>確認 問答麥克風數量。</li>
+<li>找字幕操作員。</li>
+<li>找志工修正人員。</li>
+<li>找 問答麥克風遞送人員。</li>
+<li>請講者提供投影片和專有名詞。</li>
+</ul>
+<h3 id="活動前-14-天">活動前 14 天</h3>
+<ul>
+<li>用 10-15 分鐘 ADALS 模擬稿做工具測試。</li>
+<li>匯入或準備術語表。</li>
+<li>製作 QR 碼投影片。</li>
+<li>製作場內告示。</li>
+<li>寫主持人提醒詞。</li>
+<li>準備備用 QR 碼。</li>
+<li>準備備用網路。</li>
+</ul>
+<h3 id="活動前-7-天">活動前 7 天</h3>
+<ul>
+<li>與場地 / 影音團隊開技術確認會。</li>
+<li>確認 乾淨人聲訊號接口。</li>
+<li>確認字幕筆電位置。</li>
+<li>確認投影或 LED 是否會顯示 QR 碼。</li>
+<li>確認現場誰有權調 混音器。</li>
+<li>確認如果沒聲音，誰負責處理。</li>
+<li>志工做一次 操作流程 練習。</li>
+</ul>
+<h3 id="活動前-1-天">活動前 1 天</h3>
+<ul>
+<li>帶齊筆電、充電器、轉接頭、USB 音訊介面。</li>
+<li>下載或登入字幕工具。</li>
+<li>確認帳號、密碼、付款狀態。</li>
+<li>確認術語表。</li>
+<li>確認 QR 碼可用。</li>
+<li>印出紙本備用 QR 碼。</li>
+<li>準備主持人提醒詞。</li>
+<li>準備 故障檢查清單。</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="sec-現場操作手冊">14. 現場操作流程</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+開場前 90
+分鐘的測試、主持提醒、字幕操作員、志工修正和問答麥克風遞送人員都要有固定動作。
+</p>
+</div>
+<h3 id="開場前-90-分鐘">14.1 開場前 90 分鐘</h3>
+<ol type="1">
+<li>字幕操作員到場。</li>
+<li>找到 影音技術負責人。</li>
+<li>字幕筆電接電源。</li>
+<li>接 USB 音訊介面。</li>
+<li>影音團隊給乾淨人聲訊號。</li>
+<li>主持麥測試。</li>
+<li>講者麥測試。</li>
+<li>座談麥測試。</li>
+<li>問答麥測試。</li>
+<li>開字幕工具。</li>
+<li>掃 QR 碼測觀眾端。</li>
+<li>用手機行動網路測一次。</li>
+<li>用場內 Wi-Fi 測一次。</li>
+<li>備用 QR 碼放在可找到的位置。</li>
+</ol>
+<h3 id="開場前-15-分鐘">14.2 開場前 15 分鐘</h3>
+<p>主持人或場務提醒：</p>
+<blockquote>
+<p>今天現場提供 人工智慧即時字幕與多語翻譯。請掃描螢幕或報到桌上的 QR
+碼，在手機上選擇需要的字幕語言。為了讓字幕正確，所有發言請使用麥克風，問答
+也請等麥克風到再提問。</p>
+</blockquote>
+<p>這是系統規則，不只是開場提醒。</p>
+<h3 id="字幕操作員-操作流程">14.3 字幕操作員 操作流程</h3>
+<p>操作員要看四件事：</p>
+<ol type="1">
+<li>聲音有沒有進來。</li>
+<li>字幕有沒有持續產生。</li>
+<li>延遲有沒有突然變長。</li>
+<li>觀眾端是否能正常看到。</li>
+</ol>
+<p>如果字幕錯幾個字，不要慌。<br />
+如果字幕完全停止，才是緊急。</p>
+<h3 id="志工修正-操作流程">14.4 志工修正 操作流程</h3>
+<p>志工不需要修每個逗號。<br />
+志工要優先修會造成理解錯誤的東西：</p>
+<ul>
+<li>講者姓名。</li>
+<li>組織名稱。</li>
+<li>ADALS。</li>
+<li>WCAG、ARIA、a11y。</li>
+<li>地名。</li>
+<li>政策或法規名。</li>
+<li>數字。</li>
+<li>時間。</li>
+<li>網址。</li>
+</ul>
+<p>志工的任務是修正會影響理解的錯誤，不是追求逐字完美。</p>
+<h3 id="問答麥克風遞送人員-操作流程">14.5 問答麥克風遞送人員
+操作流程</h3>
+<p>麥克風遞送人員 的任務不是遞麥克風而已。<br />
+麥克風遞送人員 是字幕系統的守門員。</p>
+<p>規則：</p>
+<ul>
+<li>看到觀眾舉手，立刻走近。</li>
+<li>麥克風到觀眾手上後才讓他說。</li>
+<li>如果觀眾已經開始喊，主持人要請他等麥克風。</li>
+<li>如果問題很長，主持人重述一次。</li>
+<li>不要讓多人同時搶話。</li>
+</ul>
+<p>問答要慢一點，確保每個問題都進麥克風。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-failures">15. 壞掉時怎麼救</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+先判斷是沒聲音、爆音、延遲、Wi-Fi、QR、沒拿麥克風，然後用對應流程救回來。
+</p>
+</div>
+<h3 id="沒聲音">15.1 沒聲音</h3>
+<p>可能原因：</p>
+<ul>
+<li>混音器 沒有送 訊號。</li>
+<li>線沒插好。</li>
+<li>USB 音訊介面 沒被電腦選到。</li>
+<li>字幕工具選錯輸入。</li>
+</ul>
+<p>處理：</p>
+<ol type="1">
+<li>操作員看電腦輸入音量表。</li>
+<li>影音團隊看混音器輸出。</li>
+<li>換一條線。</li>
+<li>重選音訊輸入。</li>
+<li>必要時切到備援工具。</li>
+</ol>
+<h3 id="聲音爆掉">15.2 聲音爆掉</h3>
+<p>症狀：</p>
+<ul>
+<li>字幕突然亂掉。</li>
+<li>聲音音量表一直紅色。</li>
+<li>人工智慧把一句話切成奇怪的字。</li>
+</ul>
+<p>處理：</p>
+<ul>
+<li>請影音團隊降低 訊號音量。</li>
+<li>不要只調現場喇叭音量。</li>
+<li>重新測主持人最大音量。</li>
+</ul>
+<p>爆音會讓辨識品質下降，不會讓字幕更清楚。</p>
+<h3 id="字幕延遲">15.3 字幕延遲</h3>
+<p>可能原因：</p>
+<ul>
+<li>網路慢。</li>
+<li>工具伺服器慢。</li>
+<li>翻譯語言太多。</li>
+<li>電腦太忙。</li>
+</ul>
+<p>處理：</p>
+<ul>
+<li>減少不必要語言。</li>
+<li>關掉電腦其他程式。</li>
+<li>切 5G 熱點測試。</li>
+<li>告知主持人放慢速度。</li>
+<li>如果延遲仍高，切備援。</li>
+</ul>
+<h3 id="wi-fi-壞掉">15.4 Wi-Fi 壞掉</h3>
+<p>處理：</p>
+<ul>
+<li>場內投影 QR 碼旁邊放備用說明。</li>
+<li>提醒觀眾可用自己手機網路。</li>
+<li>操作員改用 5G 熱點。</li>
+<li>如果觀眾端都不能用，改投影單一語言字幕到螢幕。</li>
+</ul>
+<h3 id="qr-碼掃不到">15.5 QR 碼掃不到</h3>
+<p>處理：</p>
+<ul>
+<li>放大 QR 碼。</li>
+<li>提供短網址。</li>
+<li>報到桌放紙本。</li>
+<li>投影片停留久一點。</li>
+<li>不要把 QR 碼放太小或放在角落。</li>
+</ul>
+<h3 id="講者沒拿麥克風">15.6 講者沒拿麥克風</h3>
+<p>處理：</p>
+<ul>
+<li>主持人立即提醒。</li>
+<li>影音團隊不要期待字幕系統收得到沒進混音器的聲音。</li>
+<li>如果講者短暫離麥，主持人重述重點。</li>
+</ul>
+<h3 id="人工智慧翻錯專有名詞">15.7 人工智慧翻錯專有名詞</h3>
+<p>處理：</p>
+<ul>
+<li>先修術語表。</li>
+<li>志工優先修高頻詞。</li>
+<li>主持人可在開場先念正確讀法。</li>
+<li>會後把錯詞加到下一場術語表。</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="sec-術語表">16. 術語表：這是讓人工智慧少犯傻的字典</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+ADALS、a11y、WCAG、ARIA、人名與組織名要先準備，人工智慧才比較不會亂猜。
+</p>
+</div>
+<p>如果沒有術語表，人工智慧會把不熟的詞硬猜成常見詞。<br />
+例如：</p>
+<ul>
+<li>ADALS 可能被聽成其他英文縮寫。</li>
+<li>a11y 可能被轉成 無障礙 或奇怪字串。</li>
+<li>WCAG 可能被拆錯。</li>
+<li>台灣人名、日文人名、韓文人名可能被亂翻。</li>
+</ul>
+<p>ADALS 應在活動前準備：</p>
+<ul>
+<li>活動名稱。</li>
+<li>主辦單位。</li>
+<li>講者姓名。</li>
+<li>講者公司 / 組織。</li>
+<li>專有名詞。</li>
+<li>常見縮寫。</li>
+<li>地名。</li>
+<li>法規 / 標準名稱。</li>
+<li>產品名稱。</li>
+<li>贊助商名稱。</li>
+</ul>
+<p>術語表不用一開始完美，但要在每次測試後更新。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-隱私">17. 資料與隱私</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+把聲音送進字幕工具就像交給外部打字員，要確認保存、刪除、訓練與資料所在地。
+</p>
+</div>
+<p>現場字幕會把聲音送到工具服務。這代表主辦要問清楚：</p>
+<ul>
+<li>聲音會不會被保存？</li>
+<li>逐字稿會不會被保存？</li>
+<li>誰可以下載？</li>
+<li>會保存多久？</li>
+<li>能不能刪除？</li>
+<li>是否用來訓練模型？</li>
+<li>資料存在哪個國家？</li>
+<li>有沒有 資料處理協議或隱私條款？</li>
+</ul>
+<p>如果活動包含敏感內容，請不要只看價格。<br />
+便宜工具可以用在公開活動；敏感內容要更小心。</p>
+<p>把聲音送進字幕工具前，要確認資料是否保存、轉交、下載或用於模型訓練。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-recommendation">18. 最終建議</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+先試測、台灣優先、EventCAT 備援、Akkadu
+低成本備援；有正式無障礙需求就加人工服務。
+</p>
+</div>
+<p>ADALS 最務實的路線是：</p>
+<ol type="1">
+<li>先做一場小型試測，不要直接採購正式方案。</li>
+<li>試測必須用混音器乾淨人聲訊號，不要用筆電聽喇叭。</li>
+<li>台灣優先測 Vurbo.ai 和 KKCO。</li>
+<li>同時測 EventCAT，因為它價格和會議流程比較透明。</li>
+<li>測 Akkadu，作為低成本和備援工具。</li>
+<li>UDTalk 作為 A11y Tokyo 類型的人力修正流程參考。</li>
+<li>若有正式無障礙需求，另找 CART / 專業字幕服務 /
+手語，不要只靠人工智慧。</li>
+</ol>
+<p>一句話版本：</p>
+<blockquote>
+<p>用台灣工具優先，但不要把希望押在單一應用程式。先把聲音管線做好，再比較工具。正式場用
+正式建議方案；高風險場加人工字幕和企業級供應商。</p>
+</blockquote>
+<p>最推薦的正式組合：</p>
+<pre class="text"><code>場地 / 外包影音乾淨人聲訊號
+  + Vurbo.ai 或 KKCO 作台灣優先主方案
+  + EventCAT 作價格透明備援
+  + Akkadu 作低成本 緊急 備援
+  + 志工術語表 / 專有名詞修正
+  + 問答麥克風遞送人員</code></pre>
+<p>這套組合的重點是可執行、可備援、非技術人員能接手。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-decision-table">19. 採購決策表</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+用是 / 否 問題快速判斷現在該解影音、選試跑、上正式方案，還是補專業服務。
+</p>
+</div>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>問題</th>
+<th>如果答案是可以</th>
+<th>如果答案是不可以</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>場地能給乾淨人聲訊號嗎？</td>
+<td>可以進入工具比較</td>
+<td>先不要採購字幕工具，先解影音</td>
+</tr>
+<tr>
+<td>所有發言都會進麥克風嗎？</td>
+<td>字幕可控</td>
+<td>問答和座談 會高風險</td>
+</tr>
+<tr>
+<td>觀眾是否需要英中日韓？</td>
+<td>測多語平台</td>
+<td>可先做單語 / 雙語試跑</td>
+</tr>
+<tr>
+<td>有已知 聾人 / 聽覺障礙者需求 嗎？</td>
+<td>加 CART / 專業服務</td>
+<td>人工智慧可作 便利補充功能</td>
+</tr>
+<tr>
+<td>有志工可修正嗎？</td>
+<td>UDTalk 類流程可行</td>
+<td>選更自動化工具，但品質風險較高</td>
+</tr>
+<tr>
+<td>預算低於 NT$25,000 嗎？</td>
+<td>低成本試跑</td>
+<td>可考慮 正式建議方案</td>
+</tr>
+<tr>
+<td>預算可到 NT$150,000 嗎？</td>
+<td>正式建議方案可行</td>
+<td>限縮語言或人力</td>
+</tr>
+<tr>
+<td>需要正式國際會議等級嗎？</td>
+<td>詢 Wordly / AI-Media / CART</td>
+<td>不必一開始買企業級</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break">
+
+</div>
+<h2 id="sec-host-script">20. 附錄：給主持人的提醒詞</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+主持人提醒不是禮貌話，而是讓所有發言進麥克風、讓字幕能工作的現場規則。
+</p>
+</div>
+<h3 id="開場">開場</h3>
+<p>各位好，今天現場提供
+人工智慧即時字幕與多語翻譯。請掃描螢幕或報到桌上的 QR
+碼，在手機上選擇需要的字幕語言。</p>
+<p>為了讓字幕正確，今天所有發言都需要使用麥克風。問答時也請等工作人員把麥克風送到您手上再提問。謝謝大家協助，這會讓更多人能一起參與。</p>
+<h3 id="問答前">問答前</h3>
+<p>接下來進入問答。為了讓字幕和翻譯能收到問題，請大家先舉手，等工作人員把麥克風送到您手上後再提問。如果問題比較長，我會簡短重述一次，方便字幕和其他觀眾跟上。</p>
+<h3 id="字幕出錯時">字幕出錯時</h3>
+<p>現場字幕是即時產生，可能會有少數錯字。若遇到專有名詞錯誤，我們會盡量即時修正。謝謝大家包容。</p>
+<div class="page-break">
+
+</div>
+<h2 id="sec-test-script">21. 附錄：測試腳本</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+不要只說「測試、測試」；用含 ADALS 術語、英中日韓、人名、座談與問答
+的稿子測。
+</p>
+</div>
+<p>用下面這段測工具。不要只說「測試、測試」。那測不出 ADALS
+真的會遇到的問題。</p>
+<blockquote>
+<p>Welcome to ADALS 2026 in Taipei. Today we are discussing 無障礙,
+digital inclusion, WCAG, ARIA, a11y practice, and language access across
+Taiwan, Japan, and Korea.</p>
+<p>接下來我們會談到繁體中文即時字幕、合理調整、身心障礙者參與、台北會議場地，以及現場問答
+的麥克風流程。</p>
+<p>We will also mention Japanese and Korean participants, including
+speakers from Tokyo and Seoul. Please make sure the terms ADALS, WCAG,
+ARIA, and a11y are shown correctly.</p>
+<p>現在進入
+座談。第一位講者說英文，第二位講者說中文，第三位講者提到日本與韓國案例。最後我們會做
+問答，請觀眾等麥克風到再提問。</p>
+</blockquote>
+<p>測完請記錄：</p>
+<ul>
+<li>英文變繁中是否可讀？</li>
+<li>繁中變英文是否可讀？</li>
+<li>日韓相關詞是否亂掉？</li>
+<li>ADALS / a11y / WCAG / ARIA 是否正確？</li>
+<li>延遲大約幾秒？</li>
+<li>手機字幕是否容易看？</li>
+<li>志工能否修正？</li>
+<li>QR 碼是否順？</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="sec-source-index">22. 附錄：來源索引怎麼用</h2>
+<div class="section-highlight">
+<strong>本章重點</strong>
+<p>
+採購前用來源索引重新確認官方功能、價格與條款，因為雲端軟體服務會變。
+</p>
+</div>
+<p>本報告沒有把每一個來源都塞在正文裡，因為那會讓非技術讀者很難讀。完整來源整理在：</p>
+<p><a
+href="ai-captioning-ballroom-sources.md">ai-captioning-ballroom-sources.md</a></p>
+<p>採購前請用 來源索引 做三件事：</p>
+<ol type="1">
+<li>點官方來源確認產品仍存在。</li>
+<li>重新確認價格，因為雲端軟體服務價格會變。</li>
+<li>把需求寄給 供應商，請 供應商 用書面回答。</li>
+</ol>
+<p>不要只看行銷頁；採購前要用書面回覆確認。</p>
+<a id="back-to-top" class="nav-fab nav-fab--top" href="#top" aria-label="回到頂端">↑</a>
+<button id="toc-fab" class="nav-fab nav-fab--toc" type="button" aria-expanded="false" aria-controls="TOC">目錄</button>
+<div id="toc-scrim" hidden></div>
+<script>
+(function () {
+  var toc = document.getElementById('TOC');
+
+  // Scroll-spy: highlight current section, expand current chapter's subsections.
+  if (toc) {
+    var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+    var byId = {};
+    links.forEach(function (a) {
+      byId[decodeURIComponent(a.getAttribute('href').slice(1))] = a;
+    });
+    var heads = Array.prototype.slice
+      .call(document.querySelectorAll('h2[id], h3[id]'))
+      .filter(function (h) { return byId[h.id]; });
+
+    function spy() {
+      var cur = null;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i].getBoundingClientRect().top <= 130) cur = heads[i]; else break;
+      }
+      links.forEach(function (a) {
+        a.classList.remove('toc-active');
+        a.removeAttribute('aria-current');
+      });
+      Array.prototype.forEach.call(toc.querySelectorAll('li.toc-expanded'), function (li) {
+        li.classList.remove('toc-expanded');
+      });
+      if (cur && byId[cur.id]) {
+        var a = byId[cur.id];
+        a.classList.add('toc-active');
+        a.setAttribute('aria-current', 'location');
+        var li = a.closest('li');
+        while (li && toc.contains(li)) {
+          li.classList.add('toc-expanded');
+          var parent = li.parentElement ? li.parentElement.closest('li') : null;
+          if (!parent) break;
+          li = parent;
+        }
+      }
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(function () { spy(); ticking = false; });
+      }
+    }, { passive: true });
+    spy();
+  }
+
+  // Mobile floating table-of-contents toggle.
+  var fab = document.getElementById('toc-fab');
+  var scrim = document.getElementById('toc-scrim');
+  if (fab && toc && scrim) {
+    function closeToc() {
+      document.body.classList.remove('toc-open');
+      fab.setAttribute('aria-expanded', 'false');
+      scrim.hidden = true;
+      fab.focus();
+    }
+    function openToc() {
+      document.body.classList.add('toc-open');
+      fab.setAttribute('aria-expanded', 'true');
+      scrim.hidden = false;
+      toc.setAttribute('tabindex', '-1');
+      toc.focus();
+    }
+    fab.addEventListener('click', function () {
+      document.body.classList.contains('toc-open') ? closeToc() : openToc();
+    });
+    scrim.addEventListener('click', closeToc);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('toc-open')) closeToc();
+    });
+    toc.addEventListener('click', function (e) {
+      if (e.target.closest('a') && document.body.classList.contains('toc-open')) closeToc();
+    });
+  }
+})();
+</script>
+</body>
+</html>

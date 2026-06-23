@@ -1,0 +1,163 @@
+@page {
+  size: 430px 932px;
+  margin: 18px 16px;
+}
+
+html {
+  font-size: 18px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 18px 14px 44px;
+  background: #fff;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+}
+
+body > :not(#TOC) {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+#TOC {
+  display: none;
+}
+
+h1 {
+  font-size: 1.58rem;
+  line-break: anywhere;
+  word-break: break-all;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+h1,
+a[href$=".md"],
+a[href$=".pdf"],
+a[href$=".html"] {
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
+h2 {
+  margin-top: 2.2rem;
+  font-size: 1.52rem;
+}
+
+h3 {
+  font-size: 1.18rem;
+}
+
+p,
+li {
+  font-size: 1rem;
+}
+
+.version-switch,
+.section-links,
+.chapter-guide {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.version-switch p {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.chapter-guide p {
+  display: contents;
+}
+
+.version-switch a,
+.section-links a {
+  justify-content: center;
+  min-height: 2.8rem;
+}
+
+.chapter-card {
+  min-height: auto;
+}
+
+table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  font-size: 0.86rem;
+}
+
+th,
+td {
+  padding: 0.5rem;
+}
+
+pre {
+  font-size: 0.88rem;
+}
+
+@media print {
+  body {
+    padding: 0;
+  }
+
+  #TOC {
+    max-height: none;
+  }
+
+  .version-switch a,
+  .section-links a {
+    min-height: 0;
+    padding: 0.25rem 0.35rem;
+  }
+}
+
+/* --- mobile floating table of contents --- */
+.nav-fab--toc {
+  display: flex;
+  left: 1rem;
+  bottom: 1rem;
+}
+
+body.toc-open .nav-fab--top {
+  display: none;
+}
+
+body.toc-open #TOC {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  width: min(86vw, 360px);
+  max-width: 100%;
+  margin: 0;
+  z-index: 890;
+  overflow-y: auto;
+  border-radius: 0;
+  border-left: 1px solid var(--line);
+  box-shadow: -6px 0 18px rgba(0, 0, 0, 0.28);
+}
+
+@media print {
+  .nav-fab--toc {
+    display: none !important;
+  }
+}

@@ -1,0 +1,103 @@
+@page {
+  size: A4;
+  margin: 18mm 16mm;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 28px;
+  color: #1d1f24;
+  background: #fff;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", "Segoe UI", Arial, sans-serif;
+  line-height: 1.72;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.28;
+  color: #111318;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 1.45rem;
+  margin: 2.4rem 0 0.9rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid #d8d2c8;
+}
+
+h3 {
+  font-size: 1.15rem;
+  margin: 1.7rem 0 0.6rem;
+}
+
+h4 {
+  font-size: 1rem;
+  margin: 1.3rem 0 0.4rem;
+}
+
+p, li {
+  font-size: 0.98rem;
+}
+
+code, pre {
+  font-family: "Cascadia Mono", "Consolas", monospace;
+}
+
+pre {
+  border: 1px solid #d8d2c8;
+  background: #f7f4ef;
+  padding: 0.9rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.25rem;
+  font-size: 0.86rem;
+}
+
+th, td {
+  border: 1px solid #d8d2c8;
+  padding: 0.45rem 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #f0ebe3;
+  font-weight: 700;
+}
+
+a {
+  color: #5a3a2e;
+}
+
+.page-break {
+  break-before: page;
+  page-break-before: always;
+}
+
+@media print {
+  body {
+    max-width: none;
+    padding: 0;
+  }
+
+  h2 {
+    break-after: avoid;
+  }
+
+  table, pre {
+    break-inside: avoid;
+  }
+}

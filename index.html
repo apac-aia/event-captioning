@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>台北字幕活動選型工具｜場地與即時字幕方案</title>
+<meta name="description" content="輸入你的活動條件，快速篩出適合的台北場地，並推薦現場人工智慧字幕工具與方案等級。">
+<style>
+:root{
+  --paper:#ffffff; --bg:#f5f7f6; --ink:#181b1f; --muted:#59636d;
+  --line:#d8dfde; --soft:#e9f7f4; --accent:#0f766e; --accent-ink:#0b5cad;
+  --warn-bg:#fbe7e3; --warn-line:#c2532f; --radius:10px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  line-height:1.65; font-size:17px;
+}
+a{color:var(--accent-ink);}
+.skip-link{position:absolute;left:.6rem;top:.6rem;z-index:50;background:var(--accent);color:#fff;padding:.55rem .95rem;border-radius:6px;text-decoration:none;transform:translateY(-160%);transition:transform .14s;}
+.skip-link:focus{transform:translateY(0);outline:3px solid #fff;outline-offset:2px;}
+.wrap{max-width:1100px;margin:0 auto;padding:1.4rem 1.1rem 4rem;}
+header.intro{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.3rem;margin-bottom:1.6rem;}
+header.intro h1{font-size:1.6rem;margin:.1rem 0 .5rem;line-height:1.3;}
+header.intro p{margin:.35rem 0;color:var(--muted);}
+header.intro .core{color:var(--ink);background:var(--soft);border-radius:8px;padding:.6rem .8rem;margin-top:.7rem;}
+h2{font-size:1.25rem;margin:1.8rem 0 .7rem;}
+fieldset{border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);margin:0 0 1rem;padding:.8rem 1rem 1rem;}
+legend{font-weight:700;padding:0 .4rem;}
+.seg{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.3rem;}
+.seg label{position:relative;}
+.seg input{position:absolute;opacity:0;width:0;height:0;}
+.seg span{display:inline-flex;align-items:center;min-height:44px;padding:.4rem .9rem;border:1px solid var(--line);border-radius:999px;cursor:pointer;background:#fff;}
+.seg input:checked + span{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700;}
+.seg input:focus-visible + span{outline:3px solid var(--accent-ink);outline-offset:2px;}
+.seg small{display:block;color:var(--muted);font-size:.8rem;font-weight:400;}
+.seg input:checked + span small{color:#e7f4f1;}
+.layout{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:1.4rem;align-items:start;}
+.filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:1rem;position:sticky;top:1rem;}
+.filters h3{margin:.2rem 0 .6rem;font-size:1.05rem;}
+.filters .grp{margin-bottom:1rem;}
+.filters .grp > strong{display:block;margin-bottom:.35rem;}
+.chk{display:flex;align-items:center;gap:.5rem;min-height:32px;}
+.chk input{width:18px;height:18px;}
+.reco{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1rem;}
+.reco h3{margin:.1rem 0 .5rem;}
+.reco .row{margin:.3rem 0;}
+.reco .k{font-weight:700;}
+.warn{background:var(--warn-bg);border-left:5px solid var(--warn-line);border-radius:8px;padding:.7rem .9rem;margin-top:.7rem;}
+.count{font-weight:700;margin:.2rem 0 .8rem;}
+.cards{display:grid;gap:.8rem;}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:.9rem 1rem;}
+.card h4{margin:0 0 .3rem;font-size:1.08rem;}
+.card .price{font-size:1.15rem;font-weight:700;color:var(--accent);}
+.card .meta{display:flex;flex-wrap:wrap;gap:.4rem;margin:.45rem 0;}
+.tag{font-size:.78rem;padding:.15rem .55rem;border-radius:999px;border:1px solid var(--line);background:#f7faf9;color:var(--muted);}
+.tag.cap-good{background:var(--soft);color:var(--accent);border-color:#bfe3dc;}
+.tag.cap-restricted{background:var(--warn-bg);color:var(--warn-line);border-color:#e6b8a8;}
+.tag.over{background:#fff3d6;color:#8a5a12;border-color:#e8d39a;}
+.card .note{color:var(--muted);font-size:.92rem;margin:.3rem 0 .2rem;}
+.empty{background:var(--paper);border:1px dashed var(--line);border-radius:var(--radius);padding:1.4rem;text-align:center;color:var(--muted);}
+footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem;}
+.btn{display:inline-block;min-height:44px;line-height:44px;padding:0 1rem;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;}
+.btn:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px;}
+:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px;}
+@media (max-width:760px){
+  .layout{grid-template-columns:1fr;}
+  .filters{position:static;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#tool">跳到工具</a>
+<div class="wrap">
+
+<header class="intro">
+  <h1>台北字幕活動選型工具</h1>
+  <p>辦一場需要「現場即時字幕／多語翻譯」的活動？輸入你的條件，這個工具幫你篩出適合的台北場地，並推薦字幕工具與方案等級。</p>
+  <p class="core"><strong>一個核心原則：</strong>現場字幕成敗不在用哪個 App，而在場地的混音器能不能給字幕電腦一條「只含人聲的乾淨訊號」。每個場地都要先問這件事。</p>
+  <p style="margin-top:.6rem;font-size:.92rem;">資料為公開查詢的第一輪比較（2026-06 查詢），不是簽約價；正式採購仍須向場地與廠商確認。需要完整說明可看 <a href="./ai-captioning-ballroom-solution.desktop.html">完整報告</a>。</p>
+</header>
+
+<main id="tool">
+  <section aria-labelledby="setup-h">
+    <h2 id="setup-h">第一步：前置設定</h2>
+
+    <fieldset>
+      <legend>活動人數規模</legend>
+      <div class="seg" role="radiogroup" id="f-size">
+        <label><input type="radio" name="size" value="XS"><span>XS<small>&lt; 50 人</small></span></label>
+        <label><input type="radio" name="size" value="S"><span>S<small>50-150 人</small></span></label>
+        <label><input type="radio" name="size" value="M" checked><span>M<small>150-300 人</small></span></label>
+        <label><input type="radio" name="size" value="L"><span>L<small>300 人以上</small></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>預算傾向</legend>
+      <div class="seg" role="radiogroup" id="f-budget">
+        <label><input type="radio" name="budget" value="low"><span>省<small>越低越好</small></span></label>
+        <label><input type="radio" name="budget" value="mid" checked><span>平衡<small>合理即可</small></span></label>
+        <label><input type="radio" name="budget" value="any"><span>不限<small>都看看</small></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>字幕定位</legend>
+      <div class="seg" role="radiogroup" id="f-access">
+        <label><input type="radio" name="access" value="convenience" checked><span>便利補充<small>有就好，提升體驗</small></span></label>
+        <label><input type="radio" name="access" value="formal"><span>正式無障礙服務<small>有人需要才能參與</small></span></label>
+      </div>
+    </fieldset>
+  </section>
+
+  <section aria-labelledby="result-h">
+    <h2 id="result-h">第二步：看結果，左邊可即時微調</h2>
+    <p style="color:var(--muted);font-size:.9rem;margin:.2rem 0 1rem;">提醒：各場地計價方式不同（每時段／每人／每日／每場）。飯店多為「每人」計價，人數越多總價放大；會議中心多為「每時段」，與人數較無關。比較時要換算成同一份總成本。</p>
+    <div id="reco" class="reco" aria-live="polite"></div>
+
+    <div class="layout">
+      <aside class="filters" aria-label="場地微調篩選">
+        <h3>微調篩選</h3>
+        <div class="grp" id="f-type">
+          <strong>場地類型</strong>
+        </div>
+        <div class="grp" id="f-area">
+          <strong>地點</strong>
+        </div>
+        <div class="grp">
+          <strong>其他</strong>
+          <label class="chk"><input type="checkbox" id="t-cap"> 只看「能外接字幕電腦」</label>
+          <label class="chk"><input type="checkbox" id="t-price"> 只看「有公開價格」</label>
+          <label class="chk"><input type="checkbox" id="t-over" checked> 排除規模過大的場地</label>
+        </div>
+      </aside>
+
+      <div>
+        <p class="count" id="count" aria-live="polite"></p>
+        <div class="cards" id="cards"></div>
+        <p id="filtered-note" style="color:var(--muted);font-size:.9rem;margin-top:.8rem;"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>方案與工具建議為一般性參考，非保證；每個場地的「乾淨人聲訊號」與外接字幕設備規定，請於詢價時逐項確認。完整流程、詢價信範本、現場操作與壞掉怎麼救，見 <a href="./ai-captioning-ballroom-solution.desktop.html">完整報告</a>。</p>
+</footer>
+</div>
+
+<script>
+// --- data: Taipei venues for live-captioning events ---
+// captioning: good | uncertain | restricted ; costBand: low | mid | high | ask
+const VENUES = [
+  {n:"TICC 台北國際會議中心", area:"taipei", type:"會議中心", capMin:100, capMax:3000, priceText:"NT$5,000-159,000 / 時段", priceFrom:5000, cap:"restricted", cost:"high", note:"高形象主場；視聽器材通常不得自帶，餐飲有限制。", src:"https://www.ticc.com.tw/"},
+  {n:"集思台大會議中心", area:"taipei", type:"會議中心", capMin:150, capMax:400, priceText:"NT$44,000-48,000 / 時段", priceFrom:44000, cap:"good", cost:"mid", note:"會議流程熟，部分廳附電子字幕機、無線麥；另加 10% 清潔費。", src:"https://www.meeting.com.tw/ntu/"},
+  {n:"集思交通部國際會議中心", area:"taipei", type:"會議中心", capMin:80, capMax:400, priceText:"NT$9,000-31,000 / 時段", priceFrom:9000, cap:"good", cost:"mid", note:"國際會議廳與 201 室；另加 10% 清潔費。", src:"https://www.meeting.com.tw/motc/"},
+  {n:"集思北科大會議中心（感恩廳）", area:"taipei", type:"會議中心", capMin:50, capMax:200, priceText:"NT$5,000-27,000 / 時段", priceFrom:5000, cap:"good", cost:"low", note:"低成本正式場好候選；另加 10% 清潔費。", src:"https://www.meeting.com.tw/ntut/"},
+  {n:"臺大醫院國際會議中心", area:"taipei", type:"會議中心", capMin:150, capMax:400, priceText:"NT$17,000-19,000 / 時段", priceFrom:17000, cap:"restricted", cost:"mid", note:"同步翻譯設備不得自備、禁外食；外接字幕設備要先確認。", src:"https://www.nthcc.com.tw/"},
+  {n:"臺大圖書館國際會議廳", area:"taipei", type:"校園", capMin:100, capMax:200, priceText:"NT$12,000 / 半日", priceFrom:12000, cap:"restricted", cost:"low", note:"官方註明無法外接其他影音設備，可能不適合作字幕主場。", src:"https://www.lib.ntu.edu.tw/node/167"},
+  {n:"國立臺北商業大學國際會議廳", area:"taipei", type:"校園", capMin:120, capMax:208, priceText:"NT$30,250 / 時段", priceFrom:30250, cap:"uncertain", cost:"mid", note:"有投影、麥克風、空調；校園場地要早確認借用資格與外部設備。", src:"https://gen.ntub.edu.tw/p/412-1009-5085.php"},
+  {n:"臺北市客家文化主題公園劇場", area:"taipei", type:"文化展演", capMin:200, capMax:300, priceText:"NT$12,000-16,000 / 時段", priceFrom:12000, cap:"uncertain", cost:"low", note:"300 人劇場；要確認劇場音控能否給字幕電腦乾淨人聲。", src:"https://ssl.thcp.org.tw/rental"},
+  {n:"大同運動中心國際會議廳", area:"taipei", type:"公有", capMin:100, capMax:199, priceText:"NT$2,100 / 小時", priceFrom:2100, cap:"uncertain", cost:"low", note:"199 座加 4 輪椅席、有控制室；禁飲食；另加 10% 清潔費。", src:"https://www.dtsc-wdyg.com.tw/"},
+  {n:"台北 NPO 聚落", area:"taipei", type:"社創", capMin:10, capMax:80, priceText:"NT$800-5,000 / 小時", priceFrom:800, cap:"uncertain", cost:"low", note:"適合志工訓練、工作坊、流程試跑；不適合大型主場。", src:"https://www.npohub.taipei/"},
+  {n:"社會創新實驗中心", area:"taipei", type:"社創", capMin:20, capMax:150, priceText:"需申請、未公開", priceFrom:null, cap:"uncertain", cost:"ask", note:"線上申請、場次計費與審核；公開頁未列完整價格。", src:"https://startup.sme.gov.tw/sitaiwan/Home/spaceRent"},
+  {n:"松山文創園區多功能展演廳", area:"taipei", type:"文化展演", capMin:200, capMax:600, priceText:"NT$63,000-90,000 / 日", priceFrom:63000, cap:"uncertain", cost:"high", note:"古蹟限制多、不含清潔撤場；場布與電力要早談。", src:"https://www.songshanculturalpark.org/"},
+  {n:"松山文創園區 1 / 4 / 5 號倉庫", area:"taipei", type:"文化展演", capMin:300, capMax:1000, priceText:"NT$73,500-105,000 / 日", priceFrom:73500, cap:"uncertain", cost:"high", note:"空間大但非宴會廳；影音、座椅、餐飲、動線都要另估。", src:"https://www.songshanculturalpark.org/"},
+  {n:"臺北表演藝術中心 TPAC（北藝中心）", area:"taipei", type:"文化展演", capMin:200, capMax:1460, priceText:"NT$1,500-10,000 / 時段起；主劇場需洽詢", priceFrom:1500, cap:"uncertain", cost:"mid", note:"球劇場外觀近似巨蛋；表演場館非純會議室，座位與動線要先確認。", src:"https://space.tpac-taipei.org/"},
+  {n:"新北市政府多功能集會堂", area:"newtaipei", type:"公有", capMin:300, capMax:1408, priceText:"NT$20,000 / 場（3 小時）；公益 7 折約 NT$14,000", priceFrom:20000, cap:"uncertain", cost:"low", note:"場租低；外接設備含字幕筆電須事前申請、禁飲食；乾淨人聲輸出需確認。", src:"https://ntpcsite.ntpc.gov.tw/location/detail/13"},
+  {n:"台北大巨蛋 Taipei Dome", area:"taipei", type:"賽事場館", capMin:5000, capMax:40000, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"大型賽事、演唱會、展覽；規模遠超一般會議，非會議場地。", src:"https://www.farglorydome.com.tw/"},
+  {n:"台北小巨蛋 Taipei Arena", area:"taipei", type:"賽事場館", capMin:3000, capMax:15000, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"演唱會、體育賽事等大型活動；非會議場地。", src:"https://www.arena.taipei/"},
+  {n:"台北君悅酒店", area:"taipei", type:"飯店", capMin:50, capMax:1400, priceText:"全日每人 NT$2,300 起", priceFrom:2300, cap:"uncertain", cost:"mid", note:"飯店服務完整；外接字幕筆電與乾淨人聲輸出仍要確認。", src:"https://www.grandhyatttaipei.com.tw/"},
+  {n:"台北喜來登大飯店", area:"taipei", type:"飯店", capMin:50, capMax:1400, priceText:"每人 NT$1,600-2,600 + 10%", priceFrom:1600, cap:"uncertain", cost:"mid", note:"飯店中資訊透明，適合作比價基準。", src:"https://www.sheratongrandtaipei.com/"},
+  {n:"台北萬豪酒店", area:"taipei", type:"飯店", capMin:50, capMax:1200, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"有容量與活動空間資料，未找到公開會議專案價。", src:"https://www.taipeimarriott.com.tw/"},
+  {n:"台北寒舍艾美酒店", area:"taipei", type:"飯店", capMin:50, capMax:800, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"有會議專案頁，公開頁未列每日／半日價格。", src:"https://www.lemeridien-taipei.com/"},
+  {n:"台北艾麗 希爾頓格芮精選酒店", area:"taipei", type:"飯店", capMin:50, capMax:300, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"信義區、百人級活動可問，但需書面報價。", src:"https://www.humblehousehotels.com/"},
+  {n:"台北文華東方酒店", area:"taipei", type:"飯店", capMin:50, capMax:1200, priceText:"每人 NT$3,080-3,680 起 + 10%", priceFrom:3080, cap:"uncertain", cost:"high", note:"高端飯店，形象需求高的場次；不是低成本首選。", src:"https://www.mandarinoriental.com/zh-hant/taipei/songshan/meet"},
+  {n:"台北遠東香格里拉飯店", area:"taipei", type:"飯店", capMin:50, capMax:800, priceText:"每人 NT$2,600-2,900 + 10%", priceFrom:2600, cap:"uncertain", cost:"mid", note:"價格公開，30 人以上；適合與喜來登、君悅比較。", src:"https://tpe.fareasternhotel.com.tw/"},
+  {n:"台北新板希爾頓酒店", area:"newtaipei", type:"飯店", capMin:50, capMax:1037, priceText:"個案每人 NT$2,300 / 半日", priceFrom:2300, cap:"uncertain", cost:"mid", note:"官方頁僅「查詢價格」入口；上下午都收等於每人約 4,600。", src:"https://www.hilton.com/zh-hant/hotels/tsatchi-hilton-taipei-sinban/events/"},
+  {n:"台北六福萬怡酒店", area:"taipei", type:"飯店", capMin:50, capMax:400, priceText:"每人 NT$1,400-2,900 + 10%", priceFrom:1400, cap:"uncertain", cost:"mid", note:"公開資訊完整，低於五星核心區飯店的比較基準。", src:"https://www.courtyardtaipei.com.tw/newsPage/112"},
+  {n:"台北國泰萬怡酒店", area:"taipei", type:"飯店", capMin:50, capMax:378, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"有活動空間資料，未找到公開會議專案價；問清楚可否外接字幕筆電。", src:"https://www.marriott.com/en-us/hotels/tpecd-courtyard-taipei-downtown/events/"},
+  {n:"台北晶華酒店", area:"taipei", type:"飯店", capMin:50, capMax:700, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"未找到官方公開會議專案價；第三方資料只能當容量參考。", src:"https://www.regenttaipei.com/"},
+  {n:"台北士林萬麗酒店", area:"taipei", type:"飯店", capMin:50, capMax:450, priceText:"每人 NT$2,400-2,800 + 10%", priceFrom:2400, cap:"uncertain", cost:"mid", note:"士林區選項；需確認專案有效日期與最低人數。", src:"https://www.renaissancetaipei.com/"},
+  {n:"圓山大飯店", area:"taipei", type:"飯店", capMin:50, capMax:1000, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"形象強，價格需直接詢問。", src:"https://www.grand-hotel.org/"},
+  {n:"台北花園大酒店", area:"taipei", type:"飯店", capMin:50, capMax:600, priceText:"每人 NT$1,200-3,200 + 10%", priceFrom:1200, cap:"uncertain", cost:"low", note:"公開價低於許多五星飯店，可當預算飯店基準。", src:"https://www.taipeigarden.com.tw/"},
+  {n:"JR 東日本大飯店台北", area:"taipei", type:"飯店", capMin:20, capMax:400, priceText:"每人 NT$1,800-2,400 + 10%", priceFrom:1800, cap:"uncertain", cost:"mid", note:"公開價格清楚、保證 20 位起，可列飯店短名單。", src:"https://taipei.metropolitan.tw/banquet/plan/"},
+  {n:"福容大飯店淡水漁人碼頭", area:"newtaipei", type:"飯店", capMin:50, capMax:600, priceText:"平日每人 NT$950-2,300 + 10%", priceFrom:950, cap:"uncertain", cost:"low", note:"不在台北市中心，但若可接受淡水交通是低價比價錨點。", src:"https://www.fullon-hotels.com.tw/fw/tw/news-detail/4959/"}
+];
+
+const SIZE_RANGE = {XS:[1,50], S:[50,150], M:[150,300], L:[300,2000]};
+const TYPES = ["會議中心","飯店","公有","校園","文化展演","社創","賽事場館"];
+const AREAS = [["taipei","台北市"],["newtaipei","新北市"]];
+
+const TIER = {
+  XS:{name:"試跑（XS）", tools:"Akkadu、Microsoft Translator 試跑；UDTalk 參考"},
+  S:{name:"低成本試跑（S）", tools:"先試 Akkadu / EventCAT；Vurbo.ai 可詢"},
+  M:{name:"正式建議方案（M）", tools:"主測 Vurbo.ai 與 KKCO，擇一正式；EventCAT 備援"},
+  L:{name:"高穩定方案（L）", tools:"Wordly / AI-Media 等正式供應商；搭配 CART 人工字幕"}
+};
+
+const state = {size:"M", budget:"mid", access:"convenience",
+  types:new Set(TYPES), areas:new Set(["taipei","newtaipei"]),
+  capOnly:false, priceOnly:false, excludeOver:true};
+
+// build type/area checkboxes
+const typeBox = document.getElementById("f-type");
+TYPES.forEach(t=>{
+  const id="type-"+t;
+  typeBox.insertAdjacentHTML("beforeend",
+    `<label class="chk"><input type="checkbox" value="${t}" id="${id}" checked> ${t}</label>`);
+});
+const areaBox = document.getElementById("f-area");
+AREAS.forEach(([v,label])=>{
+  areaBox.insertAdjacentHTML("beforeend",
+    `<label class="chk"><input type="checkbox" value="${v}" id="area-${v}" checked> ${label}</label>`);
+});
+
+function readState(){
+  state.size = document.querySelector('input[name="size"]:checked').value;
+  state.budget = document.querySelector('input[name="budget"]:checked').value;
+  state.access = document.querySelector('input[name="access"]:checked').value;
+  state.types = new Set([...typeBox.querySelectorAll('input:checked')].map(i=>i.value));
+  state.areas = new Set([...areaBox.querySelectorAll('input:checked')].map(i=>i.value));
+  state.capOnly = document.getElementById("t-cap").checked;
+  state.priceOnly = document.getElementById("t-price").checked;
+  state.excludeOver = document.getElementById("t-over").checked;
+}
+
+function overlaps(v, range){ return v.capMax >= range[0] && v.capMin <= range[1]; }
+function budgetOk(v){
+  if(state.budget==="any") return true;
+  if(v.cost==="ask") return state.budget!=="low"; // 需詢價：省則排除
+  if(state.budget==="low") return v.cost==="low";
+  if(state.budget==="mid") return v.cost==="low"||v.cost==="mid";
+  return true;
+}
+
+function renderReco(){
+  const t = TIER[state.size];
+  let html = `<h3>給你的建議</h3>`;
+  html += `<div class="row"><span class="k">方案等級：</span>${t.name}</div>`;
+  html += `<div class="row"><span class="k">字幕工具：</span>${t.tools}</div>`;
+  html += `<div class="row"><span class="k">共通前提：</span>確認場地混音器能給字幕電腦一條只含人聲的乾淨訊號。</div>`;
+  if(state.access==="formal"){
+    html += `<div class="warn"><strong>你選了「正式無障礙服務」：</strong>如果已知有聾人或聽障者需要字幕才能參與，不能只靠人工智慧字幕，要加 CART 即時人工字幕、手語或專業字幕服務${state.size==="L"?"（L 級尤其必要）":""}。</div>`;
+  }
+  document.getElementById("reco").innerHTML = html;
+}
+
+function render(){
+  readState();
+  renderReco();
+  const range = SIZE_RANGE[state.size];
+  let removedOver=0;
+  const list = VENUES.filter(v=>{
+    if(!state.types.has(v.type)) return false;
+    if(!state.areas.has(v.area)) return false;
+    if(state.capOnly && v.cap==="restricted") return false;
+    if(state.priceOnly && v.priceFrom===null) return false;
+    if(!budgetOk(v)) return false;
+    const fits = overlaps(v, range);
+    if(!fits){
+      if(state.excludeOver){ removedOver++; return false; }
+    }
+    return true;
+  });
+  // sort: capacity-fit, then captioning-friendly, then cost band, then price.
+  // NOTE: do NOT sort by raw priceFrom first — it mixes 每時段 / 每人 / 每日,
+  // so cheap-per-head hotels would wrongly float above session-priced venues.
+  const capRank={good:0,uncertain:1,restricted:2};
+  const costRank={low:0,mid:1,high:2,ask:3};
+  list.sort((a,b)=>{
+    const fa=overlaps(a,range)?0:1, fb=overlaps(b,range)?0:1;
+    if(fa!==fb) return fa-fb;
+    if(capRank[a.cap]!==capRank[b.cap]) return capRank[a.cap]-capRank[b.cap];
+    if(costRank[a.cost]!==costRank[b.cost]) return costRank[a.cost]-costRank[b.cost];
+    const pa=a.priceFrom===null?Infinity:a.priceFrom, pb=b.priceFrom===null?Infinity:b.priceFrom;
+    return pa-pb;
+  });
+
+  const capLabel = {good:"字幕較友善", uncertain:"乾淨人聲需確認", restricted:"不可外接字幕設備"};
+  const capClass = {good:"cap-good", uncertain:"", restricted:"cap-restricted"};
+  const cards = document.getElementById("cards");
+  if(list.length===0){
+    cards.innerHTML = `<div class="empty">目前條件下沒有符合的場地。試著放寬左邊的篩選，或把「排除規模過大的場地」關掉看看。</div>`;
+  } else {
+    cards.innerHTML = list.map(v=>{
+      const fit = overlaps(v, range);
+      return `<article class="card">
+        <h4>${v.n}</h4>
+        <div class="price">${v.priceText}</div>
+        <div class="meta">
+          <span class="tag">${v.type}</span>
+          <span class="tag">${v.area==="taipei"?"台北市":"新北市"}</span>
+          <span class="tag ${capClass[v.cap]}">${capLabel[v.cap]}</span>
+          ${fit?"":'<span class="tag over">規模可能不合</span>'}
+        </div>
+        <p class="note">${v.note}</p>
+        <a href="${v.src}" target="_blank" rel="noopener">官方／來源頁 ↗</a>
+      </article>`;
+    }).join("");
+  }
+  document.getElementById("count").textContent = `符合 ${list.length} 個場地（人數規模：${state.size}）`;
+  const note = document.getElementById("filtered-note");
+  note.textContent = (state.excludeOver && removedOver>0)
+    ? `已自動隱藏 ${removedOver} 個規模明顯不合的場地（例如賽事級巨蛋）。要看的話把左邊「排除規模過大的場地」關掉。` : "";
+}
+
+document.addEventListener("change", e=>{
+  if(e.target.closest("#tool")) render();
+});
+render();
+</script>
+</body>
+</html>

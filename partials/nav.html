@@ -1,0 +1,84 @@
+<a id="back-to-top" class="nav-fab nav-fab--top" href="#top" aria-label="回到頂端">↑</a>
+<button id="toc-fab" class="nav-fab nav-fab--toc" type="button" aria-expanded="false" aria-controls="TOC">目錄</button>
+<div id="toc-scrim" hidden></div>
+<script>
+(function () {
+  var toc = document.getElementById('TOC');
+
+  // Scroll-spy: highlight current section, expand current chapter's subsections.
+  if (toc) {
+    var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+    var byId = {};
+    links.forEach(function (a) {
+      byId[decodeURIComponent(a.getAttribute('href').slice(1))] = a;
+    });
+    var heads = Array.prototype.slice
+      .call(document.querySelectorAll('h2[id], h3[id]'))
+      .filter(function (h) { return byId[h.id]; });
+
+    function spy() {
+      var cur = null;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i].getBoundingClientRect().top <= 130) cur = heads[i]; else break;
+      }
+      links.forEach(function (a) {
+        a.classList.remove('toc-active');
+        a.removeAttribute('aria-current');
+      });
+      Array.prototype.forEach.call(toc.querySelectorAll('li.toc-expanded'), function (li) {
+        li.classList.remove('toc-expanded');
+      });
+      if (cur && byId[cur.id]) {
+        var a = byId[cur.id];
+        a.classList.add('toc-active');
+        a.setAttribute('aria-current', 'location');
+        var li = a.closest('li');
+        while (li && toc.contains(li)) {
+          li.classList.add('toc-expanded');
+          var parent = li.parentElement ? li.parentElement.closest('li') : null;
+          if (!parent) break;
+          li = parent;
+        }
+      }
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(function () { spy(); ticking = false; });
+      }
+    }, { passive: true });
+    spy();
+  }
+
+  // Mobile floating table-of-contents toggle.
+  var fab = document.getElementById('toc-fab');
+  var scrim = document.getElementById('toc-scrim');
+  if (fab && toc && scrim) {
+    function closeToc() {
+      document.body.classList.remove('toc-open');
+      fab.setAttribute('aria-expanded', 'false');
+      scrim.hidden = true;
+      fab.focus();
+    }
+    function openToc() {
+      document.body.classList.add('toc-open');
+      fab.setAttribute('aria-expanded', 'true');
+      scrim.hidden = false;
+      toc.setAttribute('tabindex', '-1');
+      toc.focus();
+    }
+    fab.addEventListener('click', function () {
+      document.body.classList.contains('toc-open') ? closeToc() : openToc();
+    });
+    scrim.addEventListener('click', closeToc);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('toc-open')) closeToc();
+    });
+    toc.addEventListener('click', function (e) {
+      if (e.target.closest('a') && document.body.classList.contains('toc-open')) closeToc();
+    });
+  }
+})();
+</script>
