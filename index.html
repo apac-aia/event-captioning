@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>台北字幕活動選型工具｜場地與即時字幕方案</title>
-<meta name="description" content="輸入你的活動條件，快速篩出適合的台北場地，並推薦現場人工智慧字幕工具與方案等級。">
+<meta name="description" content="輸入你的活動條件，快速篩出適合的台北與新北（雙北）場地，並推薦現場人工智慧字幕工具與方案等級。">
 <style>
 :root{
   --paper:#ffffff; --bg:#f5f7f6; --ink:#181b1f; --muted:#59636d;
@@ -78,7 +78,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line);color
 
 <header class="intro">
   <h1>台北字幕活動選型工具</h1>
-  <p>辦一場需要「現場即時字幕／多語翻譯」的活動？輸入你的條件，這個工具幫你篩出適合的台北場地，並推薦字幕工具與方案等級。</p>
+  <p>辦一場需要「現場即時字幕／多語翻譯」的活動？輸入你的條件，這個工具幫你篩出適合的台北與新北（雙北）場地，並推薦字幕工具與方案等級。</p>
   <p class="core"><strong>一個核心原則：</strong>現場字幕成敗不在用哪個 App，而在場地的混音器能不能給字幕電腦一條「只含人聲的乾淨訊號」。每個場地都要先問這件事。</p>
   <p style="margin-top:.6rem;font-size:.92rem;">資料為公開查詢的第一輪比較（2026-06 查詢），不是簽約價；正式採購仍須向場地與廠商確認。需要完整說明可看 <a href="./ai-captioning-ballroom-solution.desktop.html">完整報告</a>。</p>
 </header>
@@ -131,9 +131,9 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line);color
         </div>
         <div class="grp">
           <strong>其他</strong>
-          <label class="chk"><input type="checkbox" id="t-cap"> 只看「能外接字幕電腦」</label>
+          <label class="chk"><input type="checkbox" id="t-cap"> 排除明確不可外接的場地</label>
           <label class="chk"><input type="checkbox" id="t-price"> 只看「有公開價格」</label>
-          <label class="chk"><input type="checkbox" id="t-over" checked> 排除規模過大的場地</label>
+          <label class="chk"><input type="checkbox" id="t-over" checked> 排除規模不合的場地</label>
         </div>
       </aside>
 
@@ -155,10 +155,10 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line);color
 // --- data: Taipei venues for live-captioning events ---
 // captioning: good | uncertain | restricted ; costBand: low | mid | high | ask
 const VENUES = [
-  {n:"TICC 台北國際會議中心", area:"taipei", type:"會議中心", capMin:100, capMax:3000, priceText:"NT$5,000-159,000 / 時段", priceFrom:5000, cap:"restricted", cost:"high", note:"高形象主場；視聽器材通常不得自帶，餐飲有限制。", src:"https://www.ticc.com.tw/"},
+  {n:"TICC 台北國際會議中心", area:"taipei", type:"會議中心", capMin:100, capMax:3122, priceText:"NT$5,000-159,000 / 時段", priceFrom:5000, cap:"restricted", cost:"high", note:"高形象主場；視聽器材通常不得自帶，餐飲有限制。", src:"https://www.ticc.com.tw/"},
   {n:"集思台大會議中心", area:"taipei", type:"會議中心", capMin:150, capMax:400, priceText:"NT$44,000-48,000 / 時段", priceFrom:44000, cap:"good", cost:"mid", note:"會議流程熟，部分廳附電子字幕機、無線麥；另加 10% 清潔費。", src:"https://www.meeting.com.tw/ntu/"},
-  {n:"集思交通部國際會議中心", area:"taipei", type:"會議中心", capMin:80, capMax:400, priceText:"NT$9,000-31,000 / 時段", priceFrom:9000, cap:"good", cost:"mid", note:"國際會議廳與 201 室；另加 10% 清潔費。", src:"https://www.meeting.com.tw/motc/"},
-  {n:"集思北科大會議中心（感恩廳）", area:"taipei", type:"會議中心", capMin:50, capMax:200, priceText:"NT$5,000-27,000 / 時段", priceFrom:5000, cap:"good", cost:"low", note:"低成本正式場好候選；另加 10% 清潔費。", src:"https://www.meeting.com.tw/ntut/"},
+  {n:"集思交通部國際會議中心", area:"taipei", type:"會議中心", capMin:50, capMax:117, priceText:"NT$9,000-31,000 / 時段", priceFrom:9000, cap:"good", cost:"mid", note:"國際會議廳劇院型約 76、教室型約 117 人，屬中小型；另有 201 室；另加 10% 清潔費。", src:"https://www.meeting.com.tw/motc/"},
+  {n:"集思北科大會議中心（感恩廳）", area:"taipei", type:"會議中心", capMin:50, capMax:200, priceText:"NT$24,500-27,000 / 時段", priceFrom:24500, cap:"good", cost:"mid", note:"感恩廳約至 200 人、會議與字幕流程熟；另加 10% 清潔費。（更小的卡博廳另計，約 NT$5,000 起）", src:"https://www.meeting.com.tw/ntut/"},
   {n:"臺大醫院國際會議中心", area:"taipei", type:"會議中心", capMin:150, capMax:400, priceText:"NT$17,000-19,000 / 時段", priceFrom:17000, cap:"restricted", cost:"mid", note:"同步翻譯設備不得自備、禁外食；外接字幕設備要先確認。", src:"https://www.nthcc.com.tw/"},
   {n:"臺大圖書館國際會議廳", area:"taipei", type:"校園", capMin:100, capMax:200, priceText:"NT$12,000 / 半日", priceFrom:12000, cap:"restricted", cost:"low", note:"官方註明無法外接其他影音設備，可能不適合作字幕主場。", src:"https://www.lib.ntu.edu.tw/node/167"},
   {n:"國立臺北商業大學國際會議廳", area:"taipei", type:"校園", capMin:120, capMax:208, priceText:"NT$30,250 / 時段", priceFrom:30250, cap:"uncertain", cost:"mid", note:"有投影、麥克風、空調；校園場地要早確認借用資格與外部設備。", src:"https://gen.ntub.edu.tw/p/412-1009-5085.php"},
@@ -176,10 +176,10 @@ const VENUES = [
   {n:"台北喜來登大飯店", area:"taipei", type:"飯店", capMin:50, capMax:1400, priceText:"每人 NT$1,600-2,600 + 10%", priceFrom:1600, cap:"uncertain", cost:"mid", note:"飯店中資訊透明，適合作比價基準。", src:"https://www.sheratongrandtaipei.com/"},
   {n:"台北萬豪酒店", area:"taipei", type:"飯店", capMin:50, capMax:1200, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"有容量與活動空間資料，未找到公開會議專案價。", src:"https://www.taipeimarriott.com.tw/"},
   {n:"台北寒舍艾美酒店", area:"taipei", type:"飯店", capMin:50, capMax:800, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"有會議專案頁，公開頁未列每日／半日價格。", src:"https://www.lemeridien-taipei.com/"},
-  {n:"台北艾麗 希爾頓格芮精選酒店", area:"taipei", type:"飯店", capMin:50, capMax:300, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"信義區、百人級活動可問，但需書面報價。", src:"https://www.humblehousehotels.com/"},
+  {n:"台北艾麗 希爾頓格芮精選酒店", area:"taipei", type:"飯店", capMin:50, capMax:300, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"信義區活動可問、需書面報價；此筆品牌名稱與容量需確認（來源混用台北艾麗／Humble House，宴會廳另有資料稱可達近千人）。", src:"https://www.humblehousehotels.com/"},
   {n:"台北文華東方酒店", area:"taipei", type:"飯店", capMin:50, capMax:1200, priceText:"每人 NT$3,080-3,680 起 + 10%", priceFrom:3080, cap:"uncertain", cost:"high", note:"高端飯店，形象需求高的場次；不是低成本首選。", src:"https://www.mandarinoriental.com/zh-hant/taipei/songshan/meet"},
   {n:"台北遠東香格里拉飯店", area:"taipei", type:"飯店", capMin:50, capMax:800, priceText:"每人 NT$2,600-2,900 + 10%", priceFrom:2600, cap:"uncertain", cost:"mid", note:"價格公開，30 人以上；適合與喜來登、君悅比較。", src:"https://tpe.fareasternhotel.com.tw/"},
-  {n:"台北新板希爾頓酒店", area:"newtaipei", type:"飯店", capMin:50, capMax:1037, priceText:"個案每人 NT$2,300 / 半日", priceFrom:2300, cap:"uncertain", cost:"mid", note:"官方頁僅「查詢價格」入口；上下午都收等於每人約 4,600。", src:"https://www.hilton.com/zh-hant/hotels/tsatchi-hilton-taipei-sinban/events/"},
+  {n:"台北新板希爾頓酒店", area:"newtaipei", type:"飯店", capMin:50, capMax:800, priceText:"個案每人 NT$2,300 / 半日（無公開價）", priceFrom:null, cap:"uncertain", cost:"mid", note:"官方頁僅「查詢價格」入口、無公開會議專案價；個案上下午各每人 NT$2,300（兩個半日約 4,600/人）；容量需確認（官方僅列最大 1,037 平方公尺，非人數）。", src:"https://www.hilton.com/zh-hant/hotels/tsatchi-hilton-taipei-sinban/events/"},
   {n:"台北六福萬怡酒店", area:"taipei", type:"飯店", capMin:50, capMax:400, priceText:"每人 NT$1,400-2,900 + 10%", priceFrom:1400, cap:"uncertain", cost:"mid", note:"公開資訊完整，低於五星核心區飯店的比較基準。", src:"https://www.courtyardtaipei.com.tw/newsPage/112"},
   {n:"台北國泰萬怡酒店", area:"taipei", type:"飯店", capMin:50, capMax:378, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"有活動空間資料，未找到公開會議專案價；問清楚可否外接字幕筆電。", src:"https://www.marriott.com/en-us/hotels/tpecd-courtyard-taipei-downtown/events/"},
   {n:"台北晶華酒店", area:"taipei", type:"飯店", capMin:50, capMax:700, priceText:"需詢價", priceFrom:null, cap:"uncertain", cost:"ask", note:"未找到官方公開會議專案價；第三方資料只能當容量參考。", src:"https://www.regenttaipei.com/"},
@@ -198,7 +198,7 @@ const TIER = {
   XS:{name:"試跑（XS）", tools:"Akkadu、Microsoft Translator 試跑；UDTalk 參考"},
   S:{name:"低成本試跑（S）", tools:"先試 Akkadu / EventCAT；Vurbo.ai 可詢"},
   M:{name:"正式建議方案（M）", tools:"主測 Vurbo.ai 與 KKCO，擇一正式；EventCAT 備援"},
-  L:{name:"高穩定方案（L）", tools:"Wordly / AI-Media 等正式供應商；搭配 CART 人工字幕"}
+  L:{name:"高穩定方案（L）", tools:"Wordly / AI-Media 等正式供應商；搭配 CART／手語／專業字幕人工服務"}
 };
 
 const state = {size:"M", budget:"mid", access:"convenience",
@@ -242,10 +242,14 @@ function renderReco(){
   const t = TIER[state.size];
   let html = `<h3>給你的建議</h3>`;
   html += `<div class="row"><span class="k">方案等級：</span>${t.name}</div>`;
-  html += `<div class="row"><span class="k">字幕工具：</span>${t.tools}</div>`;
+  if(state.access==="formal"){
+    html += `<div class="row"><span class="k">字幕工具：</span>以 CART（即時人工字幕／同步聽打）、手語或專業字幕為基準服務；${t.tools} 作為多語即時翻譯的補充。</div>`;
+  } else {
+    html += `<div class="row"><span class="k">字幕工具：</span>${t.tools}</div>`;
+  }
   html += `<div class="row"><span class="k">共通前提：</span>確認場地混音器能給字幕電腦一條只含人聲的乾淨訊號。</div>`;
   if(state.access==="formal"){
-    html += `<div class="warn"><strong>你選了「正式無障礙服務」：</strong>如果已知有聾人或聽障者需要字幕才能參與，不能只靠人工智慧字幕，要加 CART 即時人工字幕、手語或專業字幕服務${state.size==="L"?"（L 級尤其必要）":""}。</div>`;
+    html += `<div class="warn"><strong>你選了「正式無障礙服務」：</strong>如果已知有聾人或聽障者需要字幕才能參與，不能只靠人工智慧字幕，必須加 CART（即時人工字幕）、手語或專業字幕服務${state.size==="L"?"（L 級尤其必要）":""}。</div>`;
   }
   document.getElementById("reco").innerHTML = html;
 }
@@ -281,7 +285,7 @@ function render(){
     return pa-pb;
   });
 
-  const capLabel = {good:"字幕較友善", uncertain:"乾淨人聲需確認", restricted:"不可外接字幕設備"};
+  const capLabel = {good:"字幕較友善", uncertain:"乾淨人聲需確認", restricted:"外接受限，需確認"};
   const capClass = {good:"cap-good", uncertain:"", restricted:"cap-restricted"};
   const cards = document.getElementById("cards");
   if(list.length===0){
