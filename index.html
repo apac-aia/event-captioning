@@ -27,20 +27,28 @@ a{color:var(--accent-ink);}
 
 /* sticky control + warnings */
 .sticky{position:sticky;top:0;z-index:30;background:var(--bg);padding-top:.5rem;}
-.controls{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:.7rem .85rem;}
-.controls .row{display:flex;flex-wrap:wrap;gap:1.1rem;align-items:flex-start;}
-.cset{display:flex;flex-direction:column;gap:.25rem;}
-.cset>span.lbl{font-weight:700;font-size:.86rem;}
-.seg{display:flex;flex-wrap:wrap;gap:.35rem;}
+.controls{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:.5rem .7rem;}
+.controls .row{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;align-items:center;}
+.cset{display:flex;align-items:center;gap:.4rem;}
+.cset>span.lbl{font-weight:700;font-size:.82rem;white-space:nowrap;}
+.seg{display:flex;flex-wrap:wrap;gap:.3rem;}
 .seg label{position:relative;}
 .seg input{position:absolute;opacity:0;width:0;height:0;}
-.seg span.opt{display:inline-flex;align-items:center;min-height:40px;padding:.25rem .7rem;border:1px solid var(--line);border-radius:999px;cursor:pointer;background:#fff;font-size:.92rem;}
+.seg span.opt{display:inline-flex;align-items:center;min-height:32px;padding:.1rem .6rem;border:1px solid var(--line);border-radius:999px;cursor:pointer;background:#fff;font-size:.85rem;}
 .seg input:checked + span.opt{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700;}
 .seg input:focus-visible + span.opt{outline:3px solid var(--accent-ink);outline-offset:2px;}
-.people-in{min-height:40px;padding:.2rem .5rem;border:1px solid var(--line);border-radius:7px;width:6.5rem;font-size:.92rem;}
-.hint{color:var(--muted);font-size:.8rem;}
+.people-in{min-height:32px;padding:.1rem .45rem;border:1px solid var(--line);border-radius:7px;width:5rem;font-size:.85rem;}
+.hint{color:var(--muted);font-size:.76rem;}
 
-#warnbar{margin:.7rem 0 0;display:flex;flex-direction:column;gap:.45rem;}
+.reminders{margin:.55rem 0 0;background:var(--paper);border:1px solid var(--line);border-radius:8px;}
+.reminders>summary{cursor:pointer;padding:.45rem .75rem;font-size:.88rem;color:var(--info-ink);font-weight:600;}
+.reminders>summary:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px;}
+.reminders[open]>summary{border-bottom:1px solid var(--line);}
+.reminders .rbody{padding:.4rem .75rem .6rem;display:flex;flex-direction:column;gap:.4rem;}
+.reminders .rbody div{font-size:.88rem;color:var(--muted);}
+
+#warnbar{margin:0;display:flex;flex-direction:column;gap:.45rem;}
+#warnbar:not(:empty){margin-top:.55rem;}
 .warn{display:flex;gap:.55rem;align-items:flex-start;border-radius:8px;padding:.55rem .75rem;border-left:4px solid;font-size:.92rem;}
 .warn .ico{flex:0 0 auto;width:20px;height:20px;margin-top:.15rem;}
 .warn.high{background:var(--hi-bg);border-color:var(--hi-line);color:var(--hi-ink);}
@@ -102,8 +110,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line);color
   <h1>雙北字幕活動選型工具</h1>
   <span class="ext"><a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a><a href="ai-captioning-ballroom-sources.html">來源索引</a></span>
 </div>
-<p class="lead">辦一場需要「現場即時字幕／多語翻譯」的活動？在上方設定你的活動條件，下面五個分頁（總覽／場地／字幕工具／方案／成本）會即時給出整合建議。改任何一個設定，所有分頁與上方提醒同步更新。
-<span class="core"><strong>核心原則：</strong>現場字幕成敗不在用哪個工具，而在場地的混音器能不能給字幕電腦一條「只含人聲的乾淨訊號」。每個場地都要先問這件事。</span></p>
+<p class="lead">設定活動條件，下面五個分頁（總覽／場地／字幕工具／方案／成本）即時給出整合建議；改任何設定，所有分頁與提醒同步更新。</p>
 
 <div class="sticky">
   <div class="controls" aria-label="活動設定">
@@ -141,6 +148,11 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line);color
   </div>
   <div id="warnbar" role="status" aria-live="polite"></div>
 </div>
+
+<details class="reminders">
+<summary>現場三件必記提醒（乾淨人聲・問答麥・資料隱私）</summary>
+<div class="rbody" id="reminders-body"></div>
+</details>
 
 <div id="app">
   <div class="tabs" role="tablist" aria-label="決策分頁">
@@ -275,7 +287,6 @@ function computeWarnings(){
  const v=state.selectedVenue?getVenue(state.selectedVenue):null;
  const tl=TIERLABEL[state.size];
  const out=[];
- out.push({s:"info",m:"<b>提醒・成敗關鍵：</b>每個場地都要問同一句話「能不能從混音器給字幕電腦一條只含人聲的乾淨訊號」。不分場地、不分工具、不分人數。"});
  if(state.access==="formal") out.push({s:"high",m:"<b>重要：</b>你把字幕定位為「正式無障礙服務」。若已知有聾人或聽障者需要字幕才能平等參與，不能只靠 AI 字幕，必須加 CART（即時人工字幕／同步聽打）、手語或專業字幕。這一點不分人數規模。"});
  if(state.access==="formal"&&state.size==="L") out.push({s:"high",m:"<b>重要：</b>L 級又選正式無障礙服務：CART、手語或專業字幕員為必要，AI 字幕只能當多語即時翻譯的補充；並建議主機與備機、網路備援、明確服務台。"});
  if(v&&v.cap==="restricted") out.push({s:"high",m:`<b>重要：</b>你選的「${esc(v.n)}」對外接設備有限制（視聽器材不得自帶／同步翻譯設備不得自備／無法外接其他影音），可能不適合作字幕主場。接字幕筆電與乾淨人聲輸出的方式要簽約前向場地書面確認。`});
@@ -283,10 +294,13 @@ function computeWarnings(){
  if(v&&v.priceFrom===null) out.push({s:"info",m:`<b>提醒：</b>「${esc(v.n)}」沒有公開價（需詢價／需申請），無法和其他場地公平比價。用統一格式詢價信請業務提供書面報價（場租、服務費、餐飲、影音、外接字幕、網路）。`});
  if(state.budget==="low"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>提醒：</b>預算選「省」但規模是 ${esc(tl)}：正式建議（M）工具與操作約 NT$35,000-150,000、高穩定（L）約 NT$180,000-600,000+，與低成本試跑（NT$0-25,000）落差很大。可考慮縮小規模試跑、限縮語言或人力，或優先選場租透明的非飯店／公有場地。`});
  if(state.budget==="low"&&v&&v.cost==="ask") out.push({s:"info",m:`<b>提醒：</b>預算選「省」時，需詢價的場地會被排除（無公開價、無法確認）。要保留先取得書面報價，或把預算改成「平衡／不限」。`});
- out.push({s:"info",m:"<b>提醒：</b>問答是最容易漏掉的洞：很多活動前半段字幕很好、問答一開始就崩。要安排問答麥克風遞送人員、主持人提醒「等麥克風到再發問」，並確認問答麥也進混音器與字幕訊號。"});
- out.push({s:"info",m:"<b>提醒・資料隱私：</b>現場字幕會把聲音送到工具服務。採購前問清楚聲音／逐字稿是否保存、保存多久、誰能下載、能否刪除、是否用於模型訓練、資料存放國家、有無資料處理協議。"});
  return out;
 }
+const PERSISTENT=[
+ "<b>成敗關鍵：</b>每個場地都要問「能不能從混音器給字幕電腦一條只含人聲的乾淨訊號」。不分場地、不分工具、不分人數。",
+ "<b>問答最容易漏：</b>很多活動前半段字幕很好、問答一開始就崩。安排問答麥克風遞送人員、主持人提醒「等麥克風到再發問」，並確認問答麥也進混音器與字幕訊號。",
+ "<b>資料隱私：</b>現場字幕會把聲音送到工具服務。採購前問清楚聲音／逐字稿是否保存、保存多久、能否刪除、是否用於模型訓練、資料存放國家。"
+];
 function renderWarnbar(){
  document.getElementById("warnbar").innerHTML=computeWarnings().map(w=>
   `<div class="warn ${w.s}">${w.s==="high"?ICO_HIGH:ICO_INFO}<div>${w.m}</div></div>`).join("");
@@ -529,6 +543,7 @@ document.getElementById("app").addEventListener("click",e=>{
  if(ap){document.querySelector(`input[name="size"][value="${ap.dataset.applysize}"]`).checked=true;render();}
 });
 
+document.getElementById("reminders-body").innerHTML=PERSISTENT.map(m=>`<div>${m}</div>`).join("");
 selectTab("overview");
 </script>
 </body>
