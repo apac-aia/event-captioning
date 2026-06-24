@@ -29,8 +29,8 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .banner .eyebrow{font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cta);margin-bottom:.5rem;}
 .banner h1{font-size:1.95rem;font-weight:700;letter-spacing:.05em;margin:0;line-height:1.2;}
 .banner .org{font-size:.8rem;letter-spacing:.05em;color:rgba(255,255,255,.74);margin-top:.55rem;}
-.banner-links a{font-family:'Inter',sans-serif;color:var(--cta);font-weight:600;font-size:.85rem;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;margin-left:1.3rem;white-space:nowrap;}
-.banner-links a:hover,.banner-links a:focus-visible{border-bottom-color:var(--cta);}
+.banner-links a{font-family:'Inter',sans-serif;color:var(--cta);font-weight:600;font-size:.85rem;letter-spacing:.04em;text-decoration:none;border:1px solid transparent;padding:.35rem .75rem;margin-left:.6rem;white-space:nowrap;transition:background .15s ease,border-color .15s ease,transform .12s ease;}
+.banner-links a:hover,.banner-links a:focus-visible{border-color:var(--cta);background:rgba(248,182,45,.2);transform:translateY(-1px);}
 
 .wrap{max-width:1100px;margin:0 auto;padding:1.2rem 1.1rem 4rem;}
 .lead{color:var(--muted);margin:.2rem 0 1rem;font-size:.96rem;}
@@ -44,14 +44,16 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .seg label{position:relative;margin-left:-1px;}
 .seg label:first-child{margin-left:0;}
 .seg input{position:absolute;opacity:0;width:0;height:0;}
-.seg span.opt{display:inline-flex;align-items:center;min-height:34px;padding:.15rem .7rem;border:1px solid var(--line-strong);cursor:pointer;background:#fff;font-size:.85rem;color:var(--ink);}
+.seg span.opt{display:inline-flex;align-items:center;min-height:34px;padding:.15rem .7rem;border:1px solid var(--line-strong);cursor:pointer;background:#fff;font-size:.85rem;color:var(--ink);transition:background .14s ease,border-color .14s ease,color .14s ease;}
+.seg input:not(:checked) + span.opt:hover{background:var(--surface);border-color:var(--accent);color:var(--accent);}
 .seg input:checked + span.opt{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700;}
 .seg input:focus-visible + span.opt{outline:3px solid var(--cta);outline-offset:-3px;z-index:1;}
 .people-in{min-height:34px;padding:.1rem .5rem;border:1px solid var(--line-strong);width:5.5rem;font-size:.85rem;}
 .hint{color:var(--muted);font-size:.76rem;}
 
 .reminders{margin:.55rem 0 0;background:var(--paper);border:1px solid var(--line);}
-.reminders>summary{cursor:pointer;padding:.5rem .8rem;font-size:.88rem;color:var(--accent);font-weight:600;}
+.reminders>summary{cursor:pointer;padding:.5rem .8rem;font-size:.88rem;color:var(--accent);font-weight:600;transition:background .14s ease;}
+.reminders>summary:hover{background:var(--surface);}
 .reminders>summary:focus-visible{outline:3px solid var(--cta);outline-offset:-3px;}
 .reminders[open]>summary{border-bottom:1px solid var(--line);}
 .reminders .rbody{padding:.5rem .8rem .65rem;display:flex;flex-direction:column;gap:.45rem;}
@@ -66,9 +68,9 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .warn b{font-weight:700;}
 
 .tabs{display:flex;flex-wrap:wrap;margin:1.3rem 0 0;border-bottom:1px solid var(--line-strong);}
-.tabs button{min-height:44px;padding:.45rem 1.1rem;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-1px;font-size:1rem;font-weight:600;color:var(--muted);cursor:pointer;font-family:'Noto Serif TC','Inter',serif;letter-spacing:.04em;}
+.tabs button{min-height:44px;padding:.45rem 1.1rem;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-1px;font-size:1rem;font-weight:600;color:var(--muted);cursor:pointer;font-family:'Noto Serif TC','Inter',serif;letter-spacing:.04em;transition:color .14s ease,background .14s ease,border-color .14s ease;}
 .tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--cta);}
-.tabs button:hover{color:var(--accent);}
+.tabs button:hover{color:var(--accent);background:var(--surface);border-bottom-color:var(--line-strong);}
 .tabs button:focus-visible{outline:3px solid var(--cta);outline-offset:-3px;}
 .panel{padding:1.2rem 0;}
 .panel:focus-visible{outline:none;}
@@ -90,9 +92,11 @@ h2.sec{font-size:1.3rem;margin:.2rem 0 .8rem;color:var(--accent);letter-spacing:
 .tag.fit{background:var(--soft);color:var(--accent);border-color:var(--sky);}
 .tag.unfit{background:var(--surface);color:var(--muted);}
 .note{color:var(--muted);font-size:.92rem;margin:.35rem 0 .45rem;}
-.btn{display:inline-block;min-height:40px;line-height:38px;padding:0 1rem;border:1px solid var(--accent);background:#fff;color:var(--accent);font-weight:700;font-size:.88rem;cursor:pointer;text-decoration:none;font-family:'Inter','Noto Sans TC',sans-serif;}
-.btn:hover{background:var(--surface);}
+.btn{display:inline-block;min-height:40px;line-height:38px;padding:0 1rem;border:1px solid var(--accent);background:#fff;color:var(--accent);font-weight:700;font-size:.88rem;cursor:pointer;text-decoration:none;font-family:'Inter','Noto Sans TC',sans-serif;transition:background .15s ease,color .15s ease,transform .12s ease,box-shadow .12s ease;}
+.btn:hover{background:var(--accent);color:#fff;transform:translateY(-2px);box-shadow:0 4px 0 -1px var(--cta);}
 .btn.primary{background:var(--cta);color:var(--cta-text);border-color:var(--cta);}
+.btn.primary:hover{background:var(--cta);color:var(--cta-text);transform:translateY(-2px);box-shadow:0 4px 0 -1px var(--accent);}
+.btn:active{transform:translateY(0);box-shadow:none;}
 .btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
 .filters{background:var(--paper);border:1px solid var(--line);padding:.85rem 1rem;margin-bottom:1rem;}
 .filters .grp{display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:center;}
@@ -146,6 +150,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
       <div class="cset">
         <span class="lbl" id="lbl-budget">預算傾向</span>
         <div class="seg" role="radiogroup" aria-labelledby="lbl-budget" id="f-budget">
+          <label><input type="radio" name="budget" value="free"><span class="opt">免費</span></label>
           <label><input type="radio" name="budget" value="low"><span class="opt">省</span></label>
           <label><input type="radio" name="budget" value="mid" checked><span class="opt">平衡</span></label>
           <label><input type="radio" name="budget" value="any"><span class="opt">不限</span></label>
@@ -311,8 +316,9 @@ function computeWarnings(){
  if(v&&v.cap==="restricted") out.push({s:"high",m:`<b>重要：</b>你選的「${esc(v.n)}」對外接設備有限制（視聽器材不得自帶／同步翻譯設備不得自備／無法外接其他影音），可能不適合作字幕主場。接字幕筆電與乾淨人聲輸出的方式要簽約前向場地書面確認。`});
  if(v&&v.capMax!==null&&v.capMax<peopleMax()) out.push({s:"high",m:`<b>重要：</b>「${esc(v.n)}」最大容量約 ${v.capMax} 人，坐不下你的人數（${esc(tl)}，約上限 ${peopleMax()} 人）。換更大的場地，或調整人數規模再比較。`});
  if(v&&v.priceFrom===null) out.push({s:"info",m:`<b>提醒：</b>「${esc(v.n)}」沒有公開價（需詢價／需申請），無法和其他場地公平比價。用統一格式詢價信請業務提供書面報價（場租、服務費、餐飲、影音、外接字幕、網路）。`});
- if(state.budget==="low"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>提醒：</b>預算選「省」但規模是 ${esc(tl)}：正式建議（M）工具與操作約 NT$35,000-150,000、高穩定（L）約 NT$180,000-600,000+，與低成本試跑（NT$0-25,000）落差很大。可考慮縮小規模試跑、限縮語言或人力，或優先選場租透明的非飯店／公有場地。`});
- if(state.budget==="low"&&v&&v.cost==="ask") out.push({s:"info",m:`<b>提醒：</b>預算選「省」時，需詢價的場地會被排除（無公開價、無法確認）。要保留先取得書面報價，或把預算改成「平衡／不限」。`});
+ if(state.budget==="free") out.push({s:"info",m:"<b>提醒：</b>本清單的場地幾乎都要場租，沒有完全免費的；真正免費通常要靠公部門或合作夥伴免費借用（需另洽）。NPO 聚落與公有場館相對最低成本。字幕工具可走免費路線：Microsoft Translator（免費）、Akkadu／YYSystem（低成本試跑）。"});
+ if((state.budget==="low"||state.budget==="free")&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>提醒：</b>預算偏低但規模是 ${esc(tl)}：正式建議（M）工具與操作約 NT$35,000-150,000、高穩定（L）約 NT$180,000-600,000+，與低成本試跑（NT$0-25,000）落差很大。可考慮縮小規模試跑、限縮語言或人力，或優先選場租透明的非飯店／公有場地。`});
+ if((state.budget==="low"||state.budget==="free")&&v&&v.cost==="ask") out.push({s:"info",m:`<b>提醒：</b>預算偏低時，需詢價的場地會被排除（無公開價、無法確認）。要保留先取得書面報價，或把預算改成「平衡／不限」。`});
  return out;
 }
 const PERSISTENT=[
@@ -333,8 +339,8 @@ function overlaps(v){
 }
 function budgetOk(v){
  if(state.budget==="any") return true;
- if(v.cost==="ask") return state.budget!=="low";
- if(state.budget==="low") return v.cost==="low";
+ if(v.cost==="ask") return state.budget!=="low"&&state.budget!=="free";
+ if(state.budget==="free"||state.budget==="low") return v.cost==="low";
  if(state.budget==="mid") return v.cost==="low"||v.cost==="mid";
  return true;
 }
