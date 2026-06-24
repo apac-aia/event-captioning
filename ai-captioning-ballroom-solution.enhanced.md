@@ -8,6 +8,7 @@
 <div class="section-highlight section-highlight-primary">
 <strong>30 秒看懂怎麼用這份報告</strong>
 <p>這份報告要幫你做三個決定：<strong>選場地、選字幕工具、選方案等級</strong>。下面先給「最可能情況」的預設答案；情況不同就看「微調」；要細節再往下查參考章節。</p>
+<p>想用點選的方式快速篩場地？開<a href="index.html">互動選型工具</a>。</p>
 </div>
 
 ### 預設：ADALS 最可能的情況就照這個做
