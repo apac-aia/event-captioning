@@ -6,110 +6,129 @@
 <title>雙北字幕活動選型工具｜場地、字幕工具、方案、成本</title>
 <meta name="description" content="輸入活動條件，即時得到場地、字幕工具、方案等級與成本級距的整合建議；適用台北與新北（雙北）的現場即時字幕／多語翻譯活動。">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
 :root{
-  --paper:#ffffff;--bg:#f5f7f6;--ink:#1a1a1a;--muted:#59636d;--line:#d8dfde;
-  --soft:#e9f7f4;--accent:#0f766e;--accent-ink:#0b5cad;--radius:10px;
-  --hi-bg:#fff4f0;--hi-line:#d92d20;--hi-ink:#b42318;
-  --info-bg:#eff8ff;--info-line:#2e90fa;--info-ink:#175cd3;
+  --bg:#F7F8F8;--paper:#ffffff;--surface:#ECEFF3;--ink:#231815;--muted:#3D3835;
+  --line:#B7C0CB;--line-strong:#6B7785;--soft:#E4EEF4;
+  --accent:#003B5C;--accent-deep:#002D46;--accent-ink:#003B5C;
+  --cta:#F8B62D;--cta-text:#231815;--sky:#19ABE4;
+  --hi-bg:#fbf0ee;--hi-line:#c0392b;--hi-ink:#9b2418;
+  --info-bg:#edf6fc;--info-line:#19ABE4;--info-ink:#003B5C;
+  color-scheme:light;
 }
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;line-height:1.75;font-size:17px;}
-a{color:var(--accent-ink);}
-.skip-link{position:absolute;left:.6rem;top:.6rem;z-index:50;background:var(--accent);color:#fff;padding:.55rem .95rem;border-radius:6px;text-decoration:none;transform:translateY(-160%);transition:transform .14s;}
-.skip-link:focus{transform:translateY(0);outline:3px solid #fff;outline-offset:2px;}
-.wrap{max-width:1100px;margin:0 auto;padding:1.1rem 1.1rem 4rem;}
-.topbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.6rem;}
-.topbar h1{font-size:1.3rem;margin:0;}
-.topbar .ext a{font-size:.9rem;margin-left:.8rem;}
-.lead{color:var(--muted);margin:.2rem 0 1rem;font-size:.96rem;}
-.lead .core{display:block;background:var(--soft);color:var(--ink);border-radius:8px;padding:.55rem .8rem;margin-top:.5rem;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter','Noto Sans TC','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;line-height:1.7;font-size:17px;}
+a{color:var(--accent-ink);text-underline-offset:2px;}
+h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
+.skip-link{position:absolute;left:.6rem;top:.6rem;z-index:50;background:var(--accent);color:#fff;padding:.55rem .95rem;text-decoration:none;transform:translateY(-160%);transition:transform .14s;}
+.skip-link:focus{transform:translateY(0);outline:3px solid var(--cta);outline-offset:2px;}
 
-/* sticky control + warnings */
+.banner{background:var(--accent);color:#fff;}
+.banner-in{max-width:1100px;margin:0 auto;padding:2rem 1.1rem 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem;}
+.banner .eyebrow{font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cta);margin-bottom:.5rem;}
+.banner h1{font-size:1.95rem;font-weight:700;letter-spacing:.05em;margin:0;line-height:1.2;}
+.banner .org{font-size:.8rem;letter-spacing:.05em;color:rgba(255,255,255,.74);margin-top:.55rem;}
+.banner-links a{font-family:'Inter',sans-serif;color:var(--cta);font-weight:600;font-size:.85rem;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;margin-left:1.3rem;white-space:nowrap;}
+.banner-links a:hover,.banner-links a:focus-visible{border-bottom-color:var(--cta);}
+
+.wrap{max-width:1100px;margin:0 auto;padding:1.2rem 1.1rem 4rem;}
+.lead{color:var(--muted);margin:.2rem 0 1rem;font-size:.96rem;}
+
 .sticky{position:sticky;top:0;z-index:30;background:var(--bg);padding-top:.5rem;}
-.controls{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:.5rem .7rem;}
-.controls .row{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;align-items:center;}
-.cset{display:flex;align-items:center;gap:.4rem;}
-.cset>span.lbl{font-weight:700;font-size:.82rem;white-space:nowrap;}
-.seg{display:flex;flex-wrap:wrap;gap:.3rem;}
-.seg label{position:relative;}
+.controls{background:var(--paper);border:1px solid var(--line);padding:.55rem .8rem;}
+.controls .row{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;align-items:center;}
+.cset{display:flex;align-items:center;gap:.5rem;}
+.cset>span.lbl{font-weight:700;font-size:.82rem;white-space:nowrap;color:var(--accent);}
+.seg{display:flex;flex-wrap:wrap;}
+.seg label{position:relative;margin-left:-1px;}
+.seg label:first-child{margin-left:0;}
 .seg input{position:absolute;opacity:0;width:0;height:0;}
-.seg span.opt{display:inline-flex;align-items:center;min-height:32px;padding:.1rem .6rem;border:1px solid var(--line);border-radius:999px;cursor:pointer;background:#fff;font-size:.85rem;}
+.seg span.opt{display:inline-flex;align-items:center;min-height:34px;padding:.15rem .7rem;border:1px solid var(--line-strong);cursor:pointer;background:#fff;font-size:.85rem;color:var(--ink);}
 .seg input:checked + span.opt{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700;}
-.seg input:focus-visible + span.opt{outline:3px solid var(--accent-ink);outline-offset:2px;}
-.people-in{min-height:32px;padding:.1rem .45rem;border:1px solid var(--line);border-radius:7px;width:5rem;font-size:.85rem;}
+.seg input:focus-visible + span.opt{outline:3px solid var(--cta);outline-offset:-3px;z-index:1;}
+.people-in{min-height:34px;padding:.1rem .5rem;border:1px solid var(--line-strong);width:5.5rem;font-size:.85rem;}
 .hint{color:var(--muted);font-size:.76rem;}
 
-.reminders{margin:.55rem 0 0;background:var(--paper);border:1px solid var(--line);border-radius:8px;}
-.reminders>summary{cursor:pointer;padding:.45rem .75rem;font-size:.88rem;color:var(--info-ink);font-weight:600;}
-.reminders>summary:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px;}
+.reminders{margin:.55rem 0 0;background:var(--paper);border:1px solid var(--line);}
+.reminders>summary{cursor:pointer;padding:.5rem .8rem;font-size:.88rem;color:var(--accent);font-weight:600;}
+.reminders>summary:focus-visible{outline:3px solid var(--cta);outline-offset:-3px;}
 .reminders[open]>summary{border-bottom:1px solid var(--line);}
-.reminders .rbody{padding:.4rem .75rem .6rem;display:flex;flex-direction:column;gap:.4rem;}
+.reminders .rbody{padding:.5rem .8rem .65rem;display:flex;flex-direction:column;gap:.45rem;}
 .reminders .rbody div{font-size:.88rem;color:var(--muted);}
 
 #warnbar{margin:0;display:flex;flex-direction:column;gap:.45rem;}
 #warnbar:not(:empty){margin-top:.55rem;}
-.warn{display:flex;gap:.55rem;align-items:flex-start;border-radius:8px;padding:.55rem .75rem;border-left:4px solid;font-size:.92rem;}
+.warn{display:flex;gap:.6rem;align-items:flex-start;padding:.6rem .8rem;border-left:4px solid;font-size:.92rem;background:var(--paper);}
 .warn .ico{flex:0 0 auto;width:20px;height:20px;margin-top:.15rem;}
 .warn.high{background:var(--hi-bg);border-color:var(--hi-line);color:var(--hi-ink);}
 .warn.info{background:var(--info-bg);border-color:var(--info-line);color:var(--info-ink);}
 .warn b{font-weight:700;}
 
-/* tabs */
-.tabs{display:flex;flex-wrap:wrap;gap:.25rem;margin:1.1rem 0 0;border-bottom:2px solid var(--line);}
-.tabs button{min-height:44px;padding:.4rem 1rem;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;font-size:1rem;font-weight:600;color:var(--muted);cursor:pointer;border-radius:7px 7px 0 0;}
-.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent);background:var(--soft);}
-.tabs button:focus-visible{outline:3px solid var(--accent-ink);outline-offset:-3px;}
-.panel{padding:1.1rem 0;}
+.tabs{display:flex;flex-wrap:wrap;margin:1.3rem 0 0;border-bottom:1px solid var(--line-strong);}
+.tabs button{min-height:44px;padding:.45rem 1.1rem;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-1px;font-size:1rem;font-weight:600;color:var(--muted);cursor:pointer;font-family:'Noto Serif TC','Inter',serif;letter-spacing:.04em;}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--cta);}
+.tabs button:hover{color:var(--accent);}
+.tabs button:focus-visible{outline:3px solid var(--cta);outline-offset:-3px;}
+.panel{padding:1.2rem 0;}
 .panel:focus-visible{outline:none;}
-h2.sec{font-size:1.2rem;margin:.2rem 0 .7rem;}
+h2.sec{font-size:1.3rem;margin:.2rem 0 .8rem;color:var(--accent);letter-spacing:.04em;}
 
-/* cards */
 .cards{display:grid;gap:.8rem;}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:.9rem 1rem;}
-.card.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--soft);}
-.card-head{display:flex;align-items:center;gap:.55rem;margin-bottom:.3rem;}
-.card-head h4{margin:0;font-size:1.08rem;}
+.card{background:var(--paper);border:1px solid var(--line);padding:.95rem 1.1rem;}
+.card.sel{border-color:var(--accent);box-shadow:inset 4px 0 0 var(--cta);}
+.card-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem;}
+.card-head h4{margin:0;font-size:1.08rem;font-family:'Noto Sans TC','Inter',sans-serif;font-weight:700;color:var(--accent);}
 .type-ico{flex:0 0 auto;width:30px;height:30px;color:var(--accent);display:inline-flex;}
-.price{font-size:1.12rem;font-weight:700;color:var(--accent);}
+.price{font-size:1.1rem;font-weight:700;color:var(--ink);}
 .unit{font-size:.85rem;color:var(--muted);font-weight:400;}
-.meta{display:flex;flex-wrap:wrap;gap:.4rem;margin:.45rem 0;}
-.tag{font-size:.78rem;padding:.15rem .55rem;border-radius:999px;border:1px solid var(--line);background:#f7faf9;color:var(--muted);}
-.tag.good{background:var(--soft);color:var(--accent);border-color:#bfe3dc;}
-.tag.restricted{background:var(--hi-bg);color:var(--hi-ink);border-color:#e6b8a8;}
-.tag.need{background:#fff3d6;color:#8a5a12;border-color:#e8d39a;}
-.tag.fit{background:var(--soft);color:var(--accent);border-color:#bfe3dc;}
-.tag.unfit{background:#f1f3f2;color:var(--muted);}
-.note{color:var(--muted);font-size:.92rem;margin:.3rem 0 .4rem;}
-.btn{display:inline-block;min-height:40px;line-height:38px;padding:0 .9rem;border-radius:7px;border:1px solid var(--accent);background:#fff;color:var(--accent);font-weight:700;font-size:.9rem;cursor:pointer;text-decoration:none;}
-.btn.primary{background:var(--accent);color:#fff;}
-.btn:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px;}
-.filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:.8rem 1rem;margin-bottom:1rem;}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0;}
+.tag{font-size:.76rem;padding:.15rem .55rem;border:1px solid var(--line);background:var(--surface);color:var(--muted);}
+.tag.good{background:var(--soft);color:var(--accent);border-color:var(--sky);}
+.tag.restricted{background:var(--hi-bg);color:var(--hi-ink);border-color:var(--hi-line);}
+.tag.need{background:#fbf3df;color:#7a4f00;border-color:var(--cta);}
+.tag.fit{background:var(--soft);color:var(--accent);border-color:var(--sky);}
+.tag.unfit{background:var(--surface);color:var(--muted);}
+.note{color:var(--muted);font-size:.92rem;margin:.35rem 0 .45rem;}
+.btn{display:inline-block;min-height:40px;line-height:38px;padding:0 1rem;border:1px solid var(--accent);background:#fff;color:var(--accent);font-weight:700;font-size:.88rem;cursor:pointer;text-decoration:none;font-family:'Inter','Noto Sans TC',sans-serif;}
+.btn:hover{background:var(--surface);}
+.btn.primary{background:var(--cta);color:var(--cta-text);border-color:var(--cta);}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.filters{background:var(--paper);border:1px solid var(--line);padding:.85rem 1rem;margin-bottom:1rem;}
 .filters .grp{display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:center;}
 .chk{display:inline-flex;align-items:center;gap:.4rem;min-height:34px;font-size:.92rem;}
-.count{font-weight:700;margin:.2rem 0 .7rem;}
-.ovbox{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:var(--radius);padding:1rem 1.1rem;margin-bottom:1rem;}
-.ovbox h3{margin:.1rem 0 .5rem;}
-.ovrow{margin:.35rem 0;}
-.ovrow .k{font-weight:700;}
-.deep{margin-top:.8rem;font-size:.92rem;}
+.count{font-weight:700;margin:.2rem 0 .7rem;color:var(--accent);}
+.ovbox{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--accent);padding:1.1rem 1.2rem;margin-bottom:1rem;}
+.ovbox h3{margin:.1rem 0 .6rem;color:var(--accent);font-size:1.15rem;letter-spacing:.03em;}
+.ovrow{margin:.4rem 0;}
+.ovrow .k{font-weight:700;color:var(--accent);}
+.deep{margin-top:.9rem;font-size:.92rem;}
 table.cmp{width:100%;border-collapse:collapse;font-size:.9rem;background:var(--paper);}
-table.cmp th,table.cmp td{border:1px solid var(--line);padding:.45rem .55rem;vertical-align:top;text-align:left;}
-table.cmp th{background:#eef3f1;}
-.role-h{font-weight:700;margin:1rem 0 .4rem;border-left:4px solid var(--accent);padding-left:.5rem;}
-footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;}
-:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px;}
+table.cmp th,table.cmp td{border:1px solid var(--line);padding:.5rem .6rem;vertical-align:top;text-align:left;}
+table.cmp th{background:var(--accent);color:#fff;font-weight:600;}
+.role-h{font-family:'Noto Serif TC',serif;font-weight:700;margin:1.2rem 0 .5rem;border-left:4px solid var(--cta);padding-left:.6rem;color:var(--accent);}
+footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong);color:var(--muted);font-size:.9rem;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}}
+@media (max-width:600px){.banner h1{font-size:1.45rem;}.banner-in{padding:1.4rem 1.1rem 1.2rem;align-items:flex-start;flex-direction:column;}.banner-links a{margin-left:0;margin-right:1.3rem;}}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#app">跳到工具</a>
+<header class="banner">
+  <div class="banner-in">
+    <div class="brand">
+      <div class="eyebrow">APAC AIA · 雙北場地與字幕工具</div>
+      <h1>字幕活動選型工具</h1>
+      <div class="org">亞太包容創新協會　APAC Authentic Inclusion Association</div>
+    </div>
+    <nav class="banner-links" aria-label="其他文件">
+      <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>
+      <a href="ai-captioning-ballroom-sources.html">來源索引</a>
+    </nav>
+  </div>
+</header>
 <div class="wrap">
-
-<div class="topbar">
-  <h1>雙北字幕活動選型工具</h1>
-  <span class="ext"><a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a><a href="ai-captioning-ballroom-sources.html">來源索引</a></span>
-</div>
 <p class="lead">設定活動條件，下面五個分頁（總覽／場地／字幕工具／方案／成本）即時給出整合建議；改任何設定，所有分頁與提醒同步更新。</p>
 
 <div class="sticky">
