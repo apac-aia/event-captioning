@@ -233,7 +233,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
     <button role="tab" id="tab-tools" aria-controls="panel-tools" aria-selected="false" tabindex="-1">字幕工具</button>
     <button role="tab" id="tab-tiers" aria-controls="panel-tiers" aria-selected="false" tabindex="-1">方案</button>
     <button role="tab" id="tab-cost" aria-controls="panel-cost" aria-selected="false" tabindex="-1">成本</button>
-    <button role="tab" id="tab-human" aria-controls="panel-human" aria-selected="false" tabindex="-1">無障礙人工服務</button>
+    <button role="tab" id="tab-human" aria-controls="panel-human" aria-selected="false" tabindex="-1">聽打與手語</button>
     <button role="tab" id="tab-overview" class="tab-meta" aria-controls="panel-overview" aria-selected="false" tabindex="-1">總覽</button>
     <button role="tab" id="tab-a11y" class="tab-meta" aria-controls="panel-a11y" aria-selected="false" tabindex="-1">無障礙清單</button>
   </div>
@@ -475,7 +475,7 @@ const COST={
  avBand:{XS:"NT$5,000-30,000",S:"NT$5,000-30,000",M:"NT$20,000-80,000",L:"需確認／另計（報告未給數字）"},
  toolOpBand:{XS:"NT$0-25,000",S:"NT$0-25,000",M:"NT$35,000-150,000",L:"NT$180,000-600,000+"},
  staffNote:"報告只列角色與人數、未列單價，金額一律需確認（志工無酬／廠商打包／另聘）。",
- cartBand:"需向供應商報價（報告未列金額）。無障礙基準服務不能只靠 AI 字幕，須加 CART／手語／專業字幕。",
+ cartBand:"委辦服務在補助範圍內、對身障者特定場合多免費，但商業／企業活動常需自費或不受理；民間聽打約 NT$17-50／分鐘（雃思工坊）或 NT$500-1,000／半小時（PRO360 媒合）；TASLI 自費比照社會局標準，手語與專業字幕需個案報價。具名窗口見「聽打與手語」分頁。",
  cateringPerHead:"飯店每人專案多已含餐飲（需確認服務費）；非飯店多需另估，部分場地禁外食，每人 NT$ 需確認。",
  venueNote:"場租依計價模式換算：每時段×2（上午+下午）、每小時×時數、每半日×2、每日×天數、每場×2、每人×人數（飯店多另加 10% 服務費）；需詢價場地無法估。集思系列另加 10% 清潔費。",
  caveats:"這是級距粗估、不是報價。不同計價模式不可直接比（飯店像便當套餐人越多越貴、會議中心像租廚房場租便宜但設備自己算）；要把場租＋影音＋網路＋餐飲＋字幕工具＋人力加總成同一張表。所有非報告數字（時數、天數、人力單價、餐飲每人、CART 報價、網路費）一律需確認。"
@@ -689,7 +689,7 @@ function renderTools(){
     <p class="note">${esc(t.why)}</p>
     <a href="${esc(t.source)}" target="_blank" rel="noopener">官方頁 ↗</a>
    </article>`;};
- const formalNote=state.access==="formal"?`<div class="warn high" style="margin-bottom:1rem;">${ICO_HIGH}<div><b>重要：</b>你選了無障礙基準服務。下方「CART專業字幕」類（StreamText／3Play／AI-Media／Wordly）或台灣同步聽打／手語為基準服務（見「無障礙人工服務」分頁），AI 工具只能當多語即時翻譯的補充。</div></div>`:"";
+ const formalNote=state.access==="formal"?`<div class="warn high" style="margin-bottom:1rem;">${ICO_HIGH}<div><b>重要：</b>你選了無障礙基準服務。下方「CART專業字幕」類（StreamText／3Play／AI-Media／Wordly）或台灣同步聽打／手語為基準服務（見「聽打與手語」分頁），AI 工具只能當多語即時翻譯的補充。</div></div>`:"";
  return `<h2 class="sec">字幕工具（適合你規模的排前面）</h2>
  <p class="note">下方各卡的 語言數、術語表、QR、人工修正 為各供應商官方頁宣稱、非獨立查證；完整報告把這些列為採購前須向供應商確認的問題。</p>
  <div class="ovbox"><h3>你的規模（${esc(TIERLABEL[state.size])}）建議測：</h3><p>${esc(TOOLS_BYTIER[state.size])}</p></div>
@@ -720,7 +720,7 @@ function renderTiers(){
 }
 function renderCost(){
  const sz=state.size;const v=state.selectedVenue?getVenue(state.selectedVenue):null;
- const cart=(state.access==="formal")?`<tr><td>CART／手語／專業字幕</td><td>${esc(COST.cartBand)}</td></tr>`:"";
+ const cart=`<tr><td>同步聽打／手語${state.access==="formal"?"（基準服務必備）":"（若有聾人／聽障與會者才需要）"}</td><td>${esc(COST.cartBand)}</td></tr>`;
  const venueRow=v?`<tr><td>場租（你選的「${esc(v.n)}」）</td><td>${esc(v.priceText)}（計價單位：${esc(v.unit==="ask"?"需詢價":v.unit)}；依模式換算）</td></tr>`
    :`<tr><td>場租</td><td>未選場地；六種計價模式見下方說明，到「場地」分頁選一個</td></tr>`;
  return `<h2 class="sec">成本級距（${esc(TIERLABEL[sz])}）</h2>
@@ -779,7 +779,7 @@ function renderHumanServices(){
    <a href="${esc(p.url)}" target="_blank" rel="noopener">官方頁 ↗</a></article>`;
  const langRow=l=>`<tr><td><b>${esc(l.sign)}</b></td><td>${esc(l.whenToUse)}</td><td>${esc(l.apacFit)}</td></tr>`;
  const group=(title,t)=>{const a=TW_SERVICES.filter(x=>x.type===t);return a.length?`<div class="role-h">${title}（${a.length}）</div><div class="cards">${a.map(svcCard).join("")}</div>`:"";};
- return `<h2 class="sec">無障礙人工服務（同步聽打・手語）</h2>
+ return `<h2 class="sec">聽打與手語（真人即時字幕與手語翻譯）</h2>
  <div class="warn high" style="margin-bottom:1rem;">${ICO_HIGH}<div><b>這才是無障礙骨幹。</b>有聾人或聽障與會者時，AI 字幕只是多語翻譯的補充；真正的無障礙基準是中文同步聽打（CART）與在地手語。下方台灣窗口與手語語種經查證，採購前仍須個案向窗口確認費率與檔期。</div></div>
  <div class="role-h">一、手語語種怎麼選</div>
  <div class="ovbox"><p class="note" style="margin:0;">${esc(SIGN_FRAMEWORK)}</p></div>
