@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>台灣字幕活動選型工具｜場地、字幕工具、方案、成本</title>
+<title>台灣活動字幕選型工具｜場地、字幕工具、方案、成本</title>
 <meta name="description" content="輸入活動條件，即時得到場地、字幕工具、方案等級與成本級距的整合建議；涵蓋全台（北中南）的現場即時字幕／多語翻譯活動。">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
@@ -169,7 +169,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
   <div class="banner-in">
     <div class="brand">
       <div class="eyebrow">APAC AIA · 全台場地與字幕工具</div>
-      <h1>字幕活動選型工具</h1>
+      <h1>活動字幕選型工具</h1>
       <div class="org">亞太包容創新協會　APAC Authentic Inclusion Association</div>
     </div>
     <nav class="banner-links" aria-label="其他文件">
@@ -560,7 +560,7 @@ function buildPrintDoc(){
  const n=CHECKLIST.reduce((s,g)=>s+g.items.length,0);
  const list=CHECKLIST.map(g=>`<h3>${esc(g.title)}</h3><ul class="pck">`+g.items.map(it=>`<li>${esc(it.action)} <span class="ptag">［${esc(it.tier)}・${esc(it.timing)}・${esc(it.owner)}${it.needsVerify?"・需查證":""}］</span></li>`).join("")+`</ul>`).join("");
  document.getElementById("print-doc").innerHTML=`<h1>無障礙活動加辦清單與整合建議</h1>
-   <p class="psub">APAC AIA 字幕活動選型工具・依本次設定產生。價格電話為查詢起點、非報價，採購前須自行向場地與供應商書面確認。</p>
+   <p class="psub">APAC AIA 活動字幕選型工具・依本次設定產生。價格電話為查詢起點、非報價，採購前須自行向場地與供應商書面確認。</p>
    ${adv}
    <h2>正式無障礙加辦清單（${n} 項）</h2>
    <p>每項標 法定預期／加分、時機與負責角色；「需查證」者引用法規或補助，對外引用前須查證。</p>
