@@ -30,7 +30,7 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .banner h1{font-size:1.95rem;font-weight:700;letter-spacing:.05em;margin:0;line-height:1.2;}
 .banner .org{font-size:.8rem;letter-spacing:.05em;color:rgba(255,255,255,.74);margin-top:.55rem;}
 .banner-links a{font-family:'Inter',sans-serif;color:var(--cta);font-weight:600;font-size:.85rem;letter-spacing:.04em;text-decoration:none;border:1px solid transparent;padding:.35rem .75rem;margin-left:.6rem;white-space:nowrap;transition:background .15s ease,border-color .15s ease,transform .12s ease;}
-.banner-links a:hover,.banner-links a:focus-visible{border-color:var(--cta);background:rgba(248,182,45,.2);transform:translateY(-1px);}
+.banner-links a:hover,.banner-links a:focus-visible{border-color:var(--cta);background:var(--cta);color:var(--cta-text);transform:translateY(-1px);}
 
 .wrap{max-width:1100px;margin:0 auto;padding:1.2rem 1.1rem 4rem;}
 .lead{color:var(--muted);margin:.2rem 0 1rem;font-size:.96rem;}
@@ -56,6 +56,7 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .reminders>summary:hover{background:var(--surface);}
 .reminders>summary:focus-visible{outline:3px solid var(--cta);outline-offset:-3px;}
 .reminders[open]>summary{border-bottom:1px solid var(--line);}
+.reminders>summary svg{width:18px;height:18px;vertical-align:-3px;}
 .reminders .rbody{padding:.5rem .8rem .65rem;display:flex;flex-direction:column;gap:.45rem;}
 .reminders .rbody div{font-size:.88rem;color:var(--muted);}
 
@@ -66,12 +67,36 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .warn.high{background:var(--hi-bg);border-color:var(--hi-line);color:var(--hi-ink);}
 .warn.info{background:var(--info-bg);border-color:var(--info-line);color:var(--info-ink);}
 .warn b{font-weight:700;}
+.a11y-list{display:flex;flex-direction:column;gap:.5rem;}
+.a11y-list .grp{margin:.7rem 0 -.1rem;font-weight:700;font-size:1rem;color:var(--accent);}
+.a11y-list .grp:first-child{margin-top:0;}
+.a11y-list label.ck{display:flex;gap:.5rem;align-items:flex-start;font-size:.92rem;color:var(--ink);cursor:pointer;}
+.a11y-list label.ck input{margin-top:.2rem;flex:0 0 auto;width:16px;height:16px;accent-color:var(--accent);}
+.a11y-list label.ck input:checked~.txt{color:var(--muted);text-decoration:line-through;}
+.a11y-list .meta{display:inline-flex;gap:.3rem;margin-left:.4rem;flex-wrap:wrap;}
+.a11y-list .tag{font-size:.7rem;line-height:1.55;padding:0 .35rem;border:1px solid var(--line);color:var(--muted);white-space:nowrap;}
+.a11y-list .tag.must{border-color:var(--hi-line);color:var(--hi-ink);background:var(--hi-bg);}
+.a11y-list .tag.verify{border-color:var(--info-line);color:var(--info-ink);background:var(--info-bg);}
+#selbar{display:flex;flex-direction:column;gap:.3rem;font-size:.75rem;color:var(--ink);padding:.4rem .6rem;margin-bottom:.6rem;background:var(--soft);border:1px solid var(--line-strong);border-left:4px solid var(--accent);}
+#selbar .selrow{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;}
+#selbar .lead-k{flex:0 0 auto;font-weight:700;color:var(--accent);}
+#selbar .seg-pill{flex:0 0 auto;padding:.08rem .45rem;border:1px solid var(--accent);background:#fff;}
+#selbar .seg-pill .pk{color:var(--muted);font-weight:400;}
+#selbar .seg-pill .pk::after{content:"：";}
+#selbar .seg-pill .pv{color:var(--accent);font-weight:700;}
+#selbar a.warn-pill{border-color:var(--cta);background:#fbf3df;text-decoration:none;}
+#selbar a.warn-pill .pk{color:#7a4f00;}
+#selbar a.warn-pill .pv{color:#7a4f00;font-weight:700;}
 
 .tabs{display:flex;flex-wrap:wrap;margin:1.3rem 0 0;border-bottom:1px solid var(--line-strong);}
 .tabs button{min-height:44px;padding:.45rem 1.1rem;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-1px;font-size:1rem;font-weight:600;color:var(--muted);cursor:pointer;font-family:'Noto Serif TC','Inter',serif;letter-spacing:.04em;transition:color .14s ease,background .14s ease,border-color .14s ease;}
 .tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--cta);}
 .tabs button:hover{color:var(--accent);background:var(--surface);border-bottom-color:var(--line-strong);}
 .tabs button:focus-visible{outline:3px solid var(--cta);outline-offset:-3px;}
+.tabs .tab-meta{background:var(--soft);color:var(--accent);}
+.tabs #tab-overview.tab-meta{margin-left:auto;border-left:2px solid var(--line-strong);}
+.tabs .tab-meta:hover{background:var(--cta);color:var(--cta-text);border-bottom-color:var(--accent);}
+.tabs .tab-meta[aria-selected="true"]{background:var(--soft);color:var(--accent);border-bottom-color:var(--cta);}
 .panel{padding:1.2rem 0;}
 .panel:focus-visible{outline:none;}
 h2.sec{font-size:1.3rem;margin:.2rem 0 .8rem;color:var(--accent);letter-spacing:.04em;}
@@ -106,6 +131,10 @@ h2.sec{font-size:1.3rem;margin:.2rem 0 .8rem;color:var(--accent);letter-spacing:
 .ovbox h3{margin:.1rem 0 .6rem;color:var(--accent);font-size:1.15rem;letter-spacing:.03em;}
 .ovrow{margin:.4rem 0;}
 .ovrow .k{font-weight:700;color:var(--accent);}
+.ovbox .ovrow.kv{display:grid;grid-template-columns:7em 1fr;gap:.15rem .7rem;align-items:baseline;margin:.55rem 0;line-height:1.6;}
+.ovvenue{display:flex;align-items:center;gap:.7rem;padding:.5rem .7rem;border:1px solid var(--line);background:var(--bg);margin:.4rem 0;}
+.ovvenue .vn{flex:1 1 auto;min-width:0;line-height:1.5;}
+.ovvenue .btn{flex:0 0 auto;margin-left:auto;}
 .deep{margin-top:.9rem;font-size:.92rem;}
 table.cmp{width:100%;border-collapse:collapse;font-size:.9rem;background:var(--paper);}
 table.cmp th,table.cmp td{border:1px solid var(--line);padding:.5rem .6rem;vertical-align:top;text-align:left;}
@@ -113,8 +142,25 @@ table.cmp th{background:var(--accent);color:#fff;font-weight:600;}
 .role-h{font-family:'Noto Serif TC',serif;font-weight:700;margin:1.2rem 0 .5rem;border-left:4px solid var(--cta);padding-left:.6rem;color:var(--accent);}
 footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong);color:var(--muted);font-size:.9rem;}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.wrap a:not(.btn):hover,.wrap a:not(.btn):focus-visible{background:var(--cta);color:var(--cta-text);text-decoration-thickness:2px;outline:3px solid var(--accent);outline-offset:1px;}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}}
 @media (max-width:600px){.banner h1{font-size:1.45rem;}.banner-in{padding:1.4rem 1.1rem 1.2rem;align-items:flex-start;flex-direction:column;}.banner-links a{margin-left:0;margin-right:1.3rem;}}
+.vphone{font-size:.92rem;margin:.15rem 0 .1rem;color:var(--ink);}
+.pdfrow{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:.3rem 0 .7rem;}
+@media print{
+  body>*{display:none!important;}
+  #print-doc{display:block!important;color:#000;font:12pt/1.5 'Noto Sans TC','Inter',sans-serif;}
+  #print-doc h1{font-size:18pt;margin:0 0 .15em;}
+  #print-doc h2{font-size:14pt;margin:1em 0 .3em;border-bottom:1px solid #000;padding-bottom:.1em;}
+  #print-doc h3{font-size:12.5pt;margin:.8em 0 .15em;}
+  #print-doc .psub{color:#444;font-size:10pt;margin:0 0 1em;}
+  #print-doc ul{margin:.2em 0 .6em;padding-left:1.4em;}
+  #print-doc .pck{list-style:none;padding-left:0;}
+  #print-doc .pck li{padding-left:1.5em;text-indent:-1.5em;margin:.25em 0;break-inside:avoid;}
+  #print-doc .pck li::before{content:"\2610  ";}
+  #print-doc .ptag{color:#555;font-size:9.5pt;}
+  @page{margin:1.6cm;}
+}
 </style>
 </head>
 <body>
@@ -127,6 +173,8 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
       <div class="org">亞太包容創新協會　APAC Authentic Inclusion Association</div>
     </div>
     <nav class="banner-links" aria-label="其他文件">
+      <a href="#panel-overview" data-gotab="overview">總覽</a>
+      <a href="#panel-a11y" data-gotab="a11y">無障礙清單</a>
       <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>
       <a href="ai-captioning-ballroom-sources.html">來源索引</a>
     </nav>
@@ -136,12 +184,13 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
 <p class="lead">設定活動條件，下面五個分頁（總覽／場地／字幕工具／方案／成本）即時給出整合建議；改任何設定，所有分頁與提醒同步更新。</p>
 
 <div class="sticky">
+  <div id="selbar" aria-label="目前所有選擇"></div>
   <div class="controls" aria-label="活動設定">
     <div class="row">
       <div class="cset">
         <span class="lbl" id="lbl-size">活動人數規模</span>
         <div class="seg" role="radiogroup" aria-labelledby="lbl-size" id="f-size">
-          <label><input type="radio" name="size" value="XS"><span class="opt">XS（&lt;50）</span></label>
+          <label><input type="radio" name="size" value="XS"><span class="opt">XS（20-50）</span></label>
           <label><input type="radio" name="size" value="S"><span class="opt">S（50-150）</span></label>
           <label><input type="radio" name="size" value="M" checked><span class="opt">M（150-300）</span></label>
           <label><input type="radio" name="size" value="L"><span class="opt">L（300+）</span></label>
@@ -159,8 +208,8 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
       <div class="cset">
         <span class="lbl" id="lbl-access">字幕定位</span>
         <div class="seg" role="radiogroup" aria-labelledby="lbl-access" id="f-access">
-          <label><input type="radio" name="access" value="convenience" checked><span class="opt">加值體驗</span></label>
-          <label><input type="radio" name="access" value="formal"><span class="opt">正式無障礙服務</span></label>
+          <label><input type="radio" name="access" value="convenience" checked><span class="opt">觀眾體驗加值</span></label>
+          <label><input type="radio" name="access" value="formal"><span class="opt">無障礙基準服務</span></label>
         </div>
       </div>
       <div class="cset">
@@ -174,191 +223,205 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
 </div>
 
 <details class="reminders">
-<summary>現場三件必記提醒（乾淨人聲・問答麥・資料隱私）</summary>
+<summary>不分設定都要顧的三件事（乾淨人聲・問答麥・資料隱私）</summary>
 <div class="rbody" id="reminders-body"></div>
 </details>
 
 <div id="app">
   <div class="tabs" role="tablist" aria-label="決策分頁">
-    <button role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">總覽</button>
-    <button role="tab" id="tab-venues" aria-controls="panel-venues" aria-selected="false" tabindex="-1">場地</button>
+    <button role="tab" id="tab-venues" aria-controls="panel-venues" aria-selected="true">場地</button>
     <button role="tab" id="tab-tools" aria-controls="panel-tools" aria-selected="false" tabindex="-1">字幕工具</button>
     <button role="tab" id="tab-tiers" aria-controls="panel-tiers" aria-selected="false" tabindex="-1">方案</button>
     <button role="tab" id="tab-cost" aria-controls="panel-cost" aria-selected="false" tabindex="-1">成本</button>
+    <button role="tab" id="tab-overview" class="tab-meta" aria-controls="panel-overview" aria-selected="false" tabindex="-1">總覽</button>
+    <button role="tab" id="tab-a11y" class="tab-meta" aria-controls="panel-a11y" aria-selected="false" tabindex="-1">無障礙清單</button>
   </div>
-  <div class="panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0"></div>
-  <div class="panel" id="panel-venues" role="tabpanel" aria-labelledby="tab-venues" tabindex="0" hidden></div>
+  <div class="panel" id="panel-venues" role="tabpanel" aria-labelledby="tab-venues" tabindex="0"></div>
   <div class="panel" id="panel-tools" role="tabpanel" aria-labelledby="tab-tools" tabindex="0" hidden></div>
   <div class="panel" id="panel-tiers" role="tabpanel" aria-labelledby="tab-tiers" tabindex="0" hidden></div>
   <div class="panel" id="panel-cost" role="tabpanel" aria-labelledby="tab-cost" tabindex="0" hidden></div>
+  <div class="panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0" hidden></div>
+  <div class="panel" id="panel-a11y" role="tabpanel" aria-labelledby="tab-a11y" tabindex="0" hidden></div>
 </div>
 
 <footer>
-  <p>所有公開價格為 2026-06 查詢的第一輪比較，非簽約價；採購前須向場地與供應商書面確認，尤其「混音器能否提供只含人聲的乾淨訊號」。標「需確認」的容量／價格未在報告或來源載明，不可當定論。</p>
+  <p>公開價格查詢時間：雙北場地 2026-06 中旬、非雙北五縣市 2026-06-24（研究階段），皆為第一輪比較、非簽約價；採購前須向場地與供應商書面確認，尤其「混音器能否提供只含人聲的乾淨訊號」。標「需確認」的容量／價格未在報告或來源載明，不可當定論。</p>
   <p>北中南各縣市場地為研究階段彙整：不少場地的收費標準官網以 PDF 或詢價提供（標「需詢價」）、容量未載明（標「需確認」），且能否外接字幕電腦／取得乾淨人聲多無法從官網確認、需逐場電洽音控室。雙北以外資料正式引用前請再查證一次。操作手冊（收音接線、現場操作、壞掉怎麼救、詢價信範本、時程）見 <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>。</p>
 </footer>
 </div>
+
+<div id="print-doc" hidden></div>
 
 <script>
 const TYPES=["會議中心","飯店","公有","校園","文化展演","社創","共創空間","圖書館","青年中心","主題空間","賽事場館"];
 const AREAS=[["taipei","台北市"],["newtaipei","新北市"],["taoyuan","桃園市"],["hsinchu","新竹"],["taichung","台中市"],["tainan","台南市"],["kaohsiung","高雄市"]];
 const AREALABEL=Object.fromEntries(AREAS);
-const SIZE_RANGE={XS:[1,50],S:[50,150],M:[150,300],L:[300,2000]};
+const SIZE_RANGE={XS:[20,50],S:[50,150],M:[150,300],L:[300,2000]};
 const TIERLABEL={XS:"小型工作坊（XS）",S:"低成本試跑（S）",M:"正式建議方案（M）",L:"高穩定方案（L）"};
+const BUDGETLABEL={free:"免費",low:"省",mid:"平衡",any:"不限"};
+const ACCESSLABEL={convenience:"觀眾體驗加值",formal:"無障礙基準服務"};
+const SIZE_PEOPLE={XS:"20-50",S:"50-150",M:"150-300",L:"300+"};
+// 場地類型隨人數規模的預設聯動；使用者手動勾過後就不再覆蓋（state.typesCustomized）
+const TYPE_PRESET={
+ XS:["公有","校園","社創","共創空間","圖書館","青年中心","主題空間"],
+ S:["會議中心","公有","校園","文化展演","社創","共創空間","圖書館","青年中心","主題空間"],
+ M:["會議中心","飯店","公有","校園","文化展演","圖書館"],
+ L:["會議中心","飯店","公有","校園","文化展演","賽事場館"]
+};
 
 // --- VENUES (audit-corrected: fabricated capacities -> null + capNote 需確認) ---
 const VENUES=[
- {"n": "臺北市政府青年局（西門紅樓旁）6樓國際會議廳", "area": "taipei", "type": "公有", "capMin": 305, "capMax": 305, "capNote": null, "priceText": "NT$20,000／場次（含保證金 NT$30,000）", "priceFrom": 20000, "unit": "場", "cap": "good", "cost": "mid", "note": "設備列明含字幕機、無線麥克風、投影機；禁煙火與危險舞台特效；外接 AV 未明確禁止。", "src": "https://service.gov.taipei/rental/VenueDetail/590c4c67dc20"},
- {"n": "臺北市立圖書館總館 B2 演講廳", "area": "taipei", "type": "圖書館", "capMin": 380, "capMax": 380, "capNote": null, "priceText": "NT$12,000 上午／下午場；NT$14,000 晚間場", "priceFrom": 12000, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "含投影機、布幕、無線麥克風×3、數位講桌；限藝文／演講／頒獎，不開放都更類；政府機關／學校免費；保證金 NT$10,000。", "src": "https://service.gov.taipei/rental/VenueDetail/5efee32a8f5a"},
- {"n": "臺北市立圖書館總館 10 樓會議廳", "area": "taipei", "type": "圖書館", "capMin": 170, "capMax": 170, "capNote": null, "priceText": "NT$8,000 上午／下午場；NT$10,000 晚間場", "priceFrom": 8000, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "含投影機、布幕、無線麥克風×3、數位講桌；限藝文／講座／演講；保證金 NT$10,000；提前 7–60 日申請。", "src": "https://service.gov.taipei/rental/VenueDetail/0a18cb69a005"},
- {"n": "臺北市客家文化主題公園 3F 媒體簡報室", "area": "taipei", "type": "文化展演", "capMin": 105, "capMax": 105, "capNote": null, "priceText": "平日 NT$4,100／場，假日 NT$4,500／場", "priceFrom": 4100, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "含投影機、無線麥克風×4、白板、會議椅×105；每場 3 小時；禁選舉宣傳；外接 AV 未明確禁止。", "src": "https://ssl.thcp.org.tw/rental"},
- {"n": "臺北市客家文化主題公園 音樂戲劇中心 2F 劇場", "area": "taipei", "type": "文化展演", "capMin": 300, "capMax": 300, "capNote": null, "priceText": "NT$12,000 上午場／NT$14,000 下午場／NT$16,000 晚間場", "priceFrom": 12000, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "專業劇場設備完整；含搭景撤場費 NT$6,000／場；外接 AV 未明確限制。", "src": "https://ssl.thcp.org.tw/rental"},
- {"n": "臺北市中山堂光復廳", "area": "taipei", "type": "公有", "capMin": 500, "capMax": 1000, "capNote": "500 人設座位、1,000 人立席；低可信度（官網未列精確費用）", "priceText": "上午 NT$20,000／下午 NT$30,000／晚間 NT$50,000；藝文學術優惠另計", "priceFrom": 20000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "歷史建築；以藝文展演、公益學術講座為原則；保證金 NT$40,000；費率為搜尋摘錄，需確認。", "src": "https://service.gov.taipei/rental/VenueDetail/35d6f9eeac75"},
- {"n": "臺北市中山堂中正廳（大集會堂）", "area": "taipei", "type": "公有", "capMin": 1100, "capMax": 1100, "capNote": "需確認（官方頁面未列精確座位數）", "priceText": "上午 NT$20,000／下午 NT$30,000／晚間 NT$40,000", "priceFrom": 20000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "國定古蹟；適合大型會議、典禮、集會；保證金 NT$30,000；費率為搜尋摘錄，建議洽 02-23813137 確認。", "src": "https://service.gov.taipei/rental/VenueDetail/3c74948b7812"},
- {"n": "臺北市非政府組織（NGO）會館演講室", "area": "taipei", "type": "公有", "capMin": 80, "capMax": 80, "capNote": null, "priceText": "NT$1,400／4 小時場次（保證金 NT$2,000）", "priceFrom": 1400, "unit": "場", "cap": "uncertain", "cost": "low", "note": "含無線麥克風×2、音控、投影布幕；其他線材需自備；優先 NPO／社團／政府／學校；禁營利競選宗教宣傳。", "src": "https://service.gov.taipei/rental/VenueDetail/ce92067cb9cb"},
- {"n": "台北 NPO HUB（Impact Foundry 活動場域）", "area": "taipei", "type": "社創", "capMin": 60, "capMax": 80, "capNote": "低可信度（官網以坪數描述，人數來自新聞稿）", "priceText": "NT$5,000／小時（NPO／NGO／社企另有優惠）", "priceFrom": 5000, "unit": "小時", "cap": "uncertain", "cost": "high", "note": "含桌椅、WiFi、投影機、音響、麥克風、HDMI；NPO／NGO 折扣；人數上限需洽詢確認。", "src": "https://www.npohub.taipei/%E7%A9%BA%E9%96%93%E7%A7%9F%E5%80%9F"},
- {"n": "社會創新實驗中心（仁愛路）", "area": "taipei", "type": "社創", "capMin": 30, "capMax": 40, "capNote": "低可信度（大型會議室 A/B 各 21 坪，人數為官網估計值）", "priceText": "需詢價（以時段計費，詳場地管理手冊）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "限社會創新／SDGs 相關活動；大型會議室 A/B 各約 30–40 人；洽 socinlab@gmail.com；中心有最終審核權。", "src": "https://startup.sme.gov.tw/sitaiwan/Home/spaceRent"},
- {"n": "TCCC 台北長安館", "area": "taipei", "type": "共創空間", "capMin": 6, "capMax": 126, "capNote": null, "priceText": "NT$400–NT$2,000／小時（依教室大小；假日加成）", "priceFrom": 400, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "8 間教室最大合併 126 人；免費投影機、無線麥克風、WiFi、白板；支援直播、HDMI；近中山／善導寺／松江南京站。", "src": "https://www.tpqc.com.tw/%E5%A0%B4%E5%9C%B0%E7%A7%9F%E7%94%A8/%E5%8F%B0%E5%8C%97%E5%A0%B4%E9%A4%A8/%E5%8F%B0%E5%8C%97%E9%95%B7%E5%AE%89%E9%A4%A8/"},
- {"n": "集思交通部國際會議中心（大廳堂）", "area": "taipei", "type": "會議中心", "capMin": 400, "capMax": 400, "capNote": null, "priceText": "平日 NT$40,000／場；假日 NT$44,000／場（加 10% 清潔費）", "priceFrom": 40000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "含 300 吋電動投影布幕、無線麥克風×3；外接 AV 政策需洽詢；每場約 4 小時；中正區。", "src": "https://www.meeting.com.tw/motc/auditorium.php"},
- {"n": "集思台大會議中心（國際會議廳）", "area": "taipei", "type": "會議中心", "capMin": 368, "capMax": 400, "capNote": "低可信度（搜尋結果標示 368/400 不一，需確認）", "priceText": "需詢價（約 NT$11,000／小時，台大單位及校友 7 折）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "high", "note": "台大校園 B1；另有蘇格拉底廳（145 人）、洛克廳等；校友優先；外接 AV 需洽 meeting@gisgroup.com。", "src": "https://www.meeting.com.tw/ntu/index.php"},
- {"n": "POPOP 瓶蓋工廠台北製造所（展演空間）", "area": "taipei", "type": "主題空間", "capMin": 60, "capMax": 298, "capNote": "低可信度（人數依棟別及座位配置差異大）", "priceText": "NT$24,000–NT$52,500／日（依棟別）", "priceFrom": 24000, "unit": "日", "cap": "uncertain", "cost": "high", "note": "南港文化資產再生空間；含 10% 服務費及用電；小廳 A1 多功能 30 人 NT$7,000／小時；每 4 小時一時段。", "src": "https://popoptaipei.com/space/"},
- {"n": "新富町文化市場（巷仔內教室）", "area": "taipei", "type": "主題空間", "capMin": 30, "capMax": 50, "capNote": "低可信度（12 坪空間，椅子 30 把可彈性調整）", "priceText": "需詢價（收費表另見 PDF；NPO 享折扣）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "mid", "note": "含投影機及音響；古蹟市場空間（萬華），週二至週日 10:00–18:00；另有半樓仔、廣場；連租 7 天以上 8 折。", "src": "https://umkt.jutfoundation.org.tw/space"},
- {"n": "臺北市文獻館樹心會館多功能區", "area": "taipei", "type": "公有", "capMin": 150, "capMax": 150, "capNote": null, "priceText": "需詢價（詳「樹心會館多功能區場地收費基準」）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "80 坪；含舞台、空調；商業活動需特殊授權；音響等 AV 未在頁面列明；洽 02-23115355 ext.22。", "src": "https://service.gov.taipei/rental/VenueDetail/bf435760c61c"},
- {"n": "臺北市區民活動中心（各行政區，以小南門為例）", "area": "taipei", "type": "公有", "capMin": 50, "capMax": 100, "capNote": "低可信度（各中心容量不同；小南門 50 人、朱崙 100 人例示）", "priceText": "NT$350–NT$800／4 小時（依等級及用電）", "priceFrom": 350, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "12 行政區均設；費用含場地水電；部分提供投影機；提前 10 日向區公所申請；班表查 proposal.pb.taipei。", "src": "https://proposal.pb.taipei/civil/space/?zc=100"},
- {"n": "OrigInn Space 大稻埕（老屋主題空間）", "area": "taipei", "type": "主題空間", "capMin": 15, "capMax": 40, "capNote": null, "priceText": "商業 NT$3,000／小時（最低 3 小時）；讀書會每人低消 NT$200", "priceFrom": 3000, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "大稻埕老屋；含投影機；15–25 人有座、無座最多 40 人；適合讀書會／小型講座；需以 Messenger 洽檔期。", "src": "https://originnspace.squarespace.com/venue-rental"},
- {"n": "新北市藝文中心（演藝廳）", "area": "newtaipei", "type": "文化展演", "capMin": 737, "capMax": 737, "capNote": null, "priceText": "NT$10,000 起／上午場（3 小時，不售票）；售票場 NT$13,000 起", "priceFrom": 10000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "板橋區莊敬路 62 號；階梯固定席 737 座；標準舞臺懸吊燈光音響；政府機關共辦可免費；洽 02-2253-4417#127。", "src": "https://www.artcenter.ntpc.gov.tw/xmdoc/cont?xsmsid=0G269628703171214197"},
+
+
+ {"n": "臺北市政府青年局（西門紅樓旁）6樓國際會議廳", "area": "taipei", "type": "公有", "capMin": 305, "capMax": 305, "capNote": null, "priceText": "NT$20,000／場次（含保證金 NT$30,000）", "priceFrom": 20000, "unit": "場", "cap": "good", "cost": "mid", "note": "設備列明含字幕機、無線麥克風、投影機；禁煙火與危險舞台特效；外接 AV 未明確禁止。", "src": "https://service.gov.taipei/rental/VenueDetail/590c4c67dc20","phone":"02-23514078 #1405"},
+ {"n": "臺北市立圖書館總館 B2 演講廳", "area": "taipei", "type": "圖書館", "capMin": 380, "capMax": 380, "capNote": null, "priceText": "NT$12,000 上午／下午場；NT$14,000 晚間場", "priceFrom": 12000, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "含投影機、布幕、無線麥克風×3、數位講桌；限藝文／演講／頒獎，不開放都更類；政府機關／學校免費；保證金 NT$10,000。", "src": "https://service.gov.taipei/rental/VenueDetail/5efee32a8f5a","phone":"02-2755-2823轉2116"},
+ {"n": "臺北市立圖書館總館 10 樓會議廳", "area": "taipei", "type": "圖書館", "capMin": 170, "capMax": 170, "capNote": null, "priceText": "NT$8,000 上午／下午場；NT$10,000 晚間場", "priceFrom": 8000, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "含投影機、布幕、無線麥克風×3、數位講桌；限藝文／講座／演講；保證金 NT$10,000；提前 7–60 日申請。", "src": "https://service.gov.taipei/rental/VenueDetail/0a18cb69a005","phone":"02-2755-2823轉2116"},
+ {"n": "臺北市客家文化主題公園 3F 媒體簡報室", "area": "taipei", "type": "文化展演", "capMin": 105, "capMax": 105, "capNote": null, "priceText": "平日 NT$4,100／場，假日 NT$4,500／場", "priceFrom": 4100, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "含投影機、無線麥克風×4、白板、會議椅×105；每場 3 小時；禁選舉宣傳；外接 AV 未明確禁止。", "src": "https://ssl.thcp.org.tw/rental","phone":"02-2369-1198分機334"},
+ {"n": "臺北市客家文化主題公園 音樂戲劇中心 2F 劇場", "area": "taipei", "type": "文化展演", "capMin": 300, "capMax": 300, "capNote": null, "priceText": "NT$12,000 上午場／NT$14,000 下午場／NT$16,000 晚間場", "priceFrom": 12000, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "專業劇場設備完整；含搭景撤場費 NT$6,000／場；外接 AV 未明確限制。", "src": "https://ssl.thcp.org.tw/rental","phone":"02-2369-1198分機502"},
+ {"n": "臺北市中山堂光復廳", "area": "taipei", "type": "公有", "capMin": 500, "capMax": 1000, "capNote": "500 人設座位、1,000 人立席；低可信度（官網未列精確費用）", "priceText": "上午 NT$20,000／下午 NT$30,000／晚間 NT$50,000；藝文學術優惠另計", "priceFrom": 20000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "歷史建築；以藝文展演、公益學術講座為原則；保證金 NT$40,000；費率為搜尋摘錄，需確認。", "src": "https://service.gov.taipei/rental/VenueDetail/35d6f9eeac75","phone":"02-23813137轉104"},
+ {"n": "臺北市中山堂中正廳（大集會堂）", "area": "taipei", "type": "公有", "capMin": 1100, "capMax": 1100, "capNote": "需確認（官方頁面未列精確座位數）", "priceText": "上午 NT$20,000／下午 NT$30,000／晚間 NT$40,000", "priceFrom": 20000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "國定古蹟；適合大型會議、典禮、集會；保證金 NT$30,000；費率為搜尋摘錄，建議洽 02-23813137 確認。", "src": "https://service.gov.taipei/rental/VenueDetail/3c74948b7812","phone":"02-23813137"},
+ {"n": "臺北市非政府組織（NGO）會館演講室", "area": "taipei", "type": "公有", "capMin": 80, "capMax": 80, "capNote": null, "priceText": "NT$1,400／4 小時場次（保證金 NT$2,000）", "priceFrom": 1400, "unit": "場", "cap": "uncertain", "cost": "low", "note": "含無線麥克風×2、音控、投影布幕；其他線材需自備；優先 NPO／社團／政府／學校；禁營利競選宗教宣傳。", "src": "https://service.gov.taipei/rental/VenueDetail/ce92067cb9cb","phone":"02-2720-8889轉1909"},
+ {"n": "台北 NPO HUB（Impact Foundry 活動場域）", "area": "taipei", "type": "社創", "capMin": 60, "capMax": 80, "capNote": "低可信度（官網以坪數描述，人數來自新聞稿）", "priceText": "NT$5,000／小時（NPO／NGO／社企另有優惠）", "priceFrom": 5000, "unit": "小時", "cap": "uncertain", "cost": "high", "note": "含桌椅、WiFi、投影機、音響、麥克風、HDMI；NPO／NGO 折扣；人數上限需洽詢確認。", "src": "https://www.npohub.taipei/%E7%A9%BA%E9%96%93%E7%A7%9F%E5%80%9F","phone":"+886.2.2301.2160"},
+ {"n": "社會創新實驗中心（仁愛路）", "area": "taipei", "type": "社創", "capMin": 30, "capMax": 40, "capNote": "低可信度（大型會議室 A/B 各 21 坪，人數為官網估計值）", "priceText": "需詢價（以時段計費，詳場地管理手冊）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "限社會創新／SDGs 相關活動；大型會議室 A/B 各約 30–40 人；洽 socinlab@gmail.com；中心有最終審核權。", "src": "https://startup.sme.gov.tw/sitaiwan/Home/spaceRent","phone":"02-2586-5000"},
+ {"n": "TCCC 台北長安館", "area": "taipei", "type": "共創空間", "capMin": 6, "capMax": 126, "capNote": null, "priceText": "NT$400–NT$2,000／小時（依教室大小；假日加成）", "priceFrom": 400, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "8 間教室最大合併 126 人；免費投影機、無線麥克風、WiFi、白板；支援直播、HDMI；近中山／善導寺／松江南京站。", "src": "https://www.tpqc.com.tw/%E5%A0%B4%E5%9C%B0%E7%A7%9F%E7%94%A8/%E5%8F%B0%E5%8C%97%E5%A0%B4%E9%A4%A8/%E5%8F%B0%E5%8C%97%E9%95%B7%E5%AE%89%E9%A4%A8/","phone":"02-6605-0418"},
+ {"n": "集思交通部國際會議中心（大廳堂）", "area": "taipei", "type": "會議中心", "capMin": 400, "capMax": 400, "capNote": null, "priceText": "平日 NT$40,000／場；假日 NT$44,000／場（加 10% 清潔費）", "priceFrom": 40000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "含 300 吋電動投影布幕、無線麥克風×3；外接 AV 政策需洽詢；每場約 4 小時；中正區。", "src": "https://www.meeting.com.tw/motc/auditorium.php","phone":"(02) 2321-4946"},
+ {"n": "POPOP 瓶蓋工廠台北製造所（展演空間）", "area": "taipei", "type": "主題空間", "capMin": 60, "capMax": 298, "capNote": "低可信度（人數依棟別及座位配置差異大）", "priceText": "NT$24,000–NT$52,500／日（依棟別）", "priceFrom": 24000, "unit": "日", "cap": "uncertain", "cost": "high", "note": "南港文化資產再生空間；含 10% 服務費及用電；小廳 A1 多功能 30 人 NT$7,000／小時；每 4 小時一時段。", "src": "https://popoptaipei.com/space/","phone":"02-2785-9900"},
+ {"n": "新富町文化市場（巷仔內教室）", "area": "taipei", "type": "主題空間", "capMin": 30, "capMax": 50, "capNote": "低可信度（12 坪空間，椅子 30 把可彈性調整）", "priceText": "需詢價（收費表另見 PDF；NPO 享折扣）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "mid", "note": "含投影機及音響；古蹟市場空間（萬華），週二至週日 10:00–18:00；另有半樓仔、廣場；連租 7 天以上 8 折。", "src": "https://umkt.jutfoundation.org.tw/space","phone":"02-2308-1092"},
+ {"n": "臺北市文獻館樹心會館多功能區", "area": "taipei", "type": "公有", "capMin": 150, "capMax": 150, "capNote": null, "priceText": "需詢價（詳「樹心會館多功能區場地收費基準」）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "80 坪；含舞台、空調；商業活動需特殊授權；音響等 AV 未在頁面列明；洽 02-23115355 ext.22。", "src": "https://service.gov.taipei/rental/VenueDetail/bf435760c61c","phone":"02-23115355"},
+ {"n": "臺北市區民活動中心（各行政區，以小南門為例）", "area": "taipei", "type": "公有", "capMin": 50, "capMax": 100, "capNote": "低可信度（各中心容量不同；小南門 50 人、朱崙 100 人例示）", "priceText": "NT$350–NT$800／4 小時（依等級及用電）", "priceFrom": 350, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "12 行政區均設；費用含場地水電；部分提供投影機；提前 10 日向區公所申請；班表查 proposal.pb.taipei。", "src": "https://proposal.pb.taipei/civil/space/?zc=100","phone":"(02)23416721"},
+ {"n": "OrigInn Space 大稻埕（老屋主題空間）", "area": "taipei", "type": "主題空間", "capMin": 15, "capMax": 40, "capNote": null, "priceText": "商業 NT$3,000／小時（最低 3 小時）；讀書會每人低消 NT$200", "priceFrom": 3000, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "大稻埕老屋；含投影機；15–25 人有座、無座最多 40 人；適合讀書會／小型講座；需以 Messenger 洽檔期。", "src": "https://originnspace.squarespace.com/venue-rental","phone":"+886 2558 8843"},
+ {"n": "新北市藝文中心（演藝廳）", "area": "newtaipei", "type": "文化展演", "capMin": 737, "capMax": 737, "capNote": null, "priceText": "NT$10,000 起／上午場（3 小時，不售票）；售票場 NT$13,000 起", "priceFrom": 10000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "板橋區莊敬路 62 號；階梯固定席 737 座；標準舞臺懸吊燈光音響；政府機關共辦可免費；洽 02-2253-4417#127。", "src": "https://www.artcenter.ntpc.gov.tw/xmdoc/cont?xsmsid=0G269628703171214197","phone":"02-2253-4417"},
  {"n": "新北市立圖書館總館（3F 演講廳）", "area": "newtaipei", "type": "圖書館", "capMin": 299, "capMax": 299, "capNote": null, "priceText": "NT$4,000～10,000／場次（早午 4,000、下午 5,000、晚間 6,000）；保證金 NT$10,000", "priceFrom": 4000, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "板橋區貴興路 139 號；88.83 坪；以社教藝文研習會議為原則、不得營利；連續使用不超過 3 天；另設 9F 會議室（59 人）。", "src": "https://www.library.ntpc.gov.tw/singlehtml/e81f432c17614ea4b732e114c365e29b?cntId=c23061e7d8954101b087e150426a7adb"},
- {"n": "新北市立圖書館三重東區分館（演講廳）", "area": "newtaipei", "type": "圖書館", "capMin": 152, "capMax": 152, "capNote": null, "priceText": "依圖書館場地收費標準；需確認（洽館方）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "low", "note": "三重區；演講廳 152 人及研習教室皆可租；以社教藝文研習會議為原則；洽 02-28575270。", "src": "https://plisnet.nlpi.edu.tw/Frontend/LibraryFamily/LibraryDetail?LIID=Lib0000091"},
- {"n": "板橋 435 藝文特區", "area": "newtaipei", "type": "文化展演", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價；洽 02-2969-0366", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "板橋區中山路一段 435 號；文化局管轄文創場域；有多功能展演空間；屬藝文展演收費標準（政府機關共辦可免費）。", "src": "https://www.435.culture.ntpc.gov.tw/xmdoc?xsmsid=0I214581098901208901"},
- {"n": "蘆洲區永安兒童公園市民活動中心大禮堂", "area": "newtaipei", "type": "公有", "capMin": 200, "capMax": 200, "capNote": null, "priceText": "NT$280／小時（短期）；長期 NT$140／小時；冷氣 NT$140／小時；最短 2 小時", "priceFrom": 280, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "蘆洲區永安北路二段 42-6 號；60.5 坪；備投影機；公益活動可申請減免；洽蘆洲區公所 02-22811484#219。", "src": "https://ntpcsite.ntpc.gov.tw/location/detail/1497"},
- {"n": "TCCC 新北板橋館", "area": "newtaipei", "type": "共創空間", "capMin": 11, "capMax": 128, "capNote": null, "priceText": "平日 NT$600～2,000／小時；假日 NT$750～2,300／小時；最大 B402+B403 合併 128 人", "priceFrom": 600, "unit": "小時", "cap": "good", "cost": "mid", "note": "板橋區萬板路 101 號 4 樓（近新埔站）；6 間會議室可合併；含 WiFi、冷氣、投影機、布幕、無線麥克風；08:00-22:00。", "src": "https://www.tpqc.com.tw/%E5%A0%B4%E5%9C%B0%E7%A7%9F%E7%94%A8/tccc%E6%96%B0%E5%8C%97%E5%A0%B4%E9%A4%A8/%E6%96%B0%E5%8C%97%E6%9D%BF%E6%A9%8B%E9%A4%A8/"},
- {"n": "思奧共同空間（大型展演廳）", "area": "newtaipei", "type": "共創空間", "capMin": 80, "capMax": 100, "capNote": null, "priceText": "NT$2,000／小時", "priceFrom": 2000, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "五股區五權五路 27 號（新北產業園區）；4.8 公尺挑高、60 坪；含投影機布幕、白板；另有教室與會議室；新莊蘆洲三重可就近。", "src": "https://www.autonomycospace.com/edcontent_d.php?lang=tw&tb=3&id=464"},
- {"n": "新北市工業會大教室", "area": "newtaipei", "type": "主題空間", "capMin": 100, "capMax": 100, "capNote": null, "priceText": "NT$5,000／時段；晚間值班費 NT$1,000；投影機租借 NT$500", "priceFrom": 5000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "板橋區重慶路 66 號 4 樓；含冷氣、白板；投影機另付費；需一週前確認；洽 02-2955-9077。", "src": "https://www.tfoi.org.tw/venue_rental_detail_10.htm"},
- {"n": "瓏山林台北中和飯店（宴會廳）", "area": "newtaipei", "type": "飯店", "capMin": 300, "capMax": 400, "capNote": null, "priceText": "NT$40,000／半日；NT$80,000／全日或晚間", "priceFrom": 40000, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "中和區中正路 631 號；4.1 公尺挑高；含 AV、餐飲、無限飲品；可分隔 4 間；另有小／中廳；洽 02-2222-9999。", "src": "https://taipei.rslhotel.com/en/meeting/"},
+ {"n": "新北市立圖書館三重東區分館（演講廳）", "area": "newtaipei", "type": "圖書館", "capMin": 152, "capMax": 152, "capNote": null, "priceText": "依圖書館場地收費標準；需確認（洽館方）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "low", "note": "三重區；演講廳 152 人及研習教室皆可租；以社教藝文研習會議為原則；洽 02-28575270。", "src": "https://plisnet.nlpi.edu.tw/Frontend/LibraryFamily/LibraryDetail?LIID=Lib0000091","phone":"02-28575270"},
+ {"n": "板橋 435 藝文特區", "area": "newtaipei", "type": "文化展演", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價；洽 02-2969-0366", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "板橋區中山路一段 435 號；文化局管轄文創場域；有多功能展演空間；屬藝文展演收費標準（政府機關共辦可免費）。", "src": "https://www.435.culture.ntpc.gov.tw/xmdoc?xsmsid=0I214581098901208901","phone":"(02)2969-0366"},
+ {"n": "蘆洲區永安兒童公園市民活動中心大禮堂", "area": "newtaipei", "type": "公有", "capMin": 200, "capMax": 200, "capNote": null, "priceText": "NT$280／小時（短期）；長期 NT$140／小時；冷氣 NT$140／小時；最短 2 小時", "priceFrom": 280, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "蘆洲區永安北路二段 42-6 號；60.5 坪；備投影機；公益活動可申請減免；洽蘆洲區公所 02-22811484#219。", "src": "https://ntpcsite.ntpc.gov.tw/location/detail/1497","phone":"02-22811484"},
+ {"n": "TCCC 新北板橋館", "area": "newtaipei", "type": "共創空間", "capMin": 11, "capMax": 128, "capNote": null, "priceText": "平日 NT$600～2,000／小時；假日 NT$750～2,300／小時；最大 B402+B403 合併 128 人", "priceFrom": 600, "unit": "小時", "cap": "good", "cost": "mid", "note": "板橋區萬板路 101 號 4 樓（近新埔站）；6 間會議室可合併；含 WiFi、冷氣、投影機、布幕、無線麥克風；08:00-22:00。", "src": "https://www.tpqc.com.tw/%E5%A0%B4%E5%9C%B0%E7%A7%9F%E7%94%A8/tccc%E6%96%B0%E5%8C%97%E5%A0%B4%E9%A4%A8/%E6%96%B0%E5%8C%97%E6%9D%BF%E6%A9%8B%E9%A4%A8/","phone":"02-6605-0418"},
+ {"n": "思奧共同空間（大型展演廳）", "area": "newtaipei", "type": "共創空間", "capMin": 80, "capMax": 100, "capNote": null, "priceText": "NT$2,000／小時", "priceFrom": 2000, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "五股區五權五路 27 號（新北產業園區）；4.8 公尺挑高、60 坪；含投影機布幕、白板；另有教室與會議室；新莊蘆洲三重可就近。", "src": "https://www.autonomycospace.com/edcontent_d.php?lang=tw&tb=3&id=464","phone":"02-22993188"},
+ {"n": "新北市工業會大教室", "area": "newtaipei", "type": "主題空間", "capMin": 100, "capMax": 100, "capNote": null, "priceText": "NT$5,000／時段；晚間值班費 NT$1,000；投影機租借 NT$500", "priceFrom": 5000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "板橋區重慶路 66 號 4 樓；含冷氣、白板；投影機另付費；需一週前確認；洽 02-2955-9077。", "src": "https://www.tfoi.org.tw/venue_rental_detail_10.htm","phone":"02-2955-9077"},
+ {"n": "瓏山林台北中和飯店（宴會廳）", "area": "newtaipei", "type": "飯店", "capMin": 300, "capMax": 400, "capNote": null, "priceText": "NT$40,000／半日；NT$80,000／全日或晚間", "priceFrom": 40000, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "中和區中正路 631 號；4.1 公尺挑高；含 AV、餐飲、無限飲品；可分隔 4 間；另有小／中廳；洽 02-2222-9999。", "src": "https://taipei.rslhotel.com/en/meeting/","phone":"02-2222-9999"},
  {"n": "淡江大學台北校園（D206 多媒體教室）", "area": "newtaipei", "type": "校園", "capMin": 217, "capMax": 217, "capNote": null, "priceText": "平日日間 NT$11,000／時段；晚間或假日 NT$12,600／時段（每時段 4 小時）", "priceFrom": 11000, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "台北市中正區（非淡水校區）；備多媒體電腦、單槍投影機、有線麥克風 2 支；禁飲食；校外需來函並提前 1 個月。", "src": "https://space.in.tku.edu.tw/"},
- {"n": "新北市青年局青職基地", "area": "newtaipei", "type": "青年中心", "capMin": null, "capMax": null, "capNote": "需確認（官網載多功能展演與講座空間，容量需詢館方）", "priceText": "需確認；提供新北市青年優惠；週二至週日 10:00-21:00", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "板橋區（近捷運）；多功能展演與講座空間；申請資格以新北市青年為主；線上申請；洽 02-2272-1540#1501。", "src": "https://www.youth.ntpc.gov.tw/youth/ch/app/data/view?module=youth0005&id=161&serno=30db2542-b23c-49a5-a2ab-16afe2510302"},
- {"n": "新北市漾青春基地（永和）", "area": "newtaipei", "type": "青年中心", "capMin": 20, "capMax": 25, "capNote": null, "priceText": "NT$500／時段（每時段 4-6 小時）；12-24 歲青年留回饋可免費", "priceFrom": 500, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "永和區中正路 666 巷；6 棟老屋改建；各空間 20-25 人附投影機白板；12-24 歲主辦留回饋可免費；含 WiFi、冷氣。", "src": "https://www.youthrights.org.tw/content/66"},
- {"n": "新北青創三重社會創新基地", "area": "newtaipei", "type": "社創", "capMin": 30, "capMax": 30, "capNote": null, "priceText": "免費借用（需社會企業／社創資格）", "priceFrom": 0, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "三重區（第一市場 4 樓）；共同工作空間 30 人；另有多功能活動空間與 6 人會議室；供社會企業免費使用；洽 02-2957-8510。", "src": "https://www.youth.ntpc.gov.tw/youth/ch/app/data/view?module=youth0001&id=145&serno=2a65d557-18ae-4798-b431-f60799e1743e"},
+ {"n": "新北市青年局青職基地", "area": "newtaipei", "type": "青年中心", "capMin": null, "capMax": null, "capNote": "需確認（官網載多功能展演與講座空間，容量需詢館方）", "priceText": "需確認；提供新北市青年優惠；週二至週日 10:00-21:00", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "板橋區（近捷運）；多功能展演與講座空間；申請資格以新北市青年為主；線上申請；洽 02-2272-1540#1501。", "src": "https://www.youth.ntpc.gov.tw/youth/ch/app/data/view?module=youth0005&id=161&serno=30db2542-b23c-49a5-a2ab-16afe2510302","phone":"02-2272-1540"},
+ {"n": "新北市漾青春基地（永和）", "area": "newtaipei", "type": "青年中心", "capMin": 20, "capMax": 25, "capNote": null, "priceText": "NT$500／時段（每時段 4-6 小時）；12-24 歲青年留回饋可免費", "priceFrom": 500, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "永和區中正路 666 巷；6 棟老屋改建；各空間 20-25 人附投影機白板；12-24 歲主辦留回饋可免費；含 WiFi、冷氣。", "src": "https://www.youthrights.org.tw/content/66","phone":"02-29266177"},
+ {"n": "新北青創三重社會創新基地", "area": "newtaipei", "type": "社創", "capMin": 30, "capMax": 30, "capNote": null, "priceText": "免費借用（需社會企業／社創資格）", "priceFrom": 0, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "三重區（第一市場 4 樓）；共同工作空間 30 人；另有多功能活動空間與 6 人會議室；供社會企業免費使用；洽 02-2957-8510。", "src": "https://www.youth.ntpc.gov.tw/youth/ch/app/data/view?module=youth0001&id=145&serno=2a65d557-18ae-4798-b431-f60799e1743e","phone":"02-2957-8510"},
  {"n": "行政院新莊聯合辦公大樓（綠廊 B1 國際會議廳）", "area": "newtaipei", "type": "公有", "capMin": 200, "capMax": 200, "capNote": null, "priceText": "需詢價；洽管理中心", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "新莊區；421.5 坪；另有南棟 102 人室、多間 51-64 人中型會議室；以政府機關為主要對象，外部申請洽管理中心。", "src": "https://www.eyxjot.nat.gov.tw/ec99/rwd1321/category.asp?category_id=9"},
- {"n": "桃園光影文化館（放映廳／研習教室）", "area": "taoyuan", "type": "文化展演", "capMin": 20, "capMax": 192, "capNote": null, "priceText": "需詢價（依桃園市藝文場地使用收費標準）", "priceFrom": null, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "3F 放映廳 192 席（含 3 輪椅席）；2F 電腦教室及 3 間研習教室（各約 20-40 人）；設備完善；03-335-7745。", "src": "https://tyac2.afmc.gov.tw/About"},
- {"n": "桃園市立圖書館平鎮分館（人文講堂）", "area": "taoyuan", "type": "圖書館", "capMin": 65, "capMax": 65, "capNote": null, "priceText": "平日 NT$500 起／時段（另加冷氣 NT$100、清潔 NT$200）", "priceFrom": 500, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "34 坪；平日上午 500、晚間 400、假日 600；保證金 NT$3,000；演藝廳整修停用；洽 03-4572402#17。", "src": "https://www.typl.gov.tw/zh-tw/Rent/Detail/13"},
- {"n": "桃園市勞工教育大樓（視聽室／教室）", "area": "taoyuan", "type": "公有", "capMin": 33, "capMax": 153, "capNote": null, "priceText": "NT$1,500～NT$3,500／時段（上午／下午／晚間各 4 小時）", "priceFrom": 1500, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "視聽室 153 人 NT$3,500、301 教室 108 人 NT$2,300 等；採會員制預約；桃園區民生路 650 號。", "src": "https://labor.recreation.tycg.gov.tw/w/recreation_tycg/location?BuildingID=20110619200000001"},
- {"n": "桃園市安東青創基地", "area": "taoyuan", "type": "社創", "capMin": 6, "capMax": 30, "capNote": null, "priceText": "NT$150～NT$900／小時（依空間）", "priceFrom": 150, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "演講教室 30 人 NT$900／hr、研討室 14 人 NT$250／hr、會議室 6 人 NT$150／hr；進駐團隊每月 NT$6,000 額度內免費；週日公休。", "src": "https://tyc.tycg.gov.tw/PageVRinfo?fid=57&id=2"},
- {"n": "中原文創園區", "area": "taoyuan", "type": "文化展演", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價（費用單詳官方 PDF）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "ask", "note": "原國防部倉儲區、現文創園區；提前 30 工作天申請；電力空調 8-22 時；不受理政治宗教集會；03-433-3833。", "src": "https://cycc.org.tw/zh-hant/venue"},
- {"n": "中原大學（兩嘉文法演藝廳）", "area": "taoyuan", "type": "校園", "capMin": 202, "capMax": 202, "capNote": null, "priceText": "校外 NT$10,000 起／AB 時段（公益或合辦 5 折）", "priceFrom": 10000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "AB 時段 10,000、C 時段 13,000、空調 8,000；另加作業費 NT$1,200；公益團體場地費 5 折；保證金 NT$10,000。", "src": "https://ga.cycu.edu.tw/%E5%A0%B4%E5%9C%B0%E5%80%9F%E7%94%A8%E5%B0%88%E5%8D%80/"},
- {"n": "中原大學（金榮商學講堂）", "area": "taoyuan", "type": "校園", "capMin": 245, "capMax": 245, "capNote": null, "priceText": "校外 NT$12,000 起／AB 時段", "priceFrom": 12000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "AB 時段 12,000、C 時段 15,000、空調 8,000、音響 2,000；保證金 NT$10,000；公益團體場地費 5 折。", "src": "https://ga.cycu.edu.tw/%E5%A0%B4%E5%9C%B0%E5%80%9F%E7%94%A8%E5%B0%88%E5%8D%80/"},
- {"n": "中原大學（全人村國際會議廳）", "area": "taoyuan", "type": "校園", "capMin": 150, "capMax": 150, "capNote": null, "priceText": "校外 NT$12,000 起／AB 時段", "priceFrom": 12000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "AB 時段 12,000、C 時段 15,000、空調 9,000；保證金 NT$10,000；公益團體場地費 5 折。", "src": "https://ga.cycu.edu.tw/%E5%A0%B4%E5%9C%B0%E5%80%9F%E7%94%A8%E5%B0%88%E5%8D%80/"},
- {"n": "TCCC 桃園站前館", "area": "taoyuan", "type": "共創空間", "capMin": 18, "capMax": 49, "capNote": null, "priceText": "平日 NT$500／小時、假日 NT$600", "priceFrom": 500, "unit": "小時", "cap": "good", "cost": "low", "note": "TY801 室 16 坪；含 Full HD 投影機、麥克風音響、白板；8:00-22:30；距桃園火車站步行 5 分鐘。", "src": "https://www.tpqc.com.tw/%E5%A0%B4%E5%9C%B0%E7%A7%9F%E7%94%A8/%E6%A1%83%E5%9C%92%E5%A0%B4%E9%A4%A8/%E6%A1%83%E5%9C%92%E7%AB%99%E5%89%8D%E9%A4%A8/"},
- {"n": "福容大飯店桃園（牡丹廳／芙蓉廳）", "area": "taoyuan", "type": "飯店", "capMin": 20, "capMax": 250, "capNote": null, "priceText": "NT$7,500～NT$28,000／時段（上午或下午）", "priceFrom": 7500, "unit": "時段", "cap": "good", "cost": "high", "note": "310㎡ 廳可容 200 人劇場式；含麥克風、單槍投影機、螢幕、白板；另有小型會議室；大興西路一段 200 號。", "src": "https://www.fullon-hotels.com.tw/ty/tw/meeting/"},
- {"n": "桃園國際機場凱悅酒店（宴會廳／會議室）", "area": "taoyuan", "type": "飯店", "capMin": 12, "capMax": 500, "capNote": null, "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "good", "cost": "high", "note": "挑高 5 米宴會廳 3 間（可連通室內外）；12-500 人；鄰近桃園機場；適合國際研討會；+886-3-3831234。", "src": "https://www.hyattregencytaoyuan.tw/tw/"},
- {"n": "桃園市土地公文化館", "area": "taoyuan", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價（依桃園市藝文場地使用收費標準附表八）", "priceFrom": null, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "提前 14 天申請；開館日為限，每月借用 2 次（每次 8 小時）；週二至週五次數不限；洽 03-331-5212#426。", "src": "https://www.taoyuantudigong.org.tw/main/venue-rental-application/"},
- {"n": "桃園市北區青少年活動中心（桃漾館）", "area": "taoyuan", "type": "青年中心", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需確認（含 3F 舞蹈教室免費借用）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "5F 多功能展演中心、3F 舞蹈教室及鼓房免費借用、2F 智能體驗中心；中壢區環北路 390 號；03-3656969。", "src": "https://ntyac.cyc.org.tw/"},
- {"n": "桃園區市民活動中心（大林、青溪等 8 間）", "area": "taoyuan", "type": "公有", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需確認（依桃園區公所收費標準一覽表）", "priceFrom": null, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "共 8 間可線上租借（大林、青溪、汴洲、莊敬等）；透過桃園市民卡或 place.tycg.gov.tw 申請；洽 03-3348058。", "src": "https://www.tao.tycg.gov.tw/News_Content.aspx?n=6315&s=1558803"},
+ {"n": "桃園光影文化館（放映廳／研習教室）", "area": "taoyuan", "type": "文化展演", "capMin": 20, "capMax": 192, "capNote": null, "priceText": "需詢價（依桃園市藝文場地使用收費標準）", "priceFrom": null, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "3F 放映廳 192 席（含 3 輪椅席）；2F 電腦教室及 3 間研習教室（各約 20-40 人）；設備完善；03-335-7745。", "src": "https://tyac2.afmc.gov.tw/About","phone":"03-335-7745"},
+ {"n": "桃園市立圖書館平鎮分館（人文講堂）", "area": "taoyuan", "type": "圖書館", "capMin": 65, "capMax": 65, "capNote": null, "priceText": "平日 NT$500 起／時段（另加冷氣 NT$100、清潔 NT$200）", "priceFrom": 500, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "34 坪；平日上午 500、晚間 400、假日 600；保證金 NT$3,000；演藝廳整修停用；洽 03-4572402#17。", "src": "https://www.typl.gov.tw/zh-tw/Rent/Detail/13","phone":"03-4572402"},
+ {"n": "桃園市勞工教育大樓（視聽室／教室）", "area": "taoyuan", "type": "公有", "capMin": 33, "capMax": 153, "capNote": null, "priceText": "NT$1,500～NT$3,500／時段（上午／下午／晚間各 4 小時）", "priceFrom": 1500, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "視聽室 153 人 NT$3,500、301 教室 108 人 NT$2,300 等；採會員制預約；桃園區民生路 650 號。", "src": "https://labor.recreation.tycg.gov.tw/w/recreation_tycg/location?BuildingID=20110619200000001","phone":"03-3366078"},
+ {"n": "桃園市安東青創基地", "area": "taoyuan", "type": "社創", "capMin": 6, "capMax": 30, "capNote": null, "priceText": "NT$150～NT$900／小時（依空間）", "priceFrom": 150, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "演講教室 30 人 NT$900／hr、研討室 14 人 NT$250／hr、會議室 6 人 NT$150／hr；進駐團隊每月 NT$6,000 額度內免費；週日公休。", "src": "https://tyc.tycg.gov.tw/PageVRinfo?fid=57&id=2","phone":"(03) 422-5205"},
+ {"n": "中原文創園區", "area": "taoyuan", "type": "文化展演", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價（費用單詳官方 PDF）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "ask", "note": "原國防部倉儲區、現文創園區；提前 30 工作天申請；電力空調 8-22 時；不受理政治宗教集會；03-433-3833。", "src": "https://cycc.org.tw/zh-hant/venue","phone":"03-433-3833"},
+ {"n": "中原大學（兩嘉文法演藝廳）", "area": "taoyuan", "type": "校園", "capMin": 202, "capMax": 202, "capNote": null, "priceText": "校外 NT$10,000 起／AB 時段（公益或合辦 5 折）", "priceFrom": 10000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "AB 時段 10,000、C 時段 13,000、空調 8,000；另加作業費 NT$1,200；公益團體場地費 5 折；保證金 NT$10,000。", "src": "https://ga.cycu.edu.tw/%E5%A0%B4%E5%9C%B0%E5%80%9F%E7%94%A8%E5%B0%88%E5%8D%80/","phone":"03-265-2202"},
+ {"n": "中原大學（金榮商學講堂）", "area": "taoyuan", "type": "校園", "capMin": 245, "capMax": 245, "capNote": null, "priceText": "校外 NT$12,000 起／AB 時段", "priceFrom": 12000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "AB 時段 12,000、C 時段 15,000、空調 8,000、音響 2,000；保證金 NT$10,000；公益團體場地費 5 折。", "src": "https://ga.cycu.edu.tw/%E5%A0%B4%E5%9C%B0%E5%80%9F%E7%94%A8%E5%B0%88%E5%8D%80/","phone":"03-265-2202"},
+ {"n": "中原大學（全人村國際會議廳）", "area": "taoyuan", "type": "校園", "capMin": 150, "capMax": 150, "capNote": null, "priceText": "校外 NT$12,000 起／AB 時段", "priceFrom": 12000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "AB 時段 12,000、C 時段 15,000、空調 9,000；保證金 NT$10,000；公益團體場地費 5 折。", "src": "https://ga.cycu.edu.tw/%E5%A0%B4%E5%9C%B0%E5%80%9F%E7%94%A8%E5%B0%88%E5%8D%80/","phone":"03-265-2202"},
+ {"n": "TCCC 桃園站前館", "area": "taoyuan", "type": "共創空間", "capMin": 18, "capMax": 49, "capNote": null, "priceText": "平日 NT$500／小時、假日 NT$600", "priceFrom": 500, "unit": "小時", "cap": "good", "cost": "low", "note": "TY801 室 16 坪；含 Full HD 投影機、麥克風音響、白板；8:00-22:30；距桃園火車站步行 5 分鐘。", "src": "https://www.tpqc.com.tw/%E5%A0%B4%E5%9C%B0%E7%A7%9F%E7%94%A8/%E6%A1%83%E5%9C%92%E5%A0%B4%E9%A4%A8/%E6%A1%83%E5%9C%92%E7%AB%99%E5%89%8D%E9%A4%A8/","phone":"02-6605-0418"},
+ {"n": "福容大飯店桃園（牡丹廳／芙蓉廳）", "area": "taoyuan", "type": "飯店", "capMin": 20, "capMax": 250, "capNote": null, "priceText": "NT$7,500～NT$28,000／時段（上午或下午）", "priceFrom": 7500, "unit": "時段", "cap": "good", "cost": "high", "note": "310㎡ 廳可容 200 人劇場式；含麥克風、單槍投影機、螢幕、白板；另有小型會議室；大興西路一段 200 號。", "src": "https://www.fullon-hotels.com.tw/ty/tw/meeting/","phone":"03-326-5800"},
+ {"n": "桃園國際機場凱悅酒店（宴會廳／會議室）", "area": "taoyuan", "type": "飯店", "capMin": 12, "capMax": 500, "capNote": null, "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "good", "cost": "high", "note": "挑高 5 米宴會廳 3 間（可連通室內外）；12-500 人；鄰近桃園機場；適合國際研討會；+886-3-3831234。", "src": "https://www.hyattregencytaoyuan.tw/tw/","phone":"03-383-1234"},
+ {"n": "桃園市土地公文化館", "area": "taoyuan", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價（依桃園市藝文場地使用收費標準附表八）", "priceFrom": null, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "提前 14 天申請；開館日為限，每月借用 2 次（每次 8 小時）；週二至週五次數不限；洽 03-331-5212#426。", "src": "https://www.taoyuantudigong.org.tw/main/venue-rental-application/","phone":"03-331-5212"},
+ {"n": "桃園市北區青少年活動中心（桃漾館）", "area": "taoyuan", "type": "青年中心", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需確認（含 3F 舞蹈教室免費借用）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "5F 多功能展演中心、3F 舞蹈教室及鼓房免費借用、2F 智能體驗中心；中壢區環北路 390 號；03-3656969。", "src": "https://ntyac.cyc.org.tw/","phone":"03-3656969"},
+ {"n": "桃園區市民活動中心（大林、青溪等 8 間）", "area": "taoyuan", "type": "公有", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需確認（依桃園區公所收費標準一覽表）", "priceFrom": null, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "共 8 間可線上租借（大林、青溪、汴洲、莊敬等）；透過桃園市民卡或 place.tycg.gov.tw 申請；洽 03-3348058。", "src": "https://www.tao.tycg.gov.tw/News_Content.aspx?n=6315&s=1558803","phone":"03-3348058"},
  {"n": "新竹市文化局演藝廳（國際會議室）", "area": "hsinchu", "type": "文化展演", "capMin": 148, "capMax": 148, "capNote": null, "priceText": "每場 NT$3,500（上午／下午）、晚場 NT$5,000（2018 年資料，需確認）", "priceFrom": 3500, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "演藝廳一樓，可申請學術性演講；場地費另計器材、保證金；費率為 2018 年，現行需向文化局確認。", "src": "https://culture.hccg.gov.tw/ch/home.jsp?id=245&parentpath=0,6"},
- {"n": "新竹市影像博物館（有樂館）", "area": "hsinchu", "type": "文化展演", "capMin": null, "capMax": null, "capNote": "需確認（非官方稱約 500 席，官方未公開座位數）", "priceText": "需詢價（場地費及保證金依附表，申請前六個月提出）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "歷史建築，場地性質特殊；使用時段 9-22 時；電話 03-5285840；字幕外接需洽詢。", "src": "https://culture.hccg.gov.tw/ch/home.jsp?id=420&parentpath=0%2C6%2C245"},
- {"n": "新竹市鐵道藝術村（倉庫展演空間）", "area": "hsinchu", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認（室內約 400 坪、淨高 4.1 公尺，容納人數未見官方數字）", "priceText": "商用按範圍收清潔費；公益活動可申請優惠（需洽詢）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "1940 年代磚造倉庫；電力有限需自租發電機；全面禁煙火；審查制（5 工作日）；03-5628933。", "src": "https://culture.hccg.gov.tw/ch/home.jsp?id=421&parentpath=0,6,245"},
- {"n": "新竹市勞工育樂中心二樓大禮堂", "area": "hsinchu", "type": "公有", "capMin": 190, "capMax": 190, "capNote": null, "priceText": "NT$3,100／場（場地 1,300＋冷氣 1,000＋清潔 800；一場 4 小時）", "priceFrom": 3100, "unit": "場", "cap": "uncertain", "cost": "low", "note": "198 ㎡；附白板、投影機、冷氣、麥克風；一週前申請；03-5338672；需確認音響是否支援外接字幕電腦。", "src": "https://dgservice.hccg.gov.tw/rentalItem.do?rule=guest&itemId=50&pcId=72"},
- {"n": "新竹市勞工育樂中心五樓視聽室", "area": "hsinchu", "type": "公有", "capMin": 200, "capMax": 200, "capNote": null, "priceText": "NT$2,200／場（場地 1,000＋冷氣 800＋清潔 400；一場 4 小時）", "priceFrom": 2200, "unit": "場", "cap": "uncertain", "cost": "low", "note": "視聽室屬性、投影設備較完整；一週前申請，週一至週六；03-5338672。", "src": "https://dgservice.hccg.gov.tw/rentalItem.do?rule=guest&itemId=320&pcId=72"},
- {"n": "新竹市政府市府綜合大禮堂", "area": "hsinchu", "type": "公有", "capMin": 340, "capMax": 340, "capNote": null, "priceText": "NT$3,600／場（冷氣另計 NT$1,800／場）", "priceFrom": 3600, "unit": "場", "cap": "uncertain", "cost": "low", "note": "無附音響及投影機，需自備；適合有自備 AV（含字幕電腦）的活動；線上申請 dgservice.hccg.gov.tw。", "src": "https://dgservice.hccg.gov.tw/rentalItem.do?rule=guest&itemId=359&pcId=146"},
- {"n": "新竹市市民活動中心（金雅，東區）", "area": "hsinchu", "type": "公有", "capMin": 65, "capMax": 65, "capNote": null, "priceText": "NT$50／小時（冷氣水電 NT$200／小時）；保證金 NT$3,000", "priceFrom": 50, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "142 ㎡；含長桌、椅子、無投影機；用前須自行搬出設備；10-60 日前申請；其他市民活動中心規格類似費率相同。", "src": "https://dgservice.hccg.gov.tw/rentalItem.do?rule=guest&itemId=357&pcId=58"},
- {"n": "國立新竹生活美學館（研習教室）", "area": "hsinchu", "type": "公有", "capMin": null, "capMax": null, "capNote": "需確認（舊法規記載每場 NT$1,900–2,400 已廢止，現行需洽館方）", "priceText": "需詢價（現行費率請洽 03-526-3176）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "教育部所屬館舍；具展覽、研習教室與展演空間；武昌街 110 號；適合中小型講座與論壇。", "src": "https://www.nhclac.gov.tw/cl.aspx?n=5216"},
- {"n": "新竹縣政府文化局演藝廳（竹北）", "area": "hsinchu", "type": "文化展演", "capMin": 1051, "capMax": 1051, "capNote": "低可信度（官方僅提供技術文件，座位數引自頁面描述含 12 無障礙席）", "priceText": "需詢價（依新竹縣文化場地使用管理及收費辦法）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "竹北市縣政九路 146 號；完整音響燈光舞台技術文件；表演藝術每年 6、12 月集中受理；03-551-0201。", "src": "https://www.hchcc.gov.tw/Tw/ArtMuseum/Detail?filter=d0f4bc0d-3c8d-4e98-83f8-c2f0819544df&id=cf8b02f1-c3cb-4fd6-b420-42020afb3ea3"},
- {"n": "新竹縣新瓦屋客家文化保存區（集會堂及禾埕廣場）", "area": "hsinchu", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認（官方未公開容納人數）", "priceText": "需詢價（申請前 30 日內受理，依文化局規定收費）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "客家文化保存區，週二至週日 8-21 時；申請需公文或相關證明；03-551-0201 轉 207。", "src": "https://www.hchcc.gov.tw/Tw/ArtMuseum/Detail?filter=ebc0a96c-8c36-4a9c-a922-1cebed00f385&id=311848cc-0e44-4bb2-9c59-186ad9510d34"},
- {"n": "國立陽明交通大學光復校區資訊館國際會議廳", "area": "hsinchu", "type": "校園", "capMin": 224, "capMax": 233, "capNote": null, "priceText": "校外 NT$15,000／4 小時；非營利或身障團體 NT$12,000；含保證金 NT$12,000", "priceFrom": 15000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "校外需 3 個月內校內無借用方得申請，並 14 天前（大型 1 個月前）送件；線上系統 placerent.nycu.edu.tw。", "src": "https://placerent.nycu.edu.tw/charge_place02.php"},
- {"n": "CLBC 竹北 B 館", "area": "hsinchu", "type": "共創空間", "capMin": 36, "capMax": 55, "capNote": null, "priceText": "平日 NT$2,800／時段至假日 NT$3,500／時段；超時 NT$550／半小時", "priceFrom": 2800, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "鄰近竹北高鐵站；附投影機、麥克風音響、白板、WiFi；自助無駐場；時段 9-12／14-17／18-21 時。", "src": "https://clbc.tw/%E7%AB%B9%E5%8C%97b%E9%A4%A8/"},
- {"n": "CLBC 竹北 A 館", "area": "hsinchu", "type": "共創空間", "capMin": 24, "capMax": 50, "capNote": null, "priceText": "平日 NT$2,500／時段至假日 NT$3,000／時段；超時 NT$500／半小時", "priceFrom": 2500, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "鄰近竹北高鐵站，高鐵 7 路 65 號 12 樓之 2；附投影機、麥克風音響、白板、WiFi；自助無駐場。", "src": "https://clbc.tw/%E7%AB%B9%E5%8C%97a%E9%A4%A8/"},
- {"n": "Le Phare 共享空間竹北館（風之谷）", "area": "hsinchu", "type": "共創空間", "capMin": 60, "capMax": 80, "capNote": "低可信度（Pickone 頁面記 80 人、活動報告提 60 人，官方無公開數字）", "priceText": "需詢價（包場計時；洽 service@maison-life.tw 或 02-6604-1700）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "mid", "note": "竹北復興三路二段 168 號 9 樓；附投影機、音響；IoT 無人化管理；鄰近高鐵新竹站步行約 3 分鐘。", "src": "https://lephare.maison-life.tw/about-zhubei-city/"},
- {"n": "昌益科技產發園區第一會議室（大）", "area": "hsinchu", "type": "主題空間", "capMin": 60, "capMax": 60, "capNote": null, "priceText": "NT$5,000 起／2 小時（平日）；全日 NT$11,000 起；假日加成 20%", "priceFrom": 5000, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "竹北一期會館 1 樓；附投影機、HDMI、音響、麥克風 2 支、講桌；3 天前預約；2 個月以上需電話 03-6568133。", "src": "https://www.cy-park.com.tw/borrow"},
- {"n": "新竹豐邑喜來登大飯店 3F 大宴會廳", "area": "hsinchu", "type": "飯店", "capMin": 500, "capMax": 1200, "capNote": "低可信度（官方稱千人劇院型／雞尾酒 1000-1200 人，會議席數未公開）", "priceText": "需詢價（電話 03-620-6000 轉宴會業務）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "high", "note": "1,190 ㎡ 無樑柱大廳；挑高 6.5 公尺；可分隔三廳；竹北高鐵商圈；字幕外接需洽 AV 技術。", "src": "https://www.sheraton-hsinchu.com/zh-tw/websev?cat=page&id=26"},
- {"n": "新竹國賓大飯店 10 樓國際廳 A+B", "area": "hsinchu", "type": "飯店", "capMin": null, "capMax": null, "capNote": "需確認（官網標 760 ㎡，會議座位數未列）", "priceText": "NT$200,000–400,000／場（A 廳或 B 廳各 NT$120,000–200,000）", "priceFrom": 200000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "另有 11 樓竹萱廳及 13 樓會議室；聯絡 03-620-5395；字幕外接需個別洽詢。", "src": "https://www.ambassador-hotels.com/tc/hsinchu/events/packages/venue-rental"},
- {"n": "芙洛麗大飯店 3F 宴會廳（竹北）", "area": "hsinchu", "type": "飯店", "capMin": 210, "capMax": 840, "capNote": "低可信度（非官方引用 210-840 人，官網未公開座位數）", "priceText": "需詢價（電話 03-623-8899）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "high", "note": "竹北市莊敬南路 18 號（竹北高鐵站旁）；挑高 6.5 公尺；附 300 吋投影布幕、15,000 流明投影及頂級音響燈光。", "src": "https://www.fls.tw/"},
- {"n": "臺中市大墩文化中心（演講廳）", "area": "taichung", "type": "文化展演", "capMin": 395, "capMax": 400, "capNote": null, "priceText": "需詢價（費用表須下載，另逾時費 NT$1,500／小時）", "priceFrom": null, "unit": "ask", "cap": "good", "cost": "ask", "note": "395 席＋5 輪椅席；演講廳附音響、4 支麥克風、投影機、300 吋幕；另設會議室、視聽放映室、簡報室；週一休館。", "src": "https://www.dadun.culture.taichung.gov.tw/TCDCCFrontend/Place/PlaceIntroduction"},
- {"n": "臺中市港區藝術中心（演藝廳）", "area": "taichung", "type": "文化展演", "capMin": 539, "capMax": 545, "capNote": null, "priceText": "NT$12,800–30,000／時段（售票 24,000-30,000；非售票 12,800-16,000）", "priceFrom": 12800, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "539 席＋6 輪椅席；限表演藝術或文化局核准活動；清水區忠貞路 21 號；鋼琴另計；字幕外接需洽詢。", "src": "https://tcsac.taichung.gov.tw/Service/Rental_Fee"},
- {"n": "葫蘆墩文化中心（演講廳）", "area": "taichung", "type": "文化展演", "capMin": 226, "capMax": 226, "capNote": null, "priceText": "逾時 NT$1,000／小時（整場費用需洽詢）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "226 席；含投影機、無線麥克風 4 支、講台、HDMI、WiFi；禁自行操作音控室；禁飲食；活動前 30 天送件；豐原區。", "src": "https://www.huludun.taichung.gov.tw/form_other/index-1.asp?Parser=99,9,41,,,,23,22"},
- {"n": "臺中世界貿易中心（300 禮堂）", "area": "taichung", "type": "會議中心", "capMin": 300, "capMax": 600, "capNote": null, "priceText": "NT$13,000–45,000／半日或全日（商務半日 20,000；假日全日 45,000）", "priceFrom": 13000, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "全區 600 人（190 坪）、半區 300 人可單獨租；另有 301 室 144 人 NT$8,000 起等；含投影、音響；字幕外接需洽詢。", "src": "https://www.wtctxg.org.tw/wtctxg/equipment/meeting"},
- {"n": "CLBC 台中七期 CBD 館（A+B 教室合併）", "area": "taichung", "type": "共創空間", "capMin": 120, "capMax": 160, "capNote": null, "priceText": "平日 NT$5,800／時段、假日 NT$7,900／時段", "priceFrom": 5800, "unit": "時段", "cap": "good", "cost": "mid", "note": "56 坪；講座型 160 人、教室型 120 人；含投影機、HDMI、WiFi、麥克風、音響、白板、冷氣；近台中市政府；有 NPO 優惠。", "src": "https://clbc.tw/%E5%8F%B0%E4%B8%AD%E4%B8%83%E6%9C%9F-cbd%E9%A4%A8/"},
- {"n": "CLBC 台中車站綠川東館（301 教室）", "area": "taichung", "type": "共創空間", "capMin": 50, "capMax": 70, "capNote": null, "priceText": "平日 NT$2,700 起／時段、假日 NT$3,300", "priceFrom": 2700, "unit": "時段", "cap": "good", "cost": "mid", "note": "18 坪；講座型 70 人、教室型 50 人；含投影機、HDMI、WiFi、麥克風、音響、白板；緊鄰台中火車站；302 教室另計。", "src": "https://clbc.tw/%E5%8F%B0%E4%B8%AD%E8%BB%8A%E7%AB%99-%E7%B6%A0%E5%B7%9D%E6%9D%B1%E9%A4%A8/"},
- {"n": "CLBC 台中車站馥馨館（A 室）", "area": "taichung", "type": "共創空間", "capMin": 55, "capMax": 75, "capNote": null, "priceText": "平日 NT$3,100 起／時段、假日 NT$3,700", "priceFrom": 3100, "unit": "時段", "cap": "good", "cost": "mid", "note": "20 坪；講座型 75 人、教室型 55 人；含投影機、HDMI、WiFi、麥克風、音響、白板、冷氣；B 室另計。", "src": "https://clbc.tw/%E5%8F%B0%E4%B8%AD%E8%BB%8A%E7%AB%99-%E9%A6%A5%E9%A6%A8%E9%A4%A8/"},
- {"n": "WensCo 文心會議室（大型會議室，文心館）", "area": "taichung", "type": "共創空間", "capMin": 40, "capMax": 120, "capNote": null, "priceText": "NT$2,900 起／時段（每時段 3 小時）", "priceFrom": 2900, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "文心館多間大型會議室 40-120 人；另有松竹館（近松竹站）大廳 30-70 人；時段 08-12／13-17／18-21:30；部分設備免費。", "src": "https://meetingtw.com/price/"},
- {"n": "臺中市各區里活動中心", "area": "taichung", "type": "公有", "capMin": null, "capMax": null, "capNote": "各里不同，需確認", "priceText": "短期 NT$1,500–1,700／次；長期 NT$130／小時起", "priceFrom": 130, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "全市各區里均設，透過里活動中心 E 化資訊網線上預約；個人持身分證、團體公函申請；週六日加倍計費。", "src": "https://acenter.taichung.gov.tw/"},
+ {"n": "新竹市影像博物館（有樂館）", "area": "hsinchu", "type": "文化展演", "capMin": null, "capMax": null, "capNote": "需確認（非官方稱約 500 席，官方未公開座位數）", "priceText": "需詢價（場地費及保證金依附表，申請前六個月提出）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "歷史建築，場地性質特殊；使用時段 9-22 時；電話 03-5285840；字幕外接需洽詢。", "src": "https://culture.hccg.gov.tw/ch/home.jsp?id=420&parentpath=0%2C6%2C245","phone":"03-5285840"},
+ {"n": "新竹市鐵道藝術村（倉庫展演空間）", "area": "hsinchu", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認（室內約 400 坪、淨高 4.1 公尺，容納人數未見官方數字）", "priceText": "商用按範圍收清潔費；公益活動可申請優惠（需洽詢）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "1940 年代磚造倉庫；電力有限需自租發電機；全面禁煙火；審查制（5 工作日）；03-5628933。", "src": "https://culture.hccg.gov.tw/ch/home.jsp?id=421&parentpath=0,6,245","phone":"03-5628933"},
+ {"n": "新竹市勞工育樂中心二樓大禮堂", "area": "hsinchu", "type": "公有", "capMin": 190, "capMax": 190, "capNote": null, "priceText": "NT$3,100／場（場地 1,300＋冷氣 1,000＋清潔 800；一場 4 小時）", "priceFrom": 3100, "unit": "場", "cap": "uncertain", "cost": "low", "note": "198 ㎡；附白板、投影機、冷氣、麥克風；一週前申請；03-5338672；需確認音響是否支援外接字幕電腦。", "src": "https://dgservice.hccg.gov.tw/rentalItem.do?rule=guest&itemId=50&pcId=72","phone":"03-5338672"},
+ {"n": "新竹市勞工育樂中心五樓視聽室", "area": "hsinchu", "type": "公有", "capMin": 200, "capMax": 200, "capNote": null, "priceText": "NT$2,200／場（場地 1,000＋冷氣 800＋清潔 400；一場 4 小時）", "priceFrom": 2200, "unit": "場", "cap": "uncertain", "cost": "low", "note": "視聽室屬性、投影設備較完整；一週前申請，週一至週六；03-5338672。", "src": "https://dgservice.hccg.gov.tw/rentalItem.do?rule=guest&itemId=320&pcId=72","phone":"03-5338672"},
+ {"n": "新竹市政府市府綜合大禮堂", "area": "hsinchu", "type": "公有", "capMin": 340, "capMax": 340, "capNote": null, "priceText": "NT$3,600／場（冷氣另計 NT$1,800／場）", "priceFrom": 3600, "unit": "場", "cap": "uncertain", "cost": "low", "note": "無附音響及投影機，需自備；適合有自備 AV（含字幕電腦）的活動；線上申請 dgservice.hccg.gov.tw。", "src": "https://dgservice.hccg.gov.tw/rentalItem.do?rule=guest&itemId=359&pcId=146","phone":"03-5216121"},
+ {"n": "新竹市市民活動中心（金雅，東區）", "area": "hsinchu", "type": "公有", "capMin": 65, "capMax": 65, "capNote": null, "priceText": "NT$50／小時（冷氣水電 NT$200／小時）；保證金 NT$3,000", "priceFrom": 50, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "142 ㎡；含長桌、椅子、無投影機；用前須自行搬出設備；10-60 日前申請；其他市民活動中心規格類似費率相同。", "src": "https://dgservice.hccg.gov.tw/rentalItem.do?rule=guest&itemId=357&pcId=58","phone":"03-5152525"},
+ {"n": "國立新竹生活美學館（研習教室）", "area": "hsinchu", "type": "公有", "capMin": null, "capMax": null, "capNote": "需確認（舊法規記載每場 NT$1,900–2,400 已廢止，現行需洽館方）", "priceText": "需詢價（現行費率請洽 03-526-3176）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "教育部所屬館舍；具展覽、研習教室與展演空間；武昌街 110 號；適合中小型講座與論壇。", "src": "https://www.nhclac.gov.tw/cl.aspx?n=5216","phone":"(03)526-3176"},
+ {"n": "新竹縣政府文化局演藝廳（竹北）", "area": "hsinchu", "type": "文化展演", "capMin": 1051, "capMax": 1051, "capNote": "低可信度（官方僅提供技術文件，座位數引自頁面描述含 12 無障礙席）", "priceText": "需詢價（依新竹縣文化場地使用管理及收費辦法）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "竹北市縣政九路 146 號；完整音響燈光舞台技術文件；表演藝術每年 6、12 月集中受理；03-551-0201。", "src": "https://www.hchcc.gov.tw/Tw/ArtMuseum/Detail?filter=d0f4bc0d-3c8d-4e98-83f8-c2f0819544df&id=cf8b02f1-c3cb-4fd6-b420-42020afb3ea3","phone":"03-551-0201"},
+ {"n": "新竹縣新瓦屋客家文化保存區（集會堂及禾埕廣場）", "area": "hsinchu", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認（官方未公開容納人數）", "priceText": "需詢價（申請前 30 日內受理，依文化局規定收費）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "客家文化保存區，週二至週日 8-21 時；申請需公文或相關證明；03-551-0201 轉 207。", "src": "https://www.hchcc.gov.tw/Tw/ArtMuseum/Detail?filter=ebc0a96c-8c36-4a9c-a922-1cebed00f385&id=311848cc-0e44-4bb2-9c59-186ad9510d34","phone":"03-551-0201"},
+ {"n": "國立陽明交通大學光復校區資訊館國際會議廳", "area": "hsinchu", "type": "校園", "capMin": 224, "capMax": 233, "capNote": null, "priceText": "校外 NT$15,000／4 小時；非營利或身障團體 NT$12,000；含保證金 NT$12,000", "priceFrom": 15000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "校外需 3 個月內校內無借用方得申請，並 14 天前（大型 1 個月前）送件；線上系統 placerent.nycu.edu.tw。", "src": "https://placerent.nycu.edu.tw/charge_place02.php","phone":"03-571-2121"},
+ {"n": "CLBC 竹北 B 館", "area": "hsinchu", "type": "共創空間", "capMin": 36, "capMax": 55, "capNote": null, "priceText": "平日 NT$2,800／時段至假日 NT$3,500／時段；超時 NT$550／半小時", "priceFrom": 2800, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "鄰近竹北高鐵站；附投影機、麥克風音響、白板、WiFi；自助無駐場；時段 9-12／14-17／18-21 時。", "src": "https://clbc.tw/%E7%AB%B9%E5%8C%97b%E9%A4%A8/","phone":"02-7751-5023"},
+ {"n": "CLBC 竹北 A 館", "area": "hsinchu", "type": "共創空間", "capMin": 24, "capMax": 50, "capNote": null, "priceText": "平日 NT$2,500／時段至假日 NT$3,000／時段；超時 NT$500／半小時", "priceFrom": 2500, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "鄰近竹北高鐵站，高鐵 7 路 65 號 12 樓之 2；附投影機、麥克風音響、白板、WiFi；自助無駐場。", "src": "https://clbc.tw/%E7%AB%B9%E5%8C%97a%E9%A4%A8/","phone":"02-7751-5023"},
+ {"n": "Le Phare 共享空間竹北館（風之谷）", "area": "hsinchu", "type": "共創空間", "capMin": 60, "capMax": 80, "capNote": "低可信度（Pickone 頁面記 80 人、活動報告提 60 人，官方無公開數字）", "priceText": "需詢價（包場計時；洽 service@maison-life.tw 或 02-6604-1700）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "mid", "note": "竹北復興三路二段 168 號 9 樓；附投影機、音響；IoT 無人化管理；鄰近高鐵新竹站步行約 3 分鐘。", "src": "https://lephare.maison-life.tw/about-zhubei-city/","phone":"02-660-41700"},
+ {"n": "昌益科技產發園區第一會議室（大）", "area": "hsinchu", "type": "主題空間", "capMin": 60, "capMax": 60, "capNote": null, "priceText": "NT$5,000 起／2 小時（平日）；全日 NT$11,000 起；假日加成 20%", "priceFrom": 5000, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "竹北一期會館 1 樓；附投影機、HDMI、音響、麥克風 2 支、講桌；3 天前預約；2 個月以上需電話 03-6568133。", "src": "https://www.cy-park.com.tw/borrow","phone":"03-6568133"},
+ {"n": "新竹豐邑喜來登大飯店 3F 大宴會廳", "area": "hsinchu", "type": "飯店", "capMin": 500, "capMax": 1200, "capNote": "低可信度（官方稱千人劇院型／雞尾酒 1000-1200 人，會議席數未公開）", "priceText": "需詢價（電話 03-620-6000 轉宴會業務）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "high", "note": "1,190 ㎡ 無樑柱大廳；挑高 6.5 公尺；可分隔三廳；竹北高鐵商圈；字幕外接需洽 AV 技術。", "src": "https://www.sheraton-hsinchu.com/zh-tw/websev?cat=page&id=26","phone":"03-620-6000"},
+ {"n": "新竹國賓大飯店 10 樓國際廳 A+B", "area": "hsinchu", "type": "飯店", "capMin": null, "capMax": null, "capNote": "需確認（官網標 760 ㎡，會議座位數未列）", "priceText": "NT$200,000–400,000／場（A 廳或 B 廳各 NT$120,000–200,000）", "priceFrom": 200000, "unit": "場", "cap": "uncertain", "cost": "high", "note": "另有 11 樓竹萱廳及 13 樓會議室；聯絡 03-620-5395；字幕外接需個別洽詢。", "src": "https://www.ambassador-hotels.com/tc/hsinchu/events/packages/venue-rental","phone":"03-620-5395"},
+ {"n": "芙洛麗大飯店 3F 宴會廳（竹北）", "area": "hsinchu", "type": "飯店", "capMin": 210, "capMax": 840, "capNote": "低可信度（非官方引用 210-840 人，官網未公開座位數）", "priceText": "需詢價（電話 03-623-8899）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "high", "note": "竹北市莊敬南路 18 號（竹北高鐵站旁）；挑高 6.5 公尺；附 300 吋投影布幕、15,000 流明投影及頂級音響燈光。", "src": "https://www.fls.tw/","phone":"03-6238899"},
+ {"n": "臺中市大墩文化中心（演講廳）", "area": "taichung", "type": "文化展演", "capMin": 395, "capMax": 400, "capNote": null, "priceText": "需詢價（費用表須下載，另逾時費 NT$1,500／小時）", "priceFrom": null, "unit": "ask", "cap": "good", "cost": "ask", "note": "395 席＋5 輪椅席；演講廳附音響、4 支麥克風、投影機、300 吋幕；另設會議室、視聽放映室、簡報室；週一休館。", "src": "https://www.dadun.culture.taichung.gov.tw/TCDCCFrontend/Place/PlaceIntroduction","phone":"04-23727311"},
+ {"n": "臺中市港區藝術中心（演藝廳）", "area": "taichung", "type": "文化展演", "capMin": 539, "capMax": 545, "capNote": null, "priceText": "NT$12,800–30,000／時段（售票 24,000-30,000；非售票 12,800-16,000）", "priceFrom": 12800, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "539 席＋6 輪椅席；限表演藝術或文化局核准活動；清水區忠貞路 21 號；鋼琴另計；字幕外接需洽詢。", "src": "https://tcsac.taichung.gov.tw/Service/Rental_Fee","phone":"(04)2627-4568"},
+ {"n": "葫蘆墩文化中心（演講廳）", "area": "taichung", "type": "文化展演", "capMin": 226, "capMax": 226, "capNote": null, "priceText": "逾時 NT$1,000／小時（整場費用需洽詢）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "226 席；含投影機、無線麥克風 4 支、講台、HDMI、WiFi；禁自行操作音控室；禁飲食；活動前 30 天送件；豐原區。", "src": "https://www.huludun.taichung.gov.tw/form_other/index-1.asp?Parser=99,9,41,,,,23,22","phone":"04-25260136"},
+ {"n": "臺中世界貿易中心（300 禮堂）", "area": "taichung", "type": "會議中心", "capMin": 300, "capMax": 600, "capNote": null, "priceText": "NT$13,000–45,000／半日或全日（商務半日 20,000；假日全日 45,000）", "priceFrom": 13000, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "全區 600 人（190 坪）、半區 300 人可單獨租；另有 301 室 144 人 NT$8,000 起等；含投影、音響；字幕外接需洽詢。", "src": "https://www.wtctxg.org.tw/wtctxg/equipment/meeting","phone":"04-23582271"},
+ {"n": "CLBC 台中七期 CBD 館（A+B 教室合併）", "area": "taichung", "type": "共創空間", "capMin": 120, "capMax": 160, "capNote": null, "priceText": "平日 NT$5,800／時段、假日 NT$7,900／時段", "priceFrom": 5800, "unit": "時段", "cap": "good", "cost": "mid", "note": "56 坪；講座型 160 人、教室型 120 人；含投影機、HDMI、WiFi、麥克風、音響、白板、冷氣；近台中市政府；有 NPO 優惠。", "src": "https://clbc.tw/%E5%8F%B0%E4%B8%AD%E4%B8%83%E6%9C%9F-cbd%E9%A4%A8/","phone":"02-7751-5023"},
+ {"n": "CLBC 台中車站綠川東館（301 教室）", "area": "taichung", "type": "共創空間", "capMin": 50, "capMax": 70, "capNote": null, "priceText": "平日 NT$2,700 起／時段、假日 NT$3,300", "priceFrom": 2700, "unit": "時段", "cap": "good", "cost": "mid", "note": "18 坪；講座型 70 人、教室型 50 人；含投影機、HDMI、WiFi、麥克風、音響、白板；緊鄰台中火車站；302 教室另計。", "src": "https://clbc.tw/%E5%8F%B0%E4%B8%AD%E8%BB%8A%E7%AB%99-%E7%B6%A0%E5%B7%9D%E6%9D%B1%E9%A4%A8/","phone":"02-7751-5023"},
+ {"n": "CLBC 台中車站馥馨館（A 室）", "area": "taichung", "type": "共創空間", "capMin": 55, "capMax": 75, "capNote": null, "priceText": "平日 NT$3,100 起／時段、假日 NT$3,700", "priceFrom": 3100, "unit": "時段", "cap": "good", "cost": "mid", "note": "20 坪；講座型 75 人、教室型 55 人；含投影機、HDMI、WiFi、麥克風、音響、白板、冷氣；B 室另計。", "src": "https://clbc.tw/%E5%8F%B0%E4%B8%AD%E8%BB%8A%E7%AB%99-%E9%A6%A5%E9%A6%A8%E9%A4%A8/","phone":"02-7751-5023"},
+ {"n": "WensCo 文心會議室（大型會議室，文心館）", "area": "taichung", "type": "共創空間", "capMin": 40, "capMax": 120, "capNote": null, "priceText": "NT$2,900 起／時段（每時段 3 小時）", "priceFrom": 2900, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "文心館多間大型會議室 40-120 人；另有松竹館（近松竹站）大廳 30-70 人；時段 08-12／13-17／18-21:30；部分設備免費。", "src": "https://meetingtw.com/price/","phone":"04-2237-6859"},
+ {"n": "臺中市各區里活動中心", "area": "taichung", "type": "公有", "capMin": null, "capMax": null, "capNote": "各里不同，需確認", "priceText": "短期 NT$1,500–1,700／次；長期 NT$130／小時起", "priceFrom": 130, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "全市各區里均設，透過里活動中心 E 化資訊網線上預約；個人持身分證、團體公函申請；週六日加倍計費。", "src": "https://acenter.taichung.gov.tw/","phone":"04-22289111#29214"},
  {"n": "臺中社會創新實驗基地（6 樓 A/B 教室）", "area": "taichung", "type": "社創", "capMin": null, "capMax": null, "capNote": "需確認（法規載半日為計費單位）", "priceText": "需詢價（依附表二半日計費）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "6 樓 A、B 兩間教室含麥克風、投影機、白板桌椅；7 樓共同工作空間 30 席；北區精武路 291 之 3 號；主要服務社創／NPO，需提計畫書。", "src": "https://law.taichung.gov.tw/LawContent.aspx?id=GL003399"},
- {"n": "精武圖書館（大講堂）", "area": "taichung", "type": "圖書館", "capMin": 60, "capMax": 60, "capNote": null, "priceText": "需詢價（依臺中市立圖書館場地借用辦法）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "4 樓大講堂，30 坪，60 人；由國資圖委由臺中市立圖書館營運，中區；費用及辦法需洽 04-22293875。", "src": "https://eservices.taichung.gov.tw/LocationNew/Introduction/150/FacilityRental/7e08687a-8c88-480f-8198-c62a6f818d49"},
+ {"n": "精武圖書館（大講堂）", "area": "taichung", "type": "圖書館", "capMin": 60, "capMax": 60, "capNote": null, "priceText": "需詢價（依臺中市立圖書館場地借用辦法）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "4 樓大講堂，30 坪，60 人；由國資圖委由臺中市立圖書館營運，中區；費用及辦法需洽 04-22293875。", "src": "https://eservices.taichung.gov.tw/LocationNew/Introduction/150/FacilityRental/7e08687a-8c88-480f-8198-c62a6f818d49","phone":"04-22293875"},
  {"n": "臺中市立圖書館（多功能活動室）", "area": "taichung", "type": "圖書館", "capMin": null, "capMax": null, "capNote": "需確認（各分館面積不同）", "priceText": "NT$2,000／次（場地費）＋NT$500 空調費；保證金 NT$2,000", "priceFrom": 2000, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "時段制（每次 3 小時，9-12 或 14-17）；逾時 NT$670／小時；僅開放非營利文化教育；週末原則不開放；全館禁飲食。", "src": "https://www.library.taichung.gov.tw/public/spaces/index.asp?Parser=99,20,48"},
  {"n": "國立公共資訊圖書館（iSpace 智慧空間）", "area": "taichung", "type": "圖書館", "capMin": null, "capMax": null, "capNote": "需確認（議廳、研習室等多種空間）", "priceText": "需詢價（使用前 14 日申請；現金繳費）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "low", "note": "提供議廳、研習室、數位學習教室、錄音室、展覽室；活動前 14 日提申請表及企劃書，7 日前繳費；南區五權南路 100 號。", "src": "https://irental.nlpi.edu.tw/"},
- {"n": "國立臺灣美術館（演講廳）", "area": "taichung", "type": "文化展演", "capMin": 240, "capMax": 246, "capNote": null, "priceText": "需詢價（依場地設備使用及收費標準，PDF 下載）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "東側 1 樓；階梯 240 席＋6 輪椅席；另有多媒體講堂、大門廣場、碑林廣場；西區五權西路一段 2 號；字幕外接需洽詢。", "src": "https://event.culture.tw/NTMOFA/portal/Location/I5201MAction"},
- {"n": "救國團台中市團委會（教室群）", "area": "taichung", "type": "青年中心", "capMin": null, "capMax": null, "capNote": "需確認（各教室容量未在官方頁面標示）", "priceText": "需詢價（平日 3 小時／時段；保證金 NT$1,000／間）", "priceFrom": null, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "3 樓設 301-306 教室（305+306 可合併）；每間免費提供投影機、無線麥克風 2 支；逾時 NT$1,000／小時；西屯區文心路三段 126 號。", "src": "https://sites.google.com/cyc.tw/txg-rental"},
+ {"n": "國立臺灣美術館（演講廳）", "area": "taichung", "type": "文化展演", "capMin": 240, "capMax": 246, "capNote": null, "priceText": "需詢價（依場地設備使用及收費標準，PDF 下載）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "東側 1 樓；階梯 240 席＋6 輪椅席；另有多媒體講堂、大門廣場、碑林廣場；西區五權西路一段 2 號；字幕外接需洽詢。", "src": "https://event.culture.tw/NTMOFA/portal/Location/I5201MAction","phone":"(04)2372-3552"},
+ {"n": "救國團台中市團委會（教室群）", "area": "taichung", "type": "青年中心", "capMin": null, "capMax": null, "capNote": "需確認（各教室容量未在官方頁面標示）", "priceText": "需詢價（平日 3 小時／時段；保證金 NT$1,000／間）", "priceFrom": null, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "3 樓設 301-306 教室（305+306 可合併）；每間免費提供投影機、無線麥克風 2 支；逾時 NT$1,000／小時；西屯區文心路三段 126 號。", "src": "https://sites.google.com/cyc.tw/txg-rental","phone":"04-2311-2121"},
  {"n": "文化部文化資產園區（台中）", "area": "taichung", "type": "文化展演", "capMin": null, "capMax": null, "capNote": "需確認（多功能藝文中心約 200 坪、雅堂館 372 坪等）", "priceText": "需詢價（依官方收費基準表 PDF；審查約 3–4 週）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "原台中文創園區，文化部文資局管轄，南區復興路三段 362 號；以 8 小時／次計費；禁高分貝跨夜演唱；需符合文化設計藝術教育宗旨。", "src": "https://tccip.boch.gov.tw/Site_schedule"},
- {"n": "國立臺中科技大學（中商大樓國際會議廳）", "area": "taichung", "type": "校園", "capMin": 180, "capMax": 180, "capNote": null, "priceText": "NT$15,000／時段", "priceFrom": 15000, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "7212 國際會議廳 180 人；音樂廳 500 席 NT$20,000、視聽廳 300 席 NT$10,000 亦可申請；04-2219-5337；外部需評估校內優先排程。", "src": "https://garms.nutc.edu.tw/VenueRental/VRPlace?_p=4"},
- {"n": "臺南市立圖書館新總館・哇劇場", "area": "tainan", "type": "圖書館", "capMin": 232, "capMax": 232, "capNote": null, "priceText": "NT$3,600／小時（布撤台 NT$800／小時）", "priceFrom": 3600, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "6 樓鏡框式舞台；含輪椅席 4 席；提前 2 至 6 個月申請；資格為學校／樂團／藝文團體；禁飲食；字幕可行性需向館方確認。", "src": "https://www.tnpl.tn.edu.tw/Page/VenueRentalContent.aspx?ID=z14989933192598596963"},
- {"n": "臺南市立圖書館新總館・拾光講堂", "area": "tainan", "type": "圖書館", "capMin": 123, "capMax": 123, "capNote": null, "priceText": "NT$2,000／小時", "priceFrom": 2000, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "6 樓；297 ㎡；配 12 台 55 吋電視牆；座位附麥克風；HDMI 線自備電腦；提前 2 週至 3 個月申請；非營利公益可減免。", "src": "https://www.tnpl.tn.edu.tw/Page/VenueRentalContent.aspx?ID=z14889723979973505840"},
- {"n": "臺南市立圖書館新總館・多功能室", "area": "tainan", "type": "圖書館", "capMin": 40, "capMax": 50, "capNote": null, "priceText": "NT$800／小時", "priceFrom": 800, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "4 樓；105.78 ㎡；含投影機、無線麥克風、HDMI 線、活動桌椅；提前 2 週至 3 個月申請；禁飲食。", "src": "https://www.tnpl.tn.edu.tw/Page/VenueRentalContent.aspx?ID=z15117395211593963118"},
- {"n": "新營文化中心・演講室", "area": "tainan", "type": "文化展演", "capMin": 80, "capMax": 80, "capNote": null, "priceText": "NT$2,200／場次（另計空調費 NT$200／小時、清潔費 NT$200）", "priceFrom": 2200, "unit": "場", "cap": "uncertain", "cost": "low", "note": "新營區中正路 23 號；演藝廳大廳可容 400 人（NT$3,200／場）、大演藝廳 846 席（NT$15,000-20,000／場）。", "src": "https://xinying-culture.tainan.gov.tw/"},
- {"n": "臺南文化中心（東區）・國際廳原生劇場", "area": "tainan", "type": "文化展演", "capMin": 260, "capMax": 260, "capNote": null, "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "東區中華東路三段 332 號；綜合性小型劇場；演藝廳 1,803 席另計；透過台南市一站式平台或文化局申請；洽 06-2692864。", "src": "https://www.tmcc.gov.tw/StaticPage/venues"},
- {"n": "歸仁文化中心", "area": "tainan", "type": "文化展演", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "歸仁區信義南路 78 號；含演藝廳、多功能劇場、第二畫廊、兒童故事屋；配合演出活動開放；聯絡 06-3306505。", "src": "https://gueirencultural.tainan.gov.tw/informationlist?uid=35"},
- {"n": "臺南文化創意產業園區（B16）・2B 金龍展演廳", "area": "tainan", "type": "文化展演", "capMin": 75, "capMax": 85, "capNote": null, "priceText": "NT$4,000／4 小時", "priceFrom": 4000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "東區北門路二段 16 號；53 坪；含投影機、2 支無線麥克風、音響、HDMI 線、白板；分三時段；2026 年底前優惠租金。", "src": "https://b16tainan.com.tw/subdetail.aspx?cmsid=88&cmid=60&menuid=4"},
- {"n": "台南大飯店・國際廳", "area": "tainan", "type": "飯店", "capMin": 120, "capMax": 350, "capNote": null, "priceText": "NT$15,000-35,000／4 小時（依廳別與平假日）", "priceFrom": 15000, "unit": "時段", "cap": "good", "cost": "high", "note": "全廳（490 ㎡）劇院式 350 人、A 館 250 人；免費含投影機、布幕、無線麥克風、Wi-Fi、講台；字幕電腦可外接。", "src": "https://www.hotel-tainan.com.tw/married/ins.php?index_id=38"},
- {"n": "台南大員皇冠假日酒店・宴會廳暨會議室", "area": "tainan", "type": "飯店", "capMin": 20, "capMax": 900, "capNote": null, "priceText": "NT$780-2,080／人（半日或全日套餐；最低 20 人）", "priceFrom": 780, "unit": "人", "cap": "good", "cost": "high", "note": "宴會廳 208 坪無柱；8 間會議室；含投影設備、電動投影幕、無線麥克風、白板；加收一成服務費；字幕電腦外接可行性高。", "src": "https://www.cptainan.com/wedding-detail/meeting-room/"},
- {"n": "大臺南會展中心（ICC Tainan）", "area": "tainan", "type": "會議中心", "capMin": 20, "capMax": 1000, "capNote": null, "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "歸仁區歸仁 12 路 3 號；2022 年開幕；1,000 人及 800 人會議室各一（800 人廳可拆分）；另有 100 人及 20 人室；展覽館 5,000 人。", "src": "https://www.icctainan.com/en/space"},
- {"n": "國立成功大學・光復校區國際會議廳", "area": "tainan", "type": "校園", "capMin": 64, "capMax": 232, "capNote": null, "priceText": "NT$8,000-12,000／4 小時（依廳別）", "priceFrom": 8000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "第一演講室 232 席、第二 157 席、第三 124 席、國際會議廳 64 席；校外需由管理單位代為申請；洽 em50540@email.ncku.edu.tw。", "src": "https://serv-oga.ncku.edu.tw/p/412-1057-11615.php?Lang=zh-tw"},
- {"n": "中國生產力中心台南服務處・教室", "area": "tainan", "type": "共創空間", "capMin": 37, "capMax": 60, "capNote": null, "priceText": "需詢價（智慧互動白板加收 NT$2,750／時段）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "mid", "note": "中西區大埔街 52 號及新市區南科三路（南科培訓中心）；201 教室 60 人、202/303/304 各 40 人；305 含智慧互動電子白板。", "src": "https://tn.cpc.org.tw/place"},
- {"n": "台南擎天館（TCCC 台灣文創訓練中心）", "area": "tainan", "type": "共創空間", "capMin": 54, "capMax": 60, "capNote": null, "priceText": "NT$2,200-2,700／時段（約 4 小時）", "priceFrom": 2200, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "東區中華東路二段 77 號 9 樓之 3；20 坪；含高流明投影機、無線麥克風、白板；60 張椅子；政府補助案 9 折；假日高費率。", "src": "https://www.tpqc.com.tw/台南擎天館-1331空間介紹/"},
- {"n": "潤學商務共享中心（民生館）・教室 A", "area": "tainan", "type": "共創空間", "capMin": 60, "capMax": 80, "capNote": null, "priceText": "NT$3,000／時段（約 3.5 小時）", "priceFrom": 3000, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "中西區民生路一段 167 號 3 樓；教室 A 60-80 人；教室 B 36-48 人、教室 C 16-20 人另計；含投影幕、白板、麥克風；無限咖啡茶飲。", "src": "https://roomsharer.tw/%E5%8F%B0%E5%8D%97%E5%A0%B4%E5%9C%B0%E7%A7%9F%E5%80%9F/"},
+ {"n": "國立臺中科技大學（中商大樓國際會議廳）", "area": "taichung", "type": "校園", "capMin": 180, "capMax": 180, "capNote": null, "priceText": "NT$15,000／時段", "priceFrom": 15000, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "7212 國際會議廳 180 人；音樂廳 500 席 NT$20,000、視聽廳 300 席 NT$10,000 亦可申請；04-2219-5337；外部需評估校內優先排程。", "src": "https://garms.nutc.edu.tw/VenueRental/VRPlace?_p=4","phone":"04-2219-5337"},
+ {"n": "臺南市立圖書館新總館・哇劇場", "area": "tainan", "type": "圖書館", "capMin": 232, "capMax": 232, "capNote": null, "priceText": "NT$3,600／小時（布撤台 NT$800／小時）", "priceFrom": 3600, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "6 樓鏡框式舞台；含輪椅席 4 席；提前 2 至 6 個月申請；資格為學校／樂團／藝文團體；禁飲食；字幕可行性需向館方確認。", "src": "https://www.tnpl.tn.edu.tw/Page/VenueRentalContent.aspx?ID=z14989933192598596963","phone":"(06)303-5855 分機127"},
+ {"n": "臺南市立圖書館新總館・拾光講堂", "area": "tainan", "type": "圖書館", "capMin": 123, "capMax": 123, "capNote": null, "priceText": "NT$2,000／小時", "priceFrom": 2000, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "6 樓；297 ㎡；配 12 台 55 吋電視牆；座位附麥克風；HDMI 線自備電腦；提前 2 週至 3 個月申請；非營利公益可減免。", "src": "https://www.tnpl.tn.edu.tw/Page/VenueRentalContent.aspx?ID=z14889723979973505840","phone":"(06)303-5855 分機127"},
+ {"n": "臺南市立圖書館新總館・多功能室", "area": "tainan", "type": "圖書館", "capMin": 40, "capMax": 50, "capNote": null, "priceText": "NT$800／小時", "priceFrom": 800, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "4 樓；105.78 ㎡；含投影機、無線麥克風、HDMI 線、活動桌椅；提前 2 週至 3 個月申請；禁飲食。", "src": "https://www.tnpl.tn.edu.tw/Page/VenueRentalContent.aspx?ID=z15117395211593963118","phone":"(06)303-5855 分機127"},
+ {"n": "新營文化中心・演講室", "area": "tainan", "type": "文化展演", "capMin": 80, "capMax": 80, "capNote": null, "priceText": "NT$2,200／場次（另計空調費 NT$200／小時、清潔費 NT$200）", "priceFrom": 2200, "unit": "場", "cap": "uncertain", "cost": "low", "note": "新營區中正路 23 號；演藝廳大廳可容 400 人（NT$3,200／場）、大演藝廳 846 席（NT$15,000-20,000／場）。", "src": "https://xinying-culture.tainan.gov.tw/","phone":"06-6321047、06-6324116"},
+ {"n": "臺南文化中心（東區）・國際廳原生劇場", "area": "tainan", "type": "文化展演", "capMin": 260, "capMax": 260, "capNote": null, "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "東區中華東路三段 332 號；綜合性小型劇場；演藝廳 1,803 席另計；透過台南市一站式平台或文化局申請；洽 06-2692864。", "src": "https://www.tmcc.gov.tw/StaticPage/venues","phone":"06-2692864"},
+ {"n": "歸仁文化中心", "area": "tainan", "type": "文化展演", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "歸仁區信義南路 78 號；含演藝廳、多功能劇場、第二畫廊、兒童故事屋；配合演出活動開放；聯絡 06-3306505。", "src": "https://gueirencultural.tainan.gov.tw/informationlist?uid=35","phone":"06-3306505"},
+ {"n": "臺南文化創意產業園區（B16）・2B 金龍展演廳", "area": "tainan", "type": "文化展演", "capMin": 75, "capMax": 85, "capNote": null, "priceText": "NT$4,000／4 小時", "priceFrom": 4000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "東區北門路二段 16 號；53 坪；含投影機、2 支無線麥克風、音響、HDMI 線、白板；分三時段；2026 年底前優惠租金。", "src": "https://b16tainan.com.tw/subdetail.aspx?cmsid=88&cmid=60&menuid=4","phone":"06-2222681、06-2232427、06-2221254"},
+ {"n": "台南大飯店・國際廳", "area": "tainan", "type": "飯店", "capMin": 120, "capMax": 350, "capNote": null, "priceText": "NT$15,000-35,000／4 小時（依廳別與平假日）", "priceFrom": 15000, "unit": "時段", "cap": "good", "cost": "high", "note": "全廳（490 ㎡）劇院式 350 人、A 館 250 人；免費含投影機、布幕、無線麥克風、Wi-Fi、講台；字幕電腦可外接。", "src": "https://www.hotel-tainan.com.tw/married/ins.php?index_id=38","phone":"886-6-2289101"},
+ {"n": "台南大員皇冠假日酒店・宴會廳暨會議室", "area": "tainan", "type": "飯店", "capMin": 20, "capMax": 900, "capNote": null, "priceText": "NT$780-2,080／人（半日或全日套餐；最低 20 人）", "priceFrom": 780, "unit": "人", "cap": "good", "cost": "high", "note": "宴會廳 208 坪無柱；8 間會議室；含投影設備、電動投影幕、無線麥克風、白板；加收一成服務費；字幕電腦外接可行性高。", "src": "https://www.cptainan.com/wedding-detail/meeting-room/","phone":"886-6-391-1899"},
+ {"n": "大臺南會展中心（ICC Tainan）", "area": "tainan", "type": "會議中心", "capMin": 20, "capMax": 1000, "capNote": null, "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "歸仁區歸仁 12 路 3 號；2022 年開幕；1,000 人及 800 人會議室各一（800 人廳可拆分）；另有 100 人及 20 人室；展覽館 5,000 人。", "src": "https://www.icctainan.com/en/space","phone":"06-303-3456"},
+ {"n": "國立成功大學・光復校區國際會議廳", "area": "tainan", "type": "校園", "capMin": 64, "capMax": 232, "capNote": null, "priceText": "NT$8,000-12,000／4 小時（依廳別）", "priceFrom": 8000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "第一演講室 232 席、第二 157 席、第三 124 席、國際會議廳 64 席；校外需由管理單位代為申請；洽 em50540@email.ncku.edu.tw。", "src": "https://serv-oga.ncku.edu.tw/p/412-1057-11615.php?Lang=zh-tw","phone":"(06)2757575-50540"},
+ {"n": "中國生產力中心台南服務處・教室", "area": "tainan", "type": "共創空間", "capMin": 37, "capMax": 60, "capNote": null, "priceText": "需詢價（智慧互動白板加收 NT$2,750／時段）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "mid", "note": "中西區大埔街 52 號及新市區南科三路（南科培訓中心）；201 教室 60 人、202/303/304 各 40 人；305 含智慧互動電子白板。", "src": "https://tn.cpc.org.tw/place","phone":"(06) 213-4413"},
+ {"n": "台南擎天館（TCCC 台灣文創訓練中心）", "area": "tainan", "type": "共創空間", "capMin": 54, "capMax": 60, "capNote": null, "priceText": "NT$2,200-2,700／時段（約 4 小時）", "priceFrom": 2200, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "東區中華東路二段 77 號 9 樓之 3；20 坪；含高流明投影機、無線麥克風、白板；60 張椅子；政府補助案 9 折；假日高費率。", "src": "https://www.tpqc.com.tw/台南擎天館-1331空間介紹/","phone":"02-6605-0418"},
+ {"n": "潤學商務共享中心（民生館）・教室 A", "area": "tainan", "type": "共創空間", "capMin": 60, "capMax": 80, "capNote": null, "priceText": "NT$3,000／時段（約 3.5 小時）", "priceFrom": 3000, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "中西區民生路一段 167 號 3 樓；教室 A 60-80 人；教室 B 36-48 人、教室 C 16-20 人另計；含投影幕、白板、麥克風；無限咖啡茶飲。", "src": "https://roomsharer.tw/%E5%8F%B0%E5%8D%97%E5%A0%B4%E5%9C%B0%E7%A7%9F%E5%80%9F/","phone":"06-222-9987"},
  {"n": "好日光景（realmoments）", "area": "tainan", "type": "主題空間", "capMin": 30, "capMax": 40, "capNote": null, "priceText": "NT$1,000-1,200／小時（最低 3 小時）", "priceFrom": 1000, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "中西區西門路二段 84 號 3 樓（無電梯）；60 年老屋；20 坪；含投影機、桌椅、Wi-Fi、冷氣；適合 30 人以下活動。", "src": "https://booking.realmoments.com.tw/product/reservation/"},
- {"n": "臺南市美術館・2 館導覽室 2（含詮釋廳）", "area": "tainan", "type": "文化展演", "capMin": 45, "capMax": 100, "capNote": null, "priceText": "按坪計費（室內平日 NT$50／坪／小時；假日 NT$100／坪／小時）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "mid", "note": "中西區南門路 37 號；導覽室 2 約 45 人含投影機、音響、麥克風及口譯亭；榕樹中庭及露臺各約 100 人；申請需 45 天前提出；須符合藝文性質。", "src": "https://www.tnam.museum/application-service/application-place/introduction"},
- {"n": "吳園公會堂・表演廳", "area": "tainan", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "中西區公園路，台灣四大名園之一舊址；含表演廳與地下展覽室；古蹟空間；聯絡 06-2289250；申請表可從文化局網頁下載。", "src": "https://culture.tainan.gov.tw/form/Details?Parser=2,7,119,50,,,138"},
- {"n": "臺南市里社區活動中心（各區）", "area": "tainan", "type": "公有", "capMin": 100, "capMax": 800, "capNote": "低可信度（人數源自綜合數據，各館差異大）", "priceText": "一般使用 NT$450／小時；喜慶宴會 NT$3,000／3 小時", "priceFrom": 450, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "全市各里均設（最大為東區崇文暨崇成聯合中心 800 人）；分早午晚三段；提前 5 天申請；設施含投影機冷氣（各中心不同）；洽 06-2991111。", "src": "https://tnda.tainan.gov.tw/acthouse/online.asp"},
- {"n": "文創 PLUS 臺南創意中心", "area": "tainan", "type": "社創", "capMin": 20, "capMax": 80, "capNote": null, "priceText": "免費借用（需申請；冷氣使用者付費）", "priceFrom": 0, "unit": "時段", "cap": "restricted", "cost": "low", "note": "中西區府前路一段 197 號；戶外廣場 80 人、木板展示空間 30 人、日式空間 20 人；場地不提供設備；須符合文創產業法；提前 3 個月申請；禁政治宗教。", "src": "https://creativetainan.culture.tainan.gov.tw/index.php?temp=space&lang=cht"},
- {"n": "高雄市政府四維行政中心（大禮堂＋會議室群）", "area": "kaohsiung", "type": "公有", "capMin": 40, "capMax": 300, "capNote": null, "priceText": "需詢價（政府機關免費；民間需申請）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "ask", "note": "大禮堂（B2F）300 人、第三會議室 130 人、其他 40-70 人，含投影機與麥克風；政府機關優先，民間洽行政暨國際處。", "src": "https://aia.kcg.gov.tw/BorrowSite.aspx?n=3D4889DFC77A1D53&sms=D7177BCCC5FE18B0"},
- {"n": "高雄市立圖書館總館 際會廳", "area": "kaohsiung", "type": "圖書館", "capMin": 448, "capMax": 454, "capNote": null, "priceText": "需詢價（費用依管理注意事項，未於頁面公告）", "priceFrom": null, "unit": "場", "cap": "good", "cost": "ask", "note": "7-8 樓，126 坪，448 席＋6 無障礙席，21000 流明 4K 雷射投影、智慧燈光音響，全市最具規模圖書館演講廳，字幕外接條件佳；前 30 工作天備文。", "src": "https://www.ksml.edu.tw/tour/Details.aspx?Parser=13,8,914,,,,78"},
- {"n": "高雄市立圖書館總館 華立廳（8F 多功能會議室）", "area": "kaohsiung", "type": "圖書館", "capMin": 100, "capMax": 100, "capNote": null, "priceText": "需詢價（與際會廳同申請系統）", "priceFrom": null, "unit": "場", "cap": "good", "cost": "ask", "note": "8 樓，55 坪，100 席，150 吋電動投影幕、5000 流明投影機、無線麥克風、錄影功能；適合中型研討會或訓練。", "src": "https://www.ksml.edu.tw/mainlibrary/tour/Details.aspx?Parser=13,23,937,158,,,3,,,,1"},
- {"n": "高雄市立圖書館分館多功能研習教室（A 級館）", "area": "kaohsiung", "type": "圖書館", "capMin": null, "capMax": null, "capNote": "需確認（各分館容量不同；A 級館含大東藝術圖書館等 20 處）", "priceText": "平日 NT$400／小時，假日 NT$500／小時；保證金 NT$3,000", "priceFrom": 400, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "A 級館共 20 處，適合閱讀推廣、論壇、研討會；各館容量需個別洽詢；B 級 NT$300／時、C 級 NT$250／時。", "src": "https://www.ksml.edu.tw/tour/Details.aspx?Parser=13,8,914,,,,248,,,,1"},
- {"n": "高雄市社會局婦幼青少年活動中心 視聽教室（原演藝廳）", "area": "kaohsiung", "type": "公有", "capMin": 378, "capMax": 378, "capNote": null, "priceText": "需詢價（費用未公告；僅開放非營利團體及公部門）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "low", "note": "鳳山區光復路二段 120 號，1 樓 294 席＋2 樓 68 席＋無障礙 16 席共 378 席，高級音響、舞台監控、有線無線麥克風；僅限非營利與政府機關。", "src": "https://youth.kcg.gov.tw/Resource_Content.aspx?n=39&sms=10162&s=449"},
- {"n": "高雄市長青綜合服務中心 演藝廳（9-11 樓）", "area": "kaohsiung", "type": "公有", "capMin": 882, "capMax": 882, "capNote": null, "priceText": "需詢價（政府機關免費；老福機構 5 折；以 3 小時為基數）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "low", "note": "苓雅區四維二路 51 號，882 席，大型表演與會議場地；政府機關／學校主辦全免；老福機構 5 折；一般社福減收 2/5。", "src": "https://senior.kcg.gov.tw/Content_List.aspx?n=7E02C1E0DCDA5602"},
+ {"n": "臺南市美術館・2 館導覽室 2（含詮釋廳）", "area": "tainan", "type": "文化展演", "capMin": 45, "capMax": 100, "capNote": null, "priceText": "按坪計費（室內平日 NT$50／坪／小時；假日 NT$100／坪／小時）", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "mid", "note": "中西區南門路 37 號；導覽室 2 約 45 人含投影機、音響、麥克風及口譯亭；榕樹中庭及露臺各約 100 人；申請需 45 天前提出；須符合藝文性質。", "src": "https://www.tnam.museum/application-service/application-place/introduction","phone":"(06) 221-8881"},
+ {"n": "吳園公會堂・表演廳", "area": "tainan", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認", "priceText": "需詢價", "priceFrom": null, "unit": "ask", "cap": "uncertain", "cost": "ask", "note": "中西區公園路，台灣四大名園之一舊址；含表演廳與地下展覽室；古蹟空間；聯絡 06-2289250；申請表可從文化局網頁下載。", "src": "https://culture.tainan.gov.tw/form/Details?Parser=2,7,119,50,,,138","phone":"06-2289250"},
+ {"n": "臺南市里社區活動中心（各區）", "area": "tainan", "type": "公有", "capMin": 100, "capMax": 800, "capNote": "低可信度（人數源自綜合數據，各館差異大）", "priceText": "一般使用 NT$450／小時；喜慶宴會 NT$3,000／3 小時", "priceFrom": 450, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "全市各里均設（最大為東區崇文暨崇成聯合中心 800 人）；分早午晚三段；提前 5 天申請；設施含投影機冷氣（各中心不同）；洽 06-2991111。", "src": "https://tnda.tainan.gov.tw/acthouse/online.asp","phone":"06-2991111"},
+ {"n": "文創 PLUS 臺南創意中心", "area": "tainan", "type": "社創", "capMin": 20, "capMax": 80, "capNote": null, "priceText": "免費借用（需申請；冷氣使用者付費）", "priceFrom": 0, "unit": "時段", "cap": "restricted", "cost": "low", "note": "中西區府前路一段 197 號；戶外廣場 80 人、木板展示空間 30 人、日式空間 20 人；場地不提供設備；須符合文創產業法；提前 3 個月申請；禁政治宗教。", "src": "https://creativetainan.culture.tainan.gov.tw/index.php?temp=space&lang=cht","phone":"0965-252-820"},
+ {"n": "高雄市政府四維行政中心（大禮堂＋會議室群）", "area": "kaohsiung", "type": "公有", "capMin": 40, "capMax": 300, "capNote": null, "priceText": "需詢價（政府機關免費；民間需申請）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "ask", "note": "大禮堂（B2F）300 人、第三會議室 130 人、其他 40-70 人，含投影機與麥克風；政府機關優先，民間洽行政暨國際處。", "src": "https://aia.kcg.gov.tw/BorrowSite.aspx?n=3D4889DFC77A1D53&sms=D7177BCCC5FE18B0","phone":"07-336-8333"},
+ {"n": "高雄市立圖書館總館 際會廳", "area": "kaohsiung", "type": "圖書館", "capMin": 448, "capMax": 454, "capNote": null, "priceText": "需詢價（費用依管理注意事項，未於頁面公告）", "priceFrom": null, "unit": "場", "cap": "good", "cost": "ask", "note": "7-8 樓，126 坪，448 席＋6 無障礙席，21000 流明 4K 雷射投影、智慧燈光音響，全市最具規模圖書館演講廳，字幕外接條件佳；前 30 工作天備文。", "src": "https://www.ksml.edu.tw/tour/Details.aspx?Parser=13,8,914,,,,78","phone":"07-5360238"},
+ {"n": "高雄市立圖書館總館 華立廳（8F 多功能會議室）", "area": "kaohsiung", "type": "圖書館", "capMin": 100, "capMax": 100, "capNote": null, "priceText": "需詢價（與際會廳同申請系統）", "priceFrom": null, "unit": "場", "cap": "good", "cost": "ask", "note": "8 樓，55 坪，100 席，150 吋電動投影幕、5000 流明投影機、無線麥克風、錄影功能；適合中型研討會或訓練。", "src": "https://www.ksml.edu.tw/mainlibrary/tour/Details.aspx?Parser=13,23,937,158,,,3,,,,1","phone":"07-5360238"},
+ {"n": "高雄市立圖書館分館多功能研習教室（A 級館）", "area": "kaohsiung", "type": "圖書館", "capMin": null, "capMax": null, "capNote": "需確認（各分館容量不同；A 級館含大東藝術圖書館等 20 處）", "priceText": "平日 NT$400／小時，假日 NT$500／小時；保證金 NT$3,000", "priceFrom": 400, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "A 級館共 20 處，適合閱讀推廣、論壇、研討會；各館容量需個別洽詢；B 級 NT$300／時、C 級 NT$250／時。", "src": "https://www.ksml.edu.tw/tour/Details.aspx?Parser=13,8,914,,,,248,,,,1","phone":"07-5360238"},
+ {"n": "高雄市社會局婦幼青少年活動中心 視聽教室（原演藝廳）", "area": "kaohsiung", "type": "公有", "capMin": 378, "capMax": 378, "capNote": null, "priceText": "需詢價（費用未公告；僅開放非營利團體及公部門）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "low", "note": "鳳山區光復路二段 120 號，1 樓 294 席＋2 樓 68 席＋無障礙 16 席共 378 席，高級音響、舞台監控、有線無線麥克風；僅限非營利與政府機關。", "src": "https://youth.kcg.gov.tw/Resource_Content.aspx?n=39&sms=10162&s=449","phone":"07-7466900"},
+ {"n": "高雄市長青綜合服務中心 演藝廳（9-11 樓）", "area": "kaohsiung", "type": "公有", "capMin": 882, "capMax": 882, "capNote": null, "priceText": "需詢價（政府機關免費；老福機構 5 折；以 3 小時為基數）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "low", "note": "苓雅區四維二路 51 號，882 席，大型表演與會議場地；政府機關／學校主辦全免；老福機構 5 折；一般社福減收 2/5。", "src": "https://senior.kcg.gov.tw/Content_List.aspx?n=7E02C1E0DCDA5602","phone":"07-771-0055"},
  {"n": "Pinway（駁二 8 號倉庫）", "area": "kaohsiung", "type": "青年中心", "capMin": null, "capMax": null, "capNote": "需確認（各樓層容量未明列；倉庫共 500 坪兩層）", "priceText": "需詢價（超時費 NT$3,200／小時含稅；基本場租洽 07-521-4767）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "ask", "note": "鹽埕區瀨南街 8 號，高雄市青年局管理，500 坪挑高倉庫，可辦展覽會議講座論壇；週三至週日開放；近鹽埕埔站。", "src": "https://pinway.kcg.gov.tw/rental/"},
- {"n": "K-TV 高雄新媒體人才培育中心", "area": "kaohsiung", "type": "青年中心", "capMin": 30, "capMax": 60, "capNote": null, "priceText": "免費借用（需資格：高雄登記機關團體每月上限 20 小時）", "priceFrom": 0, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "鳳山區光復路二段 132 號 2 樓，多功能空間 30-60 人，另有錄音室、錄影棚與小型會議室；平日週一至週六 9-17:30；提前 10 工作天申請，以新媒體活動為主。", "src": "https://youth.kcg.gov.tw/Resource_Content.aspx?n=39&s=8038&sms=10162"},
- {"n": "駁二共創基地 206 共學教室", "area": "kaohsiung", "type": "共創空間", "capMin": 24, "capMax": 48, "capNote": null, "priceText": "平日 NT$3,600／3 小時，假日 NT$4,100／3 小時", "priceFrom": 3600, "unit": "時段", "cap": "good", "cost": "mid", "note": "鹽埕區大勇路 11 號 3 樓，100 吋投影、無線麥克風、音響、講台，座位型 48 人／桌椅型 30 人；近鹽埕埔站；提前 14 天預約。", "src": "https://www.pier2base.tw/space2/2"},
- {"n": "Le Phare 共享空間 新左營館（大型活動舞台）", "area": "kaohsiung", "type": "共創空間", "capMin": 250, "capMax": 250, "capNote": null, "priceText": "NT$3,000 起／小時（最低 3 小時）", "priceFrom": 3000, "unit": "小時", "cap": "uncertain", "cost": "high", "note": "左營三鐵共構站環球商場 4 樓，300 坪無障礙平面，主舞台含投影音響，另有 50 人室及多間小型會議室；音量限制 85dB；APP 預約。", "src": "https://lephare.maison-life.tw/xinzuoying-events-conference-space/"},
- {"n": "TCCC 台灣文創訓練中心 高雄信義館", "area": "kaohsiung", "type": "共創空間", "capMin": 14, "capMax": 106, "capNote": null, "priceText": "平日 NT$550／小時起；最大 K132+K133 合併 NT$1,600／小時", "priceFrom": 550, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "苓雅區中正二路 175 號 13 樓之 3，近信義國小站；4 間教室含投影機、麥克風、WiFi、白板；最大合併 106 人；08:00-22:00 線上即時預訂。", "src": "https://www.tpqc.com.tw/%E5%A0%B4%E5%9C%B0%E7%A7%9F%E7%94%A8/%E9%AB%98%E9%9B%84%E4%BF%A1%E7%BE%A9%E9%A4%A8/"},
- {"n": "高雄軟體園區 會議室（小型／中型／國際會議廳）", "area": "kaohsiung", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認（依小型／中型／國際會議廳分級，容量未直接列出）", "priceText": "小型 NT$231／小時，中型 NT$462／小時（含稅）", "priceFrom": 231, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "前鎮區復興四路 12 號，提供小型／中型／國際會議廳，年度訂購 10 時段加贈 1；適合科技業活動與研討；07-5362919。", "src": "https://www.ksp.org.tw/tw/index.asp?au_id=54&sub_id=153"},
- {"n": "高雄醫學大學國際會議中心（A 廳／B 廳／演藝廳）", "area": "kaohsiung", "type": "校園", "capMin": 187, "capMax": 582, "capNote": null, "priceText": "A 廳 NT$60,000、B 廳 NT$40,000、演藝廳 NT$27,000／時段（校外全額）", "priceFrom": 27000, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "三民區十全一路 100 號，A 廳 582 人、B 廳 283 人、演藝廳 187 人，均階梯式；另有 4 間 30 人平面會議室；校外提前一個月申請另加 5% 稅。", "src": "https://conference.kmu.edu.tw/index.php/%E6%9C%83%E8%AD%B0%E5%BB%B3%E4%BB%8B%E7%B4%B9/%E6%94%B6%E8%B2%BB%E6%A8%99%E6%BA%96%E8%A1%A8"},
- {"n": "國立高雄師範大學 燕巢校區 117 演講廳", "area": "kaohsiung", "type": "校園", "capMin": 364, "capMax": 364, "capNote": null, "priceText": "日間 NT$4,000／4 小時、晚間 NT$5,000／4 小時（另加水電 NT$4,000）", "priceFrom": 4000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "燕巢區 1 樓，364 席，另有和平校區國際會議廳 160 人；校外單位可申請；聯絡 07-7172930。", "src": "https://c.nknu.edu.tw/affair/BorrowSite.aspx?PN=87&Kind=work"},
+ {"n": "K-TV 高雄新媒體人才培育中心", "area": "kaohsiung", "type": "青年中心", "capMin": 30, "capMax": 60, "capNote": null, "priceText": "免費借用（需資格：高雄登記機關團體每月上限 20 小時）", "priceFrom": 0, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "鳳山區光復路二段 132 號 2 樓，多功能空間 30-60 人，另有錄音室、錄影棚與小型會議室；平日週一至週六 9-17:30；提前 10 工作天申請，以新媒體活動為主。", "src": "https://youth.kcg.gov.tw/Resource_Content.aspx?n=39&s=8038&sms=10162","phone":"07-7990829"},
+ {"n": "駁二共創基地 206 共學教室", "area": "kaohsiung", "type": "共創空間", "capMin": 24, "capMax": 48, "capNote": null, "priceText": "平日 NT$3,600／3 小時，假日 NT$4,100／3 小時", "priceFrom": 3600, "unit": "時段", "cap": "good", "cost": "mid", "note": "鹽埕區大勇路 11 號 3 樓，100 吋投影、無線麥克風、音響、講台，座位型 48 人／桌椅型 30 人；近鹽埕埔站；提前 14 天預約。", "src": "https://www.pier2base.tw/space2/2","phone":"07-521-4899"},
+ {"n": "Le Phare 共享空間 新左營館（大型活動舞台）", "area": "kaohsiung", "type": "共創空間", "capMin": 250, "capMax": 250, "capNote": null, "priceText": "NT$3,000 起／小時（最低 3 小時）", "priceFrom": 3000, "unit": "小時", "cap": "uncertain", "cost": "high", "note": "左營三鐵共構站環球商場 4 樓，300 坪無障礙平面，主舞台含投影音響，另有 50 人室及多間小型會議室；音量限制 85dB；APP 預約。", "src": "https://lephare.maison-life.tw/xinzuoying-events-conference-space/","phone":"02-660-41700"},
+ {"n": "TCCC 台灣文創訓練中心 高雄信義館", "area": "kaohsiung", "type": "共創空間", "capMin": 14, "capMax": 106, "capNote": null, "priceText": "平日 NT$550／小時起；最大 K132+K133 合併 NT$1,600／小時", "priceFrom": 550, "unit": "小時", "cap": "uncertain", "cost": "mid", "note": "苓雅區中正二路 175 號 13 樓之 3，近信義國小站；4 間教室含投影機、麥克風、WiFi、白板；最大合併 106 人；08:00-22:00 線上即時預訂。", "src": "https://www.tpqc.com.tw/%E5%A0%B4%E5%9C%B0%E7%A7%9F%E7%94%A8/%E9%AB%98%E9%9B%84%E4%BF%A1%E7%BE%A9%E9%A4%A8/","phone":"02-6605-0418"},
+ {"n": "高雄軟體園區 會議室（小型／中型／國際會議廳）", "area": "kaohsiung", "type": "主題空間", "capMin": null, "capMax": null, "capNote": "需確認（依小型／中型／國際會議廳分級，容量未直接列出）", "priceText": "小型 NT$231／小時，中型 NT$462／小時（含稅）", "priceFrom": 231, "unit": "小時", "cap": "uncertain", "cost": "low", "note": "前鎮區復興四路 12 號，提供小型／中型／國際會議廳，年度訂購 10 時段加贈 1；適合科技業活動與研討；07-5362919。", "src": "https://www.ksp.org.tw/tw/index.asp?au_id=54&sub_id=153","phone":"07-5362919"},
+ {"n": "高雄醫學大學國際會議中心（A 廳／B 廳／演藝廳）", "area": "kaohsiung", "type": "校園", "capMin": 187, "capMax": 582, "capNote": null, "priceText": "A 廳 NT$60,000、B 廳 NT$40,000、演藝廳 NT$27,000／時段（校外全額）", "priceFrom": 27000, "unit": "時段", "cap": "uncertain", "cost": "high", "note": "三民區十全一路 100 號，A 廳 582 人、B 廳 283 人、演藝廳 187 人，均階梯式；另有 4 間 30 人平面會議室；校外提前一個月申請另加 5% 稅。", "src": "https://conference.kmu.edu.tw/index.php/%E6%9C%83%E8%AD%B0%E5%BB%B3%E4%BB%8B%E7%B4%B9/%E6%94%B6%E8%B2%BB%E6%A8%99%E6%BA%96%E8%A1%A8","phone":"(07)312-1101 轉 2407"},
+ {"n": "國立高雄師範大學 燕巢校區 117 演講廳", "area": "kaohsiung", "type": "校園", "capMin": 364, "capMax": 364, "capNote": null, "priceText": "日間 NT$4,000／4 小時、晚間 NT$5,000／4 小時（另加水電 NT$4,000）", "priceFrom": 4000, "unit": "時段", "cap": "uncertain", "cost": "mid", "note": "燕巢區 1 樓，364 席，另有和平校區國際會議廳 160 人；校外單位可申請；聯絡 07-7172930。", "src": "https://c.nknu.edu.tw/affair/BorrowSite.aspx?PN=87&Kind=work","phone":"07-7172930"},
  {"n": "衛武營國家藝術文化中心 演講廳", "area": "kaohsiung", "type": "文化展演", "capMin": 100, "capMax": 100, "capNote": "約 100 人（78.7 坪），官方頁面未列精確費率", "priceText": "需詢價（洽 07-2626666；演講廳適合研討會、講座）", "priceFrom": null, "unit": "場", "cap": "good", "cost": "ask", "note": "鳳山區三多一路 1 號 3 樓，移動式桌椅，13000 流明投影、240 吋主投影幕、32 軌數位混音、陣列式喇叭，字幕接入條件佳；線上租借系統申請。", "src": "https://www.npac-weiwuying.org/service/venue-hire"},
- {"n": "大東文化藝術中心 演講廳", "area": "kaohsiung", "type": "文化展演", "capMin": 224, "capMax": 224, "capNote": null, "priceText": "需詢價（洽 07-7430011 轉 1051；演藝廳平日場 13,000 元起）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "鳳山區光遠路 208 號，演講廳 224 席於行政棟 2 樓，另有大型演藝廳；依高雄市藝文場地使用管理規則辦理；需提前申請檔期。", "src": "https://dadongcenter.kcg.gov.tw/home02.aspx?ID=$2002&IDK=2&EXEC=D&DATA=3174"},
- {"n": "高雄市社會局無障礙之家 禮堂", "area": "kaohsiung", "type": "公有", "capMin": 300, "capMax": 300, "capNote": null, "priceText": "NT$1,000／3 小時場地費（另水電空調 500、清潔 500、保證金 2,000）", "priceFrom": 1000, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "前鎮區翠亨北路 392 號 4 樓，196 坪，300 人，簡易舞台，無線麥克風 6 支，無投影設備；限立案團體辦身心障礙相關活動；近凱旋站。", "src": "https://booking.kcg.gov.tw/place/place_detail/66.html"},
+ {"n": "大東文化藝術中心 演講廳", "area": "kaohsiung", "type": "文化展演", "capMin": 224, "capMax": 224, "capNote": null, "priceText": "需詢價（洽 07-7430011 轉 1051；演藝廳平日場 13,000 元起）", "priceFrom": null, "unit": "場", "cap": "uncertain", "cost": "mid", "note": "鳳山區光遠路 208 號，演講廳 224 席於行政棟 2 樓，另有大型演藝廳；依高雄市藝文場地使用管理規則辦理；需提前申請檔期。", "src": "https://dadongcenter.kcg.gov.tw/home02.aspx?ID=$2002&IDK=2&EXEC=D&DATA=3174","phone":"07-7430011"},
+ {"n": "高雄市社會局無障礙之家 禮堂", "area": "kaohsiung", "type": "公有", "capMin": 300, "capMax": 300, "capNote": null, "priceText": "NT$1,000／3 小時場地費（另水電空調 500、清潔 500、保證金 2,000）", "priceFrom": 1000, "unit": "時段", "cap": "uncertain", "cost": "low", "note": "前鎮區翠亨北路 392 號 4 樓，196 坪，300 人，簡易舞台，無線麥克風 6 支，無投影設備；限立案團體辦身心障礙相關活動；近凱旋站。", "src": "https://booking.kcg.gov.tw/place/place_detail/66.html","phone":"07-8151500"},
  {"n": "高雄展覽館（KECC）會議中心", "area": "kaohsiung", "type": "會議中心", "capMin": 20, "capMax": 2000, "capNote": null, "priceText": "需詢價（大會堂 2000 人、中型會議室 800 人，費率依檔期協議）", "priceFrom": null, "unit": "場", "cap": "good", "cost": "ask", "note": "前鎮區成功二路 39 號，亞洲新灣區，3 樓會議中心含 301 大會堂（2000 人）、304（800 人）、20-40 人系列；投影、音響、口譯室、媒體中心，字幕接入條件佳。", "src": "https://www.kecc.com.tw/zh-tw/rental-venue"},
- {n:"TICC 台北國際會議中心",area:"taipei",type:"會議中心",capMin:100,capMax:3122,capNote:null,priceText:"NT$5,000-159,000 / 時段",priceFrom:5000,unit:"時段",cap:"restricted",cost:"high",note:"高形象主場；視聽器材通常不得自帶、餐飲有限制。",src:"https://www.ticc.com.tw/"},
- {n:"集思台大會議中心",area:"taipei",type:"會議中心",capMin:150,capMax:400,capNote:null,priceText:"NT$44,000-48,000 / 時段",priceFrom:44000,unit:"時段",cap:"good",cost:"mid",note:"B1 國際會議廳劇院約 400 席、附電子字幕機；另加 10% 清潔費。",src:"https://www.meeting.com.tw/ntu/the-forum.php"},
- {n:"集思交通部國際會議中心",area:"taipei",type:"會議中心",capMin:50,capMax:117,capNote:null,priceText:"NT$9,000-31,000 / 時段",priceFrom:9000,unit:"時段",cap:"good",cost:"mid",note:"國際會議廳劇院約 76、教室約 117 人，屬中小型；另有 201 室；另加 10% 清潔費。",src:"https://www.meeting.com.tw/motc/plenary-hall.php"},
- {n:"集思北科大會議中心（感恩廳）",area:"taipei",type:"會議中心",capMin:50,capMax:200,capNote:null,priceText:"NT$24,500-27,000 / 時段",priceFrom:24500,unit:"時段",cap:"good",cost:"mid",note:"感恩廳約至 200 人、字幕流程熟；另加 10% 清潔費。（更小的卡博廳約 NT$5,000 起）",src:"https://www.meeting.com.tw/ntut/"},
- {n:"臺大醫院國際會議中心",area:"taipei",type:"會議中心",capMin:null,capMax:null,capNote:"需確認",priceText:"NT$17,000-19,000 / 時段",priceFrom:17000,unit:"時段",cap:"restricted",cost:"mid",note:"同步翻譯設備不得自備、禁外食；容量報告未載、需確認。",src:"https://www.nthcc.com.tw/"},
- {n:"臺大圖書館國際會議廳",area:"taipei",type:"校園",capMin:null,capMax:null,capNote:"需確認",priceText:"NT$12,000 / 半日",priceFrom:12000,unit:"半日",cap:"restricted",cost:"low",note:"官方註明無法外接其他影音設備，可能不適合作字幕主場；容量需確認。",src:"https://www.lib.ntu.edu.tw/node/167"},
- {n:"國立臺北商業大學國際會議廳",area:"taipei",type:"校園",capMin:120,capMax:208,capNote:null,priceText:"NT$30,250 / 時段",priceFrom:30250,unit:"時段",cap:"uncertain",cost:"mid",note:"208 人、有投影麥克風空調；校園場地要早確認借用資格與外部設備。",src:"https://gen.ntub.edu.tw/p/412-1009-5085.php"},
- {n:"臺北市客家文化主題公園劇場",area:"taipei",type:"文化展演",capMin:200,capMax:300,capNote:null,priceText:"NT$12,000-16,000 / 時段",priceFrom:12000,unit:"時段",cap:"uncertain",cost:"low",note:"300 人劇場；要確認劇場音控能否給字幕電腦乾淨人聲。",src:"https://ssl.thcp.org.tw/rental"},
- {n:"大同運動中心國際會議廳",area:"taipei",type:"公有",capMin:100,capMax:199,capNote:null,priceText:"NT$2,100 / 小時",priceFrom:2100,unit:"小時",cap:"uncertain",cost:"low",note:"199 座加 4 輪椅席、有控制室；禁飲食；另加 10% 清潔費。",src:"https://www.dtsc-wdyg.com.tw/"},
- {n:"台北 NPO 聚落",area:"taipei",type:"社創",capMin:10,capMax:80,capNote:null,priceText:"NT$800-5,000 / 小時",priceFrom:800,unit:"小時",cap:"uncertain",cost:"low",note:"適合志工訓練、工作坊、流程試跑；NPO／NGO／社企有優惠；不適合大型主場。",src:"https://www.npohub.taipei/"},
- {n:"社會創新實驗中心",area:"taipei",type:"社創",capMin:20,capMax:150,capNote:"需確認",priceText:"需申請、未公開",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"線上申請、場次計費與審核；公開頁未列完整價格與容量。",src:"https://startup.sme.gov.tw/sitaiwan/Home/spaceRent"},
- {n:"松山文創園區多功能展演廳",area:"taipei",type:"文化展演",capMin:200,capMax:600,capNote:null,priceText:"NT$63,000-90,000 / 日",priceFrom:63000,unit:"日",cap:"uncertain",cost:"high",note:"古蹟限制多、不含清潔撤場；電力空調 NT$7,000／日另計。",src:"https://www.songshanculturalpark.org/"},
- {n:"松山文創園區 1 / 4 / 5 號倉庫",area:"taipei",type:"文化展演",capMin:300,capMax:1000,capNote:null,priceText:"NT$73,500-105,000 / 日",priceFrom:73500,unit:"日",cap:"uncertain",cost:"high",note:"空間大但非宴會廳；影音、座椅、餐飲、動線都要另估。",src:"https://www.songshanculturalpark.org/"},
- {n:"臺北表演藝術中心 TPAC（北藝中心）",area:"taipei",type:"文化展演",capMin:200,capMax:1460,capNote:null,priceText:"NT$1,500-10,000 / 時段起；主劇場需洽詢",priceFrom:1500,unit:"時段",cap:"uncertain",cost:"mid",note:"球劇場外觀近似巨蛋；表演場館非純會議室，座位與動線要先確認。",src:"https://space.tpac-taipei.org/"},
- {n:"新北市政府多功能集會堂",area:"newtaipei",type:"公有",capMin:300,capMax:1408,capNote:null,priceText:"NT$20,000 / 場（3 小時）；公益 7 折約 NT$14,000",priceFrom:20000,unit:"場",cap:"uncertain",cost:"low",note:"場租低；外接字幕筆電須事前申請、禁飲食；乾淨人聲輸出需確認。公益／政府／公立學校 7 折。",src:"https://ntpcsite.ntpc.gov.tw/location/detail/13"},
- {n:"台北大巨蛋 Taipei Dome",area:"taipei",type:"賽事場館",capMin:5000,capMax:40000,capNote:null,priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",ref:true,note:"大型賽事、演唱會、展覽；規模遠超會議，列為對照、不建議作會議主場。",src:"https://www.farglorydome.com.tw/"},
- {n:"台北小巨蛋 Taipei Arena",area:"taipei",type:"賽事場館",capMin:3000,capMax:15000,capNote:null,priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",ref:true,note:"演唱會、體育賽事等大型活動；列為對照、不建議作會議主場。",src:"https://www.arena.taipei/"},
+ {n:"TICC 台北國際會議中心",area:"taipei",type:"會議中心",capMin:100,capMax:3122,capNote:null,priceText:"NT$5,000-159,000 / 時段",priceFrom:5000,unit:"時段",cap:"restricted",cost:"high",note:"高形象主場；視聽器材通常不得自帶、餐飲有限制。",src:"https://www.ticc.com.tw/","phone":"(02)2725-5200"},
+ {n:"集思台大會議中心",area:"taipei",type:"會議中心",capMin:150,capMax:400,capNote:null,priceText:"NT$44,000-48,000 / 時段",priceFrom:44000,unit:"時段",cap:"good",cost:"mid",note:"B1 國際會議廳劇院約 400 席、附電子字幕機；另加 10% 清潔費。",src:"https://www.meeting.com.tw/ntu/the-forum.php","phone":"(02) 2363-5868"},
+ {n:"集思交通部國際會議中心",area:"taipei",type:"會議中心",capMin:50,capMax:117,capNote:null,priceText:"NT$9,000-31,000 / 時段",priceFrom:9000,unit:"時段",cap:"good",cost:"mid",note:"國際會議廳劇院約 76、教室約 117 人，屬中小型；另有 201 室；另加 10% 清潔費。",src:"https://www.meeting.com.tw/motc/plenary-hall.php","phone":"(02) 2321-4946"},
+ {n:"集思北科大會議中心（卡博廳／感恩廳）",area:"taipei",type:"會議中心",capMin:50,capMax:200,capNote:null,priceText:"NT$5,000-27,000 / 時段",priceFrom:5000,unit:"時段",cap:"good",cost:"mid",note:"卡博廳低價小廳約 NT$5,000 起、感恩廳約至 200 人、字幕流程熟；另加 10% 清潔費。",src:"https://www.meeting.com.tw/ntut/","phone":"(02) 2741-7655"},
+ {n:"臺大醫院國際會議中心",area:"taipei",type:"會議中心",capMin:null,capMax:null,capNote:"需確認",priceText:"NT$17,000-19,000 / 時段",priceFrom:17000,unit:"時段",cap:"restricted",cost:"mid",note:"同步翻譯設備不得自備、禁外食；容量報告未載、需確認。",src:"https://www.nthcc.com.tw/","phone":"02-77240109"},
+ {n:"臺大圖書館國際會議廳",area:"taipei",type:"校園",capMin:null,capMax:null,capNote:"需確認",priceText:"NT$12,000 / 半日",priceFrom:12000,unit:"半日",cap:"restricted",cost:"low",note:"官方註明無法外接其他影音設備，可能不適合作字幕主場；容量需確認。",src:"https://www.lib.ntu.edu.tw/node/167","phone":"02-33662358"},
+ {n:"國立臺北商業大學國際會議廳",area:"taipei",type:"校園",capMin:120,capMax:208,capNote:null,priceText:"NT$30,250 / 時段",priceFrom:30250,unit:"時段",cap:"uncertain",cost:"mid",note:"208 人、有投影麥克風空調；校園場地要早確認借用資格與外部設備。",src:"https://gen.ntub.edu.tw/p/412-1009-5085.php","phone":"886-2-33222777"},
+ {n:"大同運動中心國際會議廳",area:"taipei",type:"公有",capMin:100,capMax:199,capNote:null,priceText:"NT$2,100 / 小時",priceFrom:2100,unit:"小時",cap:"uncertain",cost:"low",note:"199 座加 4 輪椅席、有控制室；禁飲食；另加 10% 清潔費。",src:"https://www.dtsc-wdyg.com.tw/","phone":"02-2592-0055"},
+ {n:"台北 NPO 聚落",area:"taipei",type:"社創",capMin:10,capMax:80,capNote:null,priceText:"NT$800-5,000 / 小時",priceFrom:800,unit:"小時",cap:"uncertain",cost:"low",note:"適合志工訓練、工作坊、流程試跑；NPO／NGO／社企有優惠；不適合大型主場。",src:"https://www.npohub.taipei/","phone":"02-2301-2160"},
+ {n:"社會創新實驗中心",area:"taipei",type:"社創",capMin:20,capMax:150,capNote:"需確認",priceText:"需申請、未公開",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"線上申請、場次計費與審核；公開頁未列完整價格與容量。",src:"https://startup.sme.gov.tw/sitaiwan/Home/spaceRent","phone":"02-6631-5055#123"},
+ {n:"松山文創園區多功能展演廳",area:"taipei",type:"文化展演",capMin:200,capMax:600,capNote:null,priceText:"NT$63,000-90,000 / 日",priceFrom:63000,unit:"日",cap:"uncertain",cost:"high",note:"古蹟限制多、不含清潔撤場；電力空調 NT$7,000／日另計。",src:"https://www.songshanculturalpark.org/","phone":"02-2765-1388"},
+ {n:"松山文創園區 1 / 4 / 5 號倉庫",area:"taipei",type:"文化展演",capMin:300,capMax:1000,capNote:null,priceText:"NT$73,500-105,000 / 日",priceFrom:73500,unit:"日",cap:"uncertain",cost:"high",note:"空間大但非宴會廳；影音、座椅、餐飲、動線都要另估。",src:"https://www.songshanculturalpark.org/","phone":"02-2765-1388"},
+ {n:"臺北表演藝術中心 TPAC（北藝中心）",area:"taipei",type:"文化展演",capMin:200,capMax:1460,capNote:null,priceText:"NT$1,500-10,000 / 時段起；主劇場需洽詢",priceFrom:1500,unit:"時段",cap:"uncertain",cost:"mid",note:"球劇場外觀近似巨蛋；表演場館非純會議室，座位與動線要先確認。",src:"https://space.tpac-taipei.org/","phone":"02-7756-3800"},
+ {n:"新北市政府多功能集會堂",area:"newtaipei",type:"公有",capMin:300,capMax:1408,capNote:null,priceText:"NT$20,000 / 場（3 小時）；公益 7 折約 NT$14,000",priceFrom:20000,unit:"場",cap:"uncertain",cost:"low",note:"場租低；外接字幕筆電須事前申請、禁飲食；乾淨人聲輸出需確認。公益／政府／公立學校 7 折。",src:"https://ntpcsite.ntpc.gov.tw/location/detail/13","phone":"02-29603456#2245"},
+ {n:"台北大巨蛋 Taipei Dome",area:"taipei",type:"賽事場館",capMin:5000,capMax:40000,capNote:null,priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",ref:true,note:"大型賽事、演唱會、展覽；規模遠超會議，列為對照、不建議作會議主場。",src:"https://www.farglorydome.com.tw/","phone":"02-2722-8811"},
+ {n:"台北小巨蛋 Taipei Arena",area:"taipei",type:"賽事場館",capMin:3000,capMax:15000,capNote:null,priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",ref:true,note:"演唱會、體育賽事等大型活動；列為對照、不建議作會議主場。",src:"https://www.arena.taipei/","phone":"02-2578-3536"},
  {n:"台北君悅酒店",area:"taipei",type:"飯店",capMin:50,capMax:1400,capNote:null,priceText:"全日每人 NT$2,300 起",priceFrom:2300,unit:"人",cap:"uncertain",cost:"mid",note:"飯店服務完整；外接字幕筆電與乾淨人聲輸出仍要確認。",src:"https://www.grandhyatttaipei.com.tw/"},
- {n:"台北喜來登大飯店",area:"taipei",type:"飯店",capMin:50,capMax:1400,capNote:null,priceText:"每人 NT$1,600-2,600 + 10%",priceFrom:1600,unit:"人",cap:"uncertain",cost:"mid",note:"飯店中資訊透明，適合作比價基準。",src:"https://www.sheratongrandtaipei.com/"},
- {n:"台北萬豪酒店",area:"taipei",type:"飯店",capMin:50,capMax:1200,capNote:null,priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"有容量與活動空間資料，未找到公開會議專案價。",src:"https://www.taipeimarriott.com.tw/"},
- {n:"台北寒舍艾美酒店",area:"taipei",type:"飯店",capMin:50,capMax:800,capNote:null,priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"有會議專案頁，公開頁未列每日／半日價格。",src:"https://www.lemeridien-taipei.com/"},
- {n:"台北艾麗 希爾頓格芮精選酒店",area:"taipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認（品牌／容量）",priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"來源混用台北艾麗／Humble House（宴會廳另有資料稱近千人）；品牌與容量需確認，需書面報價。",src:"https://www.humblehousehotels.com/"},
+ {n:"台北喜來登大飯店",area:"taipei",type:"飯店",capMin:50,capMax:1400,capNote:null,priceText:"每人 NT$1,600-2,600 + 10%",priceFrom:1600,unit:"人",cap:"uncertain",cost:"mid",note:"飯店中資訊透明，適合作比價基準。",src:"https://www.sheratongrandtaipei.com/","phone":"02-2321-5511"},
+ {n:"台北萬豪酒店",area:"taipei",type:"飯店",capMin:50,capMax:1200,capNote:null,priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"有容量與活動空間資料，未找到公開會議專案價。",src:"https://www.taipeimarriott.com.tw/","phone":"02-8502-9999"},
+ {n:"台北寒舍艾美酒店",area:"taipei",type:"飯店",capMin:50,capMax:800,capNote:null,priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"有會議專案頁，公開頁未列每日／半日價格。",src:"https://www.lemeridien-taipei.com/","phone":"+886 2 6622 8000"},
+ {n:"台北艾麗 希爾頓格芮精選酒店",area:"taipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認（品牌／容量）",priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"來源混用台北艾麗／Humble House（宴會廳另有資料稱近千人）；品牌與容量需確認，需書面報價。",src:"https://www.humblehousehotels.com/","phone":"+886 2 6631 8000"},
  {n:"台北文華東方酒店",area:"taipei",type:"飯店",capMin:50,capMax:1200,capNote:null,priceText:"每人 NT$3,080-3,680 起 + 10%",priceFrom:3080,unit:"人",cap:"uncertain",cost:"high",note:"高端飯店，形象需求高的場次；不是低成本首選。",src:"https://www.mandarinoriental.com/zh-hant/taipei/songshan/meet"},
- {n:"台北遠東香格里拉飯店",area:"taipei",type:"飯店",capMin:50,capMax:800,capNote:null,priceText:"每人 NT$2,600-2,900 + 10%",priceFrom:2600,unit:"人",cap:"uncertain",cost:"mid",note:"價格公開、30 人以上；適合與喜來登、君悅比較。",src:"https://tpe.fareasternhotel.com.tw/"},
+ {n:"台北遠東香格里拉飯店",area:"taipei",type:"飯店",capMin:50,capMax:800,capNote:null,priceText:"每人 NT$2,600-2,900 + 10%",priceFrom:2600,unit:"人",cap:"uncertain",cost:"mid",note:"價格公開、30 人以上；適合與喜來登、君悅比較。",src:"https://tpe.fareasternhotel.com.tw/","phone":"02-2378-8888"},
  {n:"台北新板希爾頓酒店",area:"newtaipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認（官方僅列面積）",priceText:"個案每人 NT$2,300 / 半日（無公開價）",priceFrom:null,unit:"人",cap:"uncertain",cost:"mid",note:"官方頁僅「查詢價格」入口、無公開價；個案上下午各每人 NT$2,300（兩個半日約 4,600/人）；容量官方僅列 1,037 平方公尺、非人數。",src:"https://www.hilton.com/zh-hant/hotels/tsatchi-hilton-taipei-sinban/events/"},
- {n:"台北六福萬怡酒店",area:"taipei",type:"飯店",capMin:50,capMax:400,capNote:null,priceText:"每人 NT$1,400-2,900 + 10%",priceFrom:1400,unit:"人",cap:"uncertain",cost:"mid",note:"公開資訊完整，低於五星核心區飯店的比較基準。",src:"https://www.courtyardtaipei.com.tw/newsPage/112"},
+ {n:"台北六福萬怡酒店",area:"taipei",type:"飯店",capMin:50,capMax:400,capNote:null,priceText:"每人 NT$1,400-2,900 + 10%",priceFrom:1400,unit:"人",cap:"uncertain",cost:"mid",note:"公開資訊完整，低於五星核心區飯店的比較基準。",src:"https://www.courtyardtaipei.com.tw/newsPage/112","phone":"02-6615-6565"},
  {n:"台北國泰萬怡酒店",area:"taipei",type:"飯店",capMin:50,capMax:378,capNote:null,priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"有活動空間資料，未找到公開會議專案價；問清楚可否外接字幕筆電。",src:"https://www.marriott.com/en-us/hotels/tpecd-courtyard-taipei-downtown/events/"},
  {n:"台北晶華酒店",area:"taipei",type:"飯店",capMin:null,capMax:null,capNote:"低可信度（第三方）",priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"未找到官方公開會議專案價；容量僅第三方資料、低可信度，需確認。",src:"https://www.regenttaipei.com/"},
- {n:"台北士林萬麗酒店",area:"taipei",type:"飯店",capMin:50,capMax:450,capNote:null,priceText:"每人 NT$2,400-2,800 + 10%",priceFrom:2400,unit:"人",cap:"uncertain",cost:"mid",note:"士林區選項；需確認專案有效日期與最低人數。",src:"https://www.renaissancetaipei.com/"},
- {n:"圓山大飯店",area:"taipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認",priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"形象強；容量與價格來源未載，需直接詢問。",src:"https://www.grand-hotel.org/"},
- {n:"台北花園大酒店",area:"taipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認",priceText:"每人 NT$1,200-3,200 + 10%",priceFrom:1200,unit:"人",cap:"uncertain",cost:"low",note:"公開價低於許多五星飯店，可當預算飯店基準；容量需確認。",src:"https://www.taipeigarden.com.tw/"},
- {n:"JR 東日本大飯店台北",area:"taipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認",priceText:"每人 NT$1,800-2,400 + 10%",priceFrom:1800,unit:"人",cap:"uncertain",cost:"mid",note:"公開價格清楚、保證 20 位起；容量需確認。",src:"https://taipei.metropolitan.tw/banquet/plan/"},
- {n:"福容大飯店淡水漁人碼頭",area:"newtaipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認",priceText:"平日每人 NT$950-2,300 + 10%",priceFrom:950,unit:"人",cap:"uncertain",cost:"low",note:"不在台北市中心，但可接受淡水交通則為低價比價錨點；容量需確認。",src:"https://www.fullon-hotels.com.tw/fw/tw/news-detail/4959/"}
+ {n:"台北士林萬麗酒店",area:"taipei",type:"飯店",capMin:50,capMax:450,capNote:null,priceText:"每人 NT$2,400-2,800 + 10%",priceFrom:2400,unit:"人",cap:"uncertain",cost:"mid",note:"士林區選項；需確認專案有效日期與最低人數。",src:"https://www.renaissancetaipei.com/","phone":"02-88612389"},
+ {n:"圓山大飯店",area:"taipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認",priceText:"需詢價",priceFrom:null,unit:"ask",cap:"uncertain",cost:"ask",note:"形象強；容量與價格來源未載，需直接詢問。",src:"https://www.grand-hotel.org/","phone":"02-2886-8888"},
+ {n:"台北花園大酒店",area:"taipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認",priceText:"每人 NT$1,200-3,200 + 10%",priceFrom:1200,unit:"人",cap:"uncertain",cost:"low",note:"公開價低於許多五星飯店，可當預算飯店基準；容量需確認。",src:"https://www.taipeigarden.com.tw/","phone":"02-2314-6611"},
+ {n:"JR 東日本大飯店台北",area:"taipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認",priceText:"每人 NT$1,800-2,400 + 10%",priceFrom:1800,unit:"人",cap:"uncertain",cost:"mid",note:"公開價格清楚、保證 20 位起；容量需確認。",src:"https://taipei.metropolitan.tw/banquet/plan/","phone":"02-7750-0900"},
+ {n:"福容大飯店淡水漁人碼頭",area:"newtaipei",type:"飯店",capMin:null,capMax:null,capNote:"需確認",priceText:"平日每人 NT$950-2,300 + 10%",priceFrom:950,unit:"人",cap:"uncertain",cost:"low",note:"不在台北市中心，但可接受淡水交通則為低價比價錨點；容量需確認。",src:"https://www.fullon-hotels.com.tw/fw/tw/news-detail/4959/","phone":"02-2628-7777"}
 ];
 
 // --- TOOLS (13) ---
@@ -378,7 +441,7 @@ const TOOLS=[
  {name:"3Play Media",origin:"國際",role:"CART專業字幕",priceFeel:"高／需排程",languages:"需確認（英文字幕員較易）",qr:"需確認",glossary:"需確認",humanCorrect:"有",tiers:["L"],why:"即時自動／真人專業字幕平台，可靠性高於單純 AI；正式無障礙需求列高穩定。",source:"https://www.3playmedia.com/platform/livecaptioning/"}
 ];
 const TOOLS_BYTIER={
- XS:"Akkadu、Microsoft Translator 試跑；UDTalk、YYSystem 作日本流程參考（非正式無障礙服務）",
+ XS:"Akkadu、Microsoft Translator 試跑；UDTalk、YYSystem 作日本流程參考（非無障礙基準服務）",
  S:"先試 Akkadu／EventCAT；Vurbo.ai 可詢試用或低階方案",
  M:"主測 Vurbo.ai 與 KKCO，擇一正式；EventCAT 作價格透明備援；Akkadu 作低成本備援",
  L:"Wordly／AI-Media LEXI／StreamText／3Play Media 等正式供應商；一定要搭配 CART／手語／專業字幕人工服務"
@@ -386,9 +449,9 @@ const TOOLS_BYTIER={
 
 // --- TIERS (4) ---
 const TIERS=[
- {id:"XS",name:"小型工作坊（XS）",people:"20-50 人",audio:"一支手持麥或會議室麥直接接筆電收音（此級報告未要求從混音器拉乾淨人聲）。",equipment:["一支手持麥或會議室麥","一台接聲音的筆電","QR 碼或網址","場內 Wi-Fi（需確認）"],staff:["1 位志工看字幕是否大致可用"],tools:"Akkadu、Microsoft Translator、UDTalk、YYSystem 這類低成本工具試跑。",budget:"報告無 XS 套裝；可參考低成本試跑工具與操作 NT$0-25,000 為上限錨點，實際依規模另估（需確認）。",useWhen:"內部測試、志工訓練、小型旁會，只測流程、不承諾品質。",a11yNote:"報告明確標示這不是正式無障礙服務；若有聾人或聽障與會者，須改加 CART 或手語，不分人數規模。"},
+ {id:"XS",name:"小型工作坊（XS）",people:"20-50 人",audio:"一支手持麥或會議室麥直接接筆電收音（此級報告未要求從混音器拉乾淨人聲）。",equipment:["一支手持麥或會議室麥","一台接聲音的筆電","QR 碼或網址","場內 Wi-Fi（需確認）"],staff:["1 位志工看字幕是否大致可用"],tools:"Akkadu、Microsoft Translator、UDTalk、YYSystem 這類低成本工具試跑。",budget:"報告無 XS 套裝；可參考低成本試跑工具與操作 NT$0-25,000 為上限錨點，實際依規模另估（需確認）。",useWhen:"內部測試、志工訓練、小型旁會，只測流程、不承諾品質。",a11yNote:"報告明確標示這不是無障礙基準服務；若有聾人或聽障與會者，須改加 CART 或手語，不分人數規模。"},
  {id:"S",name:"低成本試跑（S）",people:"50-150 人",audio:"台上講者都用麥，從混音器拉一條乾淨人聲→USB 音訊介面→字幕筆電；這一級開始就不要讓筆電聽喇叭。",equipment:["講者麥克風","小型或場地混音器","USB 音訊介面","字幕筆電","HDMI 線與備用轉接頭","QR 碼投影片","4G/5G 熱點備援"],staff:["1 位字幕操作員","1 位志工看字幕品質","1 位問答麥克風遞送人員（可兼場務）"],tools:"優先測 Akkadu、EventCAT 小時計費；Microsoft Translator 備援；UDTalk／YYSystem 作日本流程參考。",budget:"工具與操作 NT$0-25,000；影音額外費用視場地約 NT$5,000-30,000；外包影音或租設備另計。",useWhen:"小型公開活動、前導場、贊助商說明會；確認場地能否給乾淨人聲、QR 是否順、工具對術語可否接受。",a11yNote:"定位為實驗／試跑而非正式無障礙基準；此級開始建立術語表。若已知有聾人／聽障需求，仍須另加 CART 或手語。"},
- {id:"M",name:"正式建議方案（M）",people:"150-300 人",audio:"主持／講者／座談／問答全部麥→場地或外包影音混音器→現場喇叭＋專用 AUX/MATRIX 只含人聲訊號→USB 音訊介面→字幕主機；備援走 Akkadu 或 Microsoft Translator＋備用 QR。",equipment:["每位講者麥克風","座談桌上麥或足夠手持麥","問答無線手持麥 1-2 支","影音混音器與專用乾淨人聲訊號","USB 音訊介面","字幕主機與備用筆電","場內 Wi-Fi 另備 5G 熱點","QR 碼海報、投影片、報到桌小卡"],staff:["1 位字幕操作員","1 位影音對接窗口","1-2 位志工修正術語表","1-2 位問答麥克風遞送人員","1 位報到桌志工說明 QR"],tools:"優先序：1) Vurbo.ai 或 KKCO（台灣支援與報價合理時）2) EventCAT（需價格透明）3) Akkadu 低成本備援 4) UDTalk 人力修正流程參考。",budget:"工具與操作 NT$35,000-150,000；影音額外費用約 NT$20,000-80,000（視場地包套與外包影音）；廠商提供現場操作員時總價可能再提高。",useWhen:"台北大型實體場地、一天或半天的正式活動；最推薦的平衡點：台灣或亞洲工具優先、保留備援、把音訊流程做穩。",a11yNote:"預設把字幕當正式無障礙服務，但 AI 字幕不等於無障礙保證；若已知有聾人／聽障與會者，M 級仍須加 CART 或手語，不能只靠 AI。"},
+ {id:"M",name:"正式建議方案（M）",people:"150-300 人",audio:"主持／講者／座談／問答全部麥→場地或外包影音混音器→現場喇叭＋專用 AUX/MATRIX 只含人聲訊號→USB 音訊介面→字幕主機；備援走 Akkadu 或 Microsoft Translator＋備用 QR。",equipment:["每位講者麥克風","座談桌上麥或足夠手持麥","問答無線手持麥 1-2 支","影音混音器與專用乾淨人聲訊號","USB 音訊介面","字幕主機與備用筆電","場內 Wi-Fi 另備 5G 熱點","QR 碼海報、投影片、報到桌小卡"],staff:["1 位字幕操作員","1 位影音對接窗口","1-2 位志工修正術語表","1-2 位問答麥克風遞送人員","1 位報到桌志工說明 QR"],tools:"優先序：1) Vurbo.ai 或 KKCO（台灣支援與報價合理時）2) EventCAT（需價格透明）3) Akkadu 低成本備援 4) UDTalk 人力修正流程參考。",budget:"工具與操作 NT$35,000-150,000；影音額外費用約 NT$20,000-80,000（視場地包套與外包影音）；廠商提供現場操作員時總價可能再提高。",useWhen:"台北大型實體場地、一天或半天的正式活動；最推薦的平衡點：台灣或亞洲工具優先、保留備援、把音訊流程做穩。",a11yNote:"預設把字幕當無障礙基準服務，但 AI 字幕不等於無障礙保證；若已知有聾人／聽障與會者，M 級仍須加 CART 或手語，不能只靠 AI。"},
  {id:"L",name:"高穩定方案（L）",people:"300-500+ 人",audio:"所有麥→專業影音混音器→現場擴音；拉兩路乾淨人聲（訊號1 進 AI 字幕、訊號2 進人工字幕員／CART／備用平台）→字幕主機＋備機→主／備 QR。",equipment:["完整影音控台","兩路乾淨人聲訊號","主字幕機與備機","專用網路或優先 Wi-Fi","現場字幕服務台","備用投影方案","備用 QR 碼"],staff:["專業影音技術負責人","字幕平台操作員","人工字幕員或 CART 協調人員","志工修正小組","問答麥克風遞送人員 2 位以上","無障礙服務窗口"],tools:"可詢 Wordly、AI-Media LEXI、StreamText、3Play Media，並搭配台灣同步聽打／CART／手語服務。",budget:"工具與操作 NT$180,000-600,000+（上不封頂）；影音與人力另計；多語人工字幕會再上升。",useWhen:"國際嘉賓多、媒體或政府參與、已知有聾人／聽障無障礙需求的正式國際會議。",a11yNote:"已知無障礙需求時 CART／手語／專業字幕為必要，AI 只能當多語即時翻譯的補充、不能當唯一服務。"}
 ];
 
@@ -397,15 +460,16 @@ const COST={
  avBand:{XS:"NT$5,000-30,000",S:"NT$5,000-30,000",M:"NT$20,000-80,000",L:"需確認／另計（報告未給數字）"},
  toolOpBand:{XS:"NT$0-25,000",S:"NT$0-25,000",M:"NT$35,000-150,000",L:"NT$180,000-600,000+"},
  staffNote:"報告只列角色與人數、未列單價，金額一律需確認（志工無酬／廠商打包／另聘）。",
- cartBand:"需向供應商報價（報告未列金額）。正式無障礙服務不能只靠 AI 字幕，須加 CART／手語／專業字幕。",
+ cartBand:"需向供應商報價（報告未列金額）。無障礙基準服務不能只靠 AI 字幕，須加 CART／手語／專業字幕。",
  cateringPerHead:"飯店每人專案多已含餐飲（需確認服務費）；非飯店多需另估，部分場地禁外食，每人 NT$ 需確認。",
  venueNote:"場租依計價模式換算：每時段×2（上午+下午）、每小時×時數、每半日×2、每日×天數、每場×2、每人×人數（飯店多另加 10% 服務費）；需詢價場地無法估。集思系列另加 10% 清潔費。",
  caveats:"這是級距粗估、不是報價。不同計價模式不可直接比（飯店像便當套餐人越多越貴、會議中心像租廚房場租便宜但設備自己算）；要把場租＋影音＋網路＋餐飲＋字幕工具＋人力加總成同一張表。所有非報告數字（時數、天數、人力單價、餐飲每人、CART 報價、網路費）一律需確認。"
 };
 
 const state={size:"M",budget:"mid",access:"convenience",people:null,selectedVenue:null,
- types:new Set(TYPES),areas:new Set(AREAS.map(a=>a[0])),capOnly:false,priceOnly:false,excludeOver:true};
+ types:new Set(TYPES),areas:new Set(AREAS.map(a=>a[0])),capOnly:false,priceOnly:false,excludeOver:true,typesCustomized:false};
 let activeTab="overview";
+let lastSize=null;
 
 function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
 function getVenue(n){return VENUES.find(v=>v.n===n)||null;}
@@ -435,24 +499,79 @@ function computeWarnings(){
  const v=state.selectedVenue?getVenue(state.selectedVenue):null;
  const tl=TIERLABEL[state.size];
  const out=[];
- if(state.access==="formal") out.push({s:"high",m:"<b>重要：</b>你把字幕定位為「正式無障礙服務」。若已知有聾人或聽障者需要字幕才能平等參與，不能只靠 AI 字幕，必須加 CART（即時人工字幕／同步聽打）、手語或專業字幕。這一點不分人數規模。"});
- if(state.access==="formal"&&state.size==="L") out.push({s:"high",m:"<b>重要：</b>L 級又選正式無障礙服務：CART、手語或專業字幕員為必要，AI 字幕只能當多語即時翻譯的補充；並建議主機與備機、網路備援、明確服務台。"});
+ if(state.access==="formal") out.push({s:"high",m:"<b>重要：</b>你把字幕定位為「無障礙基準服務」。若已知有聾人或聽障者需要字幕才能平等參與，不能只靠 AI 字幕，必須加 CART（即時人工字幕／同步聽打）、手語或專業字幕。這一點不分人數規模。"});
+ if(state.access==="formal"&&state.size==="L") out.push({s:"high",m:"<b>重要：</b>L 級又選無障礙基準服務：CART、手語或專業字幕員為必要，AI 字幕只能當多語即時翻譯的補充；並建議主機與備機、網路備援、明確服務台。"});
  if(v&&v.cap==="restricted") out.push({s:"high",m:`<b>重要：</b>你選的「${esc(v.n)}」對外接設備有限制（視聽器材不得自帶／同步翻譯設備不得自備／無法外接其他影音），可能不適合作字幕主場。接字幕筆電與乾淨人聲輸出的方式要簽約前向場地書面確認。`});
  if(v&&v.capMax!==null&&v.capMax<peopleMax()) out.push({s:"high",m:`<b>重要：</b>「${esc(v.n)}」最大容量約 ${v.capMax} 人，坐不下你的人數（${esc(tl)}，約上限 ${peopleMax()} 人）。換更大的場地，或調整人數規模再比較。`});
  if(v&&v.priceFrom===null) out.push({s:"info",m:`<b>提醒：</b>「${esc(v.n)}」沒有公開價（需詢價／需申請），無法和其他場地公平比價。用統一格式詢價信請業務提供書面報價（場租、服務費、餐飲、影音、外接字幕、網路）。`});
- if(state.budget==="free") out.push({s:"info",m:"<b>提醒：</b>本清單的場地幾乎都要場租，沒有完全免費的；真正免費通常要靠公部門或合作夥伴免費借用（需另洽）。NPO 聚落與公有場館相對最低成本。字幕工具可走免費路線：Microsoft Translator（免費）、Akkadu／YYSystem（低成本試跑）。"});
- if((state.budget==="low"||state.budget==="free")&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>提醒：</b>預算偏低但規模是 ${esc(tl)}：正式建議（M）工具與操作約 NT$35,000-150,000、高穩定（L）約 NT$180,000-600,000+，與低成本試跑（NT$0-25,000）落差很大。可考慮縮小規模試跑、限縮語言或人力，或優先選場租透明的非飯店／公有場地。`});
+ // ponytail: free/low 的兩條提醒原本會疊（都在講「便宜 vs 現實」），併成一條；NT$ 級距留在「成本」分頁不重貼
+ if(state.budget==="free"||state.budget==="low"){
+  const tip=state.budget==="free"?"場地幾乎都要場租，真正免費要靠公部門／夥伴免費借用（需另洽）；字幕可走免費工具（Microsoft Translator）。":"";
+  if(state.size==="M"||state.size==="L") out.push({s:"info",m:`<b>提醒：</b>預算偏低、規模 ${esc(tl)}：工具與人力成本通常遠高於低成本試跑，級距見「成本」分頁。可縮小規模試跑、限縮語言／人力，或優先公有／場租透明場地。${tip}`});
+  else if(tip) out.push({s:"info",m:`<b>提醒：</b>${tip}NPO 聚落與公有場館成本最低。`});
+ }
  if((state.budget==="low"||state.budget==="free")&&v&&v.cost==="ask") out.push({s:"info",m:`<b>提醒：</b>預算偏低時，需詢價的場地會被排除（無公開價、無法確認）。要保留先取得書面報價，或把預算改成「平衡／不限」。`});
  return out;
 }
 const PERSISTENT=[
- "<b>成敗關鍵：</b>每個場地都要問「能不能從混音器給字幕電腦一條只含人聲的乾淨訊號」。不分場地、不分工具、不分人數。",
- "<b>問答最容易漏：</b>很多活動前半段字幕很好、問答一開始就崩。安排問答麥克風遞送人員、主持人提醒「等麥克風到再發問」，並確認問答麥也進混音器與字幕訊號。",
- "<b>資料隱私：</b>現場字幕會把聲音送到工具服務。採購前問清楚聲音／逐字稿是否保存、保存多久、能否刪除、是否用於模型訓練、資料存放國家。"
+ "<b>乾淨人聲：</b>每個場地都要問能不能從混音器拉一條只含人聲的訊號給字幕電腦。這條成不成直接決定字幕準不準，不分場地、工具、人數。",
+ "<b>問答麥：</b>字幕常在問答一開始就崩。安排專人遞麥、主持人請大家「等麥克風到再發問」，並確認問答麥也進混音器、進字幕訊號。",
+ "<b>資料隱私：</b>現場字幕會把聲音送到工具的雲端服務。採購前問清楚：聲音／逐字稿存不存、存多久、能不能刪、誰可以下載、會不會拿去訓練模型、資料放哪個國家、有沒有資料處理協議或隱私條款。"
 ];
+// 正式無障礙加辦清單；資料由 a11y-event-checklist workflow 產出並查核。ponytail: 勾選只在本次瀏覽，不做持久化
+const CHECKLIST=[{"title":"報名與事前溝通","items":[{"action":"在報名表加入無障礙需求欄位，逐項列出輪椅席位、台灣手語（Taiwan Sign Language, TSL）翻譯、即時人工聽打（Communication Access Realtime Translation, CART）、導盲犬同行、無障礙廁所、無障礙停車、臨停接送、輔具空間、飲食限制、大字版／點字資料、低刺激休息區等選項供勾選，並保留自由填寫空格與慣用聯絡引導方式。","tier":"法定預期","timing":"規劃期","owner":"報名系統","needsVerify":false},{"action":"把報名表本身做成無障礙格式，欄位有明確標籤（label）與必填標示、可用鍵盤操作、必填項有清楚錯誤提示且錯誤提示與欄位以程式關聯（aria-describedby），避免只用顏色或佔位文字（placeholder）傳達資訊，並通過螢幕報讀軟體測試。","tier":"法定預期","timing":"規劃期","owner":"報名系統","needsVerify":false},{"action":"在報名表開放填寫食物過敏與特殊飲食需求（過敏原、素食、宗教飲食、質地調整等），並把每筆需求轉給餐飲供應商，於現場以清楚標示標出各餐點成分與過敏原。","tier":"加分","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"對需要現場改裝或租借輔具（臨時斜板、閃光警示燈、輔聽接收機、輪椅、無障礙廁所加裝設備）的項目，於規劃期就確認租借與施工的前置作業時間並回推下單期限，避免活動前才發現來不及。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"指派專人在報名截止後逐筆檢視無障礙需求欄位，把每項需求轉成具名待辦並回填負責人與完成狀態，不讓勾選停在表單裡。","tier":"法定預期","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"在報名確認信與活動頁面標示一位無障礙聯絡窗口，附專屬電子郵件與電話，並說明可回覆需求的截止日期。","tier":"法定預期","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"撰寫無障礙交通指引，列出最近的無障礙捷運或公車站、電梯出口編號、復康巴士與無障礙計程車叫車方式，以及下車後避開階梯與陡坡到會場的無障礙步行路線。","tier":"加分","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"拍攝並提供會場動線照片，涵蓋無障礙入口、電梯、無障礙廁所位置與會場內輪椅通道，標註樓層、轉彎點與保留席位置。","tier":"加分","timing":"活動前一週","owner":"場地洽詢","needsVerify":false},{"action":"在活動前一週把完整議程、講者名單與演講摘要寄給所有報名者，讓需要預習或安排陪同者的人能提前準備。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"在報名信中主動詢問是否需要會前一對一導引，例如抵達時的接送點與引路人，並為勾選者排定現場接應人員。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"向已勾選手語需求的參與者確認偏好語言為台灣手語（Taiwan Sign Language, TSL），並回覆已安排翻譯員輪替與固定鏡位的具體安排。","tier":"加分","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"在活動前一週寄出含時間地點、報到方式、無障礙設施位置與聯絡窗口的整合提醒信，並提供可改期或取消需求的回覆方式。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"當天於報到處安排熟悉無障礙安排的工作人員，手邊備有需求名單，能即時引導勾選需求者至對應席位與設施。","tier":"法定預期","timing":"當天現場","owner":"主辦","needsVerify":false}]},{"title":"到場與場地","items":[{"action":"確認場地有無障礙停車格，並在報名時開放預留申請；同時設定一處可臨停下車區（drop-off），讓接送車輛能在入口前停靠卸客。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"現場勘查從停車場與下車區到活動空間的全程，確認有無障礙坡道或電梯可達、不可只有樓梯；若唯一通路是樓梯，當場否決或要求改場地。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"實地量測主要出入口與動線上所有門的淨寬與門檻高度，確認輪椅可順利通過；門檻過高處要求加裝臨時斜板。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認場內無障礙廁所的數量與位置，並在報到處與走道張貼前往無障礙廁所的指引標示。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認自助餐檯、飲水區與報到桌的檯面高度與下方淨空可供輪椅使用者自行取用，過高處安排工作人員主動協助取餐取水，並在動線預留輪椅可靠近的位置。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"在座位區規劃輪椅席，每個輪椅席旁保留至少一個同伴座位，讓使用輪椅者能與親友併坐、不被安排在角落孤立。","tier":"法定預期","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"規劃座位排距與走道寬度時，預留輪椅迴轉與輔具（拐杖、助行器、導盲犬）放置空間，並在輪椅席旁留出可停放與起身的淨空。","tier":"法定預期","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"與場地確認無障礙逃生動線，確保緊急出口路徑無階梯且輪椅可通行；若主要逃生口有階梯，要求指定替代的無障礙撤離出口並標示。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認場地火警與緊急狀況具備聽障者看得見的視覺（閃光）警報，並於緊急疏散程序中指派專人逐一通知無法依賴語音廣播的聽障與聾人參與者，不只靠廣播喊話；若場地無視覺警報，租借並佈設臨時閃光警示燈於活動區與無障礙廁所。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"為使用輪椅或行動不便、無法走樓梯逃生者，事前指定無障礙避難等待區（refuge area）與一對一協助疏散的負責人員，並在演練與開場提醒中說明遇緊急狀況的接應方式。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"在報到處、各會議室入口與洗手間沿線設置高對比、大字級的無障礙指標，並繪製公告無障礙動線圖，標示無障礙入口、電梯、廁所、輪椅席位與服務台位置。","tier":"法定預期","timing":"當天現場","owner":"主辦","needsVerify":false},{"action":"設置一處低刺激休息區（安靜、燈光柔和、避免閃爍燈與強烈音樂），供認知或感官敏感的與會者隨時退場休息，並在議程與指標標示其位置。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"在入口顯眼處設置標示清楚的無障礙服務台，安排受過訓練的固定人員駐點，處理引導、輔具租借、輔聽設備發放與臨時需求。","tier":"加分","timing":"當天現場","owner":"主辦","needsVerify":false},{"action":"活動前一週帶輪椅或推車實走一次全程動線（下車區、入口坡道、電梯、座位、廁所、逃生口），記錄卡點並在開場前排除。","tier":"加分","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"當天於入口與下車區安排引導人員，協助使用輪椅或行動不便者完成報到、入座與輔具收放，並主動詢問是否需要協助。","tier":"加分","timing":"當天現場","owner":"當天現場","needsVerify":false},{"action":"當天現場保持無障礙動線與輪椅席淨空，移除臨時堆放的箱子、立牌與延長線，確認坡道、電梯與無障礙廁所全程可用、未被佔用或上鎖。","tier":"法定預期","timing":"當天現場","owner":"當天現場","needsVerify":false},{"action":"開場時口頭與投影同步告知無障礙廁所、無障礙出口與逃生動線位置，並說明聽障者可依閃光警報疏散。","tier":"加分","timing":"當天現場","owner":"主持","needsVerify":false}]},{"title":"聽覺無障礙","items":[{"action":"安排即時人工聽打（CART，由聽打員逐字打出講者內容）作為核心字幕來源，AI 自動字幕僅作為備援或低風險場次使用；提前數週預訂並簽約、把費用編列進活動預算，確認字幕投影或個人裝置的呈現方式並預留測試時段。","tier":"法定預期","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"確認講題含大量專有名詞、口音或多人交叉發言時優先指派即時人工聽打（CART），不以 AI 字幕單獨支撐關鍵內容。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"安排兩位台灣手語（TSL）翻譯員輪替，定時換手以維持品質，並於合約載明輪替安排。","tier":"法定預期","timing":"場地確認前","owner":"手語洽詢","needsVerify":false},{"action":"為台灣手語（TSL）翻譯員規劃固定且打光充足的鏡位，確保現場與直播畫面全程可見翻譯員上半身與手部。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認場地配置感應線圈（hearing loop，將聲音直接傳入助聽器的磁感應系統）或 FM／紅外線輔聽系統，於預算編列租借費用、確認與場地音響相容，並於現場標示可用區域。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"預約輔聽接收機與耳機數量並於報名表開放預留，活動前一週清點、充電並測試訊號。","tier":"加分","timing":"活動前一週","owner":"場地洽詢","needsVerify":false},{"action":"規定所有講者、主持人與與談者全程使用麥克風發言，不以「我聲音夠大」省略，並在主持稿寫入提醒；同時提醒講者面向聽眾、口齒清楚、念出投影片文字以利讀唇與聽打。","tier":"法定預期","timing":"規劃期","owner":"主持","needsVerify":false},{"action":"備妥可巡場遞送的無線問答麥克風，要求提問者持麥發言，確保提問內容能進入字幕與輔聽訊號。","tier":"法定預期","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"將問答麥克風訊號一併接入混音器，並從混音器輸出乾淨音訊給字幕聽打與輔聽系統，避免只送主麥。","tier":"加分","timing":"場地確認前","owner":"製作","needsVerify":false},{"action":"活動前一週與聽打員、手語翻譯員、音控對接講者名單、講稿、簡報與專有名詞表，供事前建詞與熟悉內容。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"當天開場前實測字幕投放、手語鏡位、輔聽訊號與每支麥克風進混音器的收音，確認問答麥同步進字幕。","tier":"法定預期","timing":"當天現場","owner":"製作","needsVerify":false},{"action":"在會場安排字幕螢幕的清晰視線位置，並保留手語翻譯員前方的無遮擋座位區供有需求者就座。","tier":"加分","timing":"當天現場","owner":"場地洽詢","needsVerify":false},{"action":"指派一名現場聯絡窗口處理即時聽覺無障礙狀況，如字幕中斷、麥克風未開或輔聽收訊不良，並公告求助方式。","tier":"加分","timing":"當天現場","owner":"主辦","needsVerify":false}]},{"title":"視覺與認知無障礙","items":[{"action":"製作簡報時採用高對比配色與不小於 24pt 的字級，並確保所有資訊不單靠顏色傳達（例如折線圖同時用形狀或標籤區分，而非只靠紅綠線）。","tier":"法定預期","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"確認簡報投影片正文與背景的對比達到無障礙標準（一般文字至少 4.5 比 1、大字至少 3 比 1），交付前用對比檢測工具逐頁檢查。","tier":"法定預期","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"活動前一週將簡報、講義與議程的無障礙電子檔（可被螢幕報讀軟體朗讀的 PDF 或 Word，含圖片替代文字）寄給報名時表明需求的與會者。","tier":"法定預期","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"為視障與低視力與會者準備大字版紙本講義與議程，字級放大且採無襯線字體與寬行距，於報到時主動提供，並製作易讀（easy read）版本供認知障礙者使用。","tier":"加分","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"請講者於簡報過程中口述投影片重點與圖表內容，把每張圖的關鍵數據與趨勢用語音說出來，避免只說「如各位所見」。","tier":"加分","timing":"活動前一週","owner":"主持","needsVerify":false},{"action":"明訂並向全體工作人員與場地方告知，導盲犬等服務犬一律不得拒絕進場，並於報到處備妥服務犬飲水；相關依據以現行身心障礙者權益保障相關法規處理。","tier":"法定預期","timing":"場地確認前","owner":"主辦","needsVerify":true},{"action":"提前公布清楚的書面議程，含每個段落的起訖時間、地點、講題與休息時段，並在現場以大字級海報或螢幕同步顯示當前進度。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"規劃議程時於各段落間安排足夠的緩衝與休息時間，避免長時間密集資訊，並把休息的起訖時間明確寫進公布的議程，讓需要服藥、如廁、補充體力或感官休息者能預先安排。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"活動前向引導志工與報到人員進行簡短訓練，說明如何以口語描述環境引導視障者、如何不擅自觸碰或牽引導盲犬、如何協助認知障礙者理解流程。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"依報名時表明需求的人數，配置足夠的引導與報讀志工，明確分工視障導引、認知障礙者流程協助與現場資訊報讀，並在報到處公告如何請求協助。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"在報到處、各會議室入口與洗手間沿線設置高對比、大字級的無障礙指標，並安排引導志工協助視障與認知障礙者定位動線。","tier":"法定預期","timing":"當天現場","owner":"主辦","needsVerify":false}]},{"title":"數位與混合場","items":[{"action":"依無障礙網頁設計規範檢測活動官網與報名表，確認鍵盤可操作、表單欄位有標籤、色彩對比充足、錯誤訊息可被螢幕報讀器讀出，並修正未通過項目。","tier":"法定預期","timing":"規劃期","owner":"報名系統","needsVerify":false},{"action":"選定線上平台前，實際用鍵盤（Tab、Enter、方向鍵）完整走過報名、進入會議、發問、投票流程，確認所有功能不靠滑鼠也能操作。","tier":"法定預期","timing":"場地確認前","owner":"技術","needsVerify":false},{"action":"用螢幕報讀器（screen reader，如 NVDA 或 VoiceOver）測試線上平台的主要互動元件，確認按鈕、連結、彈窗與聊天室都有可被讀出的名稱與狀態。","tier":"法定預期","timing":"場地確認前","owner":"技術","needsVerify":false},{"action":"安排直播即時人工聽打服務（CART），由聽打員同步將講者語音轉為逐字稿並投放於畫面固定區域，讓聽障與聽不清的線上參加者能即時跟上。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"確認線上會議或直播平台已開啟字幕軌道，並指派工作人員於開播前測試字幕的顯示、位置與延遲，避免直接採用未經校對的自動字幕。","tier":"法定預期","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"於活動後為錄影補上經人工校對的字幕後再上架公開，不以未校對的自動字幕當作最終版本。","tier":"加分","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"錄影若含關鍵視覺資訊（投影片數據、示範畫面），加上口述影像（audio description）或在影片說明欄補充文字描述，讓視障觀眾理解畫面內容。","tier":"加分","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"在報名確認信與活動頁提供文字版議程與講者資料，避免只用圖片公告時間地點，並為所有圖片補上替代文字（alt text）。","tier":"法定預期","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"將會前發放與會後存檔的 PDF 製作成可讀檔（有標籤結構的 PDF、可選取文字、正確閱讀順序、圖片有替代文字），不使用掃描影像式的 PDF。","tier":"法定預期","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"用無障礙檢測工具（如 PAC 或 Acrobat 無障礙檢查）檢測簡報與 PDF，逐項修正標籤、閱讀順序與替代文字的錯誤後再發布。","tier":"加分","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"混合活動的線上端確認簡報畫面分享清晰可放大、講者口述內容同步傳達給線上觀眾，並讓線上螢幕報讀使用者能取得同一份無障礙電子檔。","tier":"加分","timing":"活動前一週","owner":"報名系統","needsVerify":false},{"action":"於活動開始時由主持人口頭說明線上參加者如何取得字幕、發問與索取無障礙資料的管道，指定一名線上主持人覆述現場提問與回應，並在現場留一位工作人員待命處理即時的無障礙求助。","tier":"加分","timing":"當天現場","owner":"主持","needsVerify":false}]},{"title":"規劃、人力、預算與法規","items":[{"action":"規劃期就邀請至少一個身心障礙團體與一位障礙當事人參與籌備會議，把無障礙需求納入活動主軸而非事後補救（落實「沒有我們的參與，不要替我們做決定」原則）。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"依台灣身心障礙者權益保障相關法規，確認場地具備無障礙坡道、電梯、無障礙廁所與停車位，缺項則改選場地或事前補強臨時設施。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":true},{"action":"查詢並評估申請文化平權或無障礙相關補助方案，把無障礙服務（聽打、手語、輔聽、易讀素材）的支出納入補助申請項目，依公告期程備齊文件。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":true},{"action":"評估並安排涵蓋身障參與者與輔具的活動責任保險，確認協助疏散、輔具使用與導盲犬同行等情境在保障範圍內，相關投保條件依保險業者規定確認。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":true},{"action":"對全體工作人員與志工辦理障礙意識訓練，涵蓋輪椅引導、視障導引、與聽障者溝通、不擅自碰觸輔具或導盲犬等基本禮儀。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"在前排保留輪椅席位與其陪同者座位，並確保通往講台與發言區的走道淨寬足夠輪椅通行，現場以告示牌標明保留席。","tier":"法定預期","timing":"當天現場","owner":"場地洽詢","needsVerify":false},{"action":"請主持人於開場宣布無障礙服務台位置、輔聽與聽打取用方式，並提醒講者面向聽眾、口齒清楚、念出投影片文字以利讀唇與聽打。","tier":"加分","timing":"當天現場","owner":"主持","needsVerify":false}]}];
+const TIER_TAG={"法定預期":'<span class="tag must">法定預期</span>',"加分":'<span class="tag">加分</span>'};
+function renderA11yPanel(){
+ const n=CHECKLIST.reduce((s,g)=>s+g.items.length,0);
+ return `<h2 class="sec">正式無障礙加辦清單</h2>
+ <p class="note">字幕只是其中一塊。辦「無障礙基準服務」活動時，下面 ${n} 項依與會者動線分組；每項標 法定預期／加分、時機與負責角色。標「需查證」者引用法規或補助，刻意未寫死條號金額，對外引用前須查證。勾選只在本次瀏覽、不儲存。</p>
+ <div class="pdfrow"><a class="btn primary" href="accessible-checklist.pdf" download="無障礙活動加辦清單.pdf">下載清單 PDF（標準版・含無障礙標籤）</a><button type="button" class="btn" data-pdf>列印／另存為 PDF（含整合建議）</button></div>
+ <div class="a11y-list">${CHECKLIST.map(g=>
+  `<div class="grp">${esc(g.title)}</div>`+g.items.map(it=>
+   `<label class="ck"><input type="checkbox"><span class="txt">${esc(it.action)}<span class="meta">${TIER_TAG[it.tier]||""}<span class="tag">${esc(it.timing)}</span><span class="tag">${esc(it.owner)}</span>${it.needsVerify?'<span class="tag verify">需查證</span>':""}</span></span></label>`
+  ).join("")).join("")}</div>`;
+}
+function renderSelbar(){
+ const A=[...state.areas], T=[...state.types];
+ const pill=(k,v)=>`<span class="seg-pill"><span class="pk">${esc(k)}</span><span class="pv">${esc(v)}</span></span>`;
+ const row1=`<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("預算",BUDGETLABEL[state.budget])+pill("字幕",ACCESSLABEL[state.access]);
+ const cityV=A.length===AREAS.length?"全部":(A.length?A.map(a=>AREALABEL[a]).join("、"):"未選");
+ const typeV=T.length===TYPES.length?"全部":(T.length?T.join("、"):"未選");
+ const venuePill=state.selectedVenue
+   ? pill("場地",state.selectedVenue)
+   : `<a class="seg-pill warn-pill" href="#panel-venues" data-gotab="venues"><span class="pk">場地</span><span class="pv">尚未選定 ▸ 去「場地」選一個</span></a>`;
+ const row2=pill("城市",cityV)+pill("場地類型",typeV)+venuePill;
+ document.getElementById("selbar").innerHTML=`<div class="selrow">${row1}</div><div class="selrow">${row2}</div>`;
+}
+// 列印轉 PDF：語意 HTML（h1/h2/h3 + 清單）→ 瀏覽器另存 tagged PDF。ponytail: 不用 jsPDF（產出無標籤、不無障礙）
+function buildPrintDoc(){
+ const t=TIERS.find(x=>x.id===state.size);
+ const short=venueList().list.slice(0,5);
+ const toolLine=state.access==="formal"?`以 CART（即時人工字幕／同步聽打）、手語或專業字幕為基準服務；${TOOLS_BYTIER[state.size]} 作為補充。`:TOOLS_BYTIER[state.size];
+ const sel=`規模 ${state.size}（${SIZE_PEOPLE[state.size]}）｜預算 ${BUDGETLABEL[state.budget]}｜字幕定位 ${ACCESSLABEL[state.access]}`;
+ const venues=short.length?short.map(v=>`<li>${esc(v.n)}（${esc(v.priceText)}）${v.phone?"　電話 "+esc(v.phone):""}</li>`).join(""):"<li>目前條件下沒有符合的場地</li>";
+ const adv=`<h2>整合建議</h2>
+   <p><b>條件：</b>${esc(sel)}</p>
+   <p><b>方案等級：</b>${esc(t.name)}（${esc(t.people)}）</p>
+   <p><b>字幕工具：</b>${esc(toolLine)}</p>
+   <p><b>場地短名單：</b></p><ul>${venues}</ul>
+   <p><b>成本級距：</b>工具與操作 ${esc(COST.toolOpBand[state.size])}；影音 ${esc(COST.avBand[state.size])}；人力需確認${state.access==="formal"?"；另加 CART／手語（需報價）":""}。</p>
+   <p><b>共通前提：</b>確認場地混音器能給字幕電腦一條只含人聲的乾淨訊號。</p>`;
+ const n=CHECKLIST.reduce((s,g)=>s+g.items.length,0);
+ const list=CHECKLIST.map(g=>`<h3>${esc(g.title)}</h3><ul class="pck">`+g.items.map(it=>`<li>${esc(it.action)} <span class="ptag">［${esc(it.tier)}・${esc(it.timing)}・${esc(it.owner)}${it.needsVerify?"・需查證":""}］</span></li>`).join("")+`</ul>`).join("");
+ document.getElementById("print-doc").innerHTML=`<h1>無障礙活動加辦清單與整合建議</h1>
+   <p class="psub">APAC AIA 字幕活動選型工具・依本次設定產生。價格電話為查詢起點、非報價，採購前須自行向場地與供應商書面確認。</p>
+   ${adv}
+   <h2>正式無障礙加辦清單（${n} 項）</h2>
+   <p>每項標 法定預期／加分、時機與負責角色；「需查證」者引用法規或補助，對外引用前須查證。</p>
+   ${list}`;
+}
 function renderWarnbar(){
- document.getElementById("warnbar").innerHTML=computeWarnings().map(w=>
-  `<div class="warn ${w.s}">${w.s==="high"?ICO_HIGH:ICO_INFO}<div>${w.m}</div></div>`).join("");
+ // red high = 擋路阻擋，全開可見；blue info = 建議，摺進「提醒(N)」沿用 .reminders 樣式
+ const ws=computeWarnings(), high=ws.filter(w=>w.s==="high"), info=ws.filter(w=>w.s==="info");
+ let html=high.map(w=>`<div class="warn high">${ICO_HIGH}<div>${w.m}</div></div>`).join("");
+ if(info.length) html+=`<details class="reminders"${high.length?"":" open"}><summary>${ICO_INFO} 提醒（${info.length}）</summary><div class="rbody">${info.map(w=>`<div>${w.m}</div>`).join("")}</div></details>`;
+ document.getElementById("warnbar").innerHTML=html;
 }
 
 // --- venue filtering (null capMax = unknown, never excluded/misjudged) ---
@@ -490,6 +609,7 @@ function venueList(){
  });
  return {list,removed};
 }
+function telHref(p){return "tel:"+p.split(/轉|分機|#|、/)[0].replace(/[()\s]/g,"");}
 function venueCard(v,withSelect){
  const fit= (v.capMin===null||v.capMax===null)?null:overlaps(v);
  const capTags=[];
@@ -506,6 +626,7 @@ function venueCard(v,withSelect){
  return `<article class="card ${sel?"sel":""}">
   <div class="card-head">${typeIcon(v.type)}<h4>${esc(v.n)}</h4></div>
   <div class="price">${esc(v.priceText)}</div>
+  ${v.phone?`<div class="vphone">電話：<a href="${telHref(v.phone)}">${esc(v.phone)}</a></div>`:""}
   <div class="meta">${capTags.join("")}</div>
   <p class="note">${esc(v.note)}</p>
   ${btn}<a href="${v.src}" target="_blank" rel="noopener">官方／來源頁 ↗</a>
@@ -521,7 +642,7 @@ function renderVenues(){
  return `<h2 class="sec">場地（依你的設定即時篩選）</h2>
  <div class="filters">
    <div class="grp" style="margin-bottom:.5rem;"><strong>場地類型：</strong>${typeChk}</div>
-   <div class="grp" style="margin-bottom:.5rem;"><strong>地點：</strong>${areaChk}</div>
+   <div class="grp" style="margin-bottom:.5rem;"><strong>城市：</strong>${areaChk}</div>
    <div class="grp">
      <label class="chk"><input type="checkbox" id="t-cap" ${state.capOnly?"checked":""}> 排除明確不可外接的場地</label>
      <label class="chk"><input type="checkbox" id="t-price" ${state.priceOnly?"checked":""}> 只看有公開價格</label>
@@ -533,21 +654,15 @@ function renderVenues(){
  <p class="deep">提醒：標「容量需確認」的場地，其容量未在報告／來源載明，不能當已知數字比較。完整場地細表與詢價方式見 <a href="ai-captioning-ballroom-solution.desktop.html#sec-venues">報告第 11 節</a>。</p>`;
 }
 function renderTools(){
- const fitFirst=[...TOOLS].sort((a,b)=>{
-  const af=a.tiers.includes(state.size)?0:1,bf=b.tiers.includes(state.size)?0:1;return af-bf;
- });
- const roles=["主方案候選","正式備援","低成本試跑","免費備援","CART專業字幕","研究候選"];
- let body="";
- roles.forEach(r=>{
-  const grp=fitFirst.filter(t=>t.role===r);
-  if(!grp.length) return;
-  body+=`<div class="role-h">${r}</div><div class="cards">`+grp.map(t=>{
-   const fit=t.tiers.includes(state.size);
-   return `<article class="card ${fit?"sel":""}">
+ const roleRank={"主方案候選":0,"CART專業字幕":1,"正式備援":2,"低成本試跑":3,"免費備援":4,"研究候選":5};
+ const byRole=arr=>arr.slice().sort((a,b)=>roleRank[a.role]-roleRank[b.role]);
+ const fit=byRole(TOOLS.filter(t=>t.tiers.includes(state.size)));
+ const other=byRole(TOOLS.filter(t=>!t.tiers.includes(state.size)));
+ const card=t=>`<article class="card ${t.tiers.includes(state.size)?"sel":""}">
     <div class="card-head"><h4>${esc(t.name)}</h4></div>
     <div class="meta">
-     <span class="tag">${t.origin}</span>
-     <span class="tag ${fit?"fit":""}">${fit?"適合目前規模":"非此規模主推"}</span>
+     <span class="tag good">${esc(t.role)}</span>
+     <span class="tag">${esc(t.origin)}</span>
      <span class="tag">價格感：${esc(t.priceFeel)}</span>
      <span class="tag">語言：${esc(t.languages)}</span>
      <span class="tag">QR：${esc(t.qr)}</span>
@@ -555,15 +670,16 @@ function renderTools(){
      <span class="tag">人工修正：${esc(t.humanCorrect)}</span>
     </div>
     <p class="note">${esc(t.why)}</p>
-    <a href="${t.source}" target="_blank" rel="noopener">官方頁 ↗</a>
+    <a href="${esc(t.source)}" target="_blank" rel="noopener">官方頁 ↗</a>
    </article>`;
-  }).join("")+`</div>`;
- });
- const formalNote=state.access==="formal"?`<div class="warn high" style="margin-bottom:1rem;">${ICO_HIGH}<div><b>重要：</b>你選了正式無障礙服務。下方「CART專業字幕」類（StreamText／3Play／AI-Media／Wordly）或台灣同步聽打／手語為基準服務，AI 工具只能當多語即時翻譯的補充。</div></div>`:"";
- return `<h2 class="sec">字幕工具（依你的規模即時排序）</h2>
+ const formalNote=state.access==="formal"?`<div class="warn high" style="margin-bottom:1rem;">${ICO_HIGH}<div><b>重要：</b>你選了無障礙基準服務。下方「CART專業字幕」類（StreamText／3Play／AI-Media／Wordly）或台灣同步聽打／手語為基準服務，AI 工具只能當多語即時翻譯的補充。</div></div>`:"";
+ return `<h2 class="sec">字幕工具（適合你規模的排前面）</h2>
+ <p class="note">下方各卡的 語言數、術語表、QR、人工修正 為各供應商官方頁宣稱、非獨立查證；完整報告把這些列為採購前須向供應商確認的問題。</p>
  <div class="ovbox"><h3>你的規模（${esc(TIERLABEL[state.size])}）建議測：</h3><p>${esc(TOOLS_BYTIER[state.size])}</p></div>
  ${formalNote}
- ${body}
+ <div class="role-h">適合你的規模（${esc(TIERLABEL[state.size])}）</div>
+ <div class="cards">${fit.map(card).join("")}</div>
+ ${other.length?`<details class="reminders" style="margin-top:1.2rem;"><summary>其他規模的工具（參考，共 ${other.length}）</summary><div class="cards" style="padding:.7rem .8rem 1rem;">${other.map(card).join("")}</div></details>`:""}
  <p class="deep">「需確認」表示報告以問句要求向供應商確認，未替你斷定。逐項工具說明與第一輪試測短名單見 <a href="ai-captioning-ballroom-solution.desktop.html#sec-tools">報告第 8</a>、<a href="ai-captioning-ballroom-solution.desktop.html#sec-shortlist">9 節</a>。供應商功能與價格會變，採購前須書面確認。</p>`;
 }
 function renderTiers(){
@@ -617,24 +733,25 @@ function renderOverview(){
   : esc(TOOLS_BYTIER[state.size]);
  const shortHtml=short.length?short.map(v=>{
   const sel=state.selectedVenue===v.n;
-  return `<div class="ovrow">・${esc(v.n)}（${esc(v.priceText)}）${v.capNote?"〔容量需確認〕":""} <button class="btn ${sel?"primary":""}" data-pick="${esc(v.n)}">${sel?"已選":"選它"}</button></div>`;
+  return `<div class="ovvenue"><span class="vn">${esc(v.n)}（${esc(v.priceText)}）${v.capNote?"〔容量需確認〕":""}${v.phone?`　電話：<a href="${telHref(v.phone)}">${esc(v.phone)}</a>`:""}</span><button class="btn ${sel?"primary":""}" data-pick="${esc(v.n)}">${sel?"已選":"選它"}</button></div>`;
  }).join(""):`<div class="ovrow">目前條件下沒有符合的場地，到「場地」分頁放寬篩選。</div>`;
  const warns=computeWarnings();
  const highs=warns.filter(w=>w.s==="high");
  return `<div class="ovbox">
    <h3>你的整合建議</h3>
-   <div class="ovrow"><span class="k">方案等級：</span>${esc(t.name)}（${esc(t.people)}）</div>
-   <div class="ovrow"><span class="k">字幕工具：</span>${toolLine}</div>
-   <div class="ovrow"><span class="k">場地短名單：</span></div>
+   <div class="ovrow kv"><span class="k">方案等級</span><span>${esc(t.name)}（${esc(t.people)}）</span></div>
+   <div class="ovrow kv"><span class="k">字幕工具</span><span>${toolLine}</span></div>
+   <div class="ovrow kv"><span class="k">場地短名單</span><span>${short.length?`前 ${short.length} 個（點「選它」鎖定）`:""}</span></div>
    ${shortHtml}
-   <div class="ovrow"><span class="k">成本級距：</span>工具與操作 ${esc(COST.toolOpBand[state.size])}；影音 ${esc(COST.avBand[state.size])}；人力需確認${state.access==="formal"?"；另加 CART／手語（需報價）":""}。詳見「成本」分頁。</div>
-   <div class="ovrow"><span class="k">共通前提：</span>確認場地混音器能給字幕電腦一條只含人聲的乾淨訊號。</div>
-   ${highs.length?`<div class="ovrow"><span class="k" style="color:var(--hi-ink);">需注意（${highs.length}）：</span>見上方紅色提醒。</div>`:""}
+   <div class="ovrow kv"><span class="k">成本級距</span><span>工具與操作 ${esc(COST.toolOpBand[state.size])}；影音 ${esc(COST.avBand[state.size])}；人力需確認${state.access==="formal"?"；另加 CART／手語（需報價）":""}。詳見「成本」分頁。</span></div>
+   <div class="ovrow kv"><span class="k">共通前提</span><span>確認場地混音器能給字幕電腦一條只含人聲的乾淨訊號。</span></div>
+   ${highs.length?`<div class="ovrow kv"><span class="k" style="color:var(--hi-ink);">需注意（${highs.length}）</span><span>見上方紅色提醒。</span></div>`:""}
  </div>
+ <div class="pdfrow"><a class="btn primary" href="accessible-checklist.pdf" download="無障礙活動加辦清單.pdf">下載清單 PDF（標準版・含無障礙標籤）</a><button type="button" class="btn" data-pdf>列印／另存為 PDF（含整合建議）</button></div>
  <p class="deep">下一步：到「場地」選優先詢價場地 → 用 <a href="ai-captioning-ballroom-solution.desktop.html#sec-rfp">報告第 12 節詢價信</a> 寄出 → 同時向上面的字幕工具詢價。完整操作手冊（收音接線、現場操作、壞掉怎麼救、時程）見 <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>。</p>`;
 }
 
-const RENDERERS={overview:renderOverview,venues:renderVenues,tools:renderTools,tiers:renderTiers,cost:renderCost};
+const RENDERERS={overview:renderOverview,venues:renderVenues,tools:renderTools,tiers:renderTiers,cost:renderCost,a11y:renderA11yPanel};
 function readState(){
  state.size=document.querySelector('input[name="size"]:checked').value;
  state.budget=document.querySelector('input[name="budget"]:checked').value;
@@ -644,12 +761,14 @@ function readState(){
 }
 function render(){
  readState();
+ if(state.size!==lastSize){lastSize=state.size;if(!state.typesCustomized)state.types=new Set(TYPE_PRESET[state.size]);}
+ renderSelbar();
  renderWarnbar();
  document.getElementById("panel-"+activeTab).innerHTML=RENDERERS[activeTab]();
 }
 
 // --- tabs ---
-const TAB_IDS=["overview","venues","tools","tiers","cost"];
+const TAB_IDS=["venues","tools","tiers","cost","overview","a11y"];
 function selectTab(id,focus){
  activeTab=id;
  TAB_IDS.forEach(t=>{
@@ -678,7 +797,7 @@ document.querySelector(".controls").addEventListener("change",render);
 document.getElementById("people-in").addEventListener("input",render);
 document.getElementById("app").addEventListener("change",e=>{
  const t=e.target;let dirty=false;
- if(t.dataset.type){t.checked?state.types.add(t.dataset.type):state.types.delete(t.dataset.type);dirty=true;}
+ if(t.dataset.type){t.checked?state.types.add(t.dataset.type):state.types.delete(t.dataset.type);state.typesCustomized=true;dirty=true;}
  if(t.dataset.area){t.checked?state.areas.add(t.dataset.area):state.areas.delete(t.dataset.area);dirty=true;}
  if(t.id==="t-cap"){state.capOnly=t.checked;dirty=true;}
  if(t.id==="t-price"){state.priceOnly=t.checked;dirty=true;}
@@ -693,7 +812,9 @@ document.getElementById("app").addEventListener("click",e=>{
 });
 
 document.getElementById("reminders-body").innerHTML=PERSISTENT.map(m=>`<div>${m}</div>`).join("");
-selectTab("overview");
+document.addEventListener("click",e=>{const g=e.target.closest("[data-gotab]");if(g){e.preventDefault();selectTab(g.dataset.gotab,true);document.getElementById("app").scrollIntoView({block:"start"});}});
+document.addEventListener("click",e=>{if(e.target.closest("[data-pdf]")){const ot=document.title;document.title="無障礙活動加辦清單與整合建議";buildPrintDoc();window.print();document.title=ot;}});
+selectTab("venues");
 </script>
 </body>
 </html>
