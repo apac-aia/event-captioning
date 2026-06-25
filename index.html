@@ -558,7 +558,7 @@ function renderA11yPanel(){
  const n=CHECKLIST.reduce((s,g)=>s+g.items.length,0);
  return `<h2 class="sec">正式無障礙加辦清單</h2>
  <p class="note">字幕只是其中一塊。辦「無障礙基準服務」活動時，下面 ${n} 項依與會者動線分組；每項標 法定預期／加分、時機與負責角色。標「需查證」者引用法規或補助，刻意未寫死條號金額，對外引用前須查證。勾選只在本次瀏覽、不儲存。</p>
- <div class="pdfrow"><a class="btn primary" href="accessible-checklist.pdf" download="無障礙活動加辦清單.pdf">下載清單 PDF（標準版・含無障礙標籤）</a><button type="button" class="btn" data-pdf>列印／另存為 PDF（含整合建議）</button></div>
+ <div class="pdfrow"><a class="btn primary" href="accessible-checklist.pdf" download="無障礙活動加辦清單.pdf">下載無障礙清單 PDF（已加標籤）</a></div>
  <div class="a11y-list">${CHECKLIST.map(g=>
   `<div class="grp">${esc(g.title)}</div>`+g.items.map(it=>
    `<label class="ck"><input type="checkbox"><span class="txt">${esc(it.action)}<span class="meta">${TIER_TAG[it.tier]||""}<span class="tag">${esc(it.timing)}</span><span class="tag">${esc(it.owner)}</span>${it.needsVerify?'<span class="tag verify">需查證</span>':""}</span></span></label>`
@@ -782,7 +782,7 @@ function renderOverview(){
    <div class="ovrow kv"><span class="k">共通前提</span><span>確認場地混音器能給字幕電腦一條只含人聲的乾淨訊號。</span></div>
    ${highs.length?`<div class="ovrow kv"><span class="k" style="color:var(--hi-ink);">需注意（${highs.length}）</span><span>見上方紅色提醒。</span></div>`:""}
  </div>
- <div class="pdfrow"><a class="btn primary" href="accessible-checklist.pdf" download="無障礙活動加辦清單.pdf">下載清單 PDF（標準版・含無障礙標籤）</a><button type="button" class="btn" data-pdf>列印／另存為 PDF（含整合建議）</button></div>
+ <div class="pdfrow"><a class="btn primary" href="accessible-checklist.pdf" download="無障礙活動加辦清單.pdf">下載無障礙清單 PDF（已加標籤）</a></div>
  <p class="deep">下一步：到「場地」選優先詢價場地 → 用 <a href="ai-captioning-ballroom-solution.desktop.html#sec-rfp">報告第 12 節詢價信</a> 寄出 → 同時向上面的字幕工具詢價。完整操作手冊（收音接線、現場操作、壞掉怎麼救、時程）見 <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>。</p>`;
 }
 
