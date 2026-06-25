@@ -31,6 +31,13 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .banner .org{font-size:.8rem;letter-spacing:.05em;color:rgba(255,255,255,.74);margin-top:.55rem;}
 .banner-links a{font-family:'Inter',sans-serif;color:var(--cta);font-weight:600;font-size:.85rem;letter-spacing:.04em;text-decoration:none;border:1px solid transparent;padding:.35rem .75rem;margin-left:.6rem;white-space:nowrap;transition:background .15s ease,border-color .15s ease,transform .12s ease;}
 .banner-links a:hover,.banner-links a:focus-visible{border-color:var(--cta);background:var(--cta);color:var(--cta-text);transform:translateY(-1px);}
+.banner-links button{font-family:'Inter',sans-serif;color:var(--cta);font-weight:600;font-size:.85rem;letter-spacing:.04em;background:none;cursor:pointer;border:1px solid var(--cta);padding:.35rem .75rem;margin-left:.6rem;white-space:nowrap;transition:background .15s ease,transform .12s ease;}
+.banner-links button:hover,.banner-links button:focus-visible{background:var(--cta);color:var(--cta-text);transform:translateY(-1px);}
+.howto{background:var(--soft);border:1px solid var(--line-strong);padding:1rem 1.2rem;margin:0 0 1.2rem;}
+.howto h2{font-size:1.1rem;margin:0 0 .6rem;}
+.howto ol{margin:.5rem 0;padding-left:1.3rem;}
+.howto li{margin:.4rem 0;}
+.howto .note{margin:.6rem 0 0;}
 
 .wrap{max-width:1100px;margin:0 auto;padding:1.2rem 1.1rem 4rem;}
 .lead{color:var(--muted);margin:.2rem 0 1rem;font-size:.96rem;}
@@ -173,6 +180,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
       <div class="org">亞太包容創新協會　APAC Authentic Inclusion Association</div>
     </div>
     <nav class="banner-links" aria-label="其他文件">
+      <button type="button" data-howto aria-expanded="false" aria-controls="howto-panel">怎麼用?</button>
       <a href="#panel-overview" data-gotab="overview">總覽</a>
       <a href="#panel-a11y" data-gotab="a11y">無障礙清單</a>
       <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>
@@ -181,7 +189,17 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
   </div>
 </header>
 <div class="wrap">
-<p class="lead">設定活動條件，下面五個分頁（總覽／場地／字幕工具／方案／成本）即時給出整合建議；改任何設定，所有分頁與提醒同步更新。</p>
+<p class="lead">設定活動條件，下面的分頁即時給出整合建議；改任何設定，所有分頁與提醒同步更新。第一次用按右上「怎麼用?」。</p>
+<div id="howto-panel" class="howto" hidden>
+  <h2>怎麼用</h2>
+  <p><b>這工具幫你做什麼：</b>決定活動的字幕方案，包含選場地、比字幕工具、估成本、顧無障礙。</p>
+  <ol>
+    <li><b>設定你的活動</b>：最上方選人數規模、預算傾向、要不要「無障礙基準服務」。</li>
+    <li><b>由左到右看分頁</b>：場地 → 字幕工具 → 方案 → 成本 → 聽打與手語。</li>
+    <li><b>到「總覽」收尾</b>：看整合建議、下載無障礙清單 PDF；深入操作手冊看「完整報告」。</li>
+  </ol>
+  <p class="note">所有價格都是查詢起點、不是報價，採購前要向場地與供應商書面確認。</p>
+</div>
 
 <div class="sticky">
   <div id="selbar" aria-label="目前所有選擇"></div>
@@ -859,6 +877,7 @@ document.getElementById("app").addEventListener("click",e=>{
 document.getElementById("reminders-body").innerHTML=PERSISTENT.map(m=>`<div>${m}</div>`).join("");
 document.addEventListener("click",e=>{const g=e.target.closest("[data-gotab]");if(g){e.preventDefault();selectTab(g.dataset.gotab,true);document.getElementById("app").scrollIntoView({block:"start"});}});
 document.addEventListener("click",e=>{if(e.target.closest("[data-pdf]")){const ot=document.title;document.title="無障礙活動加辦清單與整合建議";buildPrintDoc();window.print();document.title=ot;}});
+document.addEventListener("click",e=>{const h=e.target.closest("[data-howto]");if(h){const p=document.getElementById("howto-panel");const open=h.getAttribute("aria-expanded")==="true";h.setAttribute("aria-expanded",String(!open));p.hidden=open;if(!open){p.setAttribute("tabindex","-1");p.focus();}}});
 selectTab("venues");
 </script>
 </body>
