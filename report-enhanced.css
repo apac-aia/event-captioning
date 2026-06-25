@@ -33,7 +33,7 @@ body {
   overflow-wrap: break-word;
 }
 
-body > :not(#TOC) {
+body > :not(#TOC):not(.nav-fab):not(#toc-scrim) {
   max-width: 920px;
   margin-left: auto;
   margin-right: auto;
@@ -331,7 +331,7 @@ svg {
     overflow-x: hidden;
   }
 
-  body > :not(#TOC) {
+  body > :not(#TOC):not(.nav-fab):not(#toc-scrim) {
     width: 100%;
     max-width: 100%;
     min-width: 0;

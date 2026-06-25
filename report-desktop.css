@@ -13,7 +13,7 @@
     margin: 0 auto;
   }
 
-  body > :not(#TOC) {
+  body > :not(#TOC):not(.nav-fab):not(#toc-scrim) {
     grid-column: 2;
     width: 100%;
   }
