@@ -38,7 +38,7 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .howto[open]>summary::before{content:"▾ ";}
 .howto>summary:hover,.howto>summary:focus-visible{background:var(--cta);color:var(--cta-text);outline:2px solid var(--accent);outline-offset:-2px;}
 .howto-body{padding:0 1.2rem 1rem;}
-.howto-body ol{margin:.5rem 0;padding-left:1.3rem;}
+.howto-body ol,.howto-body ul{margin:.5rem 0;padding-left:1.3rem;}
 .howto-body li{margin:.4rem 0;}
 .howto-body .note{margin:.6rem 0 0;}
 
@@ -746,6 +746,26 @@ function renderTiers(){
   </article>`;
  }).join("");
  return `<h2 class="sec">方案等級（你的規模已置頂高亮）</h2><div class="cards">${cards}</div>
+ <details class="howto" open><summary>收音接線：向場地要什麼、自己怎麼接</summary><div class="howto-body">
+ <p>錄影攝影通常有人處理，但字幕的成敗在「麥克風與混音」。你不一定要請影音技術人員，但要會向場地要、會自己接這一段。</p>
+ <p><b>一、訂場地／詢價時就先問場地：</b></p>
+ <ul>
+  <li>講者全程都有麥克風（手持、領夾或桌上），不要靠「我聲音大」省略。</li>
+  <li>場地有混音器（或你自帶），而且能給你一路<b>只含人聲的乾淨訊號</b>（從 AUX、MATRIX 或錄音輸出拉），不是只給你接喇叭的那一路。這條是字幕成敗關鍵。</li>
+  <li>那路訊號有可接的孔（3.5mm 耳機孔、RCA 或 XLR），你才接得到字幕電腦。</li>
+  <li>問答用無線麥，而且問答麥也要進混音器，否則觀眾提問不會進字幕。</li>
+  <li>現場有沒有音控人員可幫你對接、什麼時候能提早進場測試。</li>
+ </ul>
+ <p><b>二、自己怎麼接：</b></p>
+ <ul>
+  <li>鏈路：麥克風 → 混音器 → 從混音器拉一路乾淨人聲 → USB 音訊介面 → 字幕筆電。</li>
+  <li><b>關鍵原則：別讓筆電用內建麥克風「聽喇叭」。</b>那樣會收到回音與場地雜音、字幕會亂，一定要從混音器拉訊號線進來。</li>
+  <li>接法：混音器的 AUX／錄音輸出 → 線（看孔位選 3.5mm／RCA／XLR 轉 USB）→ USB 音訊介面 → 筆電 USB → 字幕軟體裡選那個輸入裝置。</li>
+  <li>接好先測：講一句話看字幕有沒有出來、延遲多久、準不準；問答麥也測一次。</li>
+  <li>備援：4G／5G 熱點、備用 QR、第二台筆電。</li>
+ </ul>
+ <p class="note">更完整的收音接線、現場操作與「壞掉怎麼救」見 <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>；各規模的設備清單見上方方案卡。</p>
+ </div></details>
  <p class="deep">三套可落地方案與預算粗估見 <a href="ai-captioning-ballroom-solution.desktop.html#sec-packages">報告第 10 節</a>；無障礙等級的判斷見 <a href="ai-captioning-ballroom-solution.desktop.html#sec-access-levels">第 6 節</a>。</p>`;
 }
 function renderCost(){
