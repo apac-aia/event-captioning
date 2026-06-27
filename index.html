@@ -41,6 +41,13 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .howto-body ol,.howto-body ul{margin:.5rem 0;padding-left:1.3rem;}
 .howto-body li{margin:.4rem 0;}
 .howto-body .note{margin:.6rem 0 0;}
+.settings{margin:0 0 .3rem;}
+.settings>summary{cursor:pointer;font-weight:700;font-size:.85rem;letter-spacing:.02em;color:var(--accent);padding:.3rem .2rem;list-style:none;display:inline-flex;align-items:center;min-height:32px;}
+.settings>summary::-webkit-details-marker{display:none;}
+.settings>summary::before{content:"▸";margin-right:.35rem;}
+.settings[open]>summary::before{content:"▾";}
+.settings>summary:hover,.settings>summary:focus-visible{color:var(--cta-text);background:var(--cta);outline:2px solid var(--accent);outline-offset:1px;}
+@media (min-width:601px){.settings>summary{display:none;}.settings{margin:0;}}
 
 .wrap{max-width:1100px;margin:0 auto;padding:1.2rem 1.1rem 4rem;}
 .lead{color:var(--muted);margin:.2rem 0 .6rem;font-size:.94rem;}
@@ -211,6 +218,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
 
 <div class="sticky">
   <div id="selbar" aria-label="目前所有選擇"></div>
+  <details class="settings" open><summary>活動設定（規模、預算、字幕定位、人數）</summary>
   <div class="controls" aria-label="活動設定">
     <div class="row">
       <div class="cset">
@@ -245,6 +253,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
       </div>
     </div>
   </div>
+  </details>
   <div id="warnbar" role="status" aria-live="polite"></div>
 </div>
 
@@ -911,6 +920,7 @@ document.addEventListener("click",e=>{const g=e.target.closest("[data-gotab]");i
 document.addEventListener("click",e=>{if(e.target.closest("[data-pdf]")){const ot=document.title;document.title="無障礙活動加辦清單與整合建議";buildPrintDoc();window.print();document.title=ot;}});
 document.addEventListener("change",e=>{const cb=e.target.closest('.a11y-list input[type="checkbox"][data-ck]');if(cb){const c=JSON.parse(localStorage.getItem("a11yChecks")||"{}");if(cb.checked)c[cb.dataset.ck]=1;else delete c[cb.dataset.ck];localStorage.setItem("a11yChecks",JSON.stringify(c));const el=document.querySelector(".ck-count");if(el)el.textContent="已勾 "+Object.keys(c).length+"／"+CHECKLIST.reduce((s,g)=>s+g.items.length,0);}if(e.target.id==="strike-toggle"){localStorage.setItem("a11yStrike",e.target.checked?"1":"0");const l=document.querySelector(".a11y-list");if(l)l.classList.toggle("strike",e.target.checked);}});
 document.addEventListener("click",e=>{if(e.target.closest("[data-ckclear]")){localStorage.removeItem("a11yChecks");if(activeTab==="a11y")render();}});
+try{if(window.matchMedia&&window.matchMedia("(max-width:600px)").matches){const sd=document.querySelector("details.settings");if(sd)sd.open=false;}}catch(e){}
 selectTab("venues");
 </script>
 </body>
