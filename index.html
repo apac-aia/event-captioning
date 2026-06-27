@@ -101,10 +101,10 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 #selbar{display:flex;flex-direction:column;gap:.25rem;font-size:.74rem;color:var(--ink);padding:.3rem .55rem;margin-bottom:.4rem;background:var(--soft);border:1px solid var(--line-strong);border-left:4px solid var(--accent);}
 #selbar .selrow{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;}
 #selbar .lead-k{flex:0 0 auto;font-weight:700;color:var(--accent);}
-#selbar .seg-pill{flex:0 0 auto;padding:.08rem .45rem;border:1px solid var(--accent);background:#fff;}
+#selbar .seg-pill{flex:0 1 auto;min-width:0;padding:.08rem .45rem;border:1px solid var(--accent);background:#fff;}
 #selbar .seg-pill .pk{color:var(--muted);font-weight:400;}
 #selbar .seg-pill .pk::after{content:"：";}
-#selbar .seg-pill .pv{color:var(--accent);font-weight:700;}
+#selbar .seg-pill .pv{color:var(--accent);font-weight:700;overflow-wrap:anywhere;}
 #selbar a.warn-pill{border-color:var(--cta);background:#fbf3df;text-decoration:none;}
 #selbar a.warn-pill .pk{color:#7a4f00;}
 #selbar a.warn-pill .pv{color:#7a4f00;font-weight:700;}
@@ -589,8 +589,8 @@ function renderSelbar(){
  const A=[...state.areas], T=[...state.types];
  const pill=(k,v)=>`<span class="seg-pill"><span class="pk">${esc(k)}</span><span class="pv">${esc(v)}</span></span>`;
  const row1=`<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("預算",BUDGETLABEL[state.budget])+pill("字幕",ACCESSLABEL[state.access]);
- const cityV=A.length===AREAS.length?"全部":(A.length?A.map(a=>AREALABEL[a]).join("、"):"未選");
- const typeV=T.length===TYPES.length?"全部":(T.length?T.join("、"):"未選");
+ const cityV=A.length===AREAS.length?"全部":(A.length?(A.length>3?A.length+" 個城市":A.map(a=>AREALABEL[a]).join("、")):"未選");
+ const typeV=T.length===TYPES.length?"全部":(T.length?(T.length>3?T.length+" 種":T.join("、")):"未選");
  const venuePill=state.selectedVenue
    ? pill("場地",state.selectedVenue)
    : `<a class="seg-pill warn-pill" href="#panel-venues" data-gotab="venues"><span class="pk">場地</span><span class="pv">尚未選定 ▸ 去「場地」選一個</span></a>`;
