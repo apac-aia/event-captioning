@@ -589,8 +589,9 @@ function renderSelbar(){
  const A=[...state.areas], T=[...state.types];
  const pill=(k,v)=>`<span class="seg-pill"><span class="pk">${esc(k)}</span><span class="pv">${esc(v)}</span></span>`;
  const row1=`<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("預算",BUDGETLABEL[state.budget])+pill("字幕",ACCESSLABEL[state.access]);
- const cityV=A.length===AREAS.length?"全部":(A.length?(A.length>3?A.length+" 個城市":A.map(a=>AREALABEL[a]).join("、")):"未選");
- const typeV=T.length===TYPES.length?"全部":(T.length?(T.length>3?T.length+" 種":T.join("、")):"未選");
+ const narrow=window.matchMedia?window.matchMedia("(max-width:600px)").matches:false;
+ const cityV=A.length===AREAS.length?"全部":(A.length?((narrow&&A.length>3)?A.length+" 個城市":A.map(a=>AREALABEL[a]).join("、")):"未選");
+ const typeV=T.length===TYPES.length?"全部":(T.length?((narrow&&T.length>3)?T.length+" 種":T.join("、")):"未選");
  const venuePill=state.selectedVenue
    ? pill("場地",state.selectedVenue)
    : `<a class="seg-pill warn-pill" href="#panel-venues" data-gotab="venues"><span class="pk">場地</span><span class="pv">尚未選定 ▸ 去「場地」選一個</span></a>`;
@@ -921,6 +922,7 @@ document.addEventListener("click",e=>{if(e.target.closest("[data-pdf]")){const o
 document.addEventListener("change",e=>{const cb=e.target.closest('.a11y-list input[type="checkbox"][data-ck]');if(cb){const c=JSON.parse(localStorage.getItem("a11yChecks")||"{}");if(cb.checked)c[cb.dataset.ck]=1;else delete c[cb.dataset.ck];localStorage.setItem("a11yChecks",JSON.stringify(c));const el=document.querySelector(".ck-count");if(el)el.textContent="已勾 "+Object.keys(c).length+"／"+CHECKLIST.reduce((s,g)=>s+g.items.length,0);}if(e.target.id==="strike-toggle"){localStorage.setItem("a11yStrike",e.target.checked?"1":"0");const l=document.querySelector(".a11y-list");if(l)l.classList.toggle("strike",e.target.checked);}});
 document.addEventListener("click",e=>{if(e.target.closest("[data-ckclear]")){localStorage.removeItem("a11yChecks");if(activeTab==="a11y")render();}});
 try{if(window.matchMedia&&window.matchMedia("(max-width:600px)").matches){const sd=document.querySelector("details.settings");if(sd)sd.open=false;}}catch(e){}
+let _rsz;window.addEventListener("resize",function(){clearTimeout(_rsz);_rsz=setTimeout(function(){try{renderSelbar();}catch(e){}},150);});
 selectTab("venues");
 </script>
 </body>
