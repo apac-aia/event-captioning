@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>台灣活動字幕選型工具｜場地、字幕工具、方案、成本</title>
-<meta name="description" content="輸入活動條件，即時得到場地、字幕工具、方案等級與成本級距的整合建議；涵蓋全台（北中南）的現場即時字幕／多語翻譯活動。">
+<meta name="description" content="輸入活動規模、籌備時間、核心人力、目的、資金與字幕定位，即時得到場地、字幕工具、方案等級與成本級距建議；涵蓋全台（北中南）的現場即時字幕／多語翻譯活動。">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
 :root{
@@ -84,6 +84,11 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .warn.high{background:var(--hi-bg);border-color:var(--hi-line);color:var(--hi-ink);}
 .warn.info{background:var(--info-bg);border-color:var(--info-line);color:var(--info-ink);}
 .warn b{font-weight:700;}
+#warnbar .warn.high b,#warnbar .reminders.risk>summary,#warnbar .reminders.risk .rbody b{color:var(--hi-ink);font-weight:700;}
+#warnbar .reminders.risk{border-color:var(--hi-line);background:var(--hi-bg);}
+#warnbar .reminders.risk>summary{background:var(--hi-bg);}
+#warnbar .reminders.risk[open]>summary{border-bottom-color:var(--hi-line);}
+#warnbar .reminders.risk .rbody div{color:var(--hi-ink);font-weight:700;}
 .a11y-list{display:flex;flex-direction:column;gap:.5rem;}
 .a11y-list .grp{margin:.7rem 0 -.1rem;font-weight:700;font-size:1rem;color:var(--accent);}
 .a11y-list .grp:first-child{margin-top:0;}
@@ -208,7 +213,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
   <div class="howto-body">
     <p><b>這工具幫你做什麼：</b>決定活動的字幕方案，包含選場地、比字幕工具、估成本、顧無障礙。</p>
     <ol>
-      <li><b>設定你的活動</b>：最上方選人數規模、預算傾向、要不要「無障礙基準服務」。</li>
+      <li><b>設定你的活動</b>：最上方選人數規模、籌備時間、核心人力、活動目的、資金狀態、預算傾向、要不要「無障礙基準服務」。</li>
       <li><b>由左到右看分頁</b>：場地 → 字幕工具 → 方案 → 成本 → 聽打與手語。</li>
       <li><b>到「總覽」收尾</b>：看整合建議、下載完整資料 PDF；深入操作手冊看「完整報告」。</li>
     </ol>
@@ -218,7 +223,8 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
 
 <div class="sticky">
   <div id="selbar" aria-label="目前所有選擇"></div>
-  <details class="settings" open><summary>活動設定（規模、預算、字幕定位、人數）</summary>
+</div>
+<details class="settings" open><summary>活動設定（規模、時間、人力、目的、資金、字幕定位）</summary>
   <div class="controls" aria-label="活動設定">
     <div class="row">
       <div class="cset">
@@ -228,6 +234,41 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
           <label><input type="radio" name="size" value="S"><span class="opt">S（50-150）</span></label>
           <label><input type="radio" name="size" value="M" checked><span class="opt">M（150-300）</span></label>
           <label><input type="radio" name="size" value="L"><span class="opt">L（300+）</span></label>
+        </div>
+      </div>
+      <div class="cset">
+        <span class="lbl" id="lbl-prep">籌備時間</span>
+        <div class="seg" role="radiogroup" aria-labelledby="lbl-prep" id="f-prep">
+          <label><input type="radio" name="prep" value="short" checked><span class="opt">2 個月內</span></label>
+          <label><input type="radio" name="prep" value="mid"><span class="opt">3-4 個月</span></label>
+          <label><input type="radio" name="prep" value="long"><span class="opt">6 個月+</span></label>
+        </div>
+      </div>
+      <div class="cset">
+        <span class="lbl" id="lbl-team">核心人力</span>
+        <div class="seg" role="radiogroup" aria-labelledby="lbl-team" id="f-team">
+          <label><input type="radio" name="team" value="tiny"><span class="opt">1-2 人</span></label>
+          <label><input type="radio" name="team" value="small" checked><span class="opt">3-4 人</span></label>
+          <label><input type="radio" name="team" value="full"><span class="opt">6 人+</span></label>
+        </div>
+      </div>
+      <div class="cset">
+        <span class="lbl" id="lbl-purpose">活動目的</span>
+        <div class="seg" role="radiogroup" aria-labelledby="lbl-purpose" id="f-purpose">
+          <label><input type="radio" name="purpose" value="pilot"><span class="opt">前導/測試</span></label>
+          <label><input type="radio" name="purpose" value="roundtable"><span class="opt">閉門圓桌</span></label>
+          <label><input type="radio" name="purpose" value="publicFree" checked><span class="opt">公開免費</span></label>
+          <label><input type="radio" name="purpose" value="ticketed"><span class="opt">正式售票</span></label>
+        </div>
+      </div>
+      <div class="cset">
+        <span class="lbl" id="lbl-fund">資金狀態</span>
+        <div class="seg" role="radiogroup" aria-labelledby="lbl-fund" id="f-fund">
+          <label><input type="radio" name="fund" value="self" checked><span class="opt">無贊助/自費</span></label>
+          <label><input type="radio" name="fund" value="talking"><span class="opt">洽談中</span></label>
+          <label><input type="radio" name="fund" value="confirmed"><span class="opt">已確認贊助</span></label>
+          <label><input type="radio" name="fund" value="access"><span class="opt">字幕/無障礙贊助</span></label>
+          <label><input type="radio" name="fund" value="ticketSponsor"><span class="opt">售票+贊助</span></label>
         </div>
       </div>
       <div class="cset">
@@ -253,9 +294,8 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
       </div>
     </div>
   </div>
-  </details>
-  <div id="warnbar" role="status" aria-live="polite"></div>
-</div>
+</details>
+<div id="warnbar" role="status" aria-live="polite"></div>
 
 <details class="reminders">
 <summary>不分設定都要顧的三件事（乾淨人聲・問答麥・資料隱私）</summary>
@@ -297,6 +337,10 @@ const SIZE_RANGE={XS:[20,50],S:[50,150],M:[150,300],L:[300,2000]};
 const TIERLABEL={XS:"小型工作坊（XS）",S:"低成本試跑（S）",M:"正式建議方案（M）",L:"高穩定方案（L）"};
 const BUDGETLABEL={free:"免費",low:"省",mid:"平衡",any:"不限"};
 const ACCESSLABEL={convenience:"觀眾體驗加值",formal:"無障礙基準服務"};
+const PREPLABEL={short:"2 個月內",mid:"3-4 個月",long:"6 個月+"};
+const TEAMLABEL={tiny:"1-2 人",small:"3-4 人",full:"6 人+"};
+const PURPOSELABEL={pilot:"內部測試 / 前導場",roundtable:"閉門圓桌 / 專家討論",publicFree:"公開免費活動",ticketed:"正式售票活動"};
+const FUNDLABEL={self:"無贊助 / 自費",talking:"贊助洽談中",confirmed:"已確認一般贊助",access:"已確認字幕 / 無障礙贊助",ticketSponsor:"售票 + 贊助"};
 const SIZE_PEOPLE={XS:"20-50",S:"50-150",M:"150-300",L:"300+"};
 // 場地類型隨人數規模的預設聯動；使用者手動勾過後就不再覆蓋（state.typesCustomized）
 const TYPE_PRESET={
@@ -516,7 +560,7 @@ const COST={
  caveats:"這是級距粗估、不是報價。不同計價模式不可直接比（飯店像便當套餐人越多越貴、會議中心像租廚房場租便宜但設備自己算）；要把場租＋影音＋網路＋餐飲＋字幕工具＋人力加總成同一張表。所有非報告數字（時數、天數、人力單價、餐飲每人、CART 報價、網路費）一律需確認。"
 };
 
-const state={size:"M",budget:"mid",access:"convenience",people:null,selectedVenue:null,
+const state={size:"M",prep:"short",team:"small",purpose:"publicFree",fund:"self",budget:"mid",access:"convenience",people:null,selectedVenue:null,
  types:new Set(TYPES),areas:new Set(AREAS.map(a=>a[0])),capOnly:false,priceOnly:false,excludeOver:true,typesCustomized:false};
 let activeTab="overview";
 let lastSize=null;
@@ -551,6 +595,17 @@ function computeWarnings(){
  const out=[];
  if(state.access==="formal") out.push({s:"high",m:"<b>重要：</b>你把字幕定位為「無障礙基準服務」。若已知有聾人或聽障者需要字幕才能平等參與，不能只靠 AI 字幕，必須加 CART（即時人工字幕／同步聽打）、手語或專業字幕。這一點不分人數規模。"});
  if(state.access==="formal"&&state.size==="L") out.push({s:"high",m:"<b>重要：</b>L 級又選無障礙基準服務：CART、手語或專業字幕員為必要，AI 字幕只能當多語即時翻譯的補充；並建議主機與備機、網路備援、明確服務台。"});
+ if(state.prep==="short"&&state.access==="formal") out.push({s:"high",m:"<b>時間參考：</b>2 個月內又承諾無障礙基準服務時，CART、手語或專業字幕的檔期與報價要優先鎖定；未確認前，不要把 AI 字幕寫成唯一方案。"});
+ if(state.prep==="short"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>時間參考：</b>${esc(PREPLABEL[state.prep])}要做 ${esc(tl)}，先確認場地、乾淨人聲、字幕工具檔期與當天操作人力；若人力或檔期不足，調小規模比硬撐更穩。`});
+ if(state.prep==="mid"&&state.size==="L") out.push({s:"info",m:"<b>時間參考：</b>3-4 個月做 L 級活動仍偏緊；場地、影音、字幕、CART／手語與網路備援要同步詢價，不要等場地確定後才找字幕。"});
+ if(state.team==="tiny"&&(state.size==="M"||state.size==="L")) out.push({s:"high",m:`<b>人力參考：</b>核心籌備只有 ${esc(TEAMLABEL[state.team])} 時，不建議承接 ${esc(tl)}；先縮小到 XS/S，或改成閉門圓桌／前導場。`});
+ if(state.prep==="short"&&state.team==="small"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>人力參考：</b>${esc(PREPLABEL[state.prep])}、核心 ${esc(TEAMLABEL[state.team])} 做 ${esc(tl)} 會很緊；若要維持規模，至少要先鎖定場地、影音、字幕與當天操作分工。`});
+ if(state.purpose==="ticketed"&&state.prep==="short") out.push({s:"high",m:"<b>售票參考：</b>2 個月內做正式售票活動，不只是在公開報名；客服、退費、報名資料、無障礙需求處理、字幕品質承諾都要先定。未確認前不建議開賣。"});
+ if(state.purpose==="ticketed"&&state.team!=="full"&&(state.size==="M"||state.size==="L")) out.push({s:"high",m:`<b>售票參考：</b>${esc(tl)} 的正式售票活動需要穩定營運 owner；核心人力少於 6 人時，不建議把它包裝成正式售票活動。`});
+ if(state.purpose==="roundtable"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:"<b>目的參考：</b>閉門圓桌通常不需要 M/L 場地規模；若目標是專家討論與紀錄，先看 XS/S、線上或小型 hybrid。"});
+ if(state.fund==="talking"&&(state.purpose==="ticketed"||state.size==="M"||state.size==="L")) out.push({s:"high",m:"<b>資金參考：</b>贊助洽談中不等於已確認預算。不要用未確認贊助支撐售票、CART／手語、直播製播或高規格場地承諾。"});
+ if(state.fund==="ticketSponsor"&&state.purpose!=="ticketed") out.push({s:"info",m:"<b>資金參考：</b>你選了「售票 + 贊助」，但活動目的不是正式售票；若不打算售票，請改選一般贊助或自費，避免責任判斷被放大。"});
+ if(state.fund==="access"&&state.access!=="formal") out.push({s:"info",m:"<b>資金參考：</b>已確認字幕／無障礙贊助時，建議優先把 CART、手語或專業字幕納入基準服務，而不是只當觀眾體驗加值。"});
  if(v&&v.cap==="restricted") out.push({s:"high",m:`<b>重要：</b>你選的「${esc(v.n)}」對外接設備有限制（視聽器材不得自帶／同步翻譯設備不得自備／無法外接其他影音），可能不適合作字幕主場。接字幕筆電與乾淨人聲輸出的方式要簽約前向場地書面確認。`});
  if(v&&v.capMax!==null&&v.capMax<peopleMax()) out.push({s:"high",m:`<b>重要：</b>「${esc(v.n)}」最大容量約 ${v.capMax} 人，坐不下你的人數（${esc(tl)}，約上限 ${peopleMax()} 人）。換更大的場地，或調整人數規模再比較。`});
  if(v&&v.priceFrom===null) out.push({s:"info",m:`<b>提醒：</b>「${esc(v.n)}」沒有公開價（需詢價／需申請），無法和其他場地公平比價。用統一格式詢價信請業務提供書面報價（場租、服務費、餐飲、影音、外接字幕、網路）。`});
@@ -588,22 +643,23 @@ function renderA11yPanel(){
 function renderSelbar(){
  const A=[...state.areas], T=[...state.types];
  const pill=(k,v)=>`<span class="seg-pill"><span class="pk">${esc(k)}</span><span class="pv">${esc(v)}</span></span>`;
- const row1=`<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("預算",BUDGETLABEL[state.budget])+pill("字幕",ACCESSLABEL[state.access]);
+ const row1=`<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("時間",PREPLABEL[state.prep])+pill("核心人力",TEAMLABEL[state.team])+pill("目的",PURPOSELABEL[state.purpose]);
+ const row2=pill("資金",FUNDLABEL[state.fund])+pill("預算",BUDGETLABEL[state.budget])+pill("字幕",ACCESSLABEL[state.access]);
  const narrow=window.matchMedia?window.matchMedia("(max-width:600px)").matches:false;
  const cityV=A.length===AREAS.length?"全部":(A.length?((narrow&&A.length>3)?A.length+" 個城市":A.map(a=>AREALABEL[a]).join("、")):"未選");
  const typeV=T.length===TYPES.length?"全部":(T.length?((narrow&&T.length>3)?T.length+" 種":T.join("、")):"未選");
  const venuePill=state.selectedVenue
    ? pill("場地",state.selectedVenue)
    : `<a class="seg-pill warn-pill" href="#panel-venues" data-gotab="venues"><span class="pk">場地</span><span class="pv">尚未選定 ▸ 去「場地」選一個</span></a>`;
- const row2=pill("城市",cityV)+pill("場地類型",typeV)+venuePill;
- document.getElementById("selbar").innerHTML=`<div class="selrow">${row1}</div><div class="selrow">${row2}</div>`;
+ const row3=pill("城市",cityV)+pill("場地類型",typeV)+venuePill;
+ document.getElementById("selbar").innerHTML=`<div class="selrow">${row1}</div><div class="selrow">${row2}</div><div class="selrow">${row3}</div>`;
 }
 // 列印轉 PDF：語意 HTML（h1/h2/h3 + 清單）→ 瀏覽器另存 tagged PDF。ponytail: 不用 jsPDF（產出無標籤、不無障礙）
 function buildPrintDoc(){
  const t=TIERS.find(x=>x.id===state.size);
  const short=venueList().list.slice(0,5);
  const toolLine=state.access==="formal"?`以 CART（即時人工字幕／同步聽打）、手語或專業字幕為基準服務；${TOOLS_BYTIER[state.size]} 作為補充。`:TOOLS_BYTIER[state.size];
- const sel=`規模 ${state.size}（${SIZE_PEOPLE[state.size]}）｜預算 ${BUDGETLABEL[state.budget]}｜字幕定位 ${ACCESSLABEL[state.access]}`;
+ const sel=`規模 ${state.size}（${SIZE_PEOPLE[state.size]}）｜籌備時間 ${PREPLABEL[state.prep]}｜核心人力 ${TEAMLABEL[state.team]}｜活動目的 ${PURPOSELABEL[state.purpose]}｜資金狀態 ${FUNDLABEL[state.fund]}｜預算 ${BUDGETLABEL[state.budget]}｜字幕定位 ${ACCESSLABEL[state.access]}`;
  const venues=short.length?short.map(v=>`<li>${esc(v.n)}（${esc(v.priceText)}）${v.phone?"　電話 "+esc(v.phone):""}</li>`).join(""):"<li>目前條件下沒有符合的場地</li>";
  const adv=`<h2>整合建議</h2>
    <p><b>條件：</b>${esc(sel)}</p>
@@ -622,10 +678,10 @@ function buildPrintDoc(){
    ${list}`;
 }
 function renderWarnbar(){
- // red high = 擋路阻擋，全開可見；blue info = 建議，摺進「提醒(N)」沿用 .reminders 樣式
+ // red high = 擋路阻擋，全開可見；risk = 紅色摘要，預設收合，避免擋住工具內容
  const ws=computeWarnings(), high=ws.filter(w=>w.s==="high"), info=ws.filter(w=>w.s==="info");
  let html=high.map(w=>`<div class="warn high">${ICO_HIGH}<div>${w.m}</div></div>`).join("");
- if(info.length) html+=`<details class="reminders"${high.length?"":" open"}><summary>${ICO_INFO} 提醒（${info.length}）</summary><div class="rbody">${info.map(w=>`<div>${w.m}</div>`).join("")}</div></details>`;
+ if(info.length) html+=`<details class="reminders risk"><summary>${ICO_HIGH} 風險提醒（${info.length}）</summary><div class="rbody">${info.map(w=>`<div>${w.m}</div>`).join("")}</div></details>`;
  document.getElementById("warnbar").innerHTML=html;
 }
 
@@ -817,6 +873,8 @@ function renderOverview(){
  return `<div class="ovbox">
    <h3>你的整合建議</h3>
    <div class="ovrow kv"><span class="k">方案等級</span><span>${esc(t.name)}（${esc(t.people)}）</span></div>
+   <div class="ovrow kv"><span class="k">活動目的</span><span>${esc(PURPOSELABEL[state.purpose])}</span></div>
+   <div class="ovrow kv"><span class="k">籌備條件</span><span>${esc(PREPLABEL[state.prep])}；核心人力 ${esc(TEAMLABEL[state.team])}；資金 ${esc(FUNDLABEL[state.fund])}（僅作可行性提醒，不自動改變規模）</span></div>
    <div class="ovrow kv"><span class="k">字幕工具</span><span>${toolLine}</span></div>
    <div class="ovrow kv"><span class="k">場地短名單</span><span>${short.length?`前 ${short.length} 個（點「選它」鎖定）`:""}</span></div>
    ${shortHtml}
@@ -859,6 +917,10 @@ function renderHumanServices(){
 const RENDERERS={overview:renderOverview,venues:renderVenues,tools:renderTools,tiers:renderTiers,cost:renderCost,human:renderHumanServices,a11y:renderA11yPanel};
 function readState(){
  state.size=document.querySelector('input[name="size"]:checked').value;
+ state.prep=document.querySelector('input[name="prep"]:checked').value;
+ state.team=document.querySelector('input[name="team"]:checked').value;
+ state.purpose=document.querySelector('input[name="purpose"]:checked').value;
+ state.fund=document.querySelector('input[name="fund"]:checked').value;
  state.budget=document.querySelector('input[name="budget"]:checked').value;
  state.access=document.querySelector('input[name="access"]:checked').value;
  const pe=document.getElementById("people-in").value.trim();
