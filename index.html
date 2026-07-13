@@ -4,7 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>台灣活動字幕選型工具｜場地、字幕工具、方案、成本</title>
-<meta name="description" content="輸入活動規模、籌備時間、核心人力、目的、資金與字幕定位，即時得到場地、字幕工具、方案等級與成本級距建議；涵蓋全台（北中南）的現場即時字幕／多語翻譯活動。">
+<meta name="description" content="輸入活動規模、籌備時間、核心人力、目的、收費、贊助與字幕定位，即時得到場地、字幕工具、方案等級與成本級距建議；涵蓋全台（北中南）的現場即時字幕／多語翻譯活動。">
+<link rel="canonical" href="https://apac-aia.github.io/event-captioning/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "台灣活動字幕選型工具",
+  "url": "https://apac-aia.github.io/event-captioning/",
+  "description": "依活動規模、語言、籌備條件與無障礙需求，提供場地、字幕工具、方案與成本級距建議。",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "zh-Hant",
+  "isAccessibleForFree": true,
+  "provider": {
+    "@type": "Organization",
+    "name": "亞太包容創新協會",
+    "alternateName": "APAC Authentic Inclusion Association"
+  }
+}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
 :root{
@@ -29,8 +48,9 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .banner .eyebrow{font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cta);margin-bottom:.5rem;}
 .banner h1{font-size:1.95rem;font-weight:700;letter-spacing:.05em;margin:0;line-height:1.2;}
 .banner .org{font-size:.8rem;letter-spacing:.05em;color:rgba(255,255,255,.74);margin-top:.55rem;}
-.banner-links a{font-family:'Inter',sans-serif;color:var(--cta);font-weight:600;font-size:.85rem;letter-spacing:.04em;text-decoration:none;border:1px solid transparent;padding:.35rem .75rem;margin-left:.6rem;white-space:nowrap;transition:background .15s ease,border-color .15s ease,transform .12s ease;}
-.banner-links a:hover,.banner-links a:focus-visible{border-color:var(--cta);background:var(--cta);color:var(--cta-text);transform:translateY(-1px);}
+.banner-links a,.banner-links button{font-family:'Inter',sans-serif;color:var(--cta);font-weight:600;font-size:.85rem;letter-spacing:.04em;text-decoration:none;border:1px solid transparent;padding:.35rem .75rem;margin-left:.6rem;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;transition:background .15s ease,border-color .15s ease,transform .12s ease;}
+.banner-links button{background:transparent;cursor:pointer;}
+.banner-links a:hover,.banner-links a:focus-visible,.banner-links button:hover,.banner-links button:focus-visible{border-color:var(--cta);background:var(--cta);color:var(--cta-text);transform:translateY(-1px);}
 .howto{background:var(--soft);border:1px solid var(--line-strong);margin:0 0 1.2rem;}
 .howto>summary{cursor:pointer;font-weight:700;font-size:1.05rem;color:var(--accent);padding:.7rem 1rem;list-style:none;}
 .howto>summary::-webkit-details-marker{display:none;}
@@ -41,6 +61,26 @@ h1,h2,h3,h4,h2.sec{font-family:'Noto Serif TC','Inter',Georgia,serif;}
 .howto-body ol,.howto-body ul{margin:.5rem 0;padding-left:1.3rem;}
 .howto-body li{margin:.4rem 0;}
 .howto-body .note{margin:.6rem 0 0;}
+.tour[hidden]{display:none;}
+.tour{position:fixed;inset:0;pointer-events:none;}
+.tour-scrim{position:fixed;inset:0;z-index:80;border:0;padding:0;background:rgba(0,0,0,.62);pointer-events:auto;}
+.tour-card{position:fixed;left:1rem;top:1rem;z-index:100;width:min(560px,calc(100vw - 1.5rem));max-height:calc(100vh - 1.5rem);overflow:auto;overflow-wrap:anywhere;background:#fff;color:var(--ink);border:3px solid var(--cta);padding:1rem 1.05rem;box-shadow:0 18px 46px rgba(0,0,0,.34);pointer-events:auto;}
+.tour-kicker{font-size:.82rem;font-weight:700;color:var(--accent);margin-bottom:.25rem;}
+.tour-card h2{font-size:1.25rem;margin:.1rem 0 .45rem;color:var(--accent);}
+.tour-card p{margin:.35rem 0 .85rem;}
+.tour-actions{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:flex-end;}
+.tour-actions button{min-height:44px;padding:.4rem .8rem;border:1px solid var(--line-strong);background:#fff;color:var(--ink);font-weight:700;cursor:pointer;}
+.tour-actions button.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+.tour-actions button:hover,.tour-actions button:focus-visible{background:var(--cta);border-color:var(--cta);color:var(--cta-text);outline:3px solid var(--accent);outline-offset:2px;}
+.tour-focus{position:relative!important;z-index:90!important;box-shadow:0 0 0 4px var(--cta),0 0 0 8px #fff!important;border-radius:3px!important;}
+@media (max-width:600px){
+ .tour-card{width:calc(100vw - 1rem);max-height:calc(100svh - 1rem);padding:.65rem .7rem;border-width:2px;font-size:.9rem;line-height:1.42;}
+ .tour-kicker{font-size:.75rem;margin-bottom:.12rem;}
+ .tour-card h2{font-size:1rem;line-height:1.25;margin:.05rem 0 .3rem;}
+ .tour-card p{margin:.2rem 0 .45rem;line-height:1.45;}
+ .tour-actions{justify-content:stretch;gap:.35rem;}
+ .tour-actions button{flex:1 1 0;min-width:0;min-height:44px;padding:.25rem .35rem;font-size:.88rem;white-space:nowrap;}
+}
 .settings{margin:0 0 .3rem;}
 .settings>summary{cursor:pointer;font-weight:700;font-size:.85rem;letter-spacing:.02em;color:var(--accent);padding:.3rem .2rem;list-style:none;display:inline-flex;align-items:center;min-height:32px;}
 .settings>summary::-webkit-details-marker{display:none;}
@@ -130,10 +170,11 @@ h2.sec{font-size:1.3rem;margin:.2rem 0 .8rem;color:var(--accent);letter-spacing:
 .cards{display:grid;gap:.8rem;}
 .card{background:var(--paper);border:1px solid var(--line);padding:.95rem 1.1rem;overflow-wrap:anywhere;}
 .card.sel{border-color:var(--accent);box-shadow:inset 4px 0 0 var(--cta);}
-.card-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem;}
-.card-head h4{margin:0;font-size:1.08rem;font-family:'Noto Sans TC','Inter',sans-serif;font-weight:700;color:var(--accent);}
+.card.picked{border-color:var(--accent);box-shadow:inset 4px 0 0 var(--accent),0 0 0 2px var(--cta);}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;min-width:0;max-width:100%;margin-bottom:.35rem;overflow-wrap:anywhere;}
+.card-head h4{margin:0;min-width:0;max-width:100%;overflow-wrap:anywhere;word-break:break-all;font-size:1.08rem;font-family:'Noto Sans TC','Inter',sans-serif;font-weight:700;color:var(--accent);}
 .type-ico{flex:0 0 auto;width:30px;height:30px;color:var(--accent);display:inline-flex;}
-.price{font-size:1.1rem;font-weight:700;color:var(--ink);}
+.price{font-size:.95rem;font-weight:700;color:var(--ink);overflow-wrap:anywhere;word-break:break-all;}
 .unit{font-size:.85rem;color:var(--muted);font-weight:400;}
 .meta{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0;}
 .tag{font-size:.76rem;padding:.15rem .55rem;border:1px solid var(--line);background:var(--surface);color:var(--muted);}
@@ -153,6 +194,11 @@ h2.sec{font-size:1.3rem;margin:.2rem 0 .8rem;color:var(--accent);letter-spacing:
 .filters .grp{display:flex;flex-wrap:wrap;gap:.3rem .8rem;align-items:center;}
 .chk{display:inline-flex;align-items:center;gap:.4rem;min-height:34px;font-size:.92rem;}
 .count{font-weight:700;margin:.2rem 0 .7rem;color:var(--accent);}
+.tool-search{display:flex;flex-wrap:wrap;gap:.45rem .7rem;align-items:center;background:var(--paper);border:1px solid var(--line);padding:.65rem .85rem;margin:0 0 .8rem;}
+.tool-search label{font-weight:700;color:var(--accent);}
+.tool-search input{flex:1 1 16rem;min-height:44px;padding:.35rem .65rem;border:1px solid var(--line-strong);font-size:1rem;font-family:inherit;}
+.tool-search input:focus-visible{outline:3px solid var(--cta);outline-offset:2px;}
+.tool-count{font-size:.86rem;font-weight:700;color:var(--accent);}
 .ovbox{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--accent);padding:1.1rem 1.2rem;margin-bottom:1rem;}
 .ovbox h3{margin:.1rem 0 .6rem;color:var(--accent);font-size:1.15rem;letter-spacing:.03em;}
 .ovrow{margin:.4rem 0;}
@@ -170,7 +216,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
 .wrap a:not(.btn):hover,.wrap a:not(.btn):focus-visible{background:var(--cta);color:var(--cta-text);text-decoration-thickness:2px;outline:3px solid var(--accent);outline-offset:1px;}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}}
-@media (max-width:600px){.banner h1{font-size:1.45rem;}.banner-in{padding:.85rem 1.1rem .85rem;align-items:flex-start;flex-direction:column;gap:.5rem;}.banner-links a{margin-left:0;margin-right:1.3rem;}}
+@media (max-width:600px){.banner h1{font-size:1.45rem;}.banner-in{padding:.85rem 1.1rem .85rem;align-items:flex-start;flex-direction:column;gap:.5rem;}.banner-links a,.banner-links button{margin-left:0;margin-right:1.3rem;}}
 .vphone{font-size:.92rem;margin:.15rem 0 .1rem;color:var(--ink);}
 .pdfrow{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:.3rem 0 .7rem;}
 @media print{
@@ -199,6 +245,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
       <div class="org">亞太包容創新協會　APAC Authentic Inclusion Association</div>
     </div>
     <nav class="banner-links" aria-label="其他文件">
+      <button type="button" data-tour-open>開啟引導</button>
       <a href="#panel-overview" data-gotab="overview">總覽</a>
       <a href="#panel-a11y" data-gotab="a11y">無障礙清單</a>
       <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>
@@ -206,33 +253,33 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
     </nav>
   </div>
 </header>
-<div class="wrap">
-<p class="lead">設定活動條件，分頁即時更新建議與提醒。第一次用先展開下方「怎麼用?」。</p>
-<details class="howto">
-  <summary>怎麼用?</summary>
+<main class="wrap" id="main-content">
+<p class="lead">設定活動條件，分頁即時更新建議與提醒。第一次使用會開啟逐步引導；關閉後之後維持關閉，需要時按上方「開啟引導」。</p>
+<details class="howto" id="howto">
+  <summary>文字版怎麼用？</summary>
   <div class="howto-body">
     <p><b>這工具幫你做什麼：</b>決定活動的字幕方案，包含選場地、比字幕工具、估成本、顧無障礙。</p>
     <ol>
-      <li><b>設定你的活動</b>：最上方選人數規模、籌備時間、核心人力、活動目的、資金狀態、預算傾向、要不要「無障礙基準服務」。</li>
-      <li><b>由左到右看分頁</b>：場地 → 字幕工具 → 方案 → 成本 → 聽打與手語。</li>
+      <li><b>設定你的活動</b>：最上方選人數規模、籌備時間、核心人力、當日技術人力、活動目的、收費模式、贊助狀態、預算傾向、字幕定位、主要發言語言、目標字幕語言，以及是否需要錄影／回放。</li>
+      <li><b>由左到右看分頁</b>：場地 → 字幕工具 → 方案 → 成本 → 聽打與手語；場地與字幕工具都可以用搜尋快速縮小範圍。</li>
       <li><b>到「總覽」收尾</b>：看整合建議、下載完整資料 PDF；深入操作手冊看「完整報告」。</li>
     </ol>
-    <p class="note">所有價格都是查詢起點、不是報價，採購前要向場地與供應商書面確認。</p>
+    <p class="note">所有價格都是查詢起點、不是報價，採購前要向場地與供應商書面確認。需要逐步說明時，按下方按鈕重新打開引導。</p>
   </div>
 </details>
 
 <div class="sticky">
   <div id="selbar" aria-label="目前所有選擇"></div>
 </div>
-<details class="settings" open><summary>活動設定（規模、時間、人力、目的、資金、字幕定位）</summary>
+<details class="settings" open><summary>活動設定（規模、時間、人力、目的、收費、贊助、語言、字幕、錄影）</summary>
   <div class="controls" aria-label="活動設定">
     <div class="row">
       <div class="cset">
         <span class="lbl" id="lbl-size">活動人數規模</span>
         <div class="seg" role="radiogroup" aria-labelledby="lbl-size" id="f-size">
           <label><input type="radio" name="size" value="XS"><span class="opt">XS（20-50）</span></label>
-          <label><input type="radio" name="size" value="S"><span class="opt">S（50-150）</span></label>
-          <label><input type="radio" name="size" value="M" checked><span class="opt">M（150-300）</span></label>
+          <label><input type="radio" name="size" value="S" checked><span class="opt">S（50-150）</span></label>
+          <label><input type="radio" name="size" value="M"><span class="opt">M（150-300）</span></label>
           <label><input type="radio" name="size" value="L"><span class="opt">L（300+）</span></label>
         </div>
       </div>
@@ -253,22 +300,36 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
         </div>
       </div>
       <div class="cset">
+        <span class="lbl" id="lbl-techstaff">當日技術人力</span>
+        <div class="seg" role="radiogroup" aria-labelledby="lbl-techstaff" id="f-techstaff">
+          <label><input type="radio" name="techstaff" value="unapproved"><span class="opt">尚未同意配置</span></label>
+          <label><input type="radio" name="techstaff" value="planning" checked><span class="opt">已同意／找人中</span></label>
+          <label><input type="radio" name="techstaff" value="confirmed"><span class="opt">角色已確認</span></label>
+        </div>
+        <span class="hint">可由主辦、場地或外包廠商承擔</span>
+      </div>
+      <div class="cset">
         <span class="lbl" id="lbl-purpose">活動目的</span>
         <div class="seg" role="radiogroup" aria-labelledby="lbl-purpose" id="f-purpose">
           <label><input type="radio" name="purpose" value="pilot"><span class="opt">前導/測試</span></label>
           <label><input type="radio" name="purpose" value="roundtable"><span class="opt">閉門圓桌</span></label>
-          <label><input type="radio" name="purpose" value="publicFree" checked><span class="opt">公開免費</span></label>
-          <label><input type="radio" name="purpose" value="ticketed"><span class="opt">正式售票</span></label>
+          <label><input type="radio" name="purpose" value="publicFree"><span class="opt">公開免費</span></label>
+          <label><input type="radio" name="purpose" value="ticketed" checked><span class="opt">正式售票</span></label>
         </div>
       </div>
       <div class="cset">
-        <span class="lbl" id="lbl-fund">資金狀態</span>
-        <div class="seg" role="radiogroup" aria-labelledby="lbl-fund" id="f-fund">
-          <label><input type="radio" name="fund" value="self" checked><span class="opt">無贊助/自費</span></label>
-          <label><input type="radio" name="fund" value="talking"><span class="opt">洽談中</span></label>
-          <label><input type="radio" name="fund" value="confirmed"><span class="opt">已確認贊助</span></label>
-          <label><input type="radio" name="fund" value="access"><span class="opt">字幕/無障礙贊助</span></label>
-          <label><input type="radio" name="fund" value="ticketSponsor"><span class="opt">售票+贊助</span></label>
+        <span class="lbl" id="lbl-charge">收費模式</span>
+        <div class="seg" role="radiogroup" aria-labelledby="lbl-charge" id="f-charge">
+          <label><input type="radio" name="charge" value="free"><span class="opt">免費參加</span></label>
+          <label><input type="radio" name="charge" value="ticketed" checked><span class="opt">正式售票</span></label>
+        </div>
+      </div>
+      <div class="cset">
+        <span class="lbl" id="lbl-sponsor">贊助狀態</span>
+        <div class="seg" role="radiogroup" aria-labelledby="lbl-sponsor" id="f-sponsor">
+          <label><input type="radio" name="sponsor" value="none"><span class="opt">無贊助</span></label>
+          <label><input type="radio" name="sponsor" value="talking"><span class="opt">洽談中</span></label>
+          <label><input type="radio" name="sponsor" value="confirmed" checked><span class="opt">已確認</span></label>
         </div>
       </div>
       <div class="cset">
@@ -286,6 +347,28 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
           <label><input type="radio" name="access" value="convenience" checked><span class="opt">觀眾體驗加值</span></label>
           <label><input type="radio" name="access" value="formal"><span class="opt">無障礙基準服務</span></label>
         </div>
+      </div>
+      <div class="cset">
+        <span class="lbl" id="lbl-speech">主要發言語言</span>
+        <div class="seg" role="radiogroup" aria-labelledby="lbl-speech" id="f-speech">
+          <label><input type="radio" name="speech" value="en" checked><span class="opt">英文</span></label>
+          <label><input type="radio" name="speech" value="zhtw"><span class="opt">中文</span></label>
+          <label><input type="radio" name="speech" value="ja"><span class="opt">日文</span></label>
+          <label><input type="radio" name="speech" value="multi"><span class="opt">多語混用</span></label>
+        </div>
+      </div>
+      <div class="cset">
+        <span class="lbl" id="lbl-captionlangs">目標字幕語言</span>
+        <div class="seg" role="group" aria-labelledby="lbl-captionlangs" id="f-captionlangs">
+          <label><input type="checkbox" name="captionlang" value="zhtw" checked><span class="opt">繁中</span></label>
+          <label><input type="checkbox" name="captionlang" value="en"><span class="opt">英文</span></label>
+          <label><input type="checkbox" name="captionlang" value="ja" checked><span class="opt">日文</span></label>
+          <label><input type="checkbox" name="captionlang" value="other"><span class="opt">其他／多語</span></label>
+        </div>
+      </div>
+      <div class="cset" id="f-recording">
+        <span class="lbl">會後交付</span>
+        <label class="chk"><input type="checkbox" id="recording-in" checked> 需要錄影／回放</label>
       </div>
       <div class="cset">
         <span class="lbl"><label for="people-in">精確人數（選填）</label></span>
@@ -325,22 +408,39 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
   <p>公開價格查詢時間：雙北場地 2026-06 中旬、非雙北五縣市 2026-06-24（研究階段），皆為第一輪比較、非簽約價；採購前須向場地與供應商書面確認，尤其「混音器能否提供只含人聲的乾淨訊號」。標「需確認」的容量／價格未在報告或來源載明，不可當定論。</p>
   <p>北中南各縣市場地為研究階段彙整：不少場地的收費標準官網以 PDF 或詢價提供（標「需詢價」）、容量未載明（標「需確認」），且能否外接字幕電腦／取得乾淨人聲多無法從官網確認、需逐場電洽音控室。雙北以外資料正式引用前請再查證一次。操作手冊（收音接線、現場操作、壞掉怎麼救、詢價信範本、時程）見 <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>。</p>
 </footer>
-</div>
+</main>
 
 <div id="print-doc" hidden></div>
+<div class="tour" id="tour" hidden>
+  <button type="button" class="tour-scrim" data-tour-close tabindex="-1" aria-label="關閉逐步引導"></button>
+  <section class="tour-card" role="dialog" aria-modal="true" aria-labelledby="tour-title" aria-describedby="tour-text">
+    <div class="tour-kicker" id="tour-count"></div>
+    <h2 id="tour-title"></h2>
+    <p id="tour-text"></p>
+    <div class="tour-actions">
+      <button type="button" data-tour-prev>上一步</button>
+      <button type="button" class="primary" data-tour-next>下一步</button>
+      <button type="button" data-tour-close>關閉引導</button>
+    </div>
+  </section>
+</div>
 
 <script>
 const TYPES=["會議中心","飯店","公有","校園","文化展演","社創","共創空間","圖書館","青年中心","主題空間","賽事場館"];
 const AREAS=[["taipei","台北市"],["newtaipei","新北市"],["taoyuan","桃園市"],["hsinchu","新竹"],["taichung","台中市"],["tainan","台南市"],["kaohsiung","高雄市"]];
 const AREALABEL=Object.fromEntries(AREAS);
 const SIZE_RANGE={XS:[20,50],S:[50,150],M:[150,300],L:[300,2000]};
-const TIERLABEL={XS:"小型工作坊（XS）",S:"低成本試跑（S）",M:"正式建議方案（M）",L:"高穩定方案（L）"};
+const TIERLABEL={XS:"小型工作坊（XS）",S:"小型混合式方案（S）",M:"正式建議方案（M）",L:"高穩定方案（L）"};
 const BUDGETLABEL={free:"免費",low:"省",mid:"平衡",any:"不限"};
 const ACCESSLABEL={convenience:"觀眾體驗加值",formal:"無障礙基準服務"};
 const PREPLABEL={short:"2 個月內",mid:"3-4 個月",long:"6 個月+"};
 const TEAMLABEL={tiny:"1-2 人",small:"3-4 人",full:"6 人+"};
+const TECHSTAFFLABEL={unapproved:"尚未同意配置",planning:"已同意／找人中",confirmed:"角色已確認"};
 const PURPOSELABEL={pilot:"內部測試 / 前導場",roundtable:"閉門圓桌 / 專家討論",publicFree:"公開免費活動",ticketed:"正式售票活動"};
-const FUNDLABEL={self:"無贊助 / 自費",talking:"贊助洽談中",confirmed:"已確認一般贊助",access:"已確認字幕 / 無障礙贊助",ticketSponsor:"售票 + 贊助"};
+const CHARGELABEL={free:"免費參加",ticketed:"正式售票"};
+const SPONSORLABEL={none:"無贊助",talking:"洽談中",confirmed:"已確認"};
+const SPEECHLABEL={en:"英文",zhtw:"中文",ja:"日文",multi:"多語混用"};
+const CAPTIONLANGLABEL={zhtw:"繁中",en:"英文",ja:"日文",other:"其他／多語"};
 const SIZE_PEOPLE={XS:"20-50",S:"50-150",M:"150-300",L:"300+"};
 // 場地類型隨人數規模的預設聯動；使用者手動勾過後就不再覆蓋（state.typesCustomized）
 const TYPE_PRESET={
@@ -509,21 +609,21 @@ const VENUES=[
 const TOOLS=[
  {name:"Vurbo.ai",origin:"台灣",role:"主方案候選",priceFeel:"需報價",languages:"多語（會議版最多 8 種指定語言）",qr:"有",glossary:"有",humanCorrect:"需確認",tiers:["S","M"],why:"台灣優先、貼近會議現場，會議版免安裝、瀏覽器 QR 進入。",source:"https://vurbo.ai/conference-version"},
  {name:"KKCO 人工智慧翻譯",origin:"台灣",role:"主方案候選",priceFeel:"需報價",languages:"72 種（含英中日韓）",qr:"有",glossary:"有",humanCorrect:"需確認",tiers:["M"],why:"台灣服務型候選，QR 手機觀看、術語表、可能提供現場操作員，對非技術團隊友善。",source:"https://www.kkco.com.tw/solutions/ai-translation-system/"},
- {name:"EventCAT",origin:"韓國",role:"正式備援",priceFeel:"中",languages:"50 種",qr:"有",glossary:"有",humanCorrect:"需確認",tiers:["S","M"],why:"價格透明（$60/時、$300/6時、$600/24時、$1,200 上限），300 位 QR 觀眾、自訂術語表。",source:"https://www.eventcat.com/en/pricing/conference"},
+ {name:"EventCAT",origin:"韓國",role:"正式備援",priceFeel:"中",languages:"50 種",qr:"有",glossary:"有",humanCorrect:"需確認",tiers:["S","M"],why:"官方提供按使用時數與活動規模分級的 Conference 方案，支援 QR 觀眾與自訂術語表；實際費率以採購當日官方價格頁為準。",source:"https://www.eventcat.com/en/pricing/conference"},
  {name:"Akkadu",origin:"國際",role:"低成本試跑",priceFeel:"低至中",languages:"90+ 種",qr:"有",glossary:"需確認",humanCorrect:"需確認",tiers:["XS","S","M"],why:"公開價格低、混音器接筆電、QR 手機進入，適合快速試跑與緊急備援。",source:"https://akkadu.ai/online-meeting/"},
- {name:"UDTalk",origin:"日本",role:"研究候選",priceFeel:"中",languages:"需確認（繁中英韓表現待確認）",qr:"需確認",glossary:"需確認",humanCorrect:"有",tiers:["XS","M"],why:"日本「工具＋人力修正」流程主要參考；正式採用前確認台灣採購與跨國支援。",source:"https://udtalk.jp/price/"},
+ {name:"UDTalk",origin:"日本",role:"日本現場候選",priceFeel:"中",languages:"日文現場優先；繁中英韓需實測",qr:"有（APP／瀏覽器配信，活動前仍需實測）",glossary:"有",humanCorrect:"有",tiers:["XS","S","M"],why:"若現場日方觀眾多，UDTalk 不只是研究參考；日本活動現場常見的是 APP／瀏覽器配信＋可由人修正字幕的流程。適合做日文觀眾 BYOD 字幕／翻譯與日方流程對齊；採用前仍要確認台灣採購、繁中／英文品質、現場修正人力、瀏覽器觀看方式與資料處理。",source:"https://udtalk.jp/code4japan-events/"},
  {name:"YYSystem / YY 文字起こし",origin:"日本",role:"低成本試跑",priceFeel:"低",languages:"需確認（英中日韓品質待確認）",qr:"有",glossary:"有",humanCorrect:"有",tiers:["XS"],why:"日本低成本候選，QR／網址即時配信、有修正與字典，但主辦操作負擔較重。",source:"https://yysystem.com/price"},
  {name:"Microsoft Translator",origin:"國際",role:"免費備援",priceFeel:"低",languages:"100+ 種",qr:"有",glossary:"無",humanCorrect:"無",tiers:["XS"],why:"免費或近免費、QR／代碼邀請，適合小型測試或備援；術語表與人工修正有限，不當正式主方案。",source:"https://www.microsoft.com/en-us/translator/help/multi-device-conversation/"},
  {name:"雅婷逐字稿 / Yating",origin:"台灣",role:"研究候選",priceFeel:"低至中",languages:"需確認（國台粵日、中英夾雜；多語翻譯待確認）",qr:"需確認",glossary:"需確認",humanCorrect:"需確認",tiers:[],why:"台灣語音辨識能力候選，但不一定是完整活動字幕平台。",source:"https://asr.yating.tw/"},
  {name:"SOVORO",origin:"韓國",role:"研究候選",priceFeel:"需確認",languages:"需確認（繁中英日品質待確認）",qr:"需確認",glossary:"需確認",humanCorrect:"需確認",tiers:[],why:"韓國無障礙與即時字幕產品，先列研究候選，不放第一輪主方案。",source:"https://www.sovoro.kr/"},
- {name:"Wordly",origin:"國際",role:"正式備援",priceFeel:"高／需報價",languages:"需確認（報價制）",qr:"有",glossary:"有",humanCorrect:"需確認",tiers:["L"],why:"正式國際會議多語字幕，QR 或連結、免下載、自訂術語表；通常需報價、成本較高。",source:"https://www.wordly.ai/pricing"},
- {name:"AI-Media LEXI",origin:"國際",role:"CART專業字幕",priceFeel:"高／需報價",languages:"中日韓等（LEXI Translate）",qr:"需確認",glossary:"需確認",humanCorrect:"需確認",tiers:["L"],why:"正式直播、廣播與大型活動字幕；成本較高、需較早採購與技術對接。",source:"https://www.ai-media.tv/our-products/lexi-ai-powered-captioning-tool-kit/lexi-translate/"},
- {name:"StreamText",origin:"國際",role:"CART專業字幕",priceFeel:"高／需排程",languages:"需確認（英文字幕員較易）",qr:"需確認",glossary:"需確認",humanCorrect:"有",tiers:["L"],why:"人工 CART 即時字幕平台；已知正式無障礙需求時不要只靠 AI。",source:"https://streamtext.net/features-and-pricing/"},
- {name:"3Play Media",origin:"國際",role:"CART專業字幕",priceFeel:"高／需排程",languages:"需確認（英文字幕員較易）",qr:"需確認",glossary:"需確認",humanCorrect:"有",tiers:["L"],why:"即時自動／真人專業字幕平台，可靠性高於單純 AI；正式無障礙需求列高穩定。",source:"https://www.3playmedia.com/platform/livecaptioning/"}
+ {name:"Wordly",origin:"國際",role:"AI多語字幕／翻譯",priceFeel:"高／需報價",languages:"需確認（報價制）",qr:"有",glossary:"有",humanCorrect:"無（AI 服務）",tiers:["L"],why:"AI 多語字幕與翻譯，支援 QR 或連結、免下載與自訂術語表；不是人工 CART，正式無障礙需求只能作補充。",source:"https://www.wordly.ai/wordly-platform"},
+ {name:"AI-Media LEXI",origin:"國際",role:"AI多語字幕／翻譯",priceFeel:"高／需報價",languages:"中日韓等（LEXI Translate）",qr:"需確認",glossary:"需確認",humanCorrect:"需另行安排",tiers:["L"],why:"AI 自動字幕與翻譯工具，適合正式直播、廣播與大型活動；不是人工 CART，正式無障礙需求只能作補充。",source:"https://www.ai-media.tv/our-products/lexi-ai-powered-captioning-tool-kit/lexi-ai/"},
+ {name:"StreamText",origin:"國際",role:"人工／AI字幕平台",priceFeel:"高／需排程",languages:"依人工字幕員或 AI 模式確認",qr:"需確認",glossary:"需確認",humanCorrect:"人工模式有",tiers:["L"],why:"同時支援人工字幕員與 AI 字幕；只有明確安排人工 CART／專業字幕員時，才能作為正式無障礙基準。",source:"https://streamtext.net/features-and-pricing/"},
+ {name:"3Play Media",origin:"國際",role:"人工專業／AI字幕服務",priceFeel:"高／需排程",languages:"依人工專業或自動模式確認",qr:"需確認",glossary:"需確認",humanCorrect:"人工專業模式有",tiers:["L"],why:"提供自動與 Live Professional 人工字幕；只有採購人工專業模式時，才能作為正式無障礙基準。",source:"https://www.3playmedia.com/platform/livecaptioning/"}
 ];
 // --- added solutions (platforms, intl) + human services + sign data ---
 // generated tool data
-const TOOLS_ADD=[{"name": "Zoom 即時字幕（Live Captions / Translated Captions）", "origin": "美國", "role": "混合／線上場內建備援", "priceFeel": "低（基本免費、翻譯需付費）", "languages": "語音辨識約46-49種；翻譯字幕輸出約35-39語言（含繁中、簡中、粵、英、日、韓）", "qr": "無（字幕顯示在平台介面內）", "glossary": "無", "humanCorrect": "否（AI自動；可另請CART字幕員加入會議）", "tiers": ["XS", "S", "M"], "why": "既有付費帳號即可開；基本字幕含在付費方案，翻譯字幕需 Business Plus 以上或加購（約 US$5/用戶/月）。各參與者自選閱讀語言，但翻譯字幕與口譯頻道彼此獨立。只適合線上／混合場的內建備援，非聾人聽障的正式無障礙服務。", "source": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059081", "kind": "平台內建字幕", "online": true}, {"name": "Microsoft Teams 即時字幕（Live / Translated Captions）", "origin": "美國", "role": "混合／線上場內建備援", "priceFeel": "低（基本免費、翻譯需付費）", "languages": "辨識50+語言（含繁中台灣 zh-TW、繁中香港、簡中、英日韓）；翻譯字幕約100語言；逐字稿57語言含 zh-TW、zh-HK", "qr": "無", "glossary": "無", "humanCorrect": "否（AI自動；官方建議聾人聽障搭配 CART，並可將外部 CART 接入為正式選項）", "tiers": ["XS", "S", "M"], "why": "基本即時字幕含在所有 Microsoft 365 商業方案、免費可用；翻譯字幕需主辦人持 Teams Premium（約 US$10/用戶/月），主辦人有就全場可用。Live Captions 不儲存，需另開 Transcript 才能下載 .docx/.vtt。zh-TW 明確在支援清單。", "source": "https://support.microsoft.com/en-us/teams/meetings/use-live-captions-in-microsoft-teams-meetings", "kind": "平台內建字幕", "online": true}, {"name": "Google Meet 即時字幕（Live / Translated Captions）", "origin": "美國", "role": "混合／線上場內建備援", "priceFeel": "低（基本免費、翻譯需付費）", "languages": "辨識多語（含英、西、越、日、韓、普通話）；翻譯字幕含繁中（Mandarin Traditional），粵語2025/12新增", "qr": "無（錄影時可選嵌入影片）", "glossary": "無", "humanCorrect": "否（原生無 CART 整合，需外部工具）", "tiers": ["XS", "S", "M"], "why": "基本字幕含在付費 Workspace 與個人帳號；翻譯字幕需 Business Standard 以上並自2025/1起搭配 Gemini 加購，個人帳號與 Workspace Individual 不支援。繁中明確支援，但 Meet 原生不匯出翻譯逐字稿或 SRT/VTT。語音翻譯（2026/1 GA）目前不含中文。", "source": "https://support.google.com/meet/answer/10964115", "kind": "平台內建字幕", "online": true}, {"name": "Interprefy", "origin": "瑞士（全球服務）", "role": "RSI＋AI混合平台", "priceFeel": "需報價／見備註", "languages": "AI字幕80+語言、6000+組合；官方僅稱『中文』未明確分繁／簡，需個別確認", "qr": "有（觀眾掃碼或連結，手機瀏覽器收看，免App）", "glossary": "有", "humanCorrect": "是（可搭人工RSI口譯，亦支援手語/signed interpretation；純AI亦可）", "tiers": ["M", "L"], "why": "功能完整、RSI＋AI彈性大，整合 Zoom/Teams/Webex，2024澳門亞太大會有實績。繁中分繁/簡需確認，官方不公開固定費率、需詢價（第三方估算數字非官方）。", "source": "https://www.interprefy.com/", "kind": "AI字幕", "online": false}, {"name": "KUDO", "origin": "美國（紐約）", "role": "人工RSI＋AI混合平台", "priceFeel": "需報價／見備註", "languages": "人工口譯200語言（含手語）；AI字幕約70+語言；官方列『Chinese』與『Cantonese』，未明確分繁/簡", "qr": "有（掃碼開瀏覽器，亦有 iOS/Android App）", "glossary": "有（年度方案可上傳術語表）", "humanCorrect": "是（同場支援人工口譯員，AI Assist 輔助口譯員看轉錄稿）", "tiers": ["M", "L"], "why": "聯合國等級多語平台之一，有 Interpreter Marketplace 可自助書人工口譯員，整合 Zoom/Teams/Hopin。繁中具體支援需洽詢；PAYG 與年度方案均需報價。", "source": "https://kudo.ai/", "kind": "AI字幕", "online": false}, {"name": "Verbit", "origin": "美國（以色列研發）", "role": "AI字幕＋人工CART混合", "priceFeel": "需報價／見備註", "languages": "28+語言；技術說明提及繁中 ASR，但正式行銷頁未列完整清單、繁中CART需個別確認", "qr": "需確認", "glossary": "有（Dynamic Domain Dictionary 領域術語自動蒐集，可客製）", "humanCorrect": "是（Captivate AI＋人工編輯雙軌，目標99%；CART以專業聽打員為主）", "tiers": ["L"], "why": "CART強項在英語無障礙合規（ADA）；非英語CART能量相對弱、繁中CART資源需確認。Self-Service 約 US$24/月起（研究員原寫$29已校正），Enterprise 與 CART 客製報價。", "source": "https://verbit.ai/", "kind": "AI字幕", "online": false}, {"name": "Interactio", "origin": "立陶宛", "role": "RSI＋AI混合平台", "priceFeel": "需報價／見備註", "languages": "AI翻譯65+語言、人工口譯無上限；繁中支援未從官方頁確認", "qr": "有（掃碼/連結，App 或瀏覽器免安裝）", "glossary": "需確認", "humanCorrect": "是（配專屬技術人員，支援人工口譯員）", "tiers": ["M", "L"], "why": "ISO 27001 認證、虛擬房間可容 2000+ 人，整合 Zoom/Webex/Teams/Hopin。定價較透明（公開訂閱階梯 Lite/Premium/Leader/Enterprise），AI翻譯實際為 US$59-89/小時分級（研究員原寫 $45-65 不完整、以官方為準）；繁中需個別確認。", "source": "https://www.interactio.com/", "kind": "AI字幕", "online": false}, {"name": "SyncWords", "origin": "美國", "role": "AI字幕＋人工字幕（廣播/直播/活動）", "priceFeel": "需報價／見備註", "languages": "AI字幕40+、翻譯100+；人工字幕以英法西葡為主，繁中人工CART未確認", "qr": "有（QR 碼進場與直接 URL，亦可嵌虛擬平台 HTML widget）", "glossary": "需確認", "humanCorrect": "是（人工字幕99.99%準確、同日交付，但語言以英語系為主）", "tiers": ["M", "L"], "why": "定價透明按分鐘計（人工轉錄 $1.95/分鐘標準、$3.45 快件；自動字幕 $0.50/分鐘；機翻第一語言 $1.00/分鐘）。AWS Marketplace 上架、用 Speechmatics ASR；繁中人工 CART 不確定。", "source": "https://www.syncwords.com/", "kind": "AI字幕", "online": false}, {"name": "InterScribe", "origin": "需確認（網站未公開所在地）", "role": "純AI字幕＋即時翻譯", "priceFeel": "需報價／見備註", "languages": "117語言；官方有 Chinese (Traditional) 國語 zh-TW 專頁，明確支援、品質標 High", "qr": "有（QR 碼/連結進場，免App）", "glossary": "需確認", "humanCorrect": "需確認（可接入自有口譯員，是否人工修正字幕未明）", "tiers": ["S", "M"], "why": "訂閱定價透明且含繁中（Launch $349/月 10hr/500人、Engage $499/月 25hr/1000人、Elevate $997/月 55hr/3000人），前2小時免費試用、非營利30%折，可直接試繁中品質。規模較小、公司背景資訊少，採用前宜評估供應商穩定性。", "source": "https://interscribe.io/", "kind": "AI字幕", "online": false}, {"name": "Boostlingo", "origin": "美國", "role": "AI字幕＋口譯（LSP整合型）", "priceFeel": "需報價／見備註", "languages": "AI字幕130+語言、人工口譯約275語言；繁中未從官方頁明確確認", "qr": "有（AI Captioning 頁確認掃碼或連結進場）", "glossary": "需確認", "humanCorrect": "是（專為語言服務商LSP整合人工口譯員設計）", "tiers": ["M", "L"], "why": "定位為 LSP 基礎建設層，AI Captioning 頁有公開定價（Basic 免費、Notetaker $16.99/月、Teams $30/月、Enterprise 客製，研究員原稱『無公開定價』已更正）。若已有合作語言服務商可作技術底層；繁中需確認。", "source": "https://boostlingo.com/", "kind": "AI字幕", "online": false}, {"name": "Otter.ai", "origin": "美國（加州）", "role": "日常會議轉錄（不適大型多語活動）", "priceFeel": "需報價／見備註", "languages": "英、法、西、德、日、簡體中文；明確不支援繁中", "qr": "無（以 Zoom/Meet/Teams 整合為主）", "glossary": "無", "humanCorrect": "否（純AI，無人工修正）", "tiers": [], "why": "定位日常會議轉錄、非活動字幕平台，無即時多語翻譯、無術語表、不支援繁中，不適合台灣多語活動。列此為對照／排除依據，不建議用於公開活動。Business 方案約 US$19.99/月起。", "source": "https://otter.ai/", "kind": "AI字幕", "online": false}];
+const TOOLS_ADD=[{"name": "Zoom 即時字幕（Live Captions / Translated Captions）", "origin": "美國", "role": "混合／線上場內建備援", "priceFeel": "低至中（授權與容量需詢價）", "languages": "語音辨識約46-49種；翻譯字幕輸出約35-39語言（含繁中、簡中、粵、英、日、韓）", "qr": "無（字幕顯示在平台介面內）", "glossary": "無", "humanCorrect": "否（AI自動；可另請CART字幕員加入會議）", "tiers": ["XS", "S", "M"], "why": "普通 Business 主要增加會議容量，不等於內含翻譯字幕；Translated Captions 需符合資格的方案或另購 add-on，價格向 Zoom 詢價。參與者可自行選擇字幕語言，實際語言對需依活動設定測試。若需要錄影，雲端錄影可集中保留原音與支援語言的逐字稿；翻譯後的會後字幕仍應另行校對。", "source": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059081", "recordingUrl": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064927", "recordingLabel": "Zoom cloud recording audio transcripts", "recordingNote": "官方文件列雲端錄影逐字稿；語言口譯錄音另見 Zoom Language Interpretation 文件。", "kind": "平台內建字幕", "online": true}, {"name": "Microsoft Teams 即時字幕（Live / Translated Captions）", "origin": "美國", "role": "混合／線上場內建備援", "priceFeel": "低（基本免費、翻譯需付費）", "languages": "辨識50+語言（含繁中台灣 zh-TW、繁中香港、簡中、英日韓）；翻譯字幕約100語言；逐字稿57語言含 zh-TW、zh-HK", "qr": "無", "glossary": "無", "humanCorrect": "否（AI自動；官方建議聾人聽障搭配 CART，並可將外部 CART 接入為正式選項）", "tiers": ["XS", "S", "M"], "why": "基本即時字幕依 Microsoft 方案提供；翻譯字幕需主辦人持具資格的 Teams Premium 或對應授權，實際資格與費率以採購當日官方方案頁為準。Live Captions 不儲存，需另開 Transcript 才能下載 .docx/.vtt。zh-TW 明確在支援清單。", "source": "https://support.microsoft.com/en-us/teams/meetings/use-live-captions-in-microsoft-teams-meetings", "kind": "平台內建字幕", "online": true}, {"name": "Google Meet 即時字幕（Live / Translated Captions）", "origin": "美國", "role": "混合／線上場內建備援", "priceFeel": "低（基本免費、翻譯需付費）", "languages": "辨識多語（含英、西、越、日、韓、普通話）；翻譯字幕含繁中（Mandarin Traditional），粵語2025/12新增", "qr": "無（錄影時可選嵌入影片）", "glossary": "無", "humanCorrect": "否（原生無 CART 整合，需外部工具）", "tiers": ["XS", "S", "M"], "why": "基本字幕含在付費 Workspace 與個人帳號；翻譯字幕需 Business Standard 以上並自2025/1起搭配 Gemini 加購，個人帳號與 Workspace Individual 不支援。繁中明確支援，但 Meet 原生不匯出翻譯逐字稿或 SRT/VTT。語音翻譯（2026/1 GA）目前不含中文。", "source": "https://support.google.com/meet/answer/10964115", "kind": "平台內建字幕", "online": true}, {"name": "Interprefy", "origin": "瑞士（全球服務）", "role": "RSI＋AI混合平台", "priceFeel": "需報價／見備註", "languages": "AI字幕80+語言、6000+組合；官方僅稱『中文』未明確分繁／簡，需個別確認", "qr": "有（觀眾掃碼或連結，手機瀏覽器收看，免App）", "glossary": "有", "humanCorrect": "是（可搭人工RSI口譯，亦支援手語/signed interpretation；純AI亦可）", "tiers": ["M", "L"], "why": "功能完整、RSI＋AI彈性大，整合 Zoom/Teams/Webex，2024澳門亞太大會有實績。繁中分繁/簡需確認，官方不公開固定費率、需詢價（第三方估算數字非官方）。", "source": "https://www.interprefy.com/", "kind": "AI字幕", "online": false}, {"name": "KUDO", "origin": "美國（紐約）", "role": "人工RSI＋AI混合平台", "priceFeel": "需報價／見備註", "languages": "人工口譯200語言（含手語）；AI字幕約70+語言；官方列『Chinese』與『Cantonese』，未明確分繁/簡", "qr": "有（掃碼開瀏覽器，亦有 iOS/Android App）", "glossary": "有（年度方案可上傳術語表）", "humanCorrect": "是（同場支援人工口譯員，AI Assist 輔助口譯員看轉錄稿）", "tiers": ["M", "L"], "why": "聯合國等級多語平台之一，有 Interpreter Marketplace 可自助書人工口譯員，整合 Zoom/Teams/Hopin。繁中具體支援需洽詢；PAYG 與年度方案均需報價。", "source": "https://kudo.ai/", "kind": "AI字幕", "online": false}, {"name": "Verbit", "origin": "美國（以色列研發）", "role": "AI字幕＋人工CART混合", "priceFeel": "需報價／見備註", "languages": "28+語言；技術說明提及繁中 ASR，但正式行銷頁未列完整清單、繁中CART需個別確認", "qr": "需確認", "glossary": "有（Dynamic Domain Dictionary 領域術語自動蒐集，可客製）", "humanCorrect": "是（Captivate AI＋人工編輯雙軌，目標99%；CART以專業聽打員為主）", "tiers": ["L"], "why": "CART 強項在英語無障礙合規（ADA）；非英語 CART 能量相對弱、繁中 CART 資源需確認。Self-Service、Enterprise 與 CART 依方案或個案報價，實際費率以採購當日官方資訊為準。", "source": "https://verbit.ai/", "kind": "AI字幕", "online": false}, {"name": "Interactio", "origin": "立陶宛", "role": "RSI＋AI混合平台", "priceFeel": "需報價／見備註", "languages": "AI翻譯65+語言、人工口譯無上限；繁中支援未從官方頁確認", "qr": "有（掃碼/連結，App 或瀏覽器免安裝）", "glossary": "需確認", "humanCorrect": "是（配專屬技術人員，支援人工口譯員）", "tiers": ["M", "L"], "why": "ISO 27001 認證、虛擬房間可容 2000+ 人，整合 Zoom/Webex/Teams/Hopin。提供 Lite、Premium、Leader、Enterprise 等訂閱階梯，AI 翻譯依使用量分級；實際費率以採購當日官方資訊為準，繁中需個別確認。", "source": "https://www.interactio.com/", "kind": "AI字幕", "online": false}, {"name": "SyncWords", "origin": "美國", "role": "AI字幕＋人工字幕（廣播/直播/活動）", "priceFeel": "需報價／見備註", "languages": "AI字幕40+、翻譯100+；人工字幕以英法西葡為主，繁中人工CART未確認", "qr": "有（QR 碼進場與直接 URL，亦可嵌虛擬平台 HTML widget）", "glossary": "需確認", "humanCorrect": "是（人工字幕99.99%準確、同日交付，但語言以英語系為主）", "tiers": ["M", "L"], "why": "採按分鐘計費，人工轉錄、自動字幕、快件與機翻為不同費率。AWS Marketplace 上架、使用 Speechmatics ASR；實際費率以採購當日官方價格頁為準，繁中人工 CART 尚未確認。", "source": "https://www.syncwords.com/", "kind": "AI字幕", "online": false}, {"name": "InterScribe", "origin": "需確認（網站未公開所在地）", "role": "純AI字幕＋即時翻譯", "priceFeel": "需報價／見備註", "languages": "117語言；官方有 Chinese (Traditional) 國語 zh-TW 專頁，明確支援、品質標 High", "qr": "有（QR 碼/連結進場，免App）", "glossary": "需確認", "humanCorrect": "需確認（可接入自有口譯員，是否人工修正字幕未明）", "tiers": ["S", "M"], "why": "訂閱依每月時數與觀眾上限分級，含繁中並提供試用與非營利方案；實際費率與優惠以採購當日官方資訊為準。規模較小、公司背景資訊少，採用前宜評估供應商穩定性。", "source": "https://interscribe.io/", "kind": "AI字幕", "online": false}, {"name": "Boostlingo", "origin": "美國", "role": "AI字幕＋口譯（LSP整合型）", "priceFeel": "需報價／見備註", "languages": "AI字幕130+語言、人工口譯約275語言；繁中未從官方頁明確確認", "qr": "有（AI Captioning 頁確認掃碼或連結進場）", "glossary": "需確認", "humanCorrect": "是（專為語言服務商LSP整合人工口譯員設計）", "tiers": ["M", "L"], "why": "定位為 LSP 基礎建設層，AI Captioning 提供 Basic、Notetaker、Teams 與 Enterprise 等方案。若已有合作語言服務商可作技術底層；實際費率以採購當日官方價格頁為準，繁中需確認。", "source": "https://boostlingo.com/", "kind": "AI字幕", "online": false}, {"name": "Otter.ai", "origin": "美國（加州）", "role": "日常會議轉錄（不適大型多語活動）", "priceFeel": "需報價／見備註", "languages": "英、法、西、德、日、簡體中文；明確不支援繁中", "qr": "無（以 Zoom/Meet/Teams 整合為主）", "glossary": "無", "humanCorrect": "否（純AI，無人工修正）", "tiers": [], "why": "定位日常會議轉錄、非活動字幕平台，無即時多語翻譯、無術語表、不支援繁中，不適合台灣多語活動。列此為對照／排除依據，不建議用於公開活動；Business 方案費率以採購當日官方方案頁為準。", "source": "https://otter.ai/", "kind": "AI字幕", "online": false}];
 
 const TW_SERVICES=[{"n": "身心障礙者權益保障法第61條", "area": "中央", "type": "法規依據", "cost": "見備註", "note": "最新修正日期：民國114年8月1日。條文規定手語翻譯員需具技術士資格（法施行第五年起），同步聽打員資格由地方自訂。來源：全國法規資料庫", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?PCode=D0050046"}, {"n": "社團法人中華民國聽障人協會（受託承辦台北市聽語障溝通服務）", "area": "台北市", "type": "聽打", "cost": "補助內免費", "note": "申請方式：電話、簡訊、傳真、Email、通訊軟體或線上申辦系統，服務前3日申請（緊急不限）。聽打服務時間08:00-22:00。免付費電話：0800-365-224；手機/簡訊：0963-047-723；傳真：0800-365-624。協會地址：台北市士林區承德路四段58巷10弄6號1樓，電話02-28852120。來源：台北市社會局官網", "url": "https://dosw.gov.taipei/cp.aspx?n=A1FBE0253EA9B6E1"}, {"n": "中華民國聾人協會（受託承辦新北市手語翻譯暨同步聽打服務）", "area": "新北市", "type": "聽打", "cost": "補助內免費", "note": "申請方式：填寫申請表後傳真至0800-365-524或寄至ntcst@nad.org.tw；服務前5日申請。個人需持身心障礙證明（聽語障類別）；機關單位可直接申請。電話：02-2552-3082；Email：deaf@nad.org.tw。來源：新北市政府線上申辦、衛福部輔具資源入口網", "url": "https://www.nad.org.tw/storage/templates/ntpc_sl_cart_service.html"}, {"n": "社團法人台中市聾人協會（受託承辦台中市手語翻譯暨同步聽打服務）", "area": "台中市", "type": "聽打", "cost": "補助內免費", "note": "申請需服務前3日填寫申請表。預約專線：0965-560-525、04-2201-0080；傳真：04-2201-0060；承辦人：林小姐，04-2228-9111分機37349。來源：台中市政府社會局官網", "url": "https://www.society.taichung.gov.tw/461762/post"}, {"n": "社團法人高雄市聲暉協會（受託承辦高雄市同步聽打服務）", "area": "高雄市", "type": "聽打", "cost": "補助內免費", "note": "申請需服務前3日提出；個人申請需持身心障礙證明；機關/非營利單位可直接申請。電話：07-2315626。來源：高雄師大特殊教育中心轉知公文、高雄市社會局", "url": "https://ksped.nknu.edu.tw/resource/UploadFile/News/2020221143534/%E8%81%BD%E6%89%93%E6%9C%8D%E5%8B%99%E7%94%B3%E8%AB%8B%E9%A0%88%E7%9F%A5.pdf"}, {"n": "社團法人屏東縣聲暉聽障協進會（受託承辦屏東縣同步聽打服務）", "area": "屏東縣", "type": "聽打", "cost": "補助內免費", "note": "申請方式：電話、簡訊、Email、傳真、郵寄、視訊或親洽；服務前5日申請；個人需檢附身心障礙證明影本，團體需檢附立案證書影本。電話：08-7372174；簡訊：0979-812-665；Email：a7354930@yahoo.com.tw；地址：屏東市建豐路180巷35號（屏東縣身心障礙福利服務中心5樓）。來源：屏東縣政府社會處官網", "url": "https://www.pthg.gov.tw/planjdp/cp.aspx?n=920104B7056B7226&s=CFD7CF1F424C8E79"}, {"n": "社團法人桃園市聲暉協進會（受託承辦桃園市同步聽打服務）", "area": "桃園市", "type": "聽打", "cost": "補助內免費", "note": "電話：03-284-1540、0966-562-631；傳真：03-457-7709；Email：sound.t28@msa.hinet.net；LINE ID：0966-562-631；地址：桃園市平鎮區成德路8巷22號。來源：桃園市政府社會局官網", "url": "https://sab.tycg.gov.tw/home.jsp?aplistdn=ou%3Ddata%2Cou%3Dhinder%2Cou%3Dchsocial%2Cou%3Dap_root%2Co%3Dtycg%2Cc%3Dtw&dataserno=202002260001&id=30553&mcustomize=onemessages_view.jsp&parentpath=0%2C30484%2C30490&toolsflag=Y"}, {"n": "新竹市聲暉協會（受託承辦新竹市同步聽打服務）", "area": "新竹", "type": "聽打", "cost": "補助內免費", "note": "電話：03-561-0268；傳真：03-561-0469；Email：hc035@hotmail.com；地址：300新竹市東南街142巷28號。來源：新竹市聲暉協會官網", "url": "https://www.brightsound.url.tw/index.html"}, {"n": "TASLI 台灣手語翻譯協會（全台同步聽打服務資訊整合）", "area": "全台", "type": "全台起點", "cost": "補助內免費", "note": "電話：0936-463-953（優先Email）；Email：tasli.tw@gmail.com；地址：台北市松山區民族東路680號6樓。衛福部補助標準修訂（甲乙丙類改為一二三類）已於近期調整。來源：TASLI官網", "url": "https://taslifamily.org/?page_id=598"}, {"n": "衛生福利部社會及家庭署「各地方政府手語翻譯及同步聽打服務申辦資訊」（2026年4月版）", "area": "全台", "type": "聽打", "cost": "補助內免費", "note": "最快路徑：直接至各縣市社會局/處身心障礙福利科查詢，或聯繫TASLI取得最新縣市窗口清單。來源：銘傳大學前程規劃處公告（轉知版本）", "url": "https://cpc.mcu.edu.tw/2026/05/19/%E8%BD%89%E7%9F%A5%E8%A1%9B%E7%94%9F%E7%A6%8F%E5%88%A9%E9%83%A8%E7%A4%BE%E6%9C%83%E5%8F%8A%E5%AE%B6%E5%BA%AD%E7%BD%B2%E5%BD%99%E6%95%B4%E4%B9%8B%E3%80%8C%E5%90%84%E5%9C%B0%E6%96%B9%E6%94%BF%E5%BA%9C/"}, {"n": "中華民國聾人協會（全台同步聽打員培訓主辦機構）", "area": "全台", "type": "培訓", "cost": "補助內免費", "note": "招募資格：18歲以上、高中職以上、中文打字60字/分鐘以上。電話：02-2552-3082；Email：deaf@nad.org.tw；地址：台北市大同區太原路197號2樓。來源：中華民國聾人協會官網", "url": "https://www.nad.org.tw/archives/2380"}, {"n": "速錄台灣（sulutw）", "area": "全台", "type": "民間商業", "cost": "自費／需報價", "note": "服務項目：會議速記、法庭紀錄、詢問記錄、採訪記錄、口述記錄、錄音轉譯。來源：速錄台灣官網", "url": "https://sulutw.weebly.com/"}, {"n": "雃思工坊（Arsz）", "area": "全台", "type": "民間商業", "cost": "自費／需報價", "note": "電話：04-22293452；地址：台中市民族路192號。服務含逐字稿製作、字幕製作、翻譯服務。來源：雃思工坊官網", "url": "https://arsz.idv.tw/"}, {"n": "PRO360達人網（聽打員媒合平台）", "area": "全台", "type": "民間商業", "cost": "自費／需報價", "note": "平台免費建立專家檔案，接案0%佣金。來源：PRO360達人網", "url": "https://www.pro360.com.tw/category/listen_and_keyin"}, {"n": "社團法人台灣手語翻譯協會 (TASLI)", "area": "全台", "type": "全台起點", "cost": "補助內免費", "note": "聯絡：tasli.tw@gmail.com / 02-6605-0455。地址：台北市105松山區民族東路680號6樓。", "url": "https://taslifamily.org/"}, {"n": "TASLI 譯聯網（視訊手語服務）", "area": "全台", "type": "全台起點", "cost": "補助內免費", "note": "服務電話 02-6605-0455 / 0928-338-235。企業申請可基於社會責任使用，具體費率需個案確認。", "url": "https://taslifamily.org/?page_id=7458"}, {"n": "衛生福利部社會及家庭署 手語視訊轉譯中心（VRS）", "area": "全台", "type": "遠端視訊", "cost": "補助內免費", "note": "iOS App: https://apps.apple.com/tw/app/%E6%89%8B%E8%AA%9E%E8%A6%96%E8%A8%8A%E8%BD%89%E8%AD%AF/id6472778865；Android: https://play.google.com/store/apps/details?id=vrs.sfaa", "url": "https://vrs.sfaa.gov.tw/"}, {"n": "社團法人中華民國聽障人協會（CNAD）— 台北市手語翻譯暨聽打服務", "area": "台北市", "type": "手語", "cost": "見備註", "note": "CNAD 網站有部分頁面出現 404 錯誤，服務細節建議直接電話確認。", "url": "http://www.cnad.org.tw/"}, {"n": "社團法人中華民國聾人協會（NAD）— 新北市手語翻譯暨同步聽打", "area": "新北市", "type": "手語", "cost": "補助內免費", "note": "NAD 同時承辦宜蘭縣、新竹市等多縣市服務，詳見其官網服務專區。", "url": "https://www.nad.org.tw/%E6%9C%8D%E5%8B%99%E5%B0%88%E5%8D%80/ntcst"}, {"n": "社團法人台中市聾人協會 — 台中市手語翻譯暨同步聽打", "area": "台中市", "type": "手語", "cost": "補助內免費", "note": "主管機關為台中市政府社會局：https://www.society.taichung.gov.tw/461762/post", "url": "http://www.taftd.org.tw/OnePage.aspx?tid=120"}, {"n": "高雄市手語翻譯服務（平安社會福利慈善事業基金會承辦）", "area": "高雄市", "type": "手語", "cost": "補助內免費", "note": "地址：高雄市三民區中華二路250號4樓。", "url": "https://socbu.kcg.gov.tw/index.php?prog=2&b_id=5&m_id=213&s_id=413"}, {"n": "社團法人台南市聲暉協進會 — 台南市手語翻譯服務", "area": "台南市", "type": "手語", "cost": "補助內免費", "note": "申訴聯絡社會局：06-2991111#8652。", "url": "https://sab.tainan.gov.tw/cl.aspx?n=26870"}, {"n": "社團法人桃園市聾啞福利協進會 — 桃園市手語翻譯服務", "area": "桃園市", "type": "手語", "cost": "補助內免費", "note": "地址：桃園市八德區介壽路二段901巷49弄91號。", "url": "https://sab.tycg.gov.tw/News_Content.aspx?n=7325&s=1001173"}, {"n": "基隆市社會處 身心障礙福利科 — 基隆市手語翻譯暨同步聽打服務", "area": "基隆市", "type": "手語", "cost": "補助內免費", "note": "服務限公共參與、就醫、就業等事務，私人商業利益場合不適用。", "url": "https://www.klcg.gov.tw/tw/social/2803.html"}, {"n": "TASLI 全台手語翻譯窗口彙整（衛福部社家署委托資訊）", "area": "全台", "type": "全台起點", "cost": "補助內免費", "note": "TASLI 另提供全台自費媒合，Email：tasli.tw@gmail.com。", "url": "https://taslifamily.org/?page_id=364"}];
 
@@ -534,18 +634,53 @@ const SIGN_LANGS=[{"sign": "International Sign (IS)", "whenToUse": "國際混合
 const SIGN_PROVIDERS=[{"name": "Overseas Interpreting", "signTypes": "International Sign(主力)、各國手語、口語轉手語", "mode": "線上/現場/混合三種模式皆可", "apac": "明確聲稱與全球 50 國以上合作、特別關注全球南方與亞洲口譯員網絡;持有 WFD-WASLI 認證 IS 口譯員;APAC 活動可服務但據點在西班牙瓦倫西亞,需確認時差與差旅安排", "url": "https://overseasinterpreting.com/"}, {"name": "WASLI IS 認證口譯員名單(日本 / 澳洲)", "signTypes": "International Sign", "mode": "視個別口譯員而定", "apac": "WASLI 公開名單中確認:日本 1 名(川上惠,聾人)、澳洲 3 名(Cave、Levitzke-Gray、Emerson)。可直接聯繫洽談。認證效期 5 年,需確認現行有效性", "url": "https://wasli.org/sign-language-interpreters/is-accredited-interpreters/"}, {"name": "Expression Australia", "signTypes": "Auslan(澳洲手語)", "mode": "現場/線上皆可", "apac": "澳洲最具規模的聾人服務機構(1884 年創立),提供大型會議 Auslan 口譯;NAATI Conference Level 認證口譯員;提供技術諮詢協助推廣給聾人社群", "url": "https://www.expression.com.au/services/interpreting-and-captioning/auslan-interpreting-for-conferences-and-events"}, {"name": "SADeaf Deaf Access Services(新加坡聾人協會)", "signTypes": "新加坡手語 SgSL、PSE、SEE", "mode": "現場為主", "apac": "新加坡本地活動首選;服務政府、學校、法庭、企業;費率 2025 年 10 月更新,需提前 7 個工作日預約", "url": "https://sadeaf.org.sg/service/interpreting/"}, {"name": "JASLI(日本手語口譯員協會)", "signTypes": "日本手語 JSL", "mode": "主要為日本境內現場", "apac": "協會本身不直接派遣口譯員(以訓練與認證為主),但可作為查找 SLICE 認證 JSL 口譯員的媒合入口;2,384 名會員", "url": "https://www.jasli.jp/english.html"}, {"name": "Sign Language Australia (SLA)", "signTypes": "Auslan", "mode": "現場/視需求", "apac": "澳洲 100% 聾人主導的 Auslan 口譯服務,位於阿德萊德;提供口譯員查找功能", "url": "https://signlanguageaustralia.com/find-an-interpreter/"}];
 TOOLS.forEach(t=>{if(!t.kind)t.kind=(/CART/.test(t.role)&&t.humanCorrect==='有')?'人工同步聽打CART':'AI字幕';});
 TOOLS.push(...TOOLS_ADD);
+const TOOL_TRANSLATION_UPDATES={
+ "Vurbo.ai":{why:"台灣優先的會議字幕／翻譯候選。官方會議版寫明可從 100+ 語言選最多 8 種，觀眾用 QR 或 session code 在瀏覽器選字幕或音訊語言；適合現場＋線上都要 BYOD 字幕的正式試用。採購前要確認本次英日中語言組合、同時語言數、現場音訊輸入與人數上限。",translationUrl:"https://vurbo.ai/conference-version",translationLabel:"Vurbo Conference Version",translationNote:"官方頁明確列即時字幕／音訊語言、QR/session code 與最多 8 種指定語言。"},
+ "KKCO 人工智慧翻譯":{why:"台灣服務型候選。官方頁寫明 72 種語言、0.3 秒辨識＋0.8 秒翻譯，字幕可上大螢幕或讓觀眾掃 QR Code 用手機看；優點是有在地工程支援與術語準備，適合非技術團隊。採購前要確認報價、駐點範圍、可同時顯示語言數與資料處理條款。",translationUrl:"https://www.kkco.com.tw/solutions/ai-translation-system/",translationLabel:"KKCO 活動 AI 即時翻譯服務",translationNote:"官方頁明確列即時翻譯、72 語言、大螢幕／QR Code 呈現與逐字稿。"},
+ "EventCAT":{why:"價格與會議產品頁相對透明的韓國候選。Conference 方案主打即時翻譯字幕、QR/URL、術語表與語音翻譯；適合 S/M 級先跑一次正式測試。風險是台灣採購、付款、客服時區與繁中品質仍要試測。",translationUrl:"https://www.eventcat.com/en/products/conference",translationLabel:"EventCAT Conference",translationNote:"官方頁明確列 real-time translation/subtitles、glossary、QR/URL 與 voice translation。",pricingUrl:"https://www.eventcat.com/en/pricing/conference",pricingLabel:"EventCAT Conference pricing",pricingNote:"Prepaid US$60／時；Half-day US$300／6 小時；All-day US$600／24 小時；MAX US$1,200／24 小時。現場螢幕顯示至少需 Half-day。"},
+ "Akkadu":{why:"低成本快速試跑與備援工具。官方頁主打 90+ 語言 AI live captions；AI Audio 頁另列即時語音翻譯，可吃電腦音訊並支援 Zoom/Teams/YouTube 等。適合先測音訊鏈路、字幕延遲與 BYOD 體驗；正式售票活動仍需加人工檢查與備援。",translationUrl:"https://akkadu.ai/ai-audio/",translationLabel:"Akkadu AI Voice Translation",translationNote:"官方頁明確列 live audio translation、live captions 與 Zoom/Teams/YouTube 相容。"},
+"UDTalk":{translationUrl:"https://udtalk.jp/about/",translationLabel:"UDトークとは？",translationNote:"官方頁列多語音聲認識＆翻訳、瀏覽器／APP 配信；若日方現場觀眾多，可優先試測 BYOD 字幕／翻譯與人力修正流程，但正式無障礙仍需 CART／手語或專業字幕。",pricingUrl:"https://udtalk.jp/price/",pricingLabel:"UDTalk 法人方案價格",pricingNote:"法人年約小規模團體方案為初期 ¥10,000＋每年 ¥117,600 起（未稅）；標準方案為初期 ¥50,000＋每年 ¥324,000（未稅）。單次活動若需代操作，仍須另行詢價。"},
+ "YYSystem / YY 文字起こし":{translationUrl:"https://yysystem.com/guide/detail/E1ukkhfy",translationLabel:"YY 文字起こし 基本編",translationNote:"官方指南列「翻訳を同時に表示する」；QR 分享與活動操作負擔仍需確認。"},
+ "Microsoft Translator":{translationUrl:"https://www.microsoft.com/en-us/translator/personal/",translationLabel:"Microsoft Translator real-time conversations",translationNote:"官方頁列 real-time translated conversations with captions；適合低成本備援／Q&A，不是正式主方案。"},
+ "雅婷逐字稿 / Yating":{translationNote:"未找到官方同步翻譯資訊頁；官方頁主要是 AI 語音辨識／逐字稿，採購前不能把它當活動即時翻譯平台。"},
+ "SOVORO":{translationNote:"未找到官方同步翻譯資訊頁；官方首頁主打韓文即時字幕／語音辨識，跨語言活動前需另行確認。"},
+ "Wordly":{translationUrl:"https://www.wordly.ai/live-translation",translationLabel:"Wordly Live Translation",translationNote:"官方頁列 simultaneous live translation、live subtitles、QR/link 與 glossaries。"},
+ "AI-Media LEXI":{translationUrl:"https://www.ai-media.tv/our-products/lexi-ai-powered-captioning-tool-kit/lexi-translate/",translationLabel:"LEXI Translate",translationNote:"官方頁列 live captions/subtitles translation；LEXI Voice 另提供翻譯音訊。"},
+ "StreamText":{translationUrl:"https://streamtext.net/features-and-pricing/",translationLabel:"StreamText features/pricing",translationNote:"官方頁列 realtime translation into over 130 languages；也有官方支援文件說明語言翻譯設定。"},
+ "3Play Media":{translationUrl:"https://www.3playmedia.com/platform/livecaptioning/",translationLabel:"3Play Live Captioning",translationNote:"官方頁列 live translation in 100+ languages；偏高穩定直播／字幕服務。"},
+ "Zoom 即時字幕（Live Captions / Translated Captions）":{translationUrl:"https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059081",translationLabel:"Zoom Translated Captions",translationNote:"官方文件明確列 translated captions；授權仍要看 add-on／方案與同時連線人數。"},
+ "Microsoft Teams 即時字幕（Live / Translated Captions）":{translationUrl:"https://support.microsoft.com/en-us/teams/meetings/use-live-captions-in-microsoft-teams-meetings",translationLabel:"Teams live translated captions",translationNote:"官方支援頁列 live translated captions；會議／活動模式與 Premium／授權限制需確認。",pricingUrl:"https://www.microsoft.com/en-us/microsoft-teams/premium",pricingLabel:"Microsoft Teams Premium pricing",pricingNote:"Teams Premium 為 US$10／使用者／月（年繳、自動續訂），且需另有符合資格的 Teams 授權；地區、稅金與實際可購買性可能不同。"},
+ "Google Meet 即時字幕（Live / Translated Captions）":{translationUrl:"https://support.google.com/meet/answer/10964115",translationLabel:"Google Meet translated captions",translationNote:"官方支援頁列 translated captions 與語言清單；Speech Translation 另有支援頁。"},
+ "Interprefy":{translationUrl:"https://www.interprefy.com/solutions/ai-translation",translationLabel:"Interprefy AI Speech Translation",translationNote:"官方頁列 AI speech translation、live captions／字幕與 80+ 語言；適合需服務商支援的正式場。"},
+ "KUDO":{translationUrl:"https://kudo.ai/solutions/kudo-ai-speech-translator/",translationLabel:"KUDO AI Speech Translator",translationNote:"官方頁列 live multilingual audio and captions；人類 RSI 與 AI speech translation 可混用。"},
+ "Verbit":{translationNote:"未找到官方同步語言翻譯資訊頁；官方頁主要是 CART/live captioning 與多語字幕／字幕翻譯，若要即時翻譯須個案詢價確認。"},
+ "Interactio":{translationUrl:"https://www.interactio.com/ai-translation",translationLabel:"Interactio AI Translation",translationNote:"官方頁列 real-time AI translation 直接送到 attendee smartphone；繁中需個案確認。"},
+ "SyncWords":{translationUrl:"https://www.syncwords.com/products/live-ai-captions-translations-widget-url",translationLabel:"SyncWords live AI captions/translations",translationNote:"官方頁列 live captions, subtitles, AI voice translations via widget/URL。",pricingUrl:"https://www.syncwords.com/pricing",pricingLabel:"SyncWords pricing",pricingNote:"公開數字主要是錄製媒體：自動字幕 US$0.50／分鐘、第一個機翻語言 US$1.00／分鐘、人工轉錄 US$1.95／分鐘起；Live Media 活動價格仍須洽詢。"},
+ "InterScribe":{translationUrl:"https://interscribe.io/simultaneous-interpretation",translationLabel:"InterScribe simultaneous interpretation",translationNote:"官方頁列 sub-second captions、100+ languages 與 simultaneous interpretation；供應商背景仍需查核。",pricingUrl:"https://interscribe.io/pricing",pricingLabel:"InterScribe pricing",pricingNote:"Launch US$349／月（10 小時、20 位同時使用者）；Engage US$499／月（25 小時、100 位同時使用者）；Elevate US$997／月（55 小時、300 位同時使用者）。"},
+ "Boostlingo":{translationUrl:"https://boostlingo.com/solutions/multilingual-events/live-translation/",translationLabel:"Boostlingo Live Translation",translationNote:"官方頁列 live translated captions in 130+ languages 與 AI speech output；適合 LSP／服務商整合。",pricingUrl:"https://boostlingo.com/solutions/multilingual-events/ai-captioning/",pricingLabel:"Boostlingo AI Pro pricing",pricingNote:"Basic 免費；Notetaker US$16.99／使用者／月（每月 10 小時、最多 3 人）；Teams US$30／使用者／月（每月 25 小時、最多 10 人）；大型活動須洽 Enterprise。"},
+ "Otter.ai":{translationNote:"未找到官方同步翻譯資訊頁；官方頁主要是多語轉錄／會議記錄，不適合當活動同步翻譯工具。",pricingUrl:"https://otter.ai/pricing",pricingLabel:"Otter pricing",pricingNote:"Basic 免費；Business 月繳 US$30／使用者／月，年繳約 US$19.99／使用者／月。官方頁可能依地區顯示促銷價格；它仍不是活動同步翻譯方案。"}
+};
+TOOLS.forEach(t=>{
+ const update=TOOL_TRANSLATION_UPDATES[t.name];
+ if(update)Object.assign(t,update);
+ if(!t.translationNote&&!t.translationUrl)t.translationNote="未找到官方同步翻譯資訊頁；採購前需向供應商確認。";
+});
 const TOOLS_BYTIER={
- XS:"Akkadu、Microsoft Translator 試跑；UDTalk、YYSystem 作日本流程參考（非無障礙基準服務）",
+ XS:"Akkadu、Microsoft Translator 試跑；YYSystem 可作低成本 BYOD 與修正流程參考（非無障礙基準服務）",
  S:"先試 Akkadu／EventCAT；Vurbo.ai 可詢試用或低階方案",
  M:"主測 Vurbo.ai 與 KKCO，擇一正式；EventCAT 作價格透明備援；Akkadu 作低成本備援",
  L:"Wordly／AI-Media LEXI／StreamText／3Play Media 等正式供應商；一定要搭配 CART／手語／專業字幕人工服務"
 };
+function toolsForTier(){
+ const japanese=state.speech==="ja"||state.speech==="multi"||state.captionLangs.has("ja");
+ return TOOLS_BYTIER[state.size]+(japanese&&state.size!=="L"?"；語言需求含日文，把 UDTalk 納入同輪試測":"");
+}
 
 // --- TIERS (4) ---
 const TIERS=[
- {id:"XS",name:"小型工作坊（XS）",people:"20-50 人",audio:"一支手持麥或會議室麥直接接筆電收音（此級報告未要求從混音器拉乾淨人聲）。",equipment:["一支手持麥或會議室麥","一台接聲音的筆電","QR 碼或網址","場內 Wi-Fi（需確認）"],staff:["1 位志工看字幕是否大致可用"],tools:"Akkadu、Microsoft Translator、UDTalk、YYSystem 這類低成本工具試跑。",budget:"報告無 XS 套裝；可參考低成本試跑工具與操作 NT$0-25,000 為上限錨點，實際依規模另估（需確認）。",useWhen:"內部測試、志工訓練、小型旁會，只測流程、不承諾品質。",a11yNote:"報告明確標示這不是無障礙基準服務；若有聾人或聽障與會者，須改加 CART 或手語，不分人數規模。"},
- {id:"S",name:"低成本試跑（S）",people:"50-150 人",audio:"台上講者都用麥，從混音器拉一條乾淨人聲→USB 音訊介面→字幕筆電；這一級開始就不要讓筆電聽喇叭。",equipment:["講者麥克風","小型或場地混音器","USB 音訊介面","字幕筆電","HDMI 線與備用轉接頭","QR 碼投影片","4G/5G 熱點備援"],staff:["1 位字幕操作員","1 位志工看字幕品質","1 位問答麥克風遞送人員（可兼場務）"],tools:"優先測 Akkadu、EventCAT 小時計費；Microsoft Translator 備援；UDTalk／YYSystem 作日本流程參考。",budget:"工具與操作 NT$0-25,000；影音額外費用視場地約 NT$5,000-30,000；外包影音或租設備另計。",useWhen:"小型公開活動、前導場、贊助商說明會；確認場地能否給乾淨人聲、QR 是否順、工具對術語可否接受。",a11yNote:"定位為實驗／試跑而非正式無障礙基準；此級開始建立術語表。若已知有聾人／聽障需求，仍須另加 CART 或手語。"},
- {id:"M",name:"正式建議方案（M）",people:"150-300 人",audio:"主持／講者／座談／問答全部麥→場地或外包影音混音器→現場喇叭＋專用 AUX/MATRIX 只含人聲訊號→USB 音訊介面→字幕主機；備援走 Akkadu 或 Microsoft Translator＋備用 QR。",equipment:["每位講者麥克風","座談桌上麥或足夠手持麥","問答無線手持麥 1-2 支","影音混音器與專用乾淨人聲訊號","USB 音訊介面","字幕主機與備用筆電","場內 Wi-Fi 另備 5G 熱點","QR 碼海報、投影片、報到桌小卡"],staff:["1 位字幕操作員","1 位影音對接窗口","1-2 位志工修正術語表","1-2 位問答麥克風遞送人員","1 位報到桌志工說明 QR"],tools:"優先序：1) Vurbo.ai 或 KKCO（台灣支援與報價合理時）2) EventCAT（需價格透明）3) Akkadu 低成本備援 4) UDTalk 人力修正流程參考。",budget:"工具與操作 NT$35,000-150,000；影音額外費用約 NT$20,000-80,000（視場地包套與外包影音）；廠商提供現場操作員時總價可能再提高。",useWhen:"台北大型實體場地、一天或半天的正式活動；最推薦的平衡點：台灣或亞洲工具優先、保留備援、把音訊流程做穩。",a11yNote:"預設把字幕當無障礙基準服務，但 AI 字幕不等於無障礙保證；若已知有聾人／聽障與會者，M 級仍須加 CART 或手語，不能只靠 AI。"},
+ {id:"XS",name:"小型工作坊（XS）",people:"20-50 人",audio:"一支手持麥或會議室麥直接接筆電收音（此級報告未要求從混音器拉乾淨人聲）。",equipment:["一支手持麥或會議室麥","一台接聲音的筆電","QR 碼或網址","場內 Wi-Fi（需確認）"],staff:["1 位志工看字幕是否大致可用"],tools:"Akkadu、Microsoft Translator 低成本試跑；若日方現場觀眾多，UDTalk／YYSystem 作日本現場 BYOD 與修正流程參考。",budget:"報告無 XS 套裝；可參考低成本試跑工具與操作 NT$0-25,000 為上限錨點，實際依規模另估（需確認）。",useWhen:"內部測試、志工訓練、小型旁會，只測流程、不承諾品質。",a11yNote:"報告明確標示這不是無障礙基準服務；若有聾人或聽障與會者，須改加 CART 或手語，不分人數規模。"},
+ {id:"S",name:"小型混合式方案（S）",people:"50-150 人",audio:"台上講者都用麥，從混音器拉一條乾淨人聲→USB 音訊介面→字幕筆電；這一級開始就不要讓筆電聽喇叭。",equipment:["講者麥克風","小型或場地混音器","USB 音訊介面","字幕筆電","HDMI 線與備用轉接頭","QR 碼投影片","4G/5G 熱點備援"],staff:["1 位字幕操作員","1 位志工看字幕品質","1 位問答麥克風遞送人員（可兼場務）"],tools:"優先測 Akkadu、EventCAT 小時計費；Microsoft Translator 備援；若日方現場觀眾多，把 UDTalk 納入同輪試測。",budget:"工具與操作 NT$0-25,000；影音額外費用視場地約 NT$5,000-30,000；外包影音或租設備另計。",useWhen:"50-150 人的小型正式售票、公開免費、閉門圓桌或前導活動；是否試跑由活動目的決定，不由人數級距決定。",a11yNote:"S 只代表活動規模，不代表無障礙等級。若已知有聾人／聽障需求，仍須另加 CART、同步聽打或手語；AI 字幕只能作補充。"},
+ {id:"M",name:"正式建議方案（M）",people:"150-300 人",audio:"主持／講者／座談／問答全部麥→場地或外包影音混音器→現場喇叭＋專用 AUX/MATRIX 只含人聲訊號→USB 音訊介面→字幕主機；備援走 Akkadu 或 Microsoft Translator＋備用 QR。",equipment:["每位講者麥克風","座談桌上麥或足夠手持麥","問答無線手持麥 1-2 支","影音混音器與專用乾淨人聲訊號","USB 音訊介面","字幕主機與備用筆電","場內 Wi-Fi 另備 5G 熱點","QR 碼海報、投影片、報到桌小卡"],staff:["1 位字幕操作員","1 位影音對接窗口","1-2 位志工修正術語表","1-2 位問答麥克風遞送人員","1 位報到桌志工說明 QR"],tools:"優先序：1) Vurbo.ai 或 KKCO（台灣支援與報價合理時）2) EventCAT（需價格透明）3) 日方現場觀眾多時加測 UDTalk 4) Akkadu 低成本備援。",budget:"工具與操作 NT$35,000-150,000；影音額外費用約 NT$20,000-80,000（視場地包套與外包影音）；廠商提供現場操作員時總價可能再提高。",useWhen:"台北大型實體場地、一天或半天的正式活動；最推薦的平衡點：台灣或亞洲工具優先、保留備援、把音訊流程做穩。",a11yNote:"預設把字幕當無障礙基準服務，但 AI 字幕不等於無障礙保證；若已知有聾人／聽障與會者，M 級仍須加 CART 或手語，不能只靠 AI。"},
  {id:"L",name:"高穩定方案（L）",people:"300-500+ 人",audio:"所有麥→專業影音混音器→現場擴音；拉兩路乾淨人聲（訊號1 進 AI 字幕、訊號2 進人工字幕員／CART／備用平台）→字幕主機＋備機→主／備 QR。",equipment:["完整影音控台","兩路乾淨人聲訊號","主字幕機與備機","專用網路或優先 Wi-Fi","現場字幕服務台","備用投影方案","備用 QR 碼"],staff:["專業影音技術負責人","字幕平台操作員","人工字幕員或 CART 協調人員","志工修正小組","問答麥克風遞送人員 2 位以上","無障礙服務窗口"],tools:"可詢 Wordly、AI-Media LEXI、StreamText、3Play Media，並搭配台灣同步聽打／CART／手語服務。",budget:"工具與操作 NT$180,000-600,000+（上不封頂）；影音與人力另計；多語人工字幕會再上升。",useWhen:"國際嘉賓多、媒體或政府參與、已知有聾人／聽障無障礙需求的正式國際會議。",a11yNote:"已知無障礙需求時 CART／手語／專業字幕為必要，AI 只能當多語即時翻譯的補充、不能當唯一服務。"}
 ];
 
@@ -553,20 +688,64 @@ const TIERS=[
 const COST={
  avBand:{XS:"NT$5,000-30,000",S:"NT$5,000-30,000",M:"NT$20,000-80,000",L:"需確認／另計（報告未給數字）"},
  toolOpBand:{XS:"NT$0-25,000",S:"NT$0-25,000",M:"NT$35,000-150,000",L:"NT$180,000-600,000+"},
- staffNote:"報告只列角色與人數、未列單價，金額一律需確認（志工無酬／廠商打包／另聘）。",
+ staffNote:"報告只列字幕／影音相關角色與人數、未列單價，金額一律需確認（志工無酬／廠商打包／另聘）；不含報到、舞台、線上主持、講者接待與票務人力。",
  cartBand:"委辦服務在補助範圍內、對身障者特定場合多免費，但商業／企業活動常需自費或不受理；民間聽打約 NT$17-50／分鐘（雃思工坊）或 NT$500-1,000／半小時（PRO360 媒合）；TASLI 自費比照社會局標準，手語與專業字幕需個案報價。具名窗口見「聽打與手語」分頁。",
  cateringPerHead:"飯店每人專案多已含餐飲（需確認服務費）；非飯店多需另估，部分場地禁外食，每人 NT$ 需確認。",
  venueNote:"場租依計價模式換算：每時段×2（上午+下午）、每小時×時數、每半日×2、每日×天數、每場×2、每人×人數（飯店多另加 10% 服務費）；需詢價場地無法估。集思系列另加 10% 清潔費。",
  caveats:"這是級距粗估、不是報價。不同計價模式不可直接比（飯店像便當套餐人越多越貴、會議中心像租廚房場租便宜但設備自己算）；要把場租＋影音＋網路＋餐飲＋字幕工具＋人力加總成同一張表。所有非報告數字（時數、天數、人力單價、餐飲每人、CART 報價、網路費）一律需確認。"
 };
 
-const state={size:"M",prep:"short",team:"small",purpose:"publicFree",fund:"self",budget:"mid",access:"convenience",people:null,selectedVenue:null,
+const state={size:"S",prep:"short",team:"small",techstaff:"planning",purpose:"ticketed",charge:"ticketed",sponsor:"confirmed",budget:"mid",access:"convenience",speech:"en",captionLangs:new Set(["zhtw","ja"]),recording:true,people:null,selectedVenue:null,selectedTool:null,venueQuery:"",toolQuery:"",
  types:new Set(TYPES),areas:new Set(AREAS.map(a=>a[0])),capOnly:false,priceOnly:false,excludeOver:true,typesCustomized:false};
 let activeTab="overview";
 let lastSize=null;
 
 function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function escAttr(s){return esc(s).replace(/"/g,"&quot;");}
 function getVenue(n){return VENUES.find(v=>v.n===n)||null;}
+function getTool(n){return TOOLS.find(t=>t.name===n)||null;}
+function threeLayerStatus(){
+ if(state.techstaff==="confirmed")return {label:"可執行",note:"三個當日角色已確認，可依三層架構進入技術測試與採購。"};
+ if(state.techstaff==="planning")return {label:"規劃中／有風險",note:"主辦人已同意配置，但角色或廠商尚未全部確認，不能視為可執行。"};
+ return {label:"不建議啟動",note:"主辦人尚未同意配置所需人力，先採單層／雙層或縮小承諾。"};
+}
+function threeLayerHtml(){
+ const s=threeLayerStatus();
+ return `<div class="ovbox"><h3>條件式三層架構：${esc(s.label)}</h3>
+  <p>${esc(s.note)}</p>
+  <ol>
+   <li><b>混合式主控層：</b>Zoom／直播／錄影主控，負責線上會議、錄影與會後檔案。</li>
+   <li><b>現場多語層：</b>UDTalk、Akkadu、Vurbo、EventCAT 等擇一試測，服務現場日文與多語觀眾。</li>
+   <li><b>正式近用層：</b>有聾人或聽障者需求時，另由 CART／同步聽打／手語服務承擔，不能用 AI 字幕取代。</li>
+  </ol>
+  <p class="note"><b>當日角色：</b>Zoom／錄影主控、字幕工具操作、音控與乾淨人聲對接；正式近用服務可另由外部供應商提供。</p>
+ </div>`;
+}
+function languagePair(){
+ const targets=[...state.captionLangs].map(x=>CAPTIONLANGLABEL[x]).filter(Boolean);
+ return `${SPEECHLABEL[state.speech]} → ${targets.length?targets.join("、"):"尚未選字幕語言"}`;
+}
+function languageRecommendation(){
+ const targets=[...state.captionLangs];
+ if(!targets.length)return "尚未選目標字幕語言，無法判斷翻譯方向。";
+ if(state.speech==="multi")return `語言需求 ${languagePair()}：多語混用要確認工具能否逐段切換發言語言、同時提供多種輸出，並安排專人操作。`;
+ const same=targets.length===1&&targets[0]===state.speech;
+ if(same)return `語言需求 ${languagePair()}：以同語字幕為主，優先測語音辨識、術語表與人工修正。`;
+ return `語言需求 ${languagePair()}：採購前逐一實測每個語言對；工具宣稱支援某種輸出語言，不代表也支援它作為發言語言。`;
+}
+function recordingRecommendation(){
+ if(!state.recording)return "";
+ const translated=[...state.captionLangs].some(x=>x!==state.speech);
+ const source=state.speech==="multi"?"各發言語言":SPEECHLABEL[state.speech];
+ return `若要錄影／回放，Zoom 可作主控並保留原音；${source}逐字稿是否可產生要依官方支援清單與實際帳號測試${translated?"，會後翻譯字幕須另行產生並人工校對":"，公開上架前仍須人工校對"}；`;
+}
+function toolRecommendation(){
+ const picked=getTool(state.selectedTool);
+ const tools=toolsForTier();
+ const base=state.access==="formal"?`以 CART（即時人工字幕／同步聽打）、手語或專業字幕為基準服務；${tools} 作為補充。`:tools;
+ const prefix=`${languageRecommendation()}${recordingRecommendation()}`;
+ return picked?`已選 ${picked.name}；${prefix}${base}`:`${prefix}${base}`;
+}
 function peopleMax(){return state.people&&state.people>0?state.people:SIZE_RANGE[state.size][1];}
 function peopleMin(){return state.people&&state.people>0?state.people:SIZE_RANGE[state.size][0];}
 
@@ -600,12 +779,17 @@ function computeWarnings(){
  if(state.prep==="mid"&&state.size==="L") out.push({s:"info",m:"<b>時間參考：</b>3-4 個月做 L 級活動仍偏緊；場地、影音、字幕、CART／手語與網路備援要同步詢價，不要等場地確定後才找字幕。"});
  if(state.team==="tiny"&&(state.size==="M"||state.size==="L")) out.push({s:"high",m:`<b>人力參考：</b>核心籌備只有 ${esc(TEAMLABEL[state.team])} 時，不建議承接 ${esc(tl)}；先縮小到 XS/S，或改成閉門圓桌／前導場。`});
  if(state.prep==="short"&&state.team==="small"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>人力參考：</b>${esc(PREPLABEL[state.prep])}、核心 ${esc(TEAMLABEL[state.team])} 做 ${esc(tl)} 會很緊；若要維持規模，至少要先鎖定場地、影音、字幕與當天操作分工。`});
+ if(state.techstaff==="unapproved") out.push({s:"high",m:"<b>當日人力：</b>主辦人尚未同意配置 Zoom／錄影主控、字幕工具操作與音控對接，不建議把三層方案當成可執行；先改採單層／雙層，或縮小活動承諾。"});
+ if(state.techstaff==="planning") out.push({s:"high",m:"<b>當日人力：</b>主辦人已同意配置，但角色或外包廠商仍在確認中。三層方案目前是「規劃中／有風險」，三個角色未鎖定前不要對外承諾。"});
  if(state.purpose==="ticketed"&&state.prep==="short") out.push({s:"high",m:"<b>售票參考：</b>2 個月內做正式售票活動，不只是在公開報名；客服、退費、報名資料、無障礙需求處理、字幕品質承諾都要先定。未確認前不建議開賣。"});
  if(state.purpose==="ticketed"&&state.team!=="full"&&(state.size==="M"||state.size==="L")) out.push({s:"high",m:`<b>售票參考：</b>${esc(tl)} 的正式售票活動需要穩定營運 owner；核心人力少於 6 人時，不建議把它包裝成正式售票活動。`});
  if(state.purpose==="roundtable"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:"<b>目的參考：</b>閉門圓桌通常不需要 M/L 場地規模；若目標是專家討論與紀錄，先看 XS/S、線上或小型 hybrid。"});
- if(state.fund==="talking"&&(state.purpose==="ticketed"||state.size==="M"||state.size==="L")) out.push({s:"high",m:"<b>資金參考：</b>贊助洽談中不等於已確認預算。不要用未確認贊助支撐售票、CART／手語、直播製播或高規格場地承諾。"});
- if(state.fund==="ticketSponsor"&&state.purpose!=="ticketed") out.push({s:"info",m:"<b>資金參考：</b>你選了「售票 + 贊助」，但活動目的不是正式售票；若不打算售票，請改選一般贊助或自費，避免責任判斷被放大。"});
- if(state.fund==="access"&&state.access!=="formal") out.push({s:"info",m:"<b>資金參考：</b>已確認字幕／無障礙贊助時，建議優先把 CART、手語或專業字幕納入基準服務，而不是只當觀眾體驗加值。"});
+ if(state.sponsor==="talking"&&(state.purpose==="ticketed"||state.size==="M"||state.size==="L")) out.push({s:"high",m:"<b>贊助參考：</b>贊助洽談中不等於已確認預算。不要用未確認贊助支撐售票、CART／手語、直播製播或高規格場地承諾。"});
+ if(state.purpose==="ticketed"&&state.charge!=="ticketed") out.push({s:"high",m:"<b>收費參考：</b>活動目的選了正式售票，但收費模式是免費參加。若這次不售票，請把活動目的改成公開免費、閉門圓桌或前導測試。"});
+ if(state.purpose!=="ticketed"&&state.charge==="ticketed") out.push({s:"info",m:"<b>收費參考：</b>收費模式是正式售票，但活動目的不是正式售票。請確認是否真的要收費及承擔客服、退費與交付責任。"});
+ if(!state.captionLangs.size) out.push({s:"high",m:"<b>語言參考：</b>尚未選目標字幕語言，工具無法判斷翻譯方向。至少選一種觀眾實際需要的字幕語言。"});
+ if(state.speech==="multi") out.push({s:"info",m:"<b>語言參考：</b>主要發言語言選了多語混用。要確認工具如何切換發言語言、是否允許同時輸出多種字幕，以及當天由誰操作切換；不能只看語言總數。"});
+ if(state.recording) out.push({s:"info",m:`<b>錄影參考：</b>${esc(recordingRecommendation().replace(/；$/,"。"))}現場 AI 翻譯字幕不能直接當最終影片字幕。`});
  if(v&&v.cap==="restricted") out.push({s:"high",m:`<b>重要：</b>你選的「${esc(v.n)}」對外接設備有限制（視聽器材不得自帶／同步翻譯設備不得自備／無法外接其他影音），可能不適合作字幕主場。接字幕筆電與乾淨人聲輸出的方式要簽約前向場地書面確認。`});
  if(v&&v.capMax!==null&&v.capMax<peopleMax()) out.push({s:"high",m:`<b>重要：</b>「${esc(v.n)}」最大容量約 ${v.capMax} 人，坐不下你的人數（${esc(tl)}，約上限 ${peopleMax()} 人）。換更大的場地，或調整人數規模再比較。`});
  if(v&&v.priceFrom===null) out.push({s:"info",m:`<b>提醒：</b>「${esc(v.n)}」沒有公開價（需詢價／需申請），無法和其他場地公平比價。用統一格式詢價信請業務提供書面報價（場租、服務費、餐飲、影音、外接字幕、網路）。`});
@@ -615,7 +799,7 @@ function computeWarnings(){
   if(state.size==="M"||state.size==="L") out.push({s:"info",m:`<b>提醒：</b>預算偏低、規模 ${esc(tl)}：工具與人力成本通常遠高於低成本試跑，級距見「成本」分頁。可縮小規模試跑、限縮語言／人力，或優先公有／場租透明場地。${tip}`});
   else if(tip) out.push({s:"info",m:`<b>提醒：</b>${tip}NPO 聚落與公有場館成本最低。`});
  }
- if((state.budget==="low"||state.budget==="free")&&v&&v.cost==="ask") out.push({s:"info",m:`<b>提醒：</b>預算偏低時，需詢價的場地會被排除（無公開價、無法確認）。要保留先取得書面報價，或把預算改成「平衡／不限」。`});
+ if((state.budget==="low"||state.budget==="free")&&v&&v.cost==="ask") out.push({s:"info",m:`<b>提醒：</b>預算偏低時，需詢價的場地仍會保留，但因無公開價、無法確認，會排在場地清單較後。選定前先取得同一格式的書面報價。`});
  return out;
 }
 const PERSISTENT=[
@@ -624,15 +808,15 @@ const PERSISTENT=[
  "<b>資料隱私：</b>現場字幕會把聲音送到工具的雲端服務。採購前問清楚：聲音／逐字稿存不存、存多久、能不能刪、誰可以下載、會不會拿去訓練模型、資料放哪個國家、有沒有資料處理協議或隱私條款。"
 ];
 // 正式無障礙加辦清單；資料由 a11y-event-checklist workflow 產出並查核。ponytail: 勾選只在本次瀏覽，不做持久化
-const CHECKLIST=[{"title":"報名與事前溝通","items":[{"action":"在報名表加入無障礙需求欄位，逐項列出輪椅席位、台灣手語（Taiwan Sign Language, TSL）翻譯、即時人工聽打（Communication Access Realtime Translation, CART）、導盲犬同行、無障礙廁所、無障礙停車、臨停接送、輔具空間、飲食限制、大字版／點字資料、低刺激休息區等選項供勾選，並保留自由填寫空格與慣用聯絡引導方式。","tier":"法定預期","timing":"規劃期","owner":"報名系統","needsVerify":false},{"action":"把報名表本身做成無障礙格式，欄位有明確標籤（label）與必填標示、可用鍵盤操作、必填項有清楚錯誤提示且錯誤提示與欄位以程式關聯（aria-describedby），避免只用顏色或佔位文字（placeholder）傳達資訊，並通過螢幕報讀軟體測試。","tier":"法定預期","timing":"規劃期","owner":"報名系統","needsVerify":false},{"action":"在報名表開放填寫食物過敏與特殊飲食需求（過敏原、素食、宗教飲食、質地調整等），並把每筆需求轉給餐飲供應商，於現場以清楚標示標出各餐點成分與過敏原。","tier":"加分","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"對需要現場改裝或租借輔具（臨時斜板、閃光警示燈、輔聽接收機、輪椅、無障礙廁所加裝設備）的項目，於規劃期就確認租借與施工的前置作業時間並回推下單期限，避免活動前才發現來不及。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"指派專人在報名截止後逐筆檢視無障礙需求欄位，把每項需求轉成具名待辦並回填負責人與完成狀態，不讓勾選停在表單裡。","tier":"法定預期","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"在報名確認信與活動頁面標示一位無障礙聯絡窗口，附專屬電子郵件與電話，並說明可回覆需求的截止日期。","tier":"法定預期","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"撰寫無障礙交通指引，列出最近的無障礙捷運或公車站、電梯出口編號、復康巴士與無障礙計程車叫車方式，以及下車後避開階梯與陡坡到會場的無障礙步行路線。","tier":"加分","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"拍攝並提供會場動線照片，涵蓋無障礙入口、電梯、無障礙廁所位置與會場內輪椅通道，標註樓層、轉彎點與保留席位置。","tier":"加分","timing":"活動前一週","owner":"場地洽詢","needsVerify":false},{"action":"在活動前一週把完整議程、講者名單與演講摘要寄給所有報名者，讓需要預習或安排陪同者的人能提前準備。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"在報名信中主動詢問是否需要會前一對一導引，例如抵達時的接送點與引路人，並為勾選者排定現場接應人員。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"向已勾選手語需求的參與者確認偏好語言為台灣手語（Taiwan Sign Language, TSL），並回覆已安排翻譯員輪替與固定鏡位的具體安排。","tier":"加分","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"在活動前一週寄出含時間地點、報到方式、無障礙設施位置與聯絡窗口的整合提醒信，並提供可改期或取消需求的回覆方式。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"當天於報到處安排熟悉無障礙安排的工作人員，手邊備有需求名單，能即時引導勾選需求者至對應席位與設施。","tier":"法定預期","timing":"當天現場","owner":"主辦","needsVerify":false}]},{"title":"到場與場地","items":[{"action":"確認場地有無障礙停車格，並在報名時開放預留申請；同時設定一處可臨停下車區（drop-off），讓接送車輛能在入口前停靠卸客。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"現場勘查從停車場與下車區到活動空間的全程，確認有無障礙坡道或電梯可達、不可只有樓梯；若唯一通路是樓梯，當場否決或要求改場地。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"實地量測主要出入口與動線上所有門的淨寬與門檻高度，確認輪椅可順利通過；門檻過高處要求加裝臨時斜板。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認場內無障礙廁所的數量與位置，並在報到處與走道張貼前往無障礙廁所的指引標示。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認自助餐檯、飲水區與報到桌的檯面高度與下方淨空可供輪椅使用者自行取用，過高處安排工作人員主動協助取餐取水，並在動線預留輪椅可靠近的位置。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"在座位區規劃輪椅席，每個輪椅席旁保留至少一個同伴座位，讓使用輪椅者能與親友併坐、不被安排在角落孤立。","tier":"法定預期","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"規劃座位排距與走道寬度時，預留輪椅迴轉與輔具（拐杖、助行器、導盲犬）放置空間，並在輪椅席旁留出可停放與起身的淨空。","tier":"法定預期","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"與場地確認無障礙逃生動線，確保緊急出口路徑無階梯且輪椅可通行；若主要逃生口有階梯，要求指定替代的無障礙撤離出口並標示。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認場地火警與緊急狀況具備聽障者看得見的視覺（閃光）警報，並於緊急疏散程序中指派專人逐一通知無法依賴語音廣播的聽障與聾人參與者，不只靠廣播喊話；若場地無視覺警報，租借並佈設臨時閃光警示燈於活動區與無障礙廁所。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"為使用輪椅或行動不便、無法走樓梯逃生者，事前指定無障礙避難等待區（refuge area）與一對一協助疏散的負責人員，並在演練與開場提醒中說明遇緊急狀況的接應方式。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"在報到處、各會議室入口與洗手間沿線設置高對比、大字級的無障礙指標，並繪製公告無障礙動線圖，標示無障礙入口、電梯、廁所、輪椅席位與服務台位置。","tier":"法定預期","timing":"當天現場","owner":"主辦","needsVerify":false},{"action":"設置一處低刺激休息區（安靜、燈光柔和、避免閃爍燈與強烈音樂），供認知或感官敏感的與會者隨時退場休息，並在議程與指標標示其位置。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"在入口顯眼處設置標示清楚的無障礙服務台，安排受過訓練的固定人員駐點，處理引導、輔具租借、輔聽設備發放與臨時需求。","tier":"加分","timing":"當天現場","owner":"主辦","needsVerify":false},{"action":"活動前一週帶輪椅或推車實走一次全程動線（下車區、入口坡道、電梯、座位、廁所、逃生口），記錄卡點並在開場前排除。","tier":"加分","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"當天於入口與下車區安排引導人員，協助使用輪椅或行動不便者完成報到、入座與輔具收放，並主動詢問是否需要協助。","tier":"加分","timing":"當天現場","owner":"當天現場","needsVerify":false},{"action":"當天現場保持無障礙動線與輪椅席淨空，移除臨時堆放的箱子、立牌與延長線，確認坡道、電梯與無障礙廁所全程可用、未被佔用或上鎖。","tier":"法定預期","timing":"當天現場","owner":"當天現場","needsVerify":false},{"action":"開場時口頭與投影同步告知無障礙廁所、無障礙出口與逃生動線位置，並說明聽障者可依閃光警報疏散。","tier":"加分","timing":"當天現場","owner":"主持","needsVerify":false}]},{"title":"聽覺無障礙（即時聽打 CART・台灣手語）","items":[{"action":"安排即時人工聽打（CART，由聽打員逐字打出講者內容）作為核心字幕來源，AI 自動字幕僅作為備援或低風險場次使用；提前數週預訂並簽約、把費用編列進活動預算，確認字幕投影或個人裝置的呈現方式並預留測試時段。","tier":"法定預期","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"確認講題含大量專有名詞、口音或多人交叉發言時優先指派即時人工聽打（CART），不以 AI 字幕單獨支撐關鍵內容。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"安排兩位台灣手語（TSL）翻譯員輪替，定時換手以維持品質，並於合約載明輪替安排。","tier":"法定預期","timing":"場地確認前","owner":"手語洽詢","needsVerify":false},{"action":"為台灣手語（TSL）翻譯員規劃固定且打光充足的鏡位，確保現場與直播畫面全程可見翻譯員上半身與手部。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認場地配置感應線圈（hearing loop，將聲音直接傳入助聽器的磁感應系統）或 FM／紅外線輔聽系統，於預算編列租借費用、確認與場地音響相容，並於現場標示可用區域。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"預約輔聽接收機與耳機數量並於報名表開放預留，活動前一週清點、充電並測試訊號。","tier":"加分","timing":"活動前一週","owner":"場地洽詢","needsVerify":false},{"action":"規定所有講者、主持人與與談者全程使用麥克風發言，不以「我聲音夠大」省略，並在主持稿寫入提醒；同時提醒講者面向聽眾、口齒清楚、念出投影片文字以利讀唇與聽打。","tier":"法定預期","timing":"規劃期","owner":"主持","needsVerify":false},{"action":"備妥可巡場遞送的無線問答麥克風，要求提問者持麥發言，確保提問內容能進入字幕與輔聽訊號。","tier":"法定預期","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"將問答麥克風訊號一併接入混音器，並從混音器輸出乾淨音訊給字幕聽打與輔聽系統，避免只送主麥。","tier":"加分","timing":"場地確認前","owner":"製作","needsVerify":false},{"action":"活動前一週與聽打員、手語翻譯員、音控對接講者名單、講稿、簡報與專有名詞表，供事前建詞與熟悉內容。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"當天開場前實測字幕投放、手語鏡位、輔聽訊號與每支麥克風進混音器的收音，確認問答麥同步進字幕。","tier":"法定預期","timing":"當天現場","owner":"製作","needsVerify":false},{"action":"在會場安排字幕螢幕的清晰視線位置，並保留手語翻譯員前方的無遮擋座位區供有需求者就座。","tier":"加分","timing":"當天現場","owner":"場地洽詢","needsVerify":false},{"action":"指派一名現場聯絡窗口處理即時聽覺無障礙狀況，如字幕中斷、麥克風未開或輔聽收訊不良，並公告求助方式。","tier":"加分","timing":"當天現場","owner":"主辦","needsVerify":false}]},{"title":"視覺與認知無障礙","items":[{"action":"製作簡報時採用高對比配色與不小於 24pt 的字級，並確保所有資訊不單靠顏色傳達（例如折線圖同時用形狀或標籤區分，而非只靠紅綠線）。","tier":"法定預期","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"確認簡報投影片正文與背景的對比達到無障礙標準（一般文字至少 4.5 比 1、大字至少 3 比 1），交付前用對比檢測工具逐頁檢查。","tier":"法定預期","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"活動前一週將簡報、講義與議程的無障礙電子檔（可被螢幕報讀軟體朗讀的 PDF 或 Word，含圖片替代文字）寄給報名時表明需求的與會者。","tier":"法定預期","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"為視障與低視力與會者準備大字版紙本講義與議程，字級放大且採無襯線字體與寬行距，於報到時主動提供，並製作易讀（easy read）版本供認知障礙者使用。","tier":"加分","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"請講者於簡報過程中口述投影片重點與圖表內容，把每張圖的關鍵數據與趨勢用語音說出來，避免只說「如各位所見」。","tier":"加分","timing":"活動前一週","owner":"主持","needsVerify":false},{"action":"明訂並向全體工作人員與場地方告知，導盲犬等服務犬一律不得拒絕進場，並於報到處備妥服務犬飲水；相關依據以現行身心障礙者權益保障相關法規處理。","tier":"法定預期","timing":"場地確認前","owner":"主辦","needsVerify":true},{"action":"提前公布清楚的書面議程，含每個段落的起訖時間、地點、講題與休息時段，並在現場以大字級海報或螢幕同步顯示當前進度。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"規劃議程時於各段落間安排足夠的緩衝與休息時間，避免長時間密集資訊，並把休息的起訖時間明確寫進公布的議程，讓需要服藥、如廁、補充體力或感官休息者能預先安排。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"活動前向引導志工與報到人員進行簡短訓練，說明如何以口語描述環境引導視障者、如何不擅自觸碰或牽引導盲犬、如何協助認知障礙者理解流程。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"依報名時表明需求的人數，配置足夠的引導與報讀志工，明確分工視障導引、認知障礙者流程協助與現場資訊報讀，並在報到處公告如何請求協助。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"在報到處、各會議室入口與洗手間沿線設置高對比、大字級的無障礙指標，並安排引導志工協助視障與認知障礙者定位動線。","tier":"法定預期","timing":"當天現場","owner":"主辦","needsVerify":false}]},{"title":"數位與混合場","items":[{"action":"依無障礙網頁設計規範檢測活動官網與報名表，確認鍵盤可操作、表單欄位有標籤、色彩對比充足、錯誤訊息可被螢幕報讀器讀出，並修正未通過項目。","tier":"法定預期","timing":"規劃期","owner":"報名系統","needsVerify":false},{"action":"選定線上平台前，實際用鍵盤（Tab、Enter、方向鍵）完整走過報名、進入會議、發問、投票流程，確認所有功能不靠滑鼠也能操作。","tier":"法定預期","timing":"場地確認前","owner":"技術","needsVerify":false},{"action":"用螢幕報讀器（screen reader，如 NVDA 或 VoiceOver）測試線上平台的主要互動元件，確認按鈕、連結、彈窗與聊天室都有可被讀出的名稱與狀態。","tier":"法定預期","timing":"場地確認前","owner":"技術","needsVerify":false},{"action":"安排直播即時人工聽打服務（CART），由聽打員同步將講者語音轉為逐字稿並投放於畫面固定區域，讓聽障與聽不清的線上參加者能即時跟上。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"確認線上會議或直播平台已開啟字幕軌道，並指派工作人員於開播前測試字幕的顯示、位置與延遲，避免直接採用未經校對的自動字幕。","tier":"法定預期","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"於活動後為錄影補上經人工校對的字幕後再上架公開，不以未校對的自動字幕當作最終版本。","tier":"加分","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"錄影若含關鍵視覺資訊（投影片數據、示範畫面），加上口述影像（audio description）或在影片說明欄補充文字描述，讓視障觀眾理解畫面內容。","tier":"加分","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"在報名確認信與活動頁提供文字版議程與講者資料，避免只用圖片公告時間地點，並為所有圖片補上替代文字（alt text）。","tier":"法定預期","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"將會前發放與會後存檔的 PDF 製作成可讀檔（有標籤結構的 PDF、可選取文字、正確閱讀順序、圖片有替代文字），不使用掃描影像式的 PDF。","tier":"法定預期","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"用無障礙檢測工具（如 PAC 或 Acrobat 無障礙檢查）檢測簡報與 PDF，逐項修正標籤、閱讀順序與替代文字的錯誤後再發布。","tier":"加分","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"混合活動的線上端確認簡報畫面分享清晰可放大、講者口述內容同步傳達給線上觀眾，並讓線上螢幕報讀使用者能取得同一份無障礙電子檔。","tier":"加分","timing":"活動前一週","owner":"報名系統","needsVerify":false},{"action":"於活動開始時由主持人口頭說明線上參加者如何取得字幕、發問與索取無障礙資料的管道，指定一名線上主持人覆述現場提問與回應，並在現場留一位工作人員待命處理即時的無障礙求助。","tier":"加分","timing":"當天現場","owner":"主持","needsVerify":false}]},{"title":"規劃、人力、預算與法規","items":[{"action":"規劃期就邀請至少一個身心障礙團體與一位障礙當事人參與籌備會議，把無障礙需求納入活動主軸而非事後補救（落實「沒有我們的參與，不要替我們做決定」原則）。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"依台灣身心障礙者權益保障相關法規，確認場地具備無障礙坡道、電梯、無障礙廁所與停車位，缺項則改選場地或事前補強臨時設施。","tier":"法定預期","timing":"場地確認前","owner":"場地洽詢","needsVerify":true},{"action":"查詢並評估申請文化平權或無障礙相關補助方案，把無障礙服務（聽打、手語、輔聽、易讀素材）的支出納入補助申請項目，依公告期程備齊文件。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":true},{"action":"評估並安排涵蓋身障參與者與輔具的活動責任保險，確認協助疏散、輔具使用與導盲犬同行等情境在保障範圍內，相關投保條件依保險業者規定確認。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":true},{"action":"對全體工作人員與志工辦理障礙意識訓練，涵蓋輪椅引導、視障導引、與聽障者溝通、不擅自碰觸輔具或導盲犬等基本禮儀。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"在前排保留輪椅席位與其陪同者座位，並確保通往講台與發言區的走道淨寬足夠輪椅通行，現場以告示牌標明保留席。","tier":"法定預期","timing":"當天現場","owner":"場地洽詢","needsVerify":false},{"action":"請主持人於開場宣布無障礙服務台位置、輔聽與聽打取用方式，並提醒講者面向聽眾、口齒清楚、念出投影片文字以利讀唇與聽打。","tier":"加分","timing":"當天現場","owner":"主持","needsVerify":false}]}];
-const TIER_TAG={"法定預期":'<span class="tag must">法定預期</span>',"加分":'<span class="tag">加分</span>'};
+const CHECKLIST=[{"title":"報名與事前溝通","items":[{"action":"在報名表加入無障礙需求欄位，逐項列出輪椅席位、台灣手語（Taiwan Sign Language, TSL）翻譯、即時人工聽打（Communication Access Realtime Translation, CART）、導盲犬同行、無障礙廁所、無障礙停車、臨停接送、輔具空間、飲食限制、大字版／點字資料、低刺激休息區等選項供勾選，並保留自由填寫空格與慣用聯絡引導方式。","tier":"基本要求","timing":"規劃期","owner":"報名系統","needsVerify":false},{"action":"把報名表本身做成無障礙格式，欄位有明確標籤（label）與必填標示、可用鍵盤操作、必填項有清楚錯誤提示且錯誤提示與欄位以程式關聯（aria-describedby），避免只用顏色或佔位文字（placeholder）傳達資訊，並通過螢幕報讀軟體測試。","tier":"基本要求","timing":"規劃期","owner":"報名系統","needsVerify":false},{"action":"在報名表開放填寫食物過敏與特殊飲食需求（過敏原、素食、宗教飲食、質地調整等），並把每筆需求轉給餐飲供應商，於現場以清楚標示標出各餐點成分與過敏原。","tier":"加分","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"對需要現場改裝或租借輔具（臨時斜板、閃光警示燈、輔聽接收機、輪椅、無障礙廁所加裝設備）的項目，於規劃期就確認租借與施工的前置作業時間並回推下單期限，避免活動前才發現來不及。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"指派專人在報名截止後逐筆檢視無障礙需求欄位，把每項需求轉成具名待辦並回填負責人與完成狀態，不讓勾選停在表單裡。","tier":"基本要求","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"在報名確認信與活動頁面標示一位無障礙聯絡窗口，附專屬電子郵件與電話，並說明可回覆需求的截止日期。","tier":"基本要求","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"撰寫無障礙交通指引，列出最近的無障礙捷運或公車站、電梯出口編號、復康巴士與無障礙計程車叫車方式，以及下車後避開階梯與陡坡到會場的無障礙步行路線。","tier":"加分","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"拍攝並提供會場動線照片，涵蓋無障礙入口、電梯、無障礙廁所位置與會場內輪椅通道，標註樓層、轉彎點與保留席位置。","tier":"加分","timing":"活動前一週","owner":"場地洽詢","needsVerify":false},{"action":"在活動前一週把完整議程、講者名單與演講摘要寄給所有報名者，讓需要預習或安排陪同者的人能提前準備。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"在報名信中主動詢問是否需要會前一對一導引，例如抵達時的接送點與引路人，並為勾選者排定現場接應人員。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"向已勾選手語需求的參與者確認偏好語言為台灣手語（Taiwan Sign Language, TSL），並回覆已安排翻譯員輪替與固定鏡位的具體安排。","tier":"加分","timing":"場地確認前","owner":"主辦","needsVerify":false},{"action":"在活動前一週寄出含時間地點、報到方式、無障礙設施位置與聯絡窗口的整合提醒信，並提供可改期或取消需求的回覆方式。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"當天於報到處安排熟悉無障礙安排的工作人員，手邊備有需求名單，能即時引導勾選需求者至對應席位與設施。","tier":"基本要求","timing":"當天現場","owner":"主辦","needsVerify":false}]},{"title":"到場與場地","items":[{"action":"確認場地有無障礙停車格，並在報名時開放預留申請；同時設定一處可臨停下車區（drop-off），讓接送車輛能在入口前停靠卸客。","tier":"基本要求","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"現場勘查從停車場與下車區到活動空間的全程，確認有無障礙坡道或電梯可達、不可只有樓梯；若唯一通路是樓梯，當場否決或要求改場地。","tier":"基本要求","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"實地量測主要出入口與動線上所有門的淨寬與門檻高度，確認輪椅可順利通過；門檻過高處要求加裝臨時斜板。","tier":"基本要求","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認場內無障礙廁所的數量與位置，並在報到處與走道張貼前往無障礙廁所的指引標示。","tier":"基本要求","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認自助餐檯、飲水區與報到桌的檯面高度與下方淨空可供輪椅使用者自行取用，過高處安排工作人員主動協助取餐取水，並在動線預留輪椅可靠近的位置。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"在座位區規劃輪椅席，每個輪椅席旁保留至少一個同伴座位，讓使用輪椅者能與親友併坐、不被安排在角落孤立。","tier":"基本要求","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"規劃座位排距與走道寬度時，預留輪椅迴轉與輔具（拐杖、助行器、導盲犬）放置空間，並在輪椅席旁留出可停放與起身的淨空。","tier":"基本要求","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"與場地確認無障礙逃生動線，確保緊急出口路徑無階梯且輪椅可通行；若主要逃生口有階梯，要求指定替代的無障礙撤離出口並標示。","tier":"基本要求","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認場地火警與緊急狀況具備聽障者看得見的視覺（閃光）警報，並於緊急疏散程序中指派專人逐一通知無法依賴語音廣播的聽障與聾人參與者，不只靠廣播喊話；若場地無視覺警報，租借並佈設臨時閃光警示燈於活動區與無障礙廁所。","tier":"基本要求","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"為使用輪椅或行動不便、無法走樓梯逃生者，事前指定無障礙避難等待區（refuge area）與一對一協助疏散的負責人員，並在演練與開場提醒中說明遇緊急狀況的接應方式。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"在報到處、各會議室入口與洗手間沿線設置高對比、大字級的無障礙指標，並繪製公告無障礙動線圖，標示無障礙入口、電梯、廁所、輪椅席位與服務台位置。","tier":"基本要求","timing":"當天現場","owner":"主辦","needsVerify":false},{"action":"設置一處低刺激休息區（安靜、燈光柔和、避免閃爍燈與強烈音樂），供認知或感官敏感的與會者隨時退場休息，並在議程與指標標示其位置。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"在入口顯眼處設置標示清楚的無障礙服務台，安排受過訓練的固定人員駐點，處理引導、輔具租借、輔聽設備發放與臨時需求。","tier":"加分","timing":"當天現場","owner":"主辦","needsVerify":false},{"action":"活動前一週帶輪椅或推車實走一次全程動線（下車區、入口坡道、電梯、座位、廁所、逃生口），記錄卡點並在開場前排除。","tier":"加分","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"當天於入口與下車區安排引導人員，協助使用輪椅或行動不便者完成報到、入座與輔具收放，並主動詢問是否需要協助。","tier":"加分","timing":"當天現場","owner":"當天現場","needsVerify":false},{"action":"當天現場保持無障礙動線與輪椅席淨空，移除臨時堆放的箱子、立牌與延長線，確認坡道、電梯與無障礙廁所全程可用、未被佔用或上鎖。","tier":"基本要求","timing":"當天現場","owner":"當天現場","needsVerify":false},{"action":"開場時口頭與投影同步告知無障礙廁所、無障礙出口與逃生動線位置，並說明聽障者可依閃光警報疏散。","tier":"加分","timing":"當天現場","owner":"主持","needsVerify":false}]},{"title":"聽覺無障礙（即時聽打 CART・台灣手語）","items":[{"action":"安排即時人工聽打（CART，由聽打員逐字打出講者內容）作為核心字幕來源，AI 自動字幕僅作為備援或低風險場次使用；提前數週預訂並簽約、把費用編列進活動預算，確認字幕投影或個人裝置的呈現方式並預留測試時段。","tier":"基本要求","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"確認講題含大量專有名詞、口音或多人交叉發言時優先指派即時人工聽打（CART），不以 AI 字幕單獨支撐關鍵內容。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"安排兩位台灣手語（TSL）翻譯員輪替，定時換手以維持品質，並於合約載明輪替安排。","tier":"基本要求","timing":"場地確認前","owner":"手語洽詢","needsVerify":false},{"action":"為台灣手語（TSL）翻譯員規劃固定且打光充足的鏡位，確保現場與直播畫面全程可見翻譯員上半身與手部。","tier":"基本要求","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"確認場地配置感應線圈（hearing loop，將聲音直接傳入助聽器的磁感應系統）或 FM／紅外線輔聽系統，於預算編列租借費用、確認與場地音響相容，並於現場標示可用區域。","tier":"加分","timing":"場地確認前","owner":"場地洽詢","needsVerify":false},{"action":"預約輔聽接收機與耳機數量並於報名表開放預留，活動前一週清點、充電並測試訊號。","tier":"加分","timing":"活動前一週","owner":"場地洽詢","needsVerify":false},{"action":"規定所有講者、主持人與與談者全程使用麥克風發言，不以「我聲音夠大」省略，並在主持稿寫入提醒；同時提醒講者面向聽眾、口齒清楚、念出投影片文字以利讀唇與聽打。","tier":"基本要求","timing":"規劃期","owner":"主持","needsVerify":false},{"action":"備妥可巡場遞送的無線問答麥克風，要求提問者持麥發言，確保提問內容能進入字幕與輔聽訊號。","tier":"基本要求","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"將問答麥克風訊號一併接入混音器，並從混音器輸出乾淨音訊給字幕聽打與輔聽系統，避免只送主麥。","tier":"加分","timing":"場地確認前","owner":"製作","needsVerify":false},{"action":"活動前一週與聽打員、手語翻譯員、音控對接講者名單、講稿、簡報與專有名詞表，供事前建詞與熟悉內容。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"當天開場前實測字幕投放、手語鏡位、輔聽訊號與每支麥克風進混音器的收音，確認問答麥同步進字幕。","tier":"基本要求","timing":"當天現場","owner":"製作","needsVerify":false},{"action":"在會場安排字幕螢幕的清晰視線位置，並保留手語翻譯員前方的無遮擋座位區供有需求者就座。","tier":"加分","timing":"當天現場","owner":"場地洽詢","needsVerify":false},{"action":"指派一名現場聯絡窗口處理即時聽覺無障礙狀況，如字幕中斷、麥克風未開或輔聽收訊不良，並公告求助方式。","tier":"加分","timing":"當天現場","owner":"主辦","needsVerify":false}]},{"title":"視覺與認知無障礙","items":[{"action":"製作簡報時採用高對比配色與不小於 24pt 的字級，並確保所有資訊不單靠顏色傳達（例如折線圖同時用形狀或標籤區分，而非只靠紅綠線）。","tier":"基本要求","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"確認簡報投影片正文與背景的對比達到無障礙標準（一般文字至少 4.5 比 1、大字至少 3 比 1），交付前用對比檢測工具逐頁檢查。","tier":"基本要求","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"活動前一週將簡報、講義與議程的無障礙電子檔（可被螢幕報讀軟體朗讀的 PDF 或 Word，含圖片替代文字）寄給報名時表明需求的與會者。","tier":"基本要求","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"為視障與低視力與會者準備大字版紙本講義與議程，字級放大且採無襯線字體與寬行距，於報到時主動提供，並製作易讀（easy read）版本供認知障礙者使用。","tier":"加分","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"請講者於簡報過程中口述投影片重點與圖表內容，把每張圖的關鍵數據與趨勢用語音說出來，避免只說「如各位所見」。","tier":"加分","timing":"活動前一週","owner":"主持","needsVerify":false},{"action":"明訂並向全體工作人員與場地方告知，導盲犬等服務犬一律不得拒絕進場，並於報到處備妥服務犬飲水；相關依據以現行身心障礙者權益保障相關法規處理。","tier":"基本要求","timing":"場地確認前","owner":"主辦","needsVerify":true},{"action":"提前公布清楚的書面議程，含每個段落的起訖時間、地點、講題與休息時段，並在現場以大字級海報或螢幕同步顯示當前進度。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"規劃議程時於各段落間安排足夠的緩衝與休息時間，避免長時間密集資訊，並把休息的起訖時間明確寫進公布的議程，讓需要服藥、如廁、補充體力或感官休息者能預先安排。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"活動前向引導志工與報到人員進行簡短訓練，說明如何以口語描述環境引導視障者、如何不擅自觸碰或牽引導盲犬、如何協助認知障礙者理解流程。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"依報名時表明需求的人數，配置足夠的引導與報讀志工，明確分工視障導引、認知障礙者流程協助與現場資訊報讀，並在報到處公告如何請求協助。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"在報到處、各會議室入口與洗手間沿線設置高對比、大字級的無障礙指標，並安排引導志工協助視障與認知障礙者定位動線。","tier":"基本要求","timing":"當天現場","owner":"主辦","needsVerify":false}]},{"title":"數位與混合場","items":[{"action":"依無障礙網頁設計規範檢測活動官網與報名表，確認鍵盤可操作、表單欄位有標籤、色彩對比充足、錯誤訊息可被螢幕報讀器讀出，並修正未通過項目。","tier":"基本要求","timing":"規劃期","owner":"報名系統","needsVerify":false},{"action":"選定線上平台前，實際用鍵盤（Tab、Enter、方向鍵）完整走過報名、進入會議、發問、投票流程，確認所有功能不靠滑鼠也能操作。","tier":"基本要求","timing":"場地確認前","owner":"技術","needsVerify":false},{"action":"用螢幕報讀器（screen reader，如 NVDA 或 VoiceOver）測試線上平台的主要互動元件，確認按鈕、連結、彈窗與聊天室都有可被讀出的名稱與狀態。","tier":"基本要求","timing":"場地確認前","owner":"技術","needsVerify":false},{"action":"安排直播即時人工聽打服務（CART），由聽打員同步將講者語音轉為逐字稿並投放於畫面固定區域，讓聽障與聽不清的線上參加者能即時跟上。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"確認線上會議或直播平台已開啟字幕軌道，並指派工作人員於開播前測試字幕的顯示、位置與延遲，避免直接採用未經校對的自動字幕。","tier":"基本要求","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"於活動後為錄影補上經人工校對的字幕後再上架公開，不以未校對的自動字幕當作最終版本。","tier":"加分","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"錄影若含關鍵視覺資訊（投影片數據、示範畫面），加上口述影像（audio description）或在影片說明欄補充文字描述，讓視障觀眾理解畫面內容。","tier":"加分","timing":"規劃期","owner":"製作","needsVerify":false},{"action":"在報名確認信與活動頁提供文字版議程與講者資料，避免只用圖片公告時間地點，並為所有圖片補上替代文字（alt text）。","tier":"基本要求","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"將會前發放與會後存檔的 PDF 製作成可讀檔（有標籤結構的 PDF、可選取文字、正確閱讀順序、圖片有替代文字），不使用掃描影像式的 PDF。","tier":"基本要求","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"用無障礙檢測工具（如 PAC 或 Acrobat 無障礙檢查）檢測簡報與 PDF，逐項修正標籤、閱讀順序與替代文字的錯誤後再發布。","tier":"加分","timing":"活動前一週","owner":"製作","needsVerify":false},{"action":"混合活動的線上端確認簡報畫面分享清晰可放大、講者口述內容同步傳達給線上觀眾，並讓線上螢幕報讀使用者能取得同一份無障礙電子檔。","tier":"加分","timing":"活動前一週","owner":"報名系統","needsVerify":false},{"action":"於活動開始時由主持人口頭說明線上參加者如何取得字幕、發問與索取無障礙資料的管道，指定一名線上主持人覆述現場提問與回應，並在現場留一位工作人員待命處理即時的無障礙求助。","tier":"加分","timing":"當天現場","owner":"主持","needsVerify":false}]},{"title":"規劃、人力、預算與法規","items":[{"action":"規劃期就邀請至少一個身心障礙團體與一位障礙當事人參與籌備會議，把無障礙需求納入活動主軸而非事後補救（落實「沒有我們的參與，不要替我們做決定」原則）。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":false},{"action":"依台灣身心障礙者權益保障相關法規，確認場地具備無障礙坡道、電梯、無障礙廁所與停車位，缺項則改選場地或事前補強臨時設施。","tier":"基本要求","timing":"場地確認前","owner":"場地洽詢","needsVerify":true},{"action":"查詢並評估申請文化平權或無障礙相關補助方案，把無障礙服務（聽打、手語、輔聽、易讀素材）的支出納入補助申請項目，依公告期程備齊文件。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":true},{"action":"評估並安排涵蓋身障參與者與輔具的活動責任保險，確認協助疏散、輔具使用與導盲犬同行等情境在保障範圍內，相關投保條件依保險業者規定確認。","tier":"加分","timing":"規劃期","owner":"主辦","needsVerify":true},{"action":"對全體工作人員與志工辦理障礙意識訓練，涵蓋輪椅引導、視障導引、與聽障者溝通、不擅自碰觸輔具或導盲犬等基本禮儀。","tier":"加分","timing":"活動前一週","owner":"主辦","needsVerify":false},{"action":"在前排保留輪椅席位與其陪同者座位，並確保通往講台與發言區的走道淨寬足夠輪椅通行，現場以告示牌標明保留席。","tier":"基本要求","timing":"當天現場","owner":"場地洽詢","needsVerify":false},{"action":"請主持人於開場宣布無障礙服務台位置、輔聽與聽打取用方式，並提醒講者面向聽眾、口齒清楚、念出投影片文字以利讀唇與聽打。","tier":"加分","timing":"當天現場","owner":"主持","needsVerify":false}]}];
+const TIER_TAG={"基本要求":'<span class="tag must">基本要求</span>',"加分":'<span class="tag">加分</span>'};
 function renderA11yPanel(){
  const n=CHECKLIST.reduce((s,g)=>s+g.items.length,0);
  const checks=JSON.parse(localStorage.getItem("a11yChecks")||"{}");
  const strike=localStorage.getItem("a11yStrike")!=="0";
  const done=Object.keys(checks).length;
  return `<h2 class="sec">正式無障礙加辦清單</h2>
- <p class="note">字幕只是其中一塊。辦「無障礙基準服務」活動時，下面 ${n} 項依與會者動線分組；每項標 法定預期／加分、時機與負責角色。標「需查證」者引用法規或補助，刻意未寫死條號金額，對外引用前須查證。勾選會記在這個瀏覽器（本機）。找聽打／手語的供應商、縣市窗口與手語語種，見 <a href="#panel-human" data-gotab="human">「聽打與手語」分頁</a>。</p>
+ <p class="note">字幕只是其中一塊。辦「無障礙基準服務」活動時，下面 ${n} 項依與會者動線分組；每項標 基本要求／加分、時機與負責角色。標「需查證」者引用法規或補助，刻意未寫死條號金額，對外引用前須查證。勾選會記在這個瀏覽器（本機）。找聽打／手語的供應商、縣市窗口與手語語種，見 <a href="#panel-human" data-gotab="human">「聽打與手語」分頁</a>。</p>
  <div class="pdfrow"><a class="btn primary" href="accessible-checklist.pdf" download="無障礙活動加辦清單.pdf">下載無障礙清單 PDF（已加標籤）</a></div>
  <div class="ck-tools"><label class="ck-toggle"><input type="checkbox" id="strike-toggle" ${strike?"checked":""}> 勾選後加刪除線</label><span class="ck-count">已勾 ${done}／${n}</span><button type="button" class="btn" data-ckclear>清除全部勾選</button></div>
  <div class="a11y-list${strike?" strike":""}">${CHECKLIST.map((g,gi)=>
@@ -643,8 +827,8 @@ function renderA11yPanel(){
 function renderSelbar(){
  const A=[...state.areas], T=[...state.types];
  const pill=(k,v)=>`<span class="seg-pill"><span class="pk">${esc(k)}</span><span class="pv">${esc(v)}</span></span>`;
- const row1=`<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("時間",PREPLABEL[state.prep])+pill("核心人力",TEAMLABEL[state.team])+pill("目的",PURPOSELABEL[state.purpose]);
- const row2=pill("資金",FUNDLABEL[state.fund])+pill("預算",BUDGETLABEL[state.budget])+pill("字幕",ACCESSLABEL[state.access]);
+ const row1=`<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("時間",PREPLABEL[state.prep])+pill("核心人力",TEAMLABEL[state.team])+pill("當日人力",TECHSTAFFLABEL[state.techstaff])+pill("目的",PURPOSELABEL[state.purpose]);
+ const row2=pill("收費",CHARGELABEL[state.charge])+pill("贊助",SPONSORLABEL[state.sponsor])+pill("預算",BUDGETLABEL[state.budget])+pill("字幕",ACCESSLABEL[state.access])+pill("語言",languagePair())+pill("錄影",state.recording?"需要":"不需要")+(state.selectedTool?pill("工具",state.selectedTool):"");
  const narrow=window.matchMedia?window.matchMedia("(max-width:600px)").matches:false;
  const cityV=A.length===AREAS.length?"全部":(A.length?((narrow&&A.length>3)?A.length+" 個城市":A.map(a=>AREALABEL[a]).join("、")):"未選");
  const typeV=T.length===TYPES.length?"全部":(T.length?((narrow&&T.length>3)?T.length+" 種":T.join("、")):"未選");
@@ -658,15 +842,15 @@ function renderSelbar(){
 function buildPrintDoc(){
  const t=TIERS.find(x=>x.id===state.size);
  const short=venueList().list.slice(0,5);
- const toolLine=state.access==="formal"?`以 CART（即時人工字幕／同步聽打）、手語或專業字幕為基準服務；${TOOLS_BYTIER[state.size]} 作為補充。`:TOOLS_BYTIER[state.size];
- const sel=`規模 ${state.size}（${SIZE_PEOPLE[state.size]}）｜籌備時間 ${PREPLABEL[state.prep]}｜核心人力 ${TEAMLABEL[state.team]}｜活動目的 ${PURPOSELABEL[state.purpose]}｜資金狀態 ${FUNDLABEL[state.fund]}｜預算 ${BUDGETLABEL[state.budget]}｜字幕定位 ${ACCESSLABEL[state.access]}`;
+ const toolLine=toolRecommendation();
+ const sel=`規模 ${state.size}（${SIZE_PEOPLE[state.size]}）｜籌備時間 ${PREPLABEL[state.prep]}｜核心人力 ${TEAMLABEL[state.team]}｜當日技術人力 ${TECHSTAFFLABEL[state.techstaff]}｜活動目的 ${PURPOSELABEL[state.purpose]}｜收費模式 ${CHARGELABEL[state.charge]}｜贊助狀態 ${SPONSORLABEL[state.sponsor]}｜預算 ${BUDGETLABEL[state.budget]}｜字幕定位 ${ACCESSLABEL[state.access]}｜語言 ${languagePair()}｜錄影 ${state.recording?"需要":"不需要"}`;
  const venues=short.length?short.map(v=>`<li>${esc(v.n)}（${esc(v.priceText)}）${v.phone?"　電話 "+esc(v.phone):""}</li>`).join(""):"<li>目前條件下沒有符合的場地</li>";
  const adv=`<h2>整合建議</h2>
    <p><b>條件：</b>${esc(sel)}</p>
    <p><b>方案等級：</b>${esc(t.name)}（${esc(t.people)}）</p>
    <p><b>字幕工具：</b>${esc(toolLine)}</p>
    <p><b>場地短名單：</b></p><ul>${venues}</ul>
-   <p><b>成本級距：</b>工具與操作 ${esc(COST.toolOpBand[state.size])}；影音 ${esc(COST.avBand[state.size])}；人力需確認${state.access==="formal"?"；另加 CART／手語（需報價）":""}。</p>
+   <p><b>成本級距：</b>工具與操作 ${esc(COST.toolOpBand[state.size])}；影音 ${esc(COST.avBand[state.size])}；字幕／影音相關人力需確認${state.access==="formal"?"；另加 CART／手語（需報價）":""}。</p>
    <p><b>共通前提：</b>確認場地混音器能給字幕電腦一條只含人聲的乾淨訊號。</p>`;
  const n=CHECKLIST.reduce((s,g)=>s+g.items.length,0);
  const list=CHECKLIST.map(g=>`<h3>${esc(g.title)}</h3><ul class="pck">`+g.items.map(it=>`<li>${esc(it.action)} <span class="ptag">［${esc(it.tier)}・${esc(it.timing)}・${esc(it.owner)}${it.needsVerify?"・需查證":""}］</span></li>`).join("")+`</ul>`).join("");
@@ -674,7 +858,7 @@ function buildPrintDoc(){
    <p class="psub">APAC AIA 活動字幕選型工具・依本次設定產生。價格電話為查詢起點、非報價，採購前須自行向場地與供應商書面確認。</p>
    ${adv}
    <h2>正式無障礙加辦清單（${n} 項）</h2>
-   <p>每項標 法定預期／加分、時機與負責角色；「需查證」者引用法規或補助，對外引用前須查證。</p>
+   <p>每項標 基本要求／加分、時機與負責角色；「需查證」者引用法規或補助，對外引用前須查證。</p>
    ${list}`;
 }
 function renderWarnbar(){
@@ -686,43 +870,50 @@ function renderWarnbar(){
 }
 
 // --- venue filtering (null capMax = unknown, never excluded/misjudged) ---
-function overlaps(v){
- if(v.capMin===null||v.capMax===null) return true; // unknown -> don't exclude
- const r=SIZE_RANGE[state.size];
- return v.capMax>=r[0]&&v.capMin<=r[1];
+function capacityFits(v){
+ if(v.capMax===null) return true; // unknown -> don't exclude
+ return v.capMax>=peopleMax();
 }
-function budgetOk(v){
- if(state.budget==="any") return true;
- if(v.cost==="ask") return state.budget!=="low"&&state.budget!=="free";
- if(state.budget==="free"||state.budget==="low") return v.cost==="low";
- if(state.budget==="mid") return v.cost==="low"||v.cost==="mid";
- return true;
+function venueBudgetRank(v){
+ if(state.budget==="any")return 0;
+ if(state.budget==="free")return v.priceFrom===0?0:({low:1,mid:2,ask:3,high:4}[v.cost]??5);
+ if(state.budget==="low")return ({low:0,mid:1,ask:2,high:3}[v.cost]??4);
+ return ({mid:0,low:1,high:2,ask:3}[v.cost]??4);
+}
+function venueSearchTerms(){
+ return state.venueQuery.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+}
+function venueMatches(v,terms){
+ if(!terms.length)return true;
+ const text=[v.n,AREALABEL[v.area],v.area,v.type,v.priceText,v.note,v.phone].join(" ").toLocaleLowerCase();
+ return terms.every(term=>text.includes(term));
 }
 function venueList(){
- const r=SIZE_RANGE[state.size];
+ const terms=venueSearchTerms();
  let removed=0;
  const list=VENUES.filter(v=>{
   if(!state.types.has(v.type)) return false;
   if(!state.areas.has(v.area)) return false;
+  if(!venueMatches(v,terms)) return false;
   if(state.capOnly&&v.cap==="restricted") return false;
   if(state.priceOnly&&v.priceFrom===null) return false;
-  if(!budgetOk(v)) return false;
-  const fit=overlaps(v);
+  const fit=capacityFits(v);
   if(!fit&&state.excludeOver){removed++;return false;}
   return true;
  });
- const capRank={good:0,uncertain:1,restricted:2},costRank={low:0,mid:1,high:2,ask:3};
+ const capRank={good:0,uncertain:1,restricted:2};
  list.sort((a,b)=>{
-  const fa=overlaps(a)?0:1,fb=overlaps(b)?0:1;if(fa!==fb)return fa-fb;
+  const fa=capacityFits(a)?0:1,fb=capacityFits(b)?0:1;if(fa!==fb)return fa-fb;
+  const ra=a.cap==="restricted"?1:0,rb=b.cap==="restricted"?1:0;if(ra!==rb)return ra-rb;
+  const ba=venueBudgetRank(a),bb=venueBudgetRank(b);if(ba!==bb)return ba-bb;
   if(capRank[a.cap]!==capRank[b.cap])return capRank[a.cap]-capRank[b.cap];
-  if(costRank[a.cost]!==costRank[b.cost])return costRank[a.cost]-costRank[b.cost];
   const pa=a.priceFrom===null?Infinity:a.priceFrom,pb=b.priceFrom===null?Infinity:b.priceFrom;return pa-pb;
  });
  return {list,removed};
 }
 function telHref(p){return "tel:"+p.split(/轉|分機|#|、/)[0].replace(/[()\s]/g,"");}
 function venueCard(v,withSelect){
- const fit= (v.capMin===null||v.capMax===null)?null:overlaps(v);
+ const fit=v.capMax===null?null:capacityFits(v);
  const capTags=[];
  capTags.push(`<span class="tag">${v.type}</span>`);
  capTags.push(`<span class="tag">${AREALABEL[v.area]||v.area}</span>`);
@@ -730,7 +921,7 @@ function venueCard(v,withSelect){
  capTags.push(`<span class="tag ${v.cap}">${capLabel[v.cap]}</span>`);
  if(v.capNote) capTags.push(`<span class="tag need">容量${v.capNote}</span>`);
  else if(fit===true) capTags.push(`<span class="tag fit">容量吃得下</span>`);
- else if(fit===false) capTags.push(`<span class="tag unfit">容量偏小／偏大</span>`);
+ else if(fit===false) capTags.push(`<span class="tag unfit">容量不足</span>`);
  if(v.ref) capTags.push(`<span class="tag need">對照用，非會議主場</span>`);
  const sel=state.selectedVenue===v.n;
  const btn=withSelect?`<button class="btn ${sel?"primary":""}" data-pick="${esc(v.n)}">${sel?"已選為主場地":"選為主場地"}</button> `:"";
@@ -743,13 +934,26 @@ function venueCard(v,withSelect){
   ${btn}<a href="${v.src}" target="_blank" rel="noopener">官方／來源頁 ↗</a>
  </article>`;
 }
+function venueCountText(data=venueList()){
+ return `符合 ${data.list.length} 個場地（容量目標：至少 ${peopleMax()} 人）${data.removed>0?`；已隱藏 ${data.removed} 個容量不足的場地`:""}`;
+}
+function venueResultsHtml(data=venueList()){
+ const cards=data.list.length
+  ? data.list.map(v=>venueCard(v,true)).join("")
+  : `<div class="card">${state.venueQuery.trim()?"沒有符合目前搜尋與篩選的場地。清空搜尋或放寬篩選。":"目前條件下沒有符合的場地。放寬左邊篩選，或關掉「排除規模不合的場地」。"}</div>`;
+ return `<p class="count">${venueCountText(data)}</p><div class="cards">${cards}</div>`;
+}
+function updateVenueSearch(){
+ state.venueQuery=document.getElementById("venue-search").value;
+ const results=document.getElementById("venue-results");
+ if(results)results.innerHTML=venueResultsHtml();
+}
 
 // --- panels ---
 function renderVenues(){
- const {list,removed}=venueList();
+ const data=venueList();
  const typeChk=TYPES.map(t=>`<label class="chk"><input type="checkbox" data-type="${t}" ${state.types.has(t)?"checked":""}> ${t}</label>`).join("");
  const areaChk=AREAS.map(([v,l])=>`<label class="chk"><input type="checkbox" data-area="${v}" ${state.areas.has(v)?"checked":""}> ${l}</label>`).join("");
- const cards=list.length?list.map(v=>venueCard(v,true)).join(""):`<div class="card">目前條件下沒有符合的場地。放寬左邊篩選，或關掉「排除規模不合的場地」。</div>`;
  return `<h2 class="sec">場地（依你的設定即時篩選）</h2>
  <div class="filters">
    <div class="grp" style="margin-bottom:.5rem;"><strong>場地類型：</strong>${typeChk}</div>
@@ -760,16 +964,27 @@ function renderVenues(){
      <label class="chk"><input type="checkbox" id="t-over" ${state.excludeOver?"checked":""}> 排除規模不合的場地</label>
    </div>
  </div>
- <p class="count">符合 ${list.length} 個場地（人數：${peopleMin()}-${peopleMax()}）${removed>0?`；已隱藏 ${removed} 個規模明顯不合的場地`:""}</p>
- <div class="cards">${cards}</div>
+ <div class="tool-search" role="search">
+  <label for="venue-search">場地快速篩選</label>
+  <input id="venue-search" type="search" autocomplete="off" placeholder="例：TCCC、新北、飯店、圖書館、錄影" value="${escAttr(state.venueQuery)}" aria-describedby="venue-search-hint">
+  <span class="tool-count" id="venue-search-hint">搜尋名稱、城市、類型、價格與備註</span>
+ </div>
+ <div id="venue-results">${venueResultsHtml(data)}</div>
  <p class="deep">提醒：標「容量需確認」的場地，其容量未在報告／來源載明，不能當已知數字比較。完整場地細表與詢價方式見 <a href="ai-captioning-ballroom-solution.desktop.html#sec-venues">報告第 11 節</a>。</p>`;
 }
-function renderTools(){
- const roleRank={"主方案候選":0,"CART專業字幕":1,"正式備援":2,"低成本試跑":3,"免費備援":4,"研究候選":5};
- const byRole=arr=>arr.slice().sort((a,b)=>(roleRank[a.role]??9)-(roleRank[b.role]??9));
- const fit=byRole(TOOLS.filter(t=>t.tiers.includes(state.size)));
- const other=byRole(TOOLS.filter(t=>!t.tiers.includes(state.size)));
- const card=t=>{const human=/人工|手語/.test(t.kind);return `<article class="card ${t.tiers.includes(state.size)?"sel":""}">
+function toolCard(t){
+ const human=/人工|手語/.test(t.kind);
+ const picked=state.selectedTool===t.name;
+ const translationInfo=t.translationUrl
+  ? `<p class="note"><b>同步翻譯資訊：</b><a href="${escAttr(t.translationUrl)}" target="_blank" rel="noopener">${esc(t.translationLabel||"官方同步翻譯頁")}</a> — ${esc(t.translationNote||"官方頁有同步翻譯資訊，採購前仍需確認本次語言與授權。")}</p>`
+  : `<p class="note"><b>同步翻譯資訊：</b>${esc(t.translationNote||"未找到官方同步翻譯資訊頁；採購前需向供應商確認。")}</p>`;
+ const recordingInfo=state.recording&&t.recordingUrl
+  ? `<p class="note"><b>錄影資訊：</b><a href="${escAttr(t.recordingUrl)}" target="_blank" rel="noopener">${esc(t.recordingLabel||"官方錄影資訊")}</a> — ${esc(t.recordingNote||"採購前仍需確認錄影、字幕檔與逐字稿交付。")}</p>`
+   : "";
+ const pricingInfo=t.pricingUrl
+  ? `<p class="note"><b>官方公開價格：</b>${esc(t.pricingNote)} <a href="${escAttr(t.pricingUrl)}" target="_blank" rel="noopener">${esc(t.pricingLabel||"官方價格頁")} ↗</a></p>`
+  : "";
+ return `<article class="card ${t.tiers.includes(state.size)?"sel":""} ${picked?"picked":""}">
     <div class="card-head"><h4>${esc(t.name)}</h4></div>
     <div class="meta">
      <span class="tag" style="${human?"background:var(--cta);color:var(--cta-text);font-weight:600;":""}">${esc(t.kind)}</span>
@@ -782,36 +997,89 @@ function renderTools(){
      <span class="tag">術語表：${esc(t.glossary)}</span>
      <span class="tag">人工修正：${esc(t.humanCorrect)}</span>
     </div>
-    <p class="note">${esc(t.why)}</p>
-    <a href="${esc(t.source)}" target="_blank" rel="noopener">官方頁 ↗</a>
-   </article>`;};
- const formalNote=state.access==="formal"?`<div class="warn high" style="margin-bottom:1rem;">${ICO_HIGH}<div><b>重要：</b>你選了無障礙基準服務。下方「CART專業字幕」類（StreamText／3Play／AI-Media／Wordly）或台灣同步聽打／手語為基準服務（見「聽打與手語」分頁），AI 工具只能當多語即時翻譯的補充。</div></div>`:"";
+     <p class="note">${esc(t.why)}</p>
+     ${pricingInfo}
+     ${translationInfo}
+    ${recordingInfo}
+    <button class="btn ${picked?"primary":""}" data-picktool="${escAttr(t.name)}">${picked?"已選此工具":"選這個工具"}</button>
+    <a href="${escAttr(t.source)}" target="_blank" rel="noopener">官方頁 ↗</a>
+   </article>`;
+}
+function toolSearchTerms(){
+ return state.toolQuery.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+}
+function toolMatches(t,terms){
+ if(!terms.length)return true;
+ const text=[t.name,t.origin,t.role,t.priceFeel,t.languages,t.qr,t.glossary,t.humanCorrect,t.kind,t.why,t.pricingLabel,t.pricingNote,t.pricingUrl,t.translationLabel,t.translationNote,t.translationUrl,t.recordingLabel,t.recordingNote,t.recordingUrl].join(" ").toLocaleLowerCase();
+ return terms.every(term=>text.includes(term));
+}
+function sortToolSearch(arr,terms){
+ if(!terms.length)return arr;
+ return arr.slice().sort((a,b)=>Number(terms.some(term=>b.name.toLocaleLowerCase().includes(term)))-Number(terms.some(term=>a.name.toLocaleLowerCase().includes(term))));
+}
+function toolSearchModel(){
+ const roleRank={"主方案候選":0,"日本現場候選":1,"人工專業／AI字幕服務":2,"人工／AI字幕平台":2,"AI多語字幕／翻譯":3,"正式備援":4,"低成本試跑":5,"免費備援":6,"研究候選":7};
+ const byRole=arr=>arr.slice().sort((a,b)=>{
+  const az=state.recording&&a.name.startsWith("Zoom ")?-1:0,bz=state.recording&&b.name.startsWith("Zoom ")?-1:0;
+  if(az!==bz)return az-bz;
+  return (roleRank[a.role]??9)-(roleRank[b.role]??9);
+ });
+ const terms=toolSearchTerms();
+ const fitAll=byRole(TOOLS.filter(t=>t.tiers.includes(state.size)));
+ const otherAll=byRole(TOOLS.filter(t=>!t.tiers.includes(state.size)));
+ return {terms,fitAll,otherAll,fit:sortToolSearch(fitAll.filter(t=>toolMatches(t,terms)),terms),other:sortToolSearch(otherAll.filter(t=>toolMatches(t,terms)),terms)};
+}
+function toolCountText(m){
+ return `符合 ${m.fit.length+m.other.length}／${m.fitAll.length+m.otherAll.length} 個工具`;
+}
+function toolResultsHtml(m=toolSearchModel()){
+ const fitCards=m.fit.length?m.fit.map(toolCard).join(""):`<div class="card"><p class="note">沒有符合目前篩選字的工具。清空搜尋或改用較短關鍵字。</p></div>`;
+ const otherLabel=m.terms.length?`其他規模的工具（參考，符合 ${m.other.length}／共 ${m.otherAll.length}）`:`其他規模的工具（參考，共 ${m.other.length}）`;
+ return `<div class="role-h">適合你的規模（${esc(TIERLABEL[state.size])}）</div>
+ <div class="cards">${fitCards}</div>
+ ${m.other.length?`<details class="reminders" style="margin-top:1.2rem;"><summary>${otherLabel}</summary><div class="cards" style="padding:.7rem .8rem 1rem;">${m.other.map(toolCard).join("")}</div></details>`:""}`;
+}
+function updateToolSearch(){
+ const m=toolSearchModel(),count=document.getElementById("tool-search-count"),results=document.getElementById("tool-results");
+ if(count)count.textContent=toolCountText(m);
+ if(results)results.innerHTML=toolResultsHtml(m);
+}
+function renderTools(){
+ const model=toolSearchModel();
+ const formalNote=state.access==="formal"?`<div class="warn high" style="margin-bottom:1rem;">${ICO_HIGH}<div><b>重要：</b>你選了無障礙基準服務。只有明確採購 StreamText 人工字幕、3Play Live Professional Captioning，或安排台灣同步聽打／手語，才能作為基準服務（見「聽打與手語」分頁）；Wordly、AI-Media LEXI 與各平台的自動模式只能作多語翻譯補充。</div></div>`:"";
  return `<h2 class="sec">字幕工具（適合你規模的排前面）</h2>
- <p class="note">下方各卡的 語言數、術語表、QR、人工修正 為各供應商官方頁宣稱、非獨立查證；完整報告把這些列為採購前須向供應商確認的問題。</p>
- <div class="ovbox"><h3>你的規模（${esc(TIERLABEL[state.size])}）建議測：</h3><p>${esc(TOOLS_BYTIER[state.size])}</p></div>
+ <p class="note"><b>工具資料查核日期：2026-07-14。</b>下方各卡的語言數、術語表、QR、人工修正為各供應商官方頁宣稱、非獨立驗證；功能與費率仍須在採購前向供應商書面確認。</p>
+ ${threeLayerHtml()}
+ <div class="ovbox"><h3>你的規模與語言條件（${esc(TIERLABEL[state.size])}；${esc(languagePair())}）建議測：</h3><p>${esc(toolsForTier())}</p></div>
  ${formalNote}
- <div class="role-h">適合你的規模（${esc(TIERLABEL[state.size])}）</div>
- <div class="cards">${fit.map(card).join("")}</div>
- ${other.length?`<details class="reminders" style="margin-top:1.2rem;"><summary>其他規模的工具（參考，共 ${other.length}）</summary><div class="cards" style="padding:.7rem .8rem 1rem;">${other.map(card).join("")}</div></details>`:""}
+ <div class="tool-search" role="search">
+  <label for="tool-search">工具快速篩選</label>
+  <input id="tool-search" type="search" autocomplete="off" placeholder="例：Zoom、UDTalk、日文、QR、人工、CART" value="${escAttr(state.toolQuery)}" aria-describedby="tool-search-count">
+  <span class="tool-count" id="tool-search-count" aria-live="polite">${toolCountText(model)}</span>
+ </div>
+ <div id="tool-results">${toolResultsHtml(model)}</div>
  <p class="deep">「需確認」表示報告以問句要求向供應商確認，未替你斷定。逐項工具說明與第一輪試測短名單見 <a href="ai-captioning-ballroom-solution.desktop.html#sec-tools">報告第 8</a>、<a href="ai-captioning-ballroom-solution.desktop.html#sec-shortlist">9 節</a>。供應商功能與價格會變，採購前須書面確認。</p>`;
 }
 function renderTiers(){
  const order=["XS","S","M","L"];
+ const selectedTool=getTool(state.selectedTool);
  const cards=order.map(id=>{
   const t=TIERS.find(x=>x.id===id);const cur=id===state.size;
+  const pickedNote=cur&&selectedTool?`<p class="note"><b>已選字幕工具：</b>${esc(selectedTool.name)}。方案執行時先用它檢查授權、語言、收音、顯示與備援；下方工具列仍保留同級距備選。</p>`:"";
   return `<article class="card ${cur?"sel":""}">
    <div class="card-head"><h4>${esc(t.name)}　${esc(t.people)}</h4></div>
    ${cur?`<p class="note">這是你目前選的規模。</p>`:`<button class="btn" data-applysize="${id}">套用此規模</button>`}
+   ${pickedNote}
    <p class="note"><b>音訊：</b>${esc(t.audio)}</p>
    <p class="note"><b>設備：</b>${t.equipment.map(esc).join("、")}</p>
-   <p class="note"><b>人力：</b>${t.staff.map(esc).join("、")}</p>
+   <p class="note"><b>字幕／影音相關人力：</b>${t.staff.map(esc).join("、")}</p>
    <p class="note"><b>工具：</b>${esc(t.tools)}</p>
    <p class="note"><b>預算：</b>${esc(t.budget)}</p>
    <p class="note"><b>適合：</b>${esc(t.useWhen)}</p>
    <p class="note" style="color:var(--hi-ink);"><b>無障礙：</b>${esc(t.a11yNote)}</p>
   </article>`;
  }).join("");
- return `<h2 class="sec">方案等級（你的規模已置頂高亮）</h2><div class="cards">${cards}</div>
+ return `<h2 class="sec">方案等級（你的規模已置頂高亮）</h2>${threeLayerHtml()}<p class="note"><b>人力範圍：</b>方案卡只列報告有依據的字幕／影音相關角色，不是活動當日總人力；不含報到、舞台、線上主持、講者接待與票務。完整當日配置待 Excel 確認。</p><div class="cards">${cards}</div>
  <details class="howto" open><summary>收音接線：向場地要什麼、自己怎麼接</summary><div class="howto-body">
  <p>錄影攝影通常有人處理，但字幕的成敗在「麥克風與混音」。你不一定要請影音技術人員，但要會向場地要、會自己接這一段。</p>
  <p><b>一、訂場地／詢價時就先問場地：</b></p>
@@ -847,7 +1115,7 @@ function renderCost(){
    ${venueRow}
    <tr><td>字幕工具與操作</td><td>${esc(COST.toolOpBand[sz])}</td></tr>
    <tr><td>影音額外費用</td><td>${esc(COST.avBand[sz])}</td></tr>
-   <tr><td>人力</td><td>${esc(COST.staffNote)}</td></tr>
+   <tr><td>字幕／影音相關人力</td><td>${esc(COST.staffNote)}</td></tr>
    <tr><td>餐飲</td><td>${esc(COST.cateringPerHead)}</td></tr>
    ${cart}
    <tr><td>網路</td><td>150-300 人同時開字幕頁的 Wi-Fi／5G 熱點；報告列為必備但未給價，需確認</td></tr>
@@ -861,9 +1129,7 @@ function renderOverview(){
  const t=TIERS.find(x=>x.id===state.size);
  const {list}=venueList();
  const short=list.slice(0,5);
- const toolLine=state.access==="formal"
-  ? `以 CART（即時人工字幕／同步聽打）、手語或專業字幕為基準服務；${esc(TOOLS_BYTIER[state.size])} 作為多語即時翻譯的補充。`
-  : esc(TOOLS_BYTIER[state.size]);
+ const toolLine=esc(toolRecommendation());
  const shortHtml=short.length?short.map(v=>{
   const sel=state.selectedVenue===v.n;
   return `<div class="ovvenue"><span class="vn">${esc(v.n)}（${esc(v.priceText)}）${v.capNote?"〔容量需確認〕":""}${v.phone?`　電話：<a href="${telHref(v.phone)}">${esc(v.phone)}</a>`:""}</span><button class="btn ${sel?"primary":""}" data-pick="${esc(v.n)}">${sel?"已選":"選它"}</button></div>`;
@@ -874,11 +1140,13 @@ function renderOverview(){
    <h3>你的整合建議</h3>
    <div class="ovrow kv"><span class="k">方案等級</span><span>${esc(t.name)}（${esc(t.people)}）</span></div>
    <div class="ovrow kv"><span class="k">活動目的</span><span>${esc(PURPOSELABEL[state.purpose])}</span></div>
-   <div class="ovrow kv"><span class="k">籌備條件</span><span>${esc(PREPLABEL[state.prep])}；核心人力 ${esc(TEAMLABEL[state.team])}；資金 ${esc(FUNDLABEL[state.fund])}（僅作可行性提醒，不自動改變規模）</span></div>
+   <div class="ovrow kv"><span class="k">籌備條件</span><span>${esc(PREPLABEL[state.prep])}；核心人力 ${esc(TEAMLABEL[state.team])}；當日技術人力 ${esc(TECHSTAFFLABEL[state.techstaff])}；收費 ${esc(CHARGELABEL[state.charge])}；贊助 ${esc(SPONSORLABEL[state.sponsor])}；錄影／回放 ${state.recording?"需要":"不需要"}（僅作可行性提醒，不自動改變規模）</span></div>
+   <div class="ovrow kv"><span class="k">語言需求</span><span>${esc(languagePair())}</span></div>
+   <div class="ovrow kv"><span class="k">三層狀態</span><span>${esc(threeLayerStatus().label)}：${esc(threeLayerStatus().note)}</span></div>
    <div class="ovrow kv"><span class="k">字幕工具</span><span>${toolLine}</span></div>
    <div class="ovrow kv"><span class="k">場地短名單</span><span>${short.length?`前 ${short.length} 個（點「選它」鎖定）`:""}</span></div>
    ${shortHtml}
-   <div class="ovrow kv"><span class="k">成本級距</span><span>工具與操作 ${esc(COST.toolOpBand[state.size])}；影音 ${esc(COST.avBand[state.size])}；人力需確認${state.access==="formal"?"；另加 CART／手語（需報價）":""}。詳見「成本」分頁。</span></div>
+   <div class="ovrow kv"><span class="k">成本級距</span><span>工具與操作 ${esc(COST.toolOpBand[state.size])}；影音 ${esc(COST.avBand[state.size])}；字幕／影音相關人力需確認${state.access==="formal"?"；另加 CART／手語（需報價）":""}。不含完整活動營運人力，詳見「成本」分頁。</span></div>
    <div class="ovrow kv"><span class="k">共通前提</span><span>確認場地混音器能給字幕電腦一條只含人聲的乾淨訊號。</span></div>
    ${highs.length?`<div class="ovrow kv"><span class="k" style="color:var(--hi-ink);">需注意（${highs.length}）</span><span>見上方紅色提醒。</span></div>`:""}
  </div>
@@ -919,10 +1187,15 @@ function readState(){
  state.size=document.querySelector('input[name="size"]:checked').value;
  state.prep=document.querySelector('input[name="prep"]:checked').value;
  state.team=document.querySelector('input[name="team"]:checked').value;
+ state.techstaff=document.querySelector('input[name="techstaff"]:checked').value;
  state.purpose=document.querySelector('input[name="purpose"]:checked').value;
- state.fund=document.querySelector('input[name="fund"]:checked').value;
+ state.charge=document.querySelector('input[name="charge"]:checked').value;
+ state.sponsor=document.querySelector('input[name="sponsor"]:checked').value;
  state.budget=document.querySelector('input[name="budget"]:checked').value;
  state.access=document.querySelector('input[name="access"]:checked').value;
+ state.speech=document.querySelector('input[name="speech"]:checked').value;
+ state.captionLangs=new Set([...document.querySelectorAll('input[name="captionlang"]:checked')].map(x=>x.value));
+ state.recording=document.getElementById("recording-in").checked;
  const pe=document.getElementById("people-in").value.trim();
  state.people=pe?Math.max(1,parseInt(pe,10)||0)||null:null;
 }
@@ -971,7 +1244,13 @@ document.getElementById("app").addEventListener("change",e=>{
  if(t.id==="t-over"){state.excludeOver=t.checked;dirty=true;}
  if(dirty)render();
 });
+document.getElementById("app").addEventListener("input",e=>{
+ if(e.target.id==="venue-search"){updateVenueSearch();}
+ if(e.target.id==="tool-search"){state.toolQuery=e.target.value;updateToolSearch();}
+});
 document.getElementById("app").addEventListener("click",e=>{
+ const pickTool=e.target.closest("[data-picktool]");
+ if(pickTool){state.selectedTool=(state.selectedTool===pickTool.dataset.picktool)?null:pickTool.dataset.picktool;render();return;}
  const pick=e.target.closest("[data-pick]");
  if(pick){state.selectedVenue=(state.selectedVenue===pick.dataset.pick)?null:pick.dataset.pick;render();return;}
  const ap=e.target.closest("[data-applysize]");
@@ -979,13 +1258,137 @@ document.getElementById("app").addEventListener("click",e=>{
 });
 
 document.getElementById("reminders-body").innerHTML=PERSISTENT.map(m=>`<div>${m}</div>`).join("");
+const TOUR_KEY="captioningToolTourClosedV8";
+const TOUR_STEPS=[
+ {target:'[data-tour-open]',title:"之後從這裡重新開啟引導",text:"這個逐步引導第一次進頁面會自動出現；你按「關閉引導」或走到最後一步之後，下一次就不會再自動跳出。之後如果有人忘記怎麼用，直接按上方導覽列的「開啟引導」，就會重新從這一步開始。"},
+ {target:'input[name="size"][value="S"] + .opt',title:"活動人數規模：S（50-150）",text:"這次預估是 150 人以下，所以先用 S 級距。S 只代表活動規模，不代表低成本、試跑或較低的交付責任；是否正式售票與是否試跑由其他設定決定。規模會影響場地、餐飲、報到、Q&A、字幕工具與當天人力；但 Zoom 授權仍要另外看「同時連進 Zoom 的人數」。例如總人數 120，但線上只有 40 人，就不能用 120 去判斷 Zoom 是否需要 Large Meeting。"},
+ {target:'input[name="prep"][value="short"] + .opt',title:"籌備時間：2 個月內",text:"這會讓風險提醒變得比較嚴格。兩個月內可以做混合式活動，但不能假設臨時找到場地、字幕工具、音控配合、志工與跨協會支援；提醒區會把這些不舒服的缺口先攤開。"},
+ {target:'input[name="team"][value="small"] + .opt',title:"核心人力：3-4 人",text:"這裡只算核心籌備人力，不算活動當天臨時志工。3-4 人可以推進單日混合式，但要先把場地、講者、製播/Zoom、字幕與現場流程分工鎖住；如果其中一塊沒人負責，就要縮小規模。"},
+ {target:'input[name="techstaff"][value="planning"] + .opt',title:"當日技術人力：已同意／找人中",text:"這和核心籌備人力是兩件事。預設代表主辦人已同意採用三層架構，但 Zoom／錄影主控、字幕工具操作、音控與乾淨人聲對接仍未全部確認，所以目前只能標成「規劃中／有風險」。人可以來自主辦團隊、場地或外包廠商；只有切到「角色已確認」後，三層方案才會顯示為可執行。若主辦人不願配置，請選「尚未同意配置」，並改採單層／雙層或縮小承諾。"},
+ {target:'input[name="purpose"][value="ticketed"] + .opt',title:"活動目的：正式售票",text:"這次預設為正式售票，所以工具會把責任拉高：票務頁、客服、退費、報名資料、無障礙需求蒐集、現場動線、線上觀看品質與字幕品質，都會變成對外承諾的一部分。售票不是只多一個收入來源，而是把活動從公開報名提升到需要交付體驗的產品。"},
+ {target:'input[name="charge"][value="ticketed"] + .opt',title:"收費模式：正式售票",text:"收費模式只回答參加者是否要買票，不再混入贊助進度。正式售票可以分擔基本成本，但也會增加票務頁、客服、退費與交付責任；如果活動改成免費參加，請同時檢查活動目的是否仍選為正式售票。"},
+ {target:'input[name="sponsor"][value="confirmed"] + .opt',title:"贊助狀態：已確認",text:"贊助狀態獨立記錄無贊助、洽談中或已確認。這次預設為已確認，和正式售票組合後就是「售票＋贊助」；贊助可以優先綁定字幕／翻譯、製播、錄影後製、正式無障礙服務或講者差旅。洽談中不能當成已可支出的預算。"},
+ {target:'input[name="budget"][value="mid"] + .opt',title:"預算傾向：平衡",text:"平衡不是花最少，也不是不限預算；它的意思是把錢優先放在會讓混合式不翻車的地方：乾淨人聲、穩定連線、字幕工具、現場操作與必要的會後交付。預算傾向只會改變場地排序與提醒，不會直接隱藏場地，因為每小時、每人、每場與需詢價的價格不能直接相比。"},
+ {target:'input[name="access"][value="convenience"] + .opt',title:"字幕定位：觀眾體驗加值",text:"這代表先用 AI 字幕/翻譯字幕服務中文聽不懂英文、日文聽眾等一般觀眾。若已知有聾人或聽障者需要正式近用，請切到無障礙基準服務，因為那時 AI 字幕只能當補充，不能取代 CART、同步聽打或手語。"},
+ {target:'input[name="speech"][value="en"] + .opt',title:"本次範例：主要發言語言為英文",text:"這只是第一次進入工具時的範例預設，不是所有活動的固定前提。主要發言語言會決定工具要辨識哪一種語音；日後規劃中文、日文或多語活動時，請在這裡改選，推薦、總覽、錄影提醒與列印內容都會跟著更新。"},
+ {target:"#f-captionlangs",title:"本次範例：需要繁中與日文字幕",text:"本次範例先勾繁中與日文，代表英文發言要提供這兩種字幕。這裡可以複選，也可以取消全部後重選；工具會用目前的「發言語言 → 字幕語言」組合產生建議。若選其他／多語，採購時仍要列出實際語言對逐一測試，不能只接受供應商宣稱支援很多語言。"},
+ {target:"#f-recording",title:"會後交付：需要錄影／回放",text:"如果活動需要錄影、會後回放、贊助商交付或給沒跟上直播的人看，Zoom 會變成比較有利的主控選項，因為雲端錄影與原音可以集中處理。逐字稿要依主要發言語言與帳號功能測試；如果會後影片需要翻譯字幕，必須另外產生並人工校對，不能直接沿用當天未校對的 AI 即時翻譯。"},
+ {target:"#people-in",title:"精確人數：可以先留空",text:"目前可以讓它保持空白；S（50-150）會用級距上限 150 人判斷場地是否坐得下。如果之後有更準確的售票目標或報名上限，再填入精確人數，場地容量就會改用該數字。精確人數適合用來微調場地與預算，不適合拿一個還沒被驗證的目標去假裝風險已經消失。"},
+ {target:"#venue-search",tab:"venues",title:"場地快速篩選",text:"場地資料比字幕工具更長，所以這裡可以直接搜尋名稱、城市、場地類型、價格或備註。例如輸入 TCCC、新北、圖書館、飯店、錄影，都會在目前的人數、城市與場地類型條件內再縮小結果。預算只影響排序，不會隱藏場地；搜尋也不會取消其他篩選。找不到時先清空搜尋，再檢查城市與場地類型。"},
+ {target:"#tab-tools",title:"下一步看字幕工具",text:"活動設定不用每個人重填；看完預設條件後，直接切到字幕工具。工具頁上方有快速篩選，可以直接找 Zoom、日文、QR、人工、CART 等關鍵字；卡片上的「選這個工具」會把該工具帶到方案與總覽。Zoom 卡片現在會提示：普通 Business 不是翻譯字幕授權本身，真正要看的是同時連進 Zoom 的人數與 Translated Captions add-on。"},
+ {target:"#tool-search",tab:"tools",title:"工具快速篩選",text:"工具清單可以直接用關鍵字縮小。建議先試 Zoom、UDTalk、Akkadu、EventCAT、Vurbo、日文、錄影、QR、人工、CART 等字；如果已勾選「需要錄影／回放」，Zoom 會排在前面，因為它比較容易把會議、字幕、雲端錄影與逐字稿放在同一個交付流程裡；如果現場日方觀眾很多，UDTalk 應該納入同輪試測。搜尋只是在目前規模和其他規模工具中過濾，不會自動替你選工具；要固定方案仍要按卡片上的「選這個工具」。"},
+ {target:"#tab-overview",title:"最後到總覽收斂",text:"總覽會把場地、字幕工具、成本、人力與風險提醒合在一起。這個頁面適合拿去討論：如果團隊不在意紅色提醒，可以保留規模；如果在意，就回頭縮小規模、改閉門/線上，或先鎖贊助與人力。"}
+];
+[
+ "這個引導只會自動出現一次。之後要重看，按上方「開啟引導」。",
+ "本次先用 150 人以下的 S 級距。S 只代表規模，不代表試跑；Zoom 另看同時連線人數。",
+ "2 個月內要先鎖場地、音控、字幕工具與當天分工。提醒區會列出時間不足的風險。",
+ "3-4 人是核心籌備人力，不含當天臨時志工。若場地、講者、製播/Zoom、字幕沒人負責，就要縮小。",
+ "當日技術人力另計。已同意但仍找人時，三層方案只是規劃中；Zoom、字幕操作與音控角色確認後才可執行。",
+ "正式售票代表對外承諾：票務、客服、退費、報名資料、動線、線上觀看與字幕品質都要有人負責。",
+ "收費只回答是否賣票。正式售票會增加票務、客服、退費與交付責任。",
+ "贊助另記無、洽談中或已確認。已確認和售票組合後才是售票＋贊助。",
+ "平衡不是最省，而是先保住乾淨人聲、連線、字幕操作與會後交付。預算只改變排序與提醒，不隱藏場地。",
+ "這是給一般觀眾的 AI 字幕/翻譯。若有聾人或聽障正式近用需求，請改選無障礙基準服務。",
+ "本次範例以英文為主要發言語言。其他活動請改選，後續建議會依目前選項更新。",
+ "本次範例需要繁中與日文字幕。可複選；選其他／多語時仍要列出實際語言對測試。",
+ "需要錄影或回放時，Zoom 可作主控。逐字稿依發言語言測試；翻譯後的影片字幕要另行校對。",
+ "可先留空，S 級會以 150 人判斷場地容量。有明確售票目標或報名上限後再填入。",
+ "搜尋名稱、城市、類型、價格或備註。預算只排序、不隱藏；找不到先清空搜尋。",
+ "看完設定後切到字幕工具。卡片上的「選這個工具」會帶到方案與總覽。",
+ "可搜 Zoom、UDTalk、日文、錄影、QR、人工、CART 等字。搜尋只縮小清單；要固定方案仍要按「選這個工具」。",
+ "總覽會合併場地、工具、成本、人力與紅色提醒。若提醒不可接受，就回頭縮小規模或先鎖資源。"
+].forEach((text,i)=>{if(TOUR_STEPS[i])TOUR_STEPS[i].mobileText=text;});
+let tourIndex=0,tourTarget=null,tourReturn=null;
+function tourEl(s){return document.querySelector(s);}
+function clearTourTarget(){if(tourTarget)tourTarget.classList.remove("tour-focus");tourTarget=null;}
+function clamp(n,min,max){return Math.min(Math.max(n,min),max);}
+function placeTourCard(target){
+ const card=document.querySelector(".tour-card"),r=target.getBoundingClientRect(),gap=14,margin=12;
+ const w=Math.min(560,window.innerWidth-margin*2);
+ const sticky=document.querySelector(".sticky"),sr=sticky&&sticky.getBoundingClientRect();
+ const stickyBetween=sr&&sr.top>r.bottom;
+ const lowerLimit=stickyBetween?Math.min(window.innerHeight-margin,sr.top-gap):window.innerHeight-margin;
+ const below=lowerLimit-r.bottom-gap,above=r.top-gap-margin;
+ const useBelow=below>=220||below>=above;
+ const room=Math.max(180,useBelow?below:above);
+ card.style.width=w+"px";
+ card.style.left=clamp(r.left+r.width/2-w/2,margin,window.innerWidth-w-margin)+"px";
+ if(useBelow&&stickyBetween&&below<220){
+  const top=clamp(sr.bottom+gap,margin,window.innerHeight-margin-120);
+  card.style.maxHeight=Math.max(80,window.innerHeight-top-margin)+"px";
+  card.style.top=top+"px";
+  return;
+ }
+ card.style.maxHeight=Math.min(room,window.innerHeight-margin*2)+"px";
+ const h=card.offsetHeight;
+ let top=useBelow?r.bottom+gap:r.top-gap-h;
+ if(top<margin)top=margin;
+ if(top+h>window.innerHeight-margin)top=Math.max(margin,window.innerHeight-margin-h);
+ card.style.top=top+"px";
+}
+function closeTour(save){
+ clearTourTarget();
+ document.getElementById("tour").hidden=true;
+ if(save)try{localStorage.setItem(TOUR_KEY,"1");}catch(e){}
+ if(tourReturn&&tourReturn.focus)tourReturn.focus({preventScroll:true});
+}
+function showTourStep(i){
+ const step=TOUR_STEPS[i];
+ if(!step){closeTour(true);return;}
+ if(step.tab&&activeTab!==step.tab)selectTab(step.tab);
+ const target=tourEl(step.target);
+ if(!target){showTourStep(i+1);return;}
+ const details=target.closest("details");
+ if(details)details.open=true;
+ tourIndex=i;
+ clearTourTarget();
+ tourTarget=target;
+ tourTarget.classList.add("tour-focus");
+ document.getElementById("tour").hidden=false;
+ document.getElementById("tour-count").textContent=`步驟 ${i+1} / ${TOUR_STEPS.length}`;
+ document.getElementById("tour-title").textContent=step.title;
+ const compact=window.matchMedia&&window.matchMedia("(max-width:600px)").matches;
+ document.getElementById("tour-text").textContent=compact&&step.mobileText?step.mobileText:step.text;
+ document.querySelector("[data-tour-prev]").disabled=i===0;
+ document.querySelector("[data-tour-next]").textContent=i===TOUR_STEPS.length-1?"完成並關閉":"下一步";
+ target.scrollIntoView({block:"center",inline:"nearest",behavior:"instant"});
+ placeTourCard(target);
+ setTimeout(()=>{if(tourTarget===target)placeTourCard(target);},80);
+ document.querySelector("[data-tour-next]").focus({preventScroll:true});
+}
+function openTour(){
+ tourReturn=document.activeElement;
+ const settings=document.querySelector("details.settings");
+ if(settings)settings.open=true;
+ showTourStep(0);
+}
+document.addEventListener("click",e=>{
+ if(e.target.closest("[data-tour-open]"))openTour();
+ if(e.target.closest("[data-tour-close]"))closeTour(true);
+ if(e.target.closest("[data-tour-prev]"))showTourStep(Math.max(0,tourIndex-1));
+ if(e.target.closest("[data-tour-next]"))showTourStep(tourIndex+1);
+});
+document.addEventListener("keydown",e=>{
+ if(document.getElementById("tour").hidden)return;
+ if(e.key==="Escape"){e.preventDefault();closeTour(true);}
+ if(e.key==="ArrowRight"){e.preventDefault();showTourStep(tourIndex+1);}
+ if(e.key==="ArrowLeft"){e.preventDefault();showTourStep(Math.max(0,tourIndex-1));}
+ if(e.key==="Tab"){
+  const btns=[...document.querySelectorAll("#tour .tour-card button:not([disabled])")];
+  const first=btns[0],last=btns[btns.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+ }
+});
 document.addEventListener("click",e=>{const g=e.target.closest("[data-gotab]");if(g){e.preventDefault();selectTab(g.dataset.gotab,true);document.getElementById("app").scrollIntoView({block:"start"});}});
 document.addEventListener("click",e=>{if(e.target.closest("[data-pdf]")){const ot=document.title;document.title="無障礙活動加辦清單與整合建議";buildPrintDoc();window.print();document.title=ot;}});
 document.addEventListener("change",e=>{const cb=e.target.closest('.a11y-list input[type="checkbox"][data-ck]');if(cb){const c=JSON.parse(localStorage.getItem("a11yChecks")||"{}");if(cb.checked)c[cb.dataset.ck]=1;else delete c[cb.dataset.ck];localStorage.setItem("a11yChecks",JSON.stringify(c));const el=document.querySelector(".ck-count");if(el)el.textContent="已勾 "+Object.keys(c).length+"／"+CHECKLIST.reduce((s,g)=>s+g.items.length,0);}if(e.target.id==="strike-toggle"){localStorage.setItem("a11yStrike",e.target.checked?"1":"0");const l=document.querySelector(".a11y-list");if(l)l.classList.toggle("strike",e.target.checked);}});
 document.addEventListener("click",e=>{if(e.target.closest("[data-ckclear]")){localStorage.removeItem("a11yChecks");if(activeTab==="a11y")render();}});
 try{if(window.matchMedia&&window.matchMedia("(max-width:600px)").matches){const sd=document.querySelector("details.settings");if(sd)sd.open=false;}}catch(e){}
-let _rsz;window.addEventListener("resize",function(){clearTimeout(_rsz);_rsz=setTimeout(function(){try{renderSelbar();}catch(e){}},150);});
+let _rsz;window.addEventListener("resize",function(){clearTimeout(_rsz);_rsz=setTimeout(function(){try{renderSelbar();if(tourTarget)placeTourCard(tourTarget);}catch(e){}},150);});
 selectTab("venues");
+try{if(localStorage.getItem(TOUR_KEY)!=="1")openTour();}catch(e){openTour();}
 </script>
 </body>
 </html>

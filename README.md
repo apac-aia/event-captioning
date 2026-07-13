@@ -1,98 +1,64 @@
-# 字幕活動場地選型工具 + 完整報告（event-captioning）
+# 活動字幕選型工具（event-captioning）
 
-幫在台北與新北（雙北）辦活動的人，快速篩出適合的場地，並推薦現場人工智慧字幕／多語翻譯工具與方案等級。附一份完整操作報告作為深入參考。以 ADALS 2026 為示範情境，任何雙北活動都可使用。
+一個不綁定特定活動的字幕與混合活動選型工具。依活動條件整理場地、字幕工具、方案級距、成本、人力與無障礙提醒，場地範圍涵蓋全台。
 
----
+第一次開啟時的設定只是操作範例。使用者更改條件後，推薦、警示、總覽與列印內容都會依目前選項更新。
 
-## 線上連結（GitHub Pages）
+## 線上版本
 
 | 連結 | 內容 |
 |---|---|
-| https://apac-aia.github.io/event-captioning/ | 互動選型工具（站台首頁，`index.html`） |
-| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.desktop.html | 完整報告 桌面版（左側固定目錄） |
-| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.mobile.html | 完整報告 手機版（浮動目錄鈕） |
-| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.html | 完整報告 純版（單欄） |
-| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-sources.html | 來源索引（所有公開價格與官方連結） |
+| https://apac-aia.github.io/event-captioning/ | 互動選型工具 |
+| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.desktop.html | 完整報告桌面版 |
+| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.mobile.html | 完整報告手機版 |
+| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.html | 完整報告單欄版 |
+| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-sources.html | 來源索引 |
 
-工具內與報告內的互連：工具頁右側／底部有「完整報告」連結；報告開頭與第 22 節連到「來源索引」；報告第 0 節為章節導覽，最前面是「決策頁」。
+## 使用方式
 
-GitHub repo：`apac-aia/event-captioning`（public）。本機開發目錄：`C:/Code/apac-aia-captioning-tool/`；報告原始與重建在 `C:/Code/published-reports/adals/`（兩處需同步）。
+1. 設定活動規模、籌備時間、核心人力與當日技術人力。
+2. 設定活動目的、收費模式、贊助狀態與預算傾向。
+3. 選擇字幕定位、主要發言語言、目標字幕語言，以及是否需要錄影／回放。
+4. 依人數、城市、場地類型與搜尋條件篩選場地。
+5. 比較字幕工具，選定候選工具後到「總覽」檢查成本、人力與風險。
 
----
+預設範例使用 `S（50-150）`、兩個月內、正式售票、已確認贊助、英文發言，以及繁中／日文字幕。這些不是所有活動的固定基準。
 
-## 檔案結構
+## 判斷原則
+
+- **語言方向是選型條件**：工具會依「主要發言語言 -> 目標字幕語言」產生建議。供應商宣稱支援某語言，不代表同時支援該語言作為輸入與輸出。
+- **錄影與即時字幕分開處理**：即時 AI 翻譯可服務當天觀眾；公開影片的翻譯字幕仍需另外產生並人工校對。
+- **正式無障礙不能只靠 AI**：已知有聾人或聽障者需要字幕時，應安排 CART、同步聽打、手語或明確採購的人工專業字幕服務。
+- **乾淨人聲優先**：場地必須能從混音器提供只含人聲的訊號給字幕系統，並把問答麥克風納入同一條音訊鏈路。
+- **價格只是比較起點**：場租、影音、字幕工具與人力都要在採購前取得書面報價。
+
+## 專案結構
 
 | 檔案 | 說明 |
 |---|---|
-| `index.html` | 互動選型工具，單檔自包含、原生 JS、無外部相依。場地資料是檔內的 `VENUES` 陣列 |
-| `ai-captioning-ballroom-solution.md` | 完整報告原始檔（source of truth），最前面含「決策頁」 |
-| `ai-captioning-ballroom-solution.enhanced.md` | 加上導覽與章節重點的中繼檔（由 `build-report-variants.py` 產生） |
-| `ai-captioning-ballroom-solution.{,desktop,mobile}.html` | 報告三版（pandoc 產生，含 scroll-spy 側欄、手機浮動目錄、back-to-top、skip link） |
-| `ai-captioning-ballroom-sources.md` / `.html` | 來源索引原始檔與網頁 |
-| `report-*.css` | 報告樣式（enhanced 共用、desktop/mobile/print 各自加掛） |
-| `partials/` | 報告與來源頁的 skip link 與導覽 JS（build 時內嵌） |
+| `index.html` | 互動選型工具；原生 HTML、CSS、JavaScript，無前端相依 |
+| `ai-captioning-ballroom-solution.md` | 完整報告來源 |
+| `ai-captioning-ballroom-solution.enhanced.md` | 報告建置中繼檔 |
+| `ai-captioning-ballroom-solution.{,desktop,mobile}.html` | 完整報告的三種版型 |
+| `ai-captioning-ballroom-sources.md` / `.html` | 資料來源索引 |
+| `accessible-checklist.pdf` | 無障礙活動加辦清單 |
+| `tool-summary.pdf` | 選型工具完整資料 |
+| `report-*.css` | 報告共用、桌面、手機與列印樣式 |
+| `partials/` | 報告建置時嵌入的導覽片段 |
 | `build-report-variants.py` / `build-html.sh` | 報告重建腳本 |
-| `.nojekyll` | 讓 Pages 直接輸出檔案、不經 Jekyll |
 
----
+## 本機使用與重建
 
-## 怎麼用工具
+互動工具是單檔頁面，可直接開啟 `index.html`。
 
-1. **前置設定 3 題**：活動人數規模（XS／S／M／L）、預算傾向（省／平衡／不限）、字幕定位（便利補充／正式無障礙服務）。
-2. **看推薦卡**：依人數給方案等級與字幕工具；選「正式無障礙服務」會提醒「不能只靠 AI、需加 CART／手語」。
-3. **左側即時微調**：場地類型、地點（北市／新北）、排除明確不可外接的場地、只看有公開價格、排除規模不合的場地。
-4. **場地卡**：名稱、價格、容量／類型／字幕友善度標章、備註、官方來源連結。
-
----
-
-## 重要注意事項
-
-### 1. 價格與容量都是「比較起點」，不是定案
-公開價格為 2026-06 查詢的第一輪比較，會因日期、人數、餐飲、稅金、服務費、假日、檔期、設備而變動。**正式採購前一定要向場地與廠商重新確認。** 各場地計價方式不同（每時段／每人／每日／每場）：飯店多為每人計價、人數越多總價越大；會議中心多為每時段、與人數較無關。比較時要換算成同一份總成本。
-
-### 2. 成敗關鍵：乾淨人聲訊號
-現場字幕成不成功，不在用哪個 App，而在場地的混音器能不能給字幕電腦一條「只含人聲的乾淨訊號」。**每個場地、不分工具，都要先問這件事。**
-
-### 3. 正式無障礙服務不能只靠 AI
-如果已知有聾人或聽障與會者需要字幕才能參與，人工智慧字幕不足，必須加 CART（即時人工字幕／同步聽打）、手語或專業字幕。這一點不分人數規模。工具的「字幕定位」選「正式無障礙服務」時會提醒。
-
-### 4. 特定場地的已知限制
-- **集思交通部國際會議廳**：劇院型約 76 人、教室型約 117 人，屬中小型，**坐不下 150-300 人**；適合 S 級小型活動，不是 M 級首選。M 級首推容量真的吃得下的 **集思台大會議中心**（劇院約 400 席）。
-- **不可外接字幕設備（或受限）**：TICC、臺大醫院國際會議中心（同步翻譯設備不得自備）、臺大圖書館國際會議廳（無法外接其他影音）。需現場接字幕電腦者要特別確認，工具勾「排除明確不可外接的場地」會濾掉明確受限者。
-- **無公開價（需詢價）**：萬豪、晶華、圓山、國泰萬怡、寒舍艾美、艾麗希爾頓格芮、大巨蛋、小巨蛋等。工具勾「只看有公開價格」會濾掉。台北新板希爾頓只有個案報價、非公開價。
-- **容量待確認**：台北新板希爾頓（官方僅列 1,037 平方公尺、非人數）、台北艾麗希爾頓格芮（來源混用艾麗／Humble House，宴會廳另有資料稱近千人）。工具備註已標「需確認」。
-- **賽事級巨蛋**：台北大巨蛋（約 4 萬席）、台北小巨蛋（約 1.5 萬席）為演唱會／賽事場地，列為對照，**不適合作會議主場**。
-
-### 5. 工具與報告的定位差異（刻意）
-- **工具**是通用的：給任何雙北活動主辦用，「字幕定位」預設為「便利補充」（多數活動的常見情況）。
-- **報告決策頁**以 ADALS（無障礙活動）為示範，預設為「正式無障礙服務」，因此帶 CART／手語的提醒。
-兩者預設不同是因為服務對象不同，不是矛盾。
-
----
-
-## 資料來源與查證
-
-- 完整來源（官方頁、價格、可信度）見「來源索引」頁。
-- 本專案於 **2026-06-24** 經 codex 與 Claude 各兩輪交叉 review（價格、方案、文字、連結、一致性）。已修正：集思北科大感恩廳價格錯置、集思交通部容量高估、決策頁與無障礙原則的自相矛盾、台北新板希爾頓個案價誤標公開價等。
-- **仍待人工確認的殘留項**：國立臺北商業大學、客家文化主題公園劇場、臺北表演藝術中心 的容量這次未逐一 live 複查；台北艾麗／Humble House 的品牌與容量對應仍待釐清。對外正式引用前建議再查證。
-
----
-
-## 重建
-
-改了 `ai-captioning-ballroom-solution.md`、CSS 或 `partials/` 後：
+修改報告來源、樣式或 `partials/` 後，使用具備 Python、Pandoc 與 Bash 的環境執行：
 
 ```bash
 bash build-html.sh
 ```
 
-會先跑 `build-report-variants.py` 產生 enhanced.md，再用 pandoc 產生報告三版 HTML 與來源頁。需要 `pandoc` 與 `python`。工具 `index.html` 是手寫單檔，直接編輯即可（場地資料在 `VENUES` 陣列）。
+## 維護注意
 
-> 注意：報告檔同時存在 `C:/Code/published-reports/adals/`（開發）與本 repo（部署），改完要同步兩處。
-
----
-
-## 維運注意
-
-- 推送用 `gh auth switch --user chiehweihuang`（active 帳號會自己切回 devBrightRaven，每次推送前重切）；commit identity 為 Bertram Huang <chieh.wei.huang@gmail.com>。
-- 遠端有一條空的 `master` 殘留分支（預設分支已是 `main`），因 `git push --delete` 與 `gh api -X DELETE` 被本機 deny-list 擋下未刪；要清的話到 GitHub repo 網頁 Branches 一鍵刪除即可。
+- 場地容量、價格、設備限制與供應商功能可能變動；更新資料時保留官方來源連結與查證日期。
+- 不要把範例活動的預設條件寫成通用推薦。新的條件若會影響選型，應成為可調整的輸入或寫成明確條件句。
+- 工具與完整報告用途不同：工具依使用者目前設定產生建議；完整報告提供背景研究、操作流程與來源脈絡。
