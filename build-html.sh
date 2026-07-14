@@ -30,4 +30,16 @@ pandoc ai-captioning-ballroom-sources.md \
   -c report-enhanced.css \
   -o ai-captioning-ballroom-sources.html
 
-echo "built 3 report HTML variants + sources page"
+# Post-event recording and caption workflow as a standalone maintained article.
+pandoc video-caption-postproduction.md \
+  -s --toc --toc-depth=2 \
+  --metadata pagetitle="活動結束後：把 Zoom／直播錄影整理成可發布的影片字幕" \
+  --metadata lang="zh-Hant" \
+  --include-in-header=partials/video-caption-head.html \
+  --include-after-body=partials/nav.html \
+  -c report-enhanced.css \
+  -c report-desktop.css \
+  -c video-caption-postproduction.css \
+  -o video-caption-postproduction.html
+
+echo "built 3 report HTML variants + sources page + video caption article"

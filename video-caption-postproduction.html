@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant" xml:lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>活動結束後：把 Zoom／直播錄影整理成可發布的影片字幕</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="report-enhanced.css" />
+  <link rel="stylesheet" href="report-desktop.css" />
+  <link rel="stylesheet" href="video-caption-postproduction.css" />
+  <meta name="description" content="Zoom、Microsoft Teams、Google Meet 與 YouTube 的會後錄影、逐字稿、字幕校對、翻譯及發布流程。">
+  <link rel="canonical" href="https://apac-aia.github.io/event-captioning/video-caption-postproduction.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "活動結束後：把 Zoom／直播錄影整理成可發布的影片字幕",
+    "description": "Zoom、Microsoft Teams、Google Meet 與 YouTube 的會後錄影、逐字稿、字幕校對、翻譯及發布流程。",
+    "inLanguage": "zh-Hant",
+    "dateModified": "2026-07-14",
+    "mainEntityOfPage": "https://apac-aia.github.io/event-captioning/video-caption-postproduction.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "APAC Authentic Inclusion Association"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#活動結束後把-zoom直播錄影整理成可發布的影片字幕"
+id="toc-活動結束後把-zoom直播錄影整理成可發布的影片字幕">活動結束後：把
+Zoom／直播錄影整理成可發布的影片字幕</a>
+<ul>
+<li><a href="#先說結論" id="toc-先說結論">先說結論</a></li>
+<li><a href="#活動前就要決定的五件事" id="toc-活動前就要決定的五件事">1.
+活動前就要決定的五件事</a></li>
+<li><a href="#活動結束後的標準流程" id="toc-活動結束後的標準流程">2.
+活動結束後的標準流程</a></li>
+<li><a href="#zoom下載原語-vtt再做翻譯版本"
+id="toc-zoom下載原語-vtt再做翻譯版本">3. Zoom：下載原語
+VTT，再做翻譯版本</a></li>
+<li><a href="#microsoft-teams要開逐字稿不只開即時字幕"
+id="toc-microsoft-teams要開逐字稿不只開即時字幕">4. Microsoft
+Teams：要開逐字稿，不只開即時字幕</a></li>
+<li><a href="#google-meet錄製字幕與獨立逐字稿是兩件事"
+id="toc-google-meet錄製字幕與獨立逐字稿是兩件事">5. Google
+Meet：錄製字幕與獨立逐字稿是兩件事</a></li>
+<li><a href="#youtube把每種語言當成獨立字幕軌"
+id="toc-youtube把每種語言當成獨立字幕軌">6.
+YouTube：把每種語言當成獨立字幕軌</a></li>
+<li><a href="#最終交付清單" id="toc-最終交付清單">7.
+最終交付清單</a></li>
+<li><a href="#公開前最後檢查" id="toc-公開前最後檢查">8.
+公開前最後檢查</a></li>
+<li><a href="#參考資料" id="toc-參考資料">參考資料</a></li>
+</ul></li>
+</ul>
+</nav>
+<p><a id="top"></a>
+<a class="skip-link" href="#main-content">跳到文章內容</a></p>
+<main id="main-content">
+<h1 id="活動結束後把-zoom直播錄影整理成可發布的影片字幕">活動結束後：把
+Zoom／直播錄影整理成可發布的影片字幕</h1>
+<p><strong>資料查核日期：2026-07-14。</strong>
+平台功能、授權與檔案格式可能調整；活動前仍要用實際帳號做一次完整測試。</p>
+<div class="version-switch" role="navigation" aria-label="相關頁面">
+<p><a href="index.html">返回字幕選型工具</a>
+<a href="ai-captioning-ballroom-solution.desktop.html">查看場地與字幕執行手冊</a></p>
+</div>
+<h2 id="先說結論">先說結論</h2>
+<p>活動當天顯示的 AI
+即時字幕或翻譯字幕，主要是幫助觀眾跟上現場。它通常不是可以直接公開的最終影片字幕。</p>
+<p>比較穩定的會後流程是：</p>
+<blockquote>
+<p>保留原始錄影與音訊 → 取得原語逐字稿或字幕檔 → 先校對原語 → 再翻譯 →
+校對翻譯與時間碼 → 上傳獨立字幕軌 → 最後才公開影片</p>
+</blockquote>
+<p>不要先翻譯一份錯誤很多的 AI
+逐字稿。人名、組織、專有名詞與數字一旦在原語寫錯，錯誤會一起進入所有翻譯版本。</p>
+<h2 id="活動前就要決定的五件事">1. 活動前就要決定的五件事</h2>
+<h3 id="指定一位會後字幕負責人">1.1 指定一位會後字幕負責人</h3>
+<p>這個人不一定親自完成所有字幕，但要負責收齊檔案、確認校對者與翻譯者、管理版本，以及決定何時可以公開。</p>
+<h3 id="確認要交付哪些版本">1.2 確認要交付哪些版本</h3>
+<p>至少先決定：</p>
+<ul>
+<li>只保留內部回放，還是要公開上架。</li>
+<li>需要原語字幕，還是要繁中、日文等翻譯字幕。</li>
+<li>是否要交付贊助商、講者或未參加直播的人。</li>
+<li>是否需要文字版逐字稿。</li>
+<li>影片中的投影片、示範畫面或圖表是否包含只靠畫面才能理解的重要資訊。</li>
+</ul>
+<h3 id="先確認錄影轉錄與保存權限">1.3 先確認錄影、轉錄與保存權限</h3>
+<p>錄影和逐字稿通常受帳號方案、管理員政策、主持人角色與雲端空間影響。活動前要用真正負責錄影的帳號確認：</p>
+<ul>
+<li>能否開始雲端錄影。</li>
+<li>是否需要另外開啟 transcription／逐字稿。</li>
+<li>誰能下載錄影與字幕檔。</li>
+<li>錄影多久後會到期或被自動刪除。</li>
+<li>參與者會收到什麼錄影或轉錄通知。</li>
+</ul>
+<h3 id="設定正確的主要發言語言">1.4 設定正確的主要發言語言</h3>
+<p>逐字稿引擎需要知道它正在辨識什麼語言。若活動以英文發言，就把原語逐字稿設為英文；不要把目標字幕語言「繁中」誤設成發言語言。</p>
+<h3 id="用五分鐘測試片段走完一次">1.5 用五分鐘測試片段走完一次</h3>
+<p>測試片段要包含講者姓名、組織名稱、英文縮寫、數字、日文或中文詞彙，以及一段觀眾問答。活動前實際完成一次：錄影、停止、等待處理、下載逐字稿、修字、重新上傳字幕。</p>
+<h2 id="活動結束後的標準流程">2. 活動結束後的標準流程</h2>
+<h3 id="步驟-1先封存原始檔">步驟 1：先封存原始檔</h3>
+<p>至少保留：</p>
+<ul>
+<li>原始錄影檔。</li>
+<li>原始音訊；平台能分軌時也保留分軌。</li>
+<li>平台產生的原語逐字稿或 <code>VTT</code>。</li>
+<li>當天使用的術語表、講者名單與議程。</li>
+<li>即時字幕服務商可匯出的字幕或紀錄。</li>
+</ul>
+<p>先複製一份唯讀備份，再開始剪輯或修字幕。</p>
+<h3 id="步驟-2先鎖定影片時間軸">步驟 2：先鎖定影片時間軸</h3>
+<p>先完成片頭、片尾、休息段落、不能公開的內容與技術中斷剪除。影片長度改變後，舊字幕時間碼通常會對不上；因此不要在字幕全部校好後才大幅剪片。</p>
+<h3 id="步驟-3校對原語字幕">步驟 3：校對原語字幕</h3>
+<p>優先修正會改變理解的錯誤：</p>
+<ul>
+<li>講者姓名與組織名稱。</li>
+<li>專有名詞、產品名稱與縮寫。</li>
+<li>數字、日期、金額與網址。</li>
+<li>否定詞，例如「可以／不可以」。</li>
+<li>講者切換與問答段落。</li>
+<li>重要聲音，例如
+<code>[掌聲]</code>、<code>[笑聲]</code>、<code>[音訊中斷]</code>。</li>
+</ul>
+<p>W3C
+說明，字幕不只包含對話，也應包含理解內容所需的非語音資訊；自動字幕通常仍需要人工修正。</p>
+<h3 id="步驟-4從校對後的原語翻譯">步驟 4：從校對後的原語翻譯</h3>
+<p>每一種語言建立獨立字幕檔，不要直接覆蓋原語字幕。翻譯者至少要取得：</p>
+<ul>
+<li>已校對的原語字幕。</li>
+<li>講者與組織正式譯名。</li>
+<li>活動術語表。</li>
+<li>影片或可核對語氣的音訊。</li>
+</ul>
+<p>繁中與日文要各自校對，不要把當天未校對的即時翻譯直接改名成最終字幕。</p>
+<h3 id="步驟-5檢查時間碼與可讀性">步驟 5：檢查時間碼與可讀性</h3>
+<p>完整播放一次，至少檢查：</p>
+<ul>
+<li>字幕沒有提早消失或晚很多才出現。</li>
+<li>換行沒有把人名、數字或完整語意拆開。</li>
+<li>畫面上的姓名、職稱與字幕用詞一致。</li>
+<li>兩人對話時能知道誰在說話。</li>
+<li>重要聲音與沒有語音的停頓沒有被誤寫成對話。</li>
+<li>片頭、片尾與被剪除段落沒有殘留字幕。</li>
+</ul>
+<h3 id="步驟-6以可開關的字幕軌發布">步驟 6：以可開關的字幕軌發布</h3>
+<p>公開平台支援時，優先上傳獨立的 <code>SRT</code> 或 <code>VTT</code>
+字幕軌，讓觀眾自行開關與選擇語言。除非發布平台不支援字幕軌，否則不要只把字幕燒死在畫面上。</p>
+<h2 id="zoom下載原語-vtt再做翻譯版本">3. Zoom：下載原語
+VTT，再做翻譯版本</h2>
+<p>Zoom 的雲端錄影音訊轉錄會在處理完成後產生獨立
+<code>VTT</code>。主持人可在 Zoom 網頁後台的 <strong>Recordings &amp;
+Transcripts → Cloud recordings</strong>
+找到錄影，檢視、編輯或下載逐字稿。</p>
+<p>活動前要確認：</p>
+<ol type="1">
+<li>主持帳號具備雲端錄影與 audio transcription 資格。</li>
+<li>Cloud recording 與 audio transcription 已開啟。</li>
+<li>逐字稿的主要語言設定正確。</li>
+<li>活動結束後由誰登入、下載錄影與 <code>VTT</code>。</li>
+</ol>
+<p>會後建議：</p>
+<ol type="1">
+<li>下載原始影片、音訊與原語 <code>VTT</code>。</li>
+<li>先修正原語 <code>VTT</code>。</li>
+<li>另存繁中、日文等翻譯字幕檔。</li>
+<li>將各語言字幕上傳到最終播放平台。</li>
+</ol>
+<p><strong>不要假設觀眾在會議中選到的 Translated
+Captions，活動後會自動變成可交付的翻譯字幕檔。</strong> Zoom
+官方雲端轉錄文件明確說明的是錄影音訊逐字稿與
+<code>VTT</code>；因此實務上應把校對後的原語 <code>VTT</code>
+當母檔，再製作翻譯版本。</p>
+<p>官方文件：<a
+href="https://support.zoom.com/hc/en/article?id=zm_kb&amp;sysparm_article=KB0064927">Zoom
+雲端錄影音訊轉錄</a>、<a
+href="https://support.zoom.com/hc/en/article?id=zm_kb&amp;sysparm_article=KB0059081">Zoom
+Translated Captions</a>。</p>
+<h2 id="microsoft-teams要開逐字稿不只開即時字幕">4. Microsoft
+Teams：要開逐字稿，不只開即時字幕</h2>
+<p>Teams
+的即時字幕只供會議當下觀看；它不會直接錄進下載的影片。若要留下可下載的文字，必須使用
+recording／transcription 流程。</p>
+<p>一般 Teams 會議：</p>
+<ul>
+<li>錄影時會啟動轉錄；也可以只啟動 transcription。</li>
+<li>會後由會議聊天的 <strong>Recap → Transcript</strong> 下載
+<code>DOCX</code> 或 <code>VTT</code>。</li>
+<li>官方說明指出，過去的 translated transcripts
+不會被保存，只有原始逐字稿會保存。</li>
+<li>非頻道會議錄影通常存放在主辦人的 OneDrive for
+Business；頻道會議則存放在 SharePoint。</li>
+</ul>
+<p>因此會後流程仍是：下載原語 <code>VTT</code> → 校對 →
+另做繁中／日文字幕。若使用 Teams Town Hall，其會後翻譯逐字稿另涉及
+Microsoft 365、Clipchamp／Syntex
+與管理員設定，不能直接套用一般會議假設。</p>
+<p>官方文件：<a
+href="https://support.microsoft.com/en-us/teams/meetings/start-stop-and-download-live-transcripts-in-microsoft-teams-meetings">Teams
+啟動與下載逐字稿</a>、<a
+href="https://support.microsoft.com/en-us/teams/meetings/play-share-and-download-meeting-recordings-in-microsoft-teams">Teams
+錄影播放與下載</a>、<a
+href="https://support.microsoft.com/en-us/teams/meetings/manage-town-hall-recordings-in-microsoft-teams">Town
+Hall 錄影與逐字稿</a>。</p>
+<h2 id="google-meet錄製字幕與獨立逐字稿是兩件事">5. Google
+Meet：錄製字幕與獨立逐字稿是兩件事</h2>
+<p>Google Meet 錄影時可以選擇 <strong>Record
+captions</strong>，讓字幕能隨錄影播放。錄影與字幕處理完成時間可能不同，因此錄影先出現時，不代表字幕已經遺失。</p>
+<p>Meet 的 <strong>Transcripts</strong>
+是另一項功能。官方目前列出的逐字稿支援語言包括英文、法文、德文、義大利文、日文、韓文、葡萄牙文與西班牙文；繁中不在這份逐字稿支援清單內。逐字稿完成後會寄給主持人、共同主持人與啟動逐字稿的人，也會附在
+Google Calendar 活動上。</p>
+<p>若活動以英文發言、當天顯示繁中翻譯字幕：</p>
+<ol type="1">
+<li>以英文逐字稿或錄製字幕作為原語材料。</li>
+<li>人工校對英文。</li>
+<li>再製作繁中與日文字幕。</li>
+</ol>
+<p>不要把「Meet
+當天能顯示繁中翻譯字幕」解讀成「會後一定能下載繁中逐字稿」。這兩項功能的語言支援與交付方式不同。</p>
+<p>官方文件：<a
+href="https://support.google.com/meet/answer/9308681">Google Meet
+錄影</a>、<a
+href="https://support.google.com/meet/answer/12849897">Google Meet
+Transcripts</a>、<a
+href="https://support.google.com/meet/answer/10964115">Google Meet
+翻譯字幕</a>。</p>
+<h2 id="youtube把每種語言當成獨立字幕軌">6.
+YouTube：把每種語言當成獨立字幕軌</h2>
+<p>在 YouTube Studio 進入 <strong>Subtitles → 選擇影片 → Add language →
+Add</strong>，可以上傳已有時間碼的字幕檔，也可以貼上原語文字讓平台自動對時。</p>
+<p>對活動錄影，建議直接上傳已校對的字幕檔：</p>
+<ul>
+<li><code>SRT</code>：簡單、普遍，使用純文字 UTF-8。</li>
+<li><code>VTT</code>：可保留時間碼，也能從 Zoom 或 Teams
+的輸出開始整理。</li>
+</ul>
+<p>YouTube
+自動字幕只會以影片的預設語言產生，不能代替人工校對，也不能代替繁中、日文等翻譯字幕軌。</p>
+<p>官方文件：<a
+href="https://support.google.com/youtube/answer/2734796">YouTube
+新增字幕</a>、<a
+href="https://support.google.com/youtube/answer/2734698">YouTube
+支援的字幕格式</a>。</p>
+<h2 id="最終交付清單">7. 最終交付清單</h2>
+<p>一場需要會後回放的活動，至少應留下：</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>檔案</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>event-master.mp4</code></td>
+<td>完成剪輯的母片</td>
+</tr>
+<tr>
+<td><code>event-source-en.vtt</code></td>
+<td>已校對的原語字幕；檔名依實際語言調整</td>
+</tr>
+<tr>
+<td><code>event-zh-Hant.srt</code></td>
+<td>已校對的繁中字幕</td>
+</tr>
+<tr>
+<td><code>event-ja.srt</code></td>
+<td>已校對的日文字幕</td>
+</tr>
+<tr>
+<td><code>event-transcript.docx</code> 或網頁逐字稿</td>
+<td>搜尋、引用與不方便播放影片時閱讀</td>
+</tr>
+<tr>
+<td><code>terminology.xlsx</code> 或 <code>terminology.csv</code></td>
+<td>人名、組織、產品、縮寫與固定譯名</td>
+</tr>
+<tr>
+<td><code>qa-notes.txt</code></td>
+<td>記錄已知問題、校對者、版本與日期</td>
+</tr>
+<tr>
+<td><code>permissions.txt</code></td>
+<td>錄影、講者簡報、音樂及公開範圍的確認紀錄</td>
+</tr>
+</tbody>
+</table>
+<p>若影片中的投影片、圖表或示範動作包含單靠語音無法理解的重要資訊，還要提供口述影像或描述性逐字稿。W3C
+建議字幕涵蓋語音與重要非語音聲音，並另外處理理解內容所需的視覺資訊。</p>
+<h2 id="公開前最後檢查">8. 公開前最後檢查</h2>
+<ul class="task-list">
+<li><label><input
+type="checkbox" />影片已完成剪輯，之後不再改時間軸。</label></li>
+<li><label><input
+type="checkbox" />原語字幕已由人看過，不只跑拼字檢查。</label></li>
+<li><label><input
+type="checkbox" />人名、組織、數字、日期與網址正確。</label></li>
+<li><label><input
+type="checkbox" />每種翻譯字幕都從已校對原語產生。</label></li>
+<li><label><input
+type="checkbox" />每種語言都在實際播放器開啟測試。</label></li>
+<li><label><input
+type="checkbox" />字幕可以用鍵盤開關與切換語言。</label></li>
+<li><label><input
+type="checkbox" />逐字稿或字幕下載位置容易找到。</label></li>
+<li><label><input
+type="checkbox" />錄影、簡報、音樂與參與者公開範圍已確認。</label></li>
+<li><label><input
+type="checkbox" />若有重要視覺資訊，已有口述或文字描述。</label></li>
+<li><label><input
+type="checkbox" />原始檔、發布檔與字幕版本已備份。</label></li>
+</ul>
+<h2 id="參考資料">參考資料</h2>
+<ul>
+<li><a href="https://www.w3.org/WAI/media/av/captions/">W3C
+WAI：Captions/Subtitles</a></li>
+<li><a href="https://www.w3.org/WAI/media/av/transcripts/">W3C
+WAI：Transcripts</a></li>
+<li><a
+href="https://support.zoom.com/hc/en/article?id=zm_kb&amp;sysparm_article=KB0064927">Zoom：Using
+audio transcription for cloud recordings</a></li>
+<li><a
+href="https://support.microsoft.com/en-us/teams/meetings/start-stop-and-download-live-transcripts-in-microsoft-teams-meetings">Microsoft
+Teams：Start, stop, and download live transcripts</a></li>
+<li><a href="https://support.google.com/meet/answer/9308681">Google
+Meet：Record a video meeting</a></li>
+<li><a href="https://support.google.com/meet/answer/12849897">Google
+Meet：Use Transcripts</a></li>
+<li><a
+href="https://support.google.com/youtube/answer/2734796">YouTube：Add
+subtitles &amp; captions</a></li>
+<li><a
+href="https://support.google.com/youtube/answer/2734698">YouTube：Supported
+subtitle and closed caption files</a></li>
+</ul>
+</main>
+<a id="back-to-top" class="nav-fab nav-fab--top" href="#top" aria-label="回到頂端">↑</a>
+<button id="toc-fab" class="nav-fab nav-fab--toc" type="button" aria-expanded="false" aria-controls="TOC">目錄</button>
+<div id="toc-scrim" hidden></div>
+<script>
+(function () {
+  var toc = document.getElementById('TOC');
+
+  // Scroll-spy: highlight current section, expand current chapter's subsections.
+  if (toc) {
+    var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+    var byId = {};
+    links.forEach(function (a) {
+      byId[decodeURIComponent(a.getAttribute('href').slice(1))] = a;
+    });
+    var heads = Array.prototype.slice
+      .call(document.querySelectorAll('h2[id], h3[id]'))
+      .filter(function (h) { return byId[h.id]; });
+
+    function spy() {
+      var cur = null;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i].getBoundingClientRect().top <= 130) cur = heads[i]; else break;
+      }
+      links.forEach(function (a) {
+        a.classList.remove('toc-active');
+        a.removeAttribute('aria-current');
+      });
+      Array.prototype.forEach.call(toc.querySelectorAll('li.toc-expanded'), function (li) {
+        li.classList.remove('toc-expanded');
+      });
+      if (cur && byId[cur.id]) {
+        var a = byId[cur.id];
+        a.classList.add('toc-active');
+        a.setAttribute('aria-current', 'location');
+        var li = a.closest('li');
+        while (li && toc.contains(li)) {
+          li.classList.add('toc-expanded');
+          var parent = li.parentElement ? li.parentElement.closest('li') : null;
+          if (!parent) break;
+          li = parent;
+        }
+      }
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(function () { spy(); ticking = false; });
+      }
+    }, { passive: true });
+    spy();
+  }
+
+  // Mobile floating table-of-contents toggle.
+  var fab = document.getElementById('toc-fab');
+  var scrim = document.getElementById('toc-scrim');
+  if (fab && toc && scrim) {
+    function closeToc() {
+      document.body.classList.remove('toc-open');
+      fab.setAttribute('aria-expanded', 'false');
+      scrim.hidden = true;
+      fab.focus();
+    }
+    function openToc() {
+      document.body.classList.add('toc-open');
+      fab.setAttribute('aria-expanded', 'true');
+      scrim.hidden = false;
+      toc.setAttribute('tabindex', '-1');
+      toc.focus();
+    }
+    fab.addEventListener('click', function () {
+      document.body.classList.contains('toc-open') ? closeToc() : openToc();
+    });
+    scrim.addEventListener('click', closeToc);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('toc-open')) closeToc();
+    });
+    toc.addEventListener('click', function (e) {
+      if (e.target.closest('a') && document.body.classList.contains('toc-open')) closeToc();
+    });
+  }
+})();
+</script>
+</body>
+</html>

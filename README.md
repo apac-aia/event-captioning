@@ -9,9 +9,10 @@
 | 連結 | 內容 |
 |---|---|
 | https://apac-aia.github.io/event-captioning/ | 互動選型工具 |
-| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.desktop.html | 完整報告桌面版 |
-| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.mobile.html | 完整報告手機版 |
-| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.html | 完整報告單欄版 |
+| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.desktop.html | 場地與字幕執行手冊（桌面版） |
+| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.mobile.html | 場地與字幕執行手冊（手機版） |
+| https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-solution.html | 場地與字幕執行手冊（單欄版） |
+| https://apac-aia.github.io/event-captioning/video-caption-postproduction.html | 會後錄影與影片字幕處理教學 |
 | https://apac-aia.github.io/event-captioning/ai-captioning-ballroom-sources.html | 來源索引 |
 
 ## 使用方式
@@ -37,9 +38,10 @@
 | 檔案 | 說明 |
 |---|---|
 | `index.html` | 互動選型工具；原生 HTML、CSS、JavaScript，無前端相依 |
-| `ai-captioning-ballroom-solution.md` | 完整報告來源 |
+| `ai-captioning-ballroom-solution.md` | 場地與字幕執行手冊來源 |
 | `ai-captioning-ballroom-solution.enhanced.md` | 報告建置中繼檔 |
-| `ai-captioning-ballroom-solution.{,desktop,mobile}.html` | 完整報告的三種版型 |
+| `ai-captioning-ballroom-solution.{,desktop,mobile}.html` | 場地與字幕執行手冊的三種版型 |
+| `video-caption-postproduction.md` / `.html` | Zoom、Teams、Meet 與 YouTube 的會後字幕處理教學 |
 | `ai-captioning-ballroom-sources.md` / `.html` | 資料來源索引 |
 | `accessible-checklist.pdf` | 無障礙活動加辦清單 |
 | `tool-summary.pdf` | 選型工具完整資料 |
@@ -61,4 +63,4 @@ bash build-html.sh
 
 - 場地容量、價格、設備限制與供應商功能可能變動；更新資料時保留官方來源連結與查證日期。
 - 不要把範例活動的預設條件寫成通用推薦。新的條件若會影響選型，應成為可調整的輸入或寫成明確條件句。
-- 工具與完整報告用途不同：工具依使用者目前設定產生建議；完整報告提供背景研究、操作流程與來源脈絡。
+- 工具與場地／字幕執行手冊用途不同：工具依使用者目前設定產生建議；手冊提供背景研究、操作流程與來源脈絡。

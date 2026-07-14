@@ -248,7 +248,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
       <button type="button" data-tour-open>開啟引導</button>
       <a href="#panel-overview" data-gotab="overview">總覽</a>
       <a href="#panel-a11y" data-gotab="a11y">無障礙清單</a>
-      <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>
+      <a href="ai-captioning-ballroom-solution.desktop.html" aria-label="開啟場地與字幕執行手冊">執行手冊</a>
       <a href="ai-captioning-ballroom-sources.html">來源索引</a>
     </nav>
   </div>
@@ -262,7 +262,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
     <ol>
       <li><b>設定你的活動</b>：最上方選人數規模、籌備時間、核心人力、當日技術人力、活動目的、收費模式、贊助狀態、預算傾向、字幕定位、主要發言語言、目標字幕語言，以及是否需要錄影／回放。</li>
       <li><b>由左到右看分頁</b>：場地 → 字幕工具 → 方案 → 成本 → 聽打與手語；場地與字幕工具都可以用搜尋快速縮小範圍。</li>
-      <li><b>到「總覽」收尾</b>：看整合建議、下載完整資料 PDF；深入操作手冊看「完整報告」。</li>
+      <li><b>到「總覽」收尾</b>：看整合建議、下載完整資料 PDF；深入操作內容看「場地與字幕執行手冊」。</li>
     </ol>
     <p class="note">所有價格都是查詢起點、不是報價，採購前要向場地與供應商書面確認。需要逐步說明時，按下方按鈕重新打開引導。</p>
   </div>
@@ -369,6 +369,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
       <div class="cset" id="f-recording">
         <span class="lbl">會後交付</span>
         <label class="chk"><input type="checkbox" id="recording-in" checked> 需要錄影／回放</label>
+        <a class="hint" href="video-caption-postproduction.html">會後影片字幕怎麼處理？</a>
       </div>
       <div class="cset">
         <span class="lbl"><label for="people-in">精確人數（選填）</label></span>
@@ -406,7 +407,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
 
 <footer>
   <p>公開價格查詢時間：雙北場地 2026-06 中旬、非雙北五縣市 2026-06-24（研究階段），皆為第一輪比較、非簽約價；採購前須向場地與供應商書面確認，尤其「混音器能否提供只含人聲的乾淨訊號」。標「需確認」的容量／價格未在報告或來源載明，不可當定論。</p>
-  <p>北中南各縣市場地為研究階段彙整：不少場地的收費標準官網以 PDF 或詢價提供（標「需詢價」）、容量未載明（標「需確認」），且能否外接字幕電腦／取得乾淨人聲多無法從官網確認、需逐場電洽音控室。雙北以外資料正式引用前請再查證一次。操作手冊（收音接線、現場操作、壞掉怎麼救、詢價信範本、時程）見 <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>。</p>
+  <p>北中南各縣市場地為研究階段彙整：不少場地的收費標準官網以 PDF 或詢價提供（標「需詢價」）、容量未載明（標「需確認」），且能否外接字幕電腦／取得乾淨人聲多無法從官網確認、需逐場電洽音控室。雙北以外資料正式引用前請再查證一次。收音接線、現場操作、壞掉怎麼救、詢價信範本與時程，見 <a href="ai-captioning-ballroom-solution.desktop.html">場地與字幕執行手冊</a>。</p>
 </footer>
 </main>
 
@@ -649,8 +650,8 @@ const TOOL_TRANSLATION_UPDATES={
  "StreamText":{translationUrl:"https://streamtext.net/features-and-pricing/",translationLabel:"StreamText features/pricing",translationNote:"官方頁列 realtime translation into over 130 languages；也有官方支援文件說明語言翻譯設定。"},
  "3Play Media":{translationUrl:"https://www.3playmedia.com/platform/livecaptioning/",translationLabel:"3Play Live Captioning",translationNote:"官方頁列 live translation in 100+ languages；偏高穩定直播／字幕服務。"},
  "Zoom 即時字幕（Live Captions / Translated Captions）":{translationUrl:"https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059081",translationLabel:"Zoom Translated Captions",translationNote:"官方文件明確列 translated captions；授權仍要看 add-on／方案與同時連線人數。"},
- "Microsoft Teams 即時字幕（Live / Translated Captions）":{translationUrl:"https://support.microsoft.com/en-us/teams/meetings/use-live-captions-in-microsoft-teams-meetings",translationLabel:"Teams live translated captions",translationNote:"官方支援頁列 live translated captions；會議／活動模式與 Premium／授權限制需確認。",pricingUrl:"https://www.microsoft.com/en-us/microsoft-teams/premium",pricingLabel:"Microsoft Teams Premium pricing",pricingNote:"Teams Premium 為 US$10／使用者／月（年繳、自動續訂），且需另有符合資格的 Teams 授權；地區、稅金與實際可購買性可能不同。"},
- "Google Meet 即時字幕（Live / Translated Captions）":{translationUrl:"https://support.google.com/meet/answer/10964115",translationLabel:"Google Meet translated captions",translationNote:"官方支援頁列 translated captions 與語言清單；Speech Translation 另有支援頁。"},
+ "Microsoft Teams 即時字幕（Live / Translated Captions）":{translationUrl:"https://support.microsoft.com/en-us/teams/meetings/use-live-captions-in-microsoft-teams-meetings",translationLabel:"Teams live translated captions",translationNote:"官方支援頁列 live translated captions；會議／活動模式與 Premium／授權限制需確認。",pricingUrl:"https://www.microsoft.com/en-us/microsoft-teams/premium",pricingLabel:"Microsoft Teams Premium pricing",pricingNote:"Teams Premium 為 US$10／使用者／月（年繳、自動續訂），且需另有符合資格的 Teams 授權；地區、稅金與實際可購買性可能不同。",recordingUrl:"https://support.microsoft.com/en-us/teams/meetings/start-stop-and-download-live-transcripts-in-microsoft-teams-meetings",recordingLabel:"Teams meeting transcripts",recordingNote:"一般會議可下載原語 DOCX／VTT；過去的即時翻譯逐字稿不會保存。"},
+ "Google Meet 即時字幕（Live / Translated Captions）":{translationUrl:"https://support.google.com/meet/answer/10964115",translationLabel:"Google Meet translated captions",translationNote:"官方支援頁列 translated captions 與語言清單；Speech Translation 另有支援頁。",recordingUrl:"https://support.google.com/meet/answer/9308681",recordingLabel:"Google Meet recordings and captions",recordingNote:"錄影時可選 Record captions；獨立 Transcripts 的語言支援與即時翻譯字幕不同。"},
  "Interprefy":{translationUrl:"https://www.interprefy.com/solutions/ai-translation",translationLabel:"Interprefy AI Speech Translation",translationNote:"官方頁列 AI speech translation、live captions／字幕與 80+ 語言；適合需服務商支援的正式場。"},
  "KUDO":{translationUrl:"https://kudo.ai/solutions/kudo-ai-speech-translator/",translationLabel:"KUDO AI Speech Translator",translationNote:"官方頁列 live multilingual audio and captions；人類 RSI 與 AI speech translation 可混用。"},
  "Verbit":{translationNote:"未找到官方同步語言翻譯資訊頁；官方頁主要是 CART/live captioning 與多語字幕／字幕翻譯，若要即時翻譯須個案詢價確認。"},
@@ -999,7 +1000,7 @@ function toolCard(t){
   ? `<p class="note"><b>同步翻譯資訊：</b><a href="${escAttr(t.translationUrl)}" target="_blank" rel="noopener">${esc(t.translationLabel||"官方同步翻譯頁")}</a> — ${esc(t.translationNote||"官方頁有同步翻譯資訊，採購前仍需確認本次語言與授權。")}</p>`
   : `<p class="note"><b>同步翻譯資訊：</b>${esc(t.translationNote||"未找到官方同步翻譯資訊頁；採購前需向供應商確認。")}</p>`;
  const recordingInfo=state.recording&&t.recordingUrl
-  ? `<p class="note"><b>錄影資訊：</b><a href="${escAttr(t.recordingUrl)}" target="_blank" rel="noopener">${esc(t.recordingLabel||"官方錄影資訊")}</a> — ${esc(t.recordingNote||"採購前仍需確認錄影、字幕檔與逐字稿交付。")}</p>`
+  ? `<p class="note"><b>錄影資訊：</b><a href="${escAttr(t.recordingUrl)}" target="_blank" rel="noopener">${esc(t.recordingLabel||"官方錄影資訊")}</a> — ${esc(t.recordingNote||"採購前仍需確認錄影、字幕檔與逐字稿交付。")}<br><a href="video-caption-postproduction.html">查看會後影片字幕處理教學</a></p>`
    : "";
  const pricingInfo=t.pricingUrl
   ? `<p class="note"><b>官方公開價格：</b>${esc(t.pricingNote)} <a href="${escAttr(t.pricingUrl)}" target="_blank" rel="noopener">${esc(t.pricingLabel||"官方價格頁")} ↗</a></p>`
@@ -1118,7 +1119,7 @@ function renderTiers(){
   <li>接好先測：講一句話看字幕有沒有出來、延遲多久、準不準；問答麥也測一次。</li>
   <li>備援：4G／5G 熱點、備用 QR、第二台筆電。</li>
  </ul>
- <p class="note">更完整的收音接線、現場操作與「壞掉怎麼救」見 <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>；各規模的設備清單見上方方案卡。</p>
+ <p class="note">更完整的收音接線、現場操作與「壞掉怎麼救」見 <a href="ai-captioning-ballroom-solution.desktop.html">場地與字幕執行手冊</a>；各規模的設備清單見上方方案卡。</p>
  </div></details>
  <p class="deep">三套可落地方案與預算粗估見 <a href="ai-captioning-ballroom-solution.desktop.html#sec-packages">報告第 10 節</a>；無障礙等級的判斷見 <a href="ai-captioning-ballroom-solution.desktop.html#sec-access-levels">第 6 節</a>。</p>`;
 }
@@ -1171,7 +1172,7 @@ function renderOverview(){
    ${highs.length?`<div class="ovrow kv"><span class="k" style="color:var(--hi-ink);">需注意（${highs.length}）</span><span>見上方紅色提醒。</span></div>`:""}
  </div>
  <div class="pdfrow"><a class="btn primary" href="tool-summary.pdf" download="活動字幕選型工具-完整資料.pdf">下載完整資料 PDF（已加標籤）</a></div>
- <p class="deep">下一步：到「場地」選優先詢價場地 → 用 <a href="ai-captioning-ballroom-solution.desktop.html#sec-rfp">報告第 12 節詢價信</a> 寄出 → 同時向上面的字幕工具詢價。完整操作手冊（收音接線、現場操作、壞掉怎麼救、時程）見 <a href="ai-captioning-ballroom-solution.desktop.html">完整報告</a>。</p>`;
+ <p class="deep">下一步：到「場地」選優先詢價場地 → 用 <a href="ai-captioning-ballroom-solution.desktop.html#sec-rfp">手冊第 12 節詢價信</a> 寄出 → 同時向上面的字幕工具詢價。收音接線、現場操作、壞掉怎麼救與時程，見 <a href="ai-captioning-ballroom-solution.desktop.html">場地與字幕執行手冊</a>。</p>`;
 }
 
 function renderHumanServices(){
@@ -1292,7 +1293,7 @@ const TOUR_STEPS=[
  {target:'input[name="access"][value="convenience"] + .opt',title:"字幕定位：觀眾體驗加值",text:"這代表先用 AI 字幕/翻譯字幕服務中文聽不懂英文、日文聽眾等一般觀眾。若已知有聾人或聽障者需要人工字幕或手語，請切到無障礙基準服務，因為那時 AI 字幕只能當補充，不能取代 CART、同步聽打或手語。"},
  {target:'input[name="speech"][value="en"] + .opt',title:"本次範例：主要發言語言為英文",text:"這只是第一次進入工具時的範例預設，不是所有活動的固定前提。主要發言語言會決定工具要辨識哪一種語音；日後規劃中文、日文或多語活動時，請在這裡改選，推薦、總覽、錄影提醒與列印內容都會跟著更新。"},
  {target:"#f-captionlangs",title:"本次範例：需要繁中與日文字幕",text:"本次範例先勾繁中與日文，代表英文發言要提供這兩種字幕。這裡可以複選，也可以取消全部後重選；工具會用目前的「發言語言 → 字幕語言」組合產生建議。若選其他／多語，採購時仍要列出實際語言對逐一測試，不能只接受供應商宣稱支援很多語言。"},
- {target:"#f-recording",title:"會後交付：需要錄影／回放",text:"如果活動需要錄影、會後回放、贊助商交付或給沒跟上直播的人看，Zoom 會變成比較有利的主控選項，因為雲端錄影與原音可以集中處理。逐字稿要依主要發言語言與帳號功能測試；如果會後影片需要翻譯字幕，必須另外產生並人工校對，不能直接沿用當天未校對的 AI 即時翻譯。"},
+ {target:"#f-recording",title:"會後交付：需要錄影／回放",text:"如果活動需要錄影、會後回放、贊助商交付或給沒跟上直播的人看，Zoom 會變成比較有利的主控選項，因為雲端錄影與原音可以集中處理。逐字稿要依主要發言語言與帳號功能測試；如果會後影片需要翻譯字幕，必須另外產生並人工校對，不能直接沿用當天未校對的 AI 即時翻譯。錄影選項旁的教學連結會說明 Zoom、Teams、Meet 與 YouTube 的完整處理流程。"},
  {target:"#people-in",title:"精確人數：可以先留空",text:"目前可以讓它保持空白；S（50-150）會用級距上限 150 人判斷場地是否坐得下。如果之後有更準確的售票目標或報名上限，再填入精確人數，場地容量就會改用該數字。精確人數適合用來微調場地與預算，不適合拿一個還沒被驗證的目標去假裝風險已經消失。"},
  {target:"#venue-search",tab:"venues",title:"場地快速篩選",text:"場地資料比字幕工具更長，所以這裡可以直接搜尋名稱、城市、場地類型、價格或備註。例如輸入 TCCC、新北、圖書館、飯店、錄影，都會在目前的人數、城市與場地類型條件內再縮小結果。預算只影響排序，不會隱藏場地；搜尋也不會取消其他篩選。找不到時先清空搜尋，再檢查城市與場地類型。"},
  {target:"#tab-tools",title:"下一步看字幕工具",text:"活動設定不用每個人重填；看完預設條件後，直接切到字幕工具。工具頁上方有快速篩選，可以直接找 Zoom、日文、QR、人工、CART 等關鍵字；卡片上的「選這個工具」會把該工具帶到方案與總覽。Zoom 卡片現在會提示：普通 Business 不是翻譯字幕授權本身，真正要看的是同時連進 Zoom 的人數與 Translated Captions add-on。"},
@@ -1313,7 +1314,7 @@ const TOUR_STEPS=[
  "這是給一般觀眾的 AI 字幕/翻譯。若有聾人或聽障正式近用需求，請改選無障礙基準服務。",
  "本次範例以英文為主要發言語言。其他活動請改選，後續建議會依目前選項更新。",
  "本次範例需要繁中與日文字幕。可複選；選其他／多語時仍要列出實際語言對測試。",
- "需要錄影或回放時，Zoom 可作主控。逐字稿依發言語言測試；翻譯後的影片字幕要另行校對。",
+ "需要錄影或回放時，Zoom 可作主控。翻譯影片字幕要另行校對；完整流程見錄影選項旁的教學。",
  "可先留空，S 級會以 150 人判斷場地容量。有明確售票目標或報名上限後再填入。",
  "搜尋名稱、城市、類型、價格或備註。預算只排序、不隱藏；找不到先清空搜尋。",
  "看完設定後切到字幕工具。卡片上的「選這個工具」會帶到方案與總覽。",
