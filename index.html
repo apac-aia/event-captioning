@@ -707,7 +707,7 @@ function getTool(n){return TOOLS.find(t=>t.name===n)||null;}
 function threeLayerStatus(){
  if(state.techstaff==="confirmed")return {label:"可執行",note:"三個當日角色已確認，可依三層架構進入技術測試與採購。"};
  if(state.techstaff==="planning")return {label:"規劃中／有風險",note:"主辦人已同意配置，但角色或廠商尚未全部確認，不能視為可執行。"};
- return {label:"不建議啟動",note:"主辦人尚未同意配置所需人力，先採單層／雙層或縮小承諾。"};
+ return {label:"條件尚未齊備",note:"主辦人尚未同意配置所需人力；可先採單層／雙層、補足人力或調整承諾。"};
 }
 function threeLayerHtml(){
  const s=threeLayerStatus();
@@ -779,9 +779,9 @@ function computeWarnings(){
  if(state.prep==="mid"&&state.size==="L") out.push({s:"info",m:"<b>時間參考：</b>3-4 個月做 L 級活動仍偏緊；場地、影音、字幕、CART／手語與網路備援要同步詢價，不要等場地確定後才找字幕。"});
  if(state.team==="tiny"&&(state.size==="M"||state.size==="L")) out.push({s:"high",m:`<b>人力參考：</b>核心籌備只有 ${esc(TEAMLABEL[state.team])} 時，承接 ${esc(tl)} 的協調風險高；先補進穩定營運 owner，或把票務、製播與字幕交付外包並確認接口。做不到時再縮小規模或承諾。`});
  if(state.prep==="short"&&state.team==="small"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>人力參考：</b>${esc(PREPLABEL[state.prep])}、核心 ${esc(TEAMLABEL[state.team])} 做 ${esc(tl)} 會很緊；若要維持規模，至少要先鎖定場地、影音、字幕與當天操作分工。`});
- if(state.techstaff==="unapproved") out.push({s:"high",m:"<b>當日人力：</b>主辦人尚未同意配置 Zoom／錄影主控、字幕工具操作與音控對接，不建議把三層方案當成可執行；先改採單層／雙層，或縮小活動承諾。"});
+ if(state.techstaff==="unapproved") out.push({s:"high",m:"<b>當日人力：</b>主辦人尚未同意配置 Zoom／錄影主控、字幕工具操作與音控對接，因此三層方案的執行條件尚未齊備；可先採單層／雙層、補足人力或調整活動承諾。"});
  if(state.techstaff==="planning") out.push({s:"high",m:"<b>當日人力：</b>主辦人已同意配置，但角色或外包廠商仍在確認中。三層方案目前是「規劃中／有風險」，三個角色未鎖定前不要對外承諾。"});
- if(state.purpose==="ticketed"&&state.prep==="short") out.push({s:"high",m:"<b>售票參考：</b>2 個月內做正式售票活動，不只是在公開報名；客服、退費、報名資料、無障礙需求處理、字幕品質承諾都要先定。未確認前不建議開賣。"});
+ if(state.purpose==="ticketed"&&state.prep==="short") out.push({s:"high",m:"<b>售票參考：</b>2 個月內做正式售票活動，不只是在公開報名；開賣前請先確認客服、退費、報名資料、無障礙需求處理與字幕品質承諾各自由誰負責。"});
  if(state.purpose==="roundtable"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:"<b>目的參考：</b>閉門圓桌通常不需要 M/L 場地規模；若目標是專家討論與紀錄，先看 XS/S、線上或小型 hybrid。"});
  if(state.sponsor==="talking"&&(state.purpose==="ticketed"||state.size==="M"||state.size==="L")) out.push({s:"high",m:"<b>贊助參考：</b>贊助洽談中不等於已確認預算。不要用未確認贊助支撐售票、CART／手語、直播製播或高規格場地承諾。"});
  if(state.purpose==="ticketed"&&state.charge!=="ticketed") out.push({s:"high",m:"<b>收費參考：</b>活動目的選了正式售票，但收費模式是免費參加。若這次不售票，請把活動目的改成公開免費、閉門圓桌或前導測試。"});
