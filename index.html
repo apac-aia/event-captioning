@@ -296,7 +296,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
         <div class="seg" role="radiogroup" aria-labelledby="lbl-team" id="f-team">
           <label><input type="radio" name="team" value="tiny"><span class="opt">1-2 人</span></label>
           <label><input type="radio" name="team" value="small" checked><span class="opt">3-4 人</span></label>
-          <label><input type="radio" name="team" value="full"><span class="opt">6 人+</span></label>
+          <label><input type="radio" name="team" value="full"><span class="opt">5 人以上</span></label>
         </div>
       </div>
       <div class="cset">
@@ -434,7 +434,7 @@ const TIERLABEL={XS:"小型工作坊（XS）",S:"小型混合式方案（S）",M
 const BUDGETLABEL={free:"免費",low:"省",mid:"平衡",any:"不限"};
 const ACCESSLABEL={convenience:"觀眾體驗加值",formal:"無障礙基準服務"};
 const PREPLABEL={short:"2 個月內",mid:"3-4 個月",long:"6 個月+"};
-const TEAMLABEL={tiny:"1-2 人",small:"3-4 人",full:"6 人+"};
+const TEAMLABEL={tiny:"1-2 人",small:"3-4 人",full:"5 人以上"};
 const TECHSTAFFLABEL={unapproved:"尚未同意配置",planning:"已同意／找人中",confirmed:"角色已確認"};
 const PURPOSELABEL={pilot:"內部測試 / 前導場",roundtable:"閉門圓桌 / 專家討論",publicFree:"公開免費活動",ticketed:"正式售票活動"};
 const CHARGELABEL={free:"免費參加",ticketed:"正式售票"};
@@ -777,12 +777,11 @@ function computeWarnings(){
  if(state.prep==="short"&&state.access==="formal") out.push({s:"high",m:"<b>時間參考：</b>2 個月內又承諾無障礙基準服務時，CART、手語或專業字幕的檔期與報價要優先鎖定；未確認前，不要把 AI 字幕寫成唯一方案。"});
  if(state.prep==="short"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>時間參考：</b>${esc(PREPLABEL[state.prep])}要做 ${esc(tl)}，先確認場地、乾淨人聲、字幕工具檔期與當天操作人力；若人力或檔期不足，調小規模比硬撐更穩。`});
  if(state.prep==="mid"&&state.size==="L") out.push({s:"info",m:"<b>時間參考：</b>3-4 個月做 L 級活動仍偏緊；場地、影音、字幕、CART／手語與網路備援要同步詢價，不要等場地確定後才找字幕。"});
- if(state.team==="tiny"&&(state.size==="M"||state.size==="L")) out.push({s:"high",m:`<b>人力參考：</b>核心籌備只有 ${esc(TEAMLABEL[state.team])} 時，不建議承接 ${esc(tl)}；先縮小到 XS/S，或改成閉門圓桌／前導場。`});
+ if(state.team==="tiny"&&(state.size==="M"||state.size==="L")) out.push({s:"high",m:`<b>人力參考：</b>核心籌備只有 ${esc(TEAMLABEL[state.team])} 時，承接 ${esc(tl)} 的協調風險高；先補進穩定營運 owner，或把票務、製播與字幕交付外包並確認接口。做不到時再縮小規模或承諾。`});
  if(state.prep==="short"&&state.team==="small"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:`<b>人力參考：</b>${esc(PREPLABEL[state.prep])}、核心 ${esc(TEAMLABEL[state.team])} 做 ${esc(tl)} 會很緊；若要維持規模，至少要先鎖定場地、影音、字幕與當天操作分工。`});
  if(state.techstaff==="unapproved") out.push({s:"high",m:"<b>當日人力：</b>主辦人尚未同意配置 Zoom／錄影主控、字幕工具操作與音控對接，不建議把三層方案當成可執行；先改採單層／雙層，或縮小活動承諾。"});
  if(state.techstaff==="planning") out.push({s:"high",m:"<b>當日人力：</b>主辦人已同意配置，但角色或外包廠商仍在確認中。三層方案目前是「規劃中／有風險」，三個角色未鎖定前不要對外承諾。"});
  if(state.purpose==="ticketed"&&state.prep==="short") out.push({s:"high",m:"<b>售票參考：</b>2 個月內做正式售票活動，不只是在公開報名；客服、退費、報名資料、無障礙需求處理、字幕品質承諾都要先定。未確認前不建議開賣。"});
- if(state.purpose==="ticketed"&&state.team!=="full"&&(state.size==="M"||state.size==="L")) out.push({s:"high",m:`<b>售票參考：</b>${esc(tl)} 的正式售票活動需要穩定營運 owner；核心人力少於 6 人時，不建議把它包裝成正式售票活動。`});
  if(state.purpose==="roundtable"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:"<b>目的參考：</b>閉門圓桌通常不需要 M/L 場地規模；若目標是專家討論與紀錄，先看 XS/S、線上或小型 hybrid。"});
  if(state.sponsor==="talking"&&(state.purpose==="ticketed"||state.size==="M"||state.size==="L")) out.push({s:"high",m:"<b>贊助參考：</b>贊助洽談中不等於已確認預算。不要用未確認贊助支撐售票、CART／手語、直播製播或高規格場地承諾。"});
  if(state.purpose==="ticketed"&&state.charge!=="ticketed") out.push({s:"high",m:"<b>收費參考：</b>活動目的選了正式售票，但收費模式是免費參加。若這次不售票，請把活動目的改成公開免費、閉門圓桌或前導測試。"});
@@ -1263,7 +1262,7 @@ const TOUR_STEPS=[
  {target:'[data-tour-open]',title:"之後從這裡重新開啟引導",text:"這個逐步引導第一次進頁面會自動出現；你按「關閉引導」或走到最後一步之後，下一次就不會再自動跳出。之後如果有人忘記怎麼用，直接按上方導覽列的「開啟引導」，就會重新從這一步開始。"},
  {target:'input[name="size"][value="S"] + .opt',title:"活動人數規模：S（50-150）",text:"這次預估是 150 人以下，所以先用 S 級距。S 只代表活動規模，不代表低成本、試跑或較低的交付責任；是否正式售票與是否試跑由其他設定決定。規模會影響場地、餐飲、報到、Q&A、字幕工具與當天人力；但 Zoom 授權仍要另外看「同時連進 Zoom 的人數」。例如總人數 120，但線上只有 40 人，就不能用 120 去判斷 Zoom 是否需要 Large Meeting。"},
  {target:'input[name="prep"][value="short"] + .opt',title:"籌備時間：2 個月內",text:"這會讓風險提醒變得比較嚴格。兩個月內可以做混合式活動，但不能假設臨時找到場地、字幕工具、音控配合、志工與跨協會支援；提醒區會把這些不舒服的缺口先攤開。"},
- {target:'input[name="team"][value="small"] + .opt',title:"核心人力：3-4 人",text:"這裡只算核心籌備人力，不算活動當天臨時志工。3-4 人可以推進單日混合式，但要先把場地、講者、製播/Zoom、字幕與現場流程分工鎖住；如果其中一塊沒人負責，就要縮小規模。"},
+ {target:'input[name="team"][value="small"] + .opt',title:"核心人力：3-4 人",text:"這裡只算核心籌備人力，不算活動當天臨時志工。3-4 人可以推進單日混合式；重點是場地、講者、製播／Zoom、字幕與現場流程都有明確 owner，可以由核心團隊、場地或外包廠商承擔。若仍有缺口，先補人或外包，無法補齊時再縮小活動承諾。"},
  {target:'input[name="techstaff"][value="planning"] + .opt',title:"當日技術人力：已同意／找人中",text:"這和核心籌備人力是兩件事。預設代表主辦人已同意採用三層架構，但 Zoom／錄影主控、字幕工具操作、音控與乾淨人聲對接仍未全部確認，所以目前只能標成「規劃中／有風險」。人可以來自主辦團隊、場地或外包廠商；只有切到「角色已確認」後，三層方案才會顯示為可執行。若主辦人不願配置，請選「尚未同意配置」，並改採單層／雙層或縮小承諾。"},
  {target:'input[name="purpose"][value="ticketed"] + .opt',title:"活動目的：正式售票",text:"這次預設為正式售票，所以工具會把責任拉高：票務頁、客服、退費、報名資料、無障礙需求蒐集、現場動線、線上觀看品質與字幕品質，都會變成對外承諾的一部分。售票不是只多一個收入來源，而是把活動從公開報名提升到需要交付體驗的產品。"},
  {target:'input[name="charge"][value="ticketed"] + .opt',title:"收費模式：正式售票",text:"收費模式只回答參加者是否要買票，不再混入贊助進度。正式售票可以分擔基本成本，但也會增加票務頁、客服、退費與交付責任；如果活動改成免費參加，請同時檢查活動目的是否仍選為正式售票。"},
@@ -1284,7 +1283,7 @@ const TOUR_STEPS=[
  "這個引導只會自動出現一次。之後要重看，按上方「開啟引導」。",
  "本次先用 150 人以下的 S 級距。S 只代表規模，不代表試跑；Zoom 另看同時連線人數。",
  "2 個月內要先鎖場地、音控、字幕工具與當天分工。提醒區會列出時間不足的風險。",
- "3-4 人是核心籌備人力，不含當天臨時志工。若場地、講者、製播/Zoom、字幕沒人負責，就要縮小。",
+ "3-4 人是核心籌備人力，不含當天人力。各工作有明確 owner 即可；有缺口先補人或外包，無法補齊再縮小承諾。",
  "當日技術人力另計。已同意但仍找人時，三層方案只是規劃中；Zoom、字幕操作與音控角色確認後才可執行。",
  "正式售票代表對外承諾：票務、客服、退費、報名資料、動線、線上觀看與字幕品質都要有人負責。",
  "收費只回答是否賣票。正式售票會增加票務、客服、退費與交付責任。",
