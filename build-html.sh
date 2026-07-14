@@ -4,36 +4,68 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-TITLE="台北場地現場人工智慧字幕與多語翻譯：ADALS 2026 白話操作報告"
+TITLE="ADALS 2026 場地與字幕執行案例"
 
-python build-report-variants.py
+if command -v python >/dev/null 2>&1; then
+  PYTHON=(python)
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON=(python3)
+elif command -v py >/dev/null 2>&1; then
+  PYTHON=(py -3)
+elif [[ -x /c/Windows/py.exe ]]; then
+  PYTHON=(/c/Windows/py.exe -3)
+else
+  echo "Python 3 is required to build the report variants." >&2
+  exit 1
+fi
+
+if command -v pandoc >/dev/null 2>&1; then
+  PANDOC=(pandoc)
+elif command -v powershell.exe >/dev/null 2>&1; then
+  PANDOC_WIN="$(powershell.exe -NoProfile -Command '(Get-Command pandoc -ErrorAction SilentlyContinue).Source' | tr -d '\r')"
+  if command -v wslpath >/dev/null 2>&1; then
+    PANDOC_EXE="$(wslpath -u "$PANDOC_WIN")"
+  elif command -v cygpath >/dev/null 2>&1; then
+    PANDOC_EXE="$(cygpath -u "$PANDOC_WIN")"
+  else
+    PANDOC_EXE=""
+  fi
+  if [[ -n "$PANDOC_WIN" && -x "$PANDOC_EXE" ]]; then
+    PANDOC=("$PANDOC_EXE")
+  else
+    echo "Pandoc is required to build the HTML pages." >&2
+    exit 1
+  fi
+else
+  echo "Pandoc is required to build the HTML pages." >&2
+  exit 1
+fi
+
+"${PYTHON[@]}" build-report-variants.py
 
 common=(
   ai-captioning-ballroom-solution.enhanced.md
   -s --toc --toc-depth=3
   --metadata pagetitle="$TITLE"
-  --include-before-body=partials/skiplink.html
+  --metadata lang="zh-Hant"
+  --include-in-header=partials/report-head.html
+  --include-before-body=partials/report-main-open.html
+  --include-after-body=partials/report-main-close.html
   --include-after-body=partials/nav.html
   -c report-enhanced.css
 )
 
-pandoc "${common[@]}" -o ai-captioning-ballroom-solution.html
-pandoc "${common[@]}" -c report-desktop.css -o ai-captioning-ballroom-solution.desktop.html
-pandoc "${common[@]}" -c report-mobile.css -o ai-captioning-ballroom-solution.mobile.html
+"${PANDOC[@]}" "${common[@]}" -o ai-captioning-ballroom-solution.html
+"${PANDOC[@]}" "${common[@]}" -c report-desktop.css -o ai-captioning-ballroom-solution.desktop.html
+"${PANDOC[@]}" "${common[@]}" -c report-mobile.css -o ai-captioning-ballroom-solution.mobile.html
 
-# Sources index as its own styled HTML page.
-pandoc ai-captioning-ballroom-sources.md \
-  -s --toc --toc-depth=2 \
-  --metadata pagetitle="ADALS 2026 來源索引" \
-  --include-before-body=partials/skiplink-sources.html \
-  --include-after-body=partials/nav.html \
-  -c report-enhanced.css \
-  -o ai-captioning-ballroom-sources.html
+# ai-captioning-ballroom-sources.html contains a manually maintained expanded
+# venue index that is not represented in the Markdown source. Do not overwrite it here.
 
 # Post-event recording and caption workflow as a standalone maintained article.
-pandoc video-caption-postproduction.md \
+"${PANDOC[@]}" video-caption-postproduction.md \
   -s --toc --toc-depth=2 \
-  --metadata pagetitle="活動結束後：把 Zoom／直播錄影整理成可發布的影片字幕" \
+  --metadata pagetitle="活動錄影完成後，字幕接下來怎麼處理？" \
   --metadata lang="zh-Hant" \
   --include-in-header=partials/video-caption-head.html \
   --include-after-body=partials/nav.html \
@@ -42,4 +74,4 @@ pandoc video-caption-postproduction.md \
   -c video-caption-postproduction.css \
   -o video-caption-postproduction.html
 
-echo "built 3 report HTML variants + sources page + video caption article"
+echo "built 3 report HTML variants + video caption article (sources page preserved)"

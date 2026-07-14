@@ -14,7 +14,7 @@
 | [Vurbo.ai Conference Version](https://vurbo.ai/conference-version) | 供應商官方頁 | 確認會議模式、QR 碼 / 代碼進入、瀏覽器使用、免安裝、最多 2,000 位觀眾、最多 8 種指定語言 | 對活動適配度高 |
 | [Vurbo.ai 台灣會議版](https://vurbo.ai/tw/conference-version) | 供應商官方頁 | 確認繁中介面說明、QR 碼與瀏覽器流程 | 對台灣溝通高 |
 | [IPEVO Vurbo.ai 發表新聞](https://us.ipevo.com/blogs/news/ipevo-launches-upgraded-vurbo-ai) | 公司新聞 | 確認 93 種語言、即時口譯、浮動字幕、自訂術語、發言者辨識等宣稱 | 中高；屬行銷來源 |
-| [IPEVO OEB Berlin x Vurbo.ai 案例](https://us.ipevo.com/es/blogs/success-stories/oeb-berlin-vurbo-ai-cloud-translation) | 公司案例 | 參考國際教育活動中的 QR 碼即時轉錄 / 翻譯案例 | 中；可作案例訊號 |
+| IPEVO OEB Berlin x Vurbo.ai 案例（原頁已下線） | 公司案例 | 原案例頁目前無法使用，不再作為可點擊證據 | 已下線；不列入現行查核依據 |
 | [雅婷逐字稿](https://asr.yating.tw/) | 供應商官方頁 | 確認台灣語音辨識產品與網頁工具 | 產品存在性高；公開價格有限 |
 | [雅婷逐字稿 App Store](https://apps.apple.com/us/app/%E9%9B%85%E5%A9%B7%E9%80%90%E5%AD%97%E7%A8%BF/id1343659994?l=zh-Hant-TW) | 官方應用程式商店頁 | 確認台灣國語、台語、粵語、日語、中英夾雜、即時字幕模式與隱私宣稱 | 中高 |
 | [TopMediai 雅婷說明](https://tw.topmediai.com/text-speaker/yating-stt-alternative/) | 第三方價格訊號 | 未驗證公開價格：即時語音轉文字約 NT$96 / 小時，音檔辨識約 NT$144 / 小時 | 中低；使用前要直接確認 |
@@ -122,7 +122,7 @@
 | 新北市政府多功能集會堂 | [新北市公有場地租借網](https://ntpcsite.ntpc.gov.tw/location/detail/13) | 確認多功能集會堂容量 1,408 人與場地定位 | 高 |
 | 新北市政府多功能集會堂 | [行政園區場地使用收費標準 PDF](https://www.sec.ntpc.gov.tw/userfiles/0021600/files/%E6%96%B0%E5%8C%97%E5%B8%82%E6%94%BF%E5%BA%9C%E8%A1%8C%E6%94%BF%E5%9C%92%E5%8D%80%E5%A0%B4%E5%9C%B0%E4%BD%BF%E7%94%A8%E6%94%B6%E8%B2%BB%E6%A8%99%E6%BA%96.pdf) | 確認無售票每場 NT$20,000、有售票 NT$30,000、保證金 NT$50,000、佈置彩排撤場每小時 NT$3,000、設備另計、政府 / 公立學校 / 公益活動場地費 7 折 | 高 |
 | 新北市政府多功能集會堂 | [行政園區場地使用管理要點 PDF](https://www.sec.ntpc.gov.tw/userfiles/0021600/files/%E6%96%B0%E5%8C%97%E5%B8%82%E6%94%BF%E5%BA%9C%E8%A1%8C%E6%94%BF%E5%9C%92%E5%8D%80%E5%A0%B4%E5%9C%B0%E4%BD%BF%E7%94%A8%E7%AE%A1%E7%90%86%E8%A6%81%E9%BB%9E.pdf) | 確認禁止飲食（白開水除外）、外接設備須申請核准、外接電力規格、申請資格與公益 / 文化 / 社教限制 | 高 |
-| 台北大巨蛋 Taipei Dome | [遠雄大巨蛋場地租用](https://www.farglorydome.com.tw/case/site/) | 確認約 4 萬席多功能體育館定位，租用採詢價流程，無公開單場價 | 高；價格需詢價 |
+| 台北大巨蛋 Taipei Dome | [遠雄大巨蛋官網](https://www.farglorydome.com.tw/) | 原場地租用子頁已下線；場地規格與租用方式改由官網或電話重新確認 | 官網可用；價格與租用流程需詢價 |
 | 台北大巨蛋 Taipei Dome | [三立新聞：大巨蛋場租報導](https://www.setn.com/News.aspx?NewsID=1551386) | 補充媒體報導演藝類單日場租約 NT$2,100,000 並抽票房 10%，非官方公開定價 | 中；媒體報導 |
 | 台北小巨蛋 Taipei Arena | [台北小巨蛋場地租借](https://www.arena.taipei/cp.aspx?n=98C78675BDB3A2B2) | 確認主場館約 1.5 萬席、提供場租試算但未公開定價、採詢價 | 高；價格需詢價 |
 | Grand Hyatt Taipei | [Grand Hyatt meetings](https://www.hyatt.com/grand-hyatt/en-US/taigh-grand-hyatt-taipei/meetings) | 確認大宴會廳 1,022 平方公尺、1,400 人會議容量與進階影音能力 | 高 |

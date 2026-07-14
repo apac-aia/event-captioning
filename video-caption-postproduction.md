@@ -3,221 +3,204 @@
 
 <main id="main-content">
 
-# 活動結束後：把 Zoom／直播錄影整理成可發布的影片字幕
+# 活動錄影完成後，字幕接下來怎麼處理？
 
-**資料查核日期：2026-07-14。** 平台功能、授權與檔案格式可能調整；活動前仍要用實際帳號做一次完整測試。
+這篇是寫給負責活動、但不一定熟悉剪輯或字幕格式的人。你不需要先學會所有技術名詞，只要先把檔案留好，再照順序處理即可。
+
+**資料查核日期：2026-07-14。** 平台功能與帳號方案可能調整，正式活動前仍建議用實際帳號測試一次。
 
 <div class="version-switch" role="navigation" aria-label="相關頁面">
 <a href="index.html">返回字幕選型工具</a>
-<a href="ai-captioning-ballroom-solution.desktop.html">查看場地與字幕執行手冊</a>
+<a href="ai-captioning-ballroom-solution.desktop.html">查看 ADALS 2026 場地與字幕執行案例</a>
 </div>
 
-## 先說結論
+## 如果你現在只想知道怎麼做
 
-活動當天顯示的 AI 即時字幕或翻譯字幕，主要是幫助觀眾跟上現場。它通常不是可以直接公開的最終影片字幕。
+先記住這五步就夠了：
 
-比較穩定的會後流程是：
+1. **留下原始檔**：錄影、音訊，以及平台產生的逐字稿或字幕檔。
+2. **先剪完影片**：把休息、技術中斷或不能公開的內容剪掉。
+3. **校對原本的發言語言**：英文活動先校英文，中文活動先校中文。
+4. **再做翻譯字幕**：從校對好的版本製作繁中、日文或其他語言。
+5. **上傳後實際播放一次**：確認字幕時間、換行與語言切換都正常。
 
-> 保留原始錄影與音訊 → 取得原語逐字稿或字幕檔 → 先校對原語 → 再翻譯 → 校對翻譯與時間碼 → 上傳獨立字幕軌 → 最後才公開影片
+> 現場即時字幕是幫助觀眾在活動當下跟上內容；會後影片字幕則要能長期公開、搜尋與重複觀看。兩者可以使用同一份素材，但會後版本通常還需要整理。
 
-不要先翻譯一份錯誤很多的 AI 逐字稿。人名、組織、專有名詞與數字一旦在原語寫錯，錯誤會一起進入所有翻譯版本。
+## 先決定要做到哪一種程度
 
-## 1. 活動前就要決定的五件事
+不是每一場活動都要做成同樣規格。可以先看影片用途：
 
-### 1.1 指定一位會後字幕負責人
+| 影片用途 | 可以怎麼處理 |
+|---|---|
+| 只供團隊內部回看 | 保留錄影，快速檢查自動字幕中的人名、數字與重要結論 |
+| 公開上架 | 校對完整原語字幕，再到實際播放器檢查一次 |
+| 提供繁中、日文等多語版本 | 先校對原語，再從同一份正確版本翻譯各語言 |
+| 作為正式無障礙內容 | 安排人工校對，補上重要聲音、講者切換，以及必要的視覺資訊說明 |
 
-這個人不一定親自完成所有字幕，但要負責收齊檔案、確認校對者與翻譯者、管理版本，以及決定何時可以公開。
+若影片只是內部紀錄，可以採較輕的流程；若是售票活動、贊助交付或長期公開內容，完整校對會比較安心。
 
-### 1.2 確認要交付哪些版本
+## 四個常見名詞
 
-至少先決定：
+| 名詞 | 白話說明 |
+|---|---|
+| 原語字幕 | 講者實際使用語言的字幕，例如英文演講的英文字幕 |
+| 翻譯字幕 | 從原語字幕翻成繁中、日文等版本 |
+| `SRT`／`VTT` | 常見的字幕檔格式，內容是文字加上出現時間 |
+| 字幕軌 | 觀眾可以自行開關或切換語言的字幕，不會永久壓在影片畫面上 |
 
-- 只保留內部回放，還是要公開上架。
-- 需要原語字幕，還是要繁中、日文等翻譯字幕。
-- 是否要交付贊助商、講者或未參加直播的人。
-- 是否需要文字版逐字稿。
-- 影片中的投影片、示範畫面或圖表是否包含只靠畫面才能理解的重要資訊。
+`SRT` 和 `VTT` 不需要手動從零編寫。Zoom、Teams 或字幕軟體通常可以先產生檔案，再交給字幕編輯工具或校對人員整理。
 
-### 1.3 先確認錄影、轉錄與保存權限
+## 活動前先做三件事
 
-錄影和逐字稿通常受帳號方案、管理員政策、主持人角色與雲端空間影響。活動前要用真正負責錄影的帳號確認：
+### 1. 找一位負責收檔案的人
 
-- 能否開始雲端錄影。
-- 是否需要另外開啟 transcription／逐字稿。
-- 誰能下載錄影與字幕檔。
-- 錄影多久後會到期或被自動刪除。
-- 參與者會收到什麼錄影或轉錄通知。
+這個人不必親自剪片或翻譯，只要確保活動結束後有人能登入平台，下載錄影、音訊和字幕，並知道下一步要交給誰。
 
-### 1.4 設定正確的主要發言語言
+### 2. 先說好需要哪些語言
 
-逐字稿引擎需要知道它正在辨識什麼語言。若活動以英文發言，就把原語逐字稿設為英文；不要把目標字幕語言「繁中」誤設成發言語言。
+例如：
 
-### 1.5 用五分鐘測試片段走完一次
+- 英文原語字幕。
+- 繁中翻譯字幕。
+- 日文翻譯字幕。
+- 是否還要一份可以閱讀或搜尋的文字逐字稿。
 
-測試片段要包含講者姓名、組織名稱、英文縮寫、數字、日文或中文詞彙，以及一段觀眾問答。活動前實際完成一次：錄影、停止、等待處理、下載逐字稿、修字、重新上傳字幕。
+### 3. 錄一段五分鐘測試
 
-## 2. 活動結束後的標準流程
+用真正要主持活動的帳號錄一小段，確認能否找到錄影、下載逐字稿，並重新上傳字幕。測試內容最好包含講者姓名、組織、縮寫、數字和一段問答。
 
-### 步驟 1：先封存原始檔
+這五分鐘通常比活動結束後才研究帳號權限省事得多。
 
-至少保留：
+## 活動結束後的五個步驟
 
-- 原始錄影檔。
-- 原始音訊；平台能分軌時也保留分軌。
-- 平台產生的原語逐字稿或 `VTT`。
-- 當天使用的術語表、講者名單與議程。
-- 即時字幕服務商可匯出的字幕或紀錄。
+### 步驟 1：先把原始檔收齊
 
-先複製一份唯讀備份，再開始剪輯或修字幕。
+建議保留：
 
-### 步驟 2：先鎖定影片時間軸
+- 原始錄影。
+- 原始音訊；平台有提供個別音軌時也一併保留。
+- 平台產生的逐字稿或字幕檔。
+- 講者名單、議程，以及人名與專有名詞的正確寫法。
+- 當天字幕工具能匯出的紀錄。
 
-先完成片頭、片尾、休息段落、不能公開的內容與技術中斷剪除。影片長度改變後，舊字幕時間碼通常會對不上；因此不要在字幕全部校好後才大幅剪片。
+先複製一份備份，再開始剪輯或修字幕即可。
 
-### 步驟 3：校對原語字幕
+### 步驟 2：先剪影片，再細修字幕
 
-優先修正會改變理解的錯誤：
+先處理片頭、片尾、休息時間、技術中斷和不能公開的內容。影片長度改變時，字幕出現的時間也會跟著改；先把影片剪定，後面的校對會比較省力。
 
-- 講者姓名與組織名稱。
+### 步驟 3：先校對講者原本說的語言
+
+不需要一開始就逐字追求完美，可以先處理最容易影響理解的地方：
+
+- 講者姓名、組織與職稱。
 - 專有名詞、產品名稱與縮寫。
-- 數字、日期、金額與網址。
-- 否定詞，例如「可以／不可以」。
-- 講者切換與問答段落。
-- 重要聲音，例如 `[掌聲]`、`[笑聲]`、`[音訊中斷]`。
+- 數字、日期、金額和網址。
+- 「可以／不可以」等意思相反時差很多的詞。
+- 問答時是誰在說話。
 
-W3C 說明，字幕不只包含對話，也應包含理解內容所需的非語音資訊；自動字幕通常仍需要人工修正。
+### 步驟 4：從校對好的版本製作翻譯
 
-### 步驟 4：從校對後的原語翻譯
+如果需要繁中與日文，做法是先把英文原語字幕校好，再分別翻成繁中與日文。這樣人名或數字只需要在源頭修正一次，也比較不容易讓不同語言版本彼此矛盾。
 
-每一種語言建立獨立字幕檔，不要直接覆蓋原語字幕。翻譯者至少要取得：
+翻譯者若能同時拿到影片、講者名單和術語表，通常會比只收到一份自動逐字稿更容易做對。
 
-- 已校對的原語字幕。
-- 講者與組織正式譯名。
-- 活動術語表。
-- 影片或可核對語氣的音訊。
+### 步驟 5：在真正要發布的平台播放一次
 
-繁中與日文要各自校對，不要把當天未校對的即時翻譯直接改名成最終字幕。
+上傳後，快速看過片頭、講者交替、問答與片尾，確認：
 
-### 步驟 5：檢查時間碼與可讀性
+- 字幕沒有明顯太早或太晚。
+- 人名與數字沒有被換行拆開。
+- 畫面上的姓名和字幕寫法一致。
+- 可以開關字幕並切換語言。
+- 被剪掉的段落沒有留下字幕。
 
-完整播放一次，至少檢查：
+## 如果你使用 Zoom
 
-- 字幕沒有提早消失或晚很多才出現。
-- 換行沒有把人名、數字或完整語意拆開。
-- 畫面上的姓名、職稱與字幕用詞一致。
-- 兩人對話時能知道誰在說話。
-- 重要聲音與沒有語音的停頓沒有被誤寫成對話。
-- 片頭、片尾與被剪除段落沒有殘留字幕。
+Zoom 雲端錄影可以產生原語逐字稿，並下載成 `VTT` 字幕檔。通常可以在 Zoom 網頁後台的 **Recordings & Transcripts → Cloud recordings** 找到。
 
-### 步驟 6：以可開關的字幕軌發布
+會後可以照這個順序：
 
-公開平台支援時，優先上傳獨立的 `SRT` 或 `VTT` 字幕軌，讓觀眾自行開關與選擇語言。除非發布平台不支援字幕軌，否則不要只把字幕燒死在畫面上。
+1. 下載影片、音訊與原語 `VTT`。
+2. 校對這份原語字幕。
+3. 從校對後的版本製作繁中、日文等翻譯字幕。
+4. 把各語言字幕上傳到最後的影片平台。
 
-## 3. Zoom：下載原語 VTT，再做翻譯版本
+觀眾在會議中看到的 **Translated Captions**，不一定會在會後直接成為可交付的翻譯字幕檔。因此，把 Zoom 下載的原語逐字稿當作起點會比較穩。
 
-Zoom 的雲端錄影音訊轉錄會在處理完成後產生獨立 `VTT`。主持人可在 Zoom 網頁後台的 **Recordings & Transcripts → Cloud recordings** 找到錄影，檢視、編輯或下載逐字稿。
+活動前請確認主持帳號已開啟雲端錄影與 audio transcription，並測試誰有權限下載檔案。
 
-活動前要確認：
+官方說明：[Zoom 雲端錄影音訊轉錄](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064927)、[Zoom Translated Captions](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059081)。
 
-1. 主持帳號具備雲端錄影與 audio transcription 資格。
-2. Cloud recording 與 audio transcription 已開啟。
-3. 逐字稿的主要語言設定正確。
-4. 活動結束後由誰登入、下載錄影與 `VTT`。
+## 如果你使用 Microsoft Teams
 
-會後建議：
+Teams 的即時字幕主要供會議當下觀看。若希望活動後留下可下載的文字，需要同時使用錄影或 transcription（逐字稿）功能。
 
-1. 下載原始影片、音訊與原語 `VTT`。
-2. 先修正原語 `VTT`。
-3. 另存繁中、日文等翻譯字幕檔。
-4. 將各語言字幕上傳到最終播放平台。
+一般會議結束後，可以到會議聊天中的 **Recap → Transcript** 下載 `DOCX` 或 `VTT`。Teams 會保存原始語言的逐字稿，但不會保存過去顯示過的翻譯逐字稿，所以多語版本仍建議從校對好的原語字幕製作。
 
-**不要假設觀眾在會議中選到的 Translated Captions，活動後會自動變成可交付的翻譯字幕檔。** Zoom 官方雲端轉錄文件明確說明的是錄影音訊逐字稿與 `VTT`；因此實務上應把校對後的原語 `VTT` 當母檔，再製作翻譯版本。
+一般非頻道會議的錄影通常在主辦人的 OneDrive for Business；頻道會議則通常在 SharePoint。若使用的是 Teams Town Hall，功能與權限會不同，活動前需要另外測試。
 
-官方文件：[Zoom 雲端錄影音訊轉錄](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064927)、[Zoom Translated Captions](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059081)。
+官方說明：[Teams 啟動與下載逐字稿](https://support.microsoft.com/en-us/teams/meetings/start-stop-and-download-live-transcripts-in-microsoft-teams-meetings)、[Teams 錄影播放與下載](https://support.microsoft.com/en-us/teams/meetings/play-share-and-download-meeting-recordings-in-microsoft-teams)、[Town Hall 錄影與逐字稿](https://support.microsoft.com/en-us/teams/meetings/manage-town-hall-recordings-in-microsoft-teams)。
 
-## 4. Microsoft Teams：要開逐字稿，不只開即時字幕
+## 如果你使用 Google Meet
 
-Teams 的即時字幕只供會議當下觀看；它不會直接錄進下載的影片。若要留下可下載的文字，必須使用 recording／transcription 流程。
+Google Meet 錄影時可以選擇 **Record captions**。錄影和字幕有時不會同時處理完成，所以先看到錄影、稍後才看到字幕是可能的。
 
-一般 Teams 會議：
+Meet 的 **Transcripts** 是另一項功能。目前官方列出的逐字稿語言包含英文、法文、德文、義大利文、日文、韓文、葡萄牙文與西班牙文，未列繁中。
 
-- 錄影時會啟動轉錄；也可以只啟動 transcription。
-- 會後由會議聊天的 **Recap → Transcript** 下載 `DOCX` 或 `VTT`。
-- 官方說明指出，過去的 translated transcripts 不會被保存，只有原始逐字稿會保存。
-- 非頻道會議錄影通常存放在主辦人的 OneDrive for Business；頻道會議則存放在 SharePoint。
+因此，如果活動以英文發言、現場顯示繁中翻譯字幕，會後可以：
 
-因此會後流程仍是：下載原語 `VTT` → 校對 → 另做繁中／日文字幕。若使用 Teams Town Hall，其會後翻譯逐字稿另涉及 Microsoft 365、Clipchamp／Syntex 與管理員設定，不能直接套用一般會議假設。
-
-官方文件：[Teams 啟動與下載逐字稿](https://support.microsoft.com/en-us/teams/meetings/start-stop-and-download-live-transcripts-in-microsoft-teams-meetings)、[Teams 錄影播放與下載](https://support.microsoft.com/en-us/teams/meetings/play-share-and-download-meeting-recordings-in-microsoft-teams)、[Town Hall 錄影與逐字稿](https://support.microsoft.com/en-us/teams/meetings/manage-town-hall-recordings-in-microsoft-teams)。
-
-## 5. Google Meet：錄製字幕與獨立逐字稿是兩件事
-
-Google Meet 錄影時可以選擇 **Record captions**，讓字幕能隨錄影播放。錄影與字幕處理完成時間可能不同，因此錄影先出現時，不代表字幕已經遺失。
-
-Meet 的 **Transcripts** 是另一項功能。官方目前列出的逐字稿支援語言包括英文、法文、德文、義大利文、日文、韓文、葡萄牙文與西班牙文；繁中不在這份逐字稿支援清單內。逐字稿完成後會寄給主持人、共同主持人與啟動逐字稿的人，也會附在 Google Calendar 活動上。
-
-若活動以英文發言、當天顯示繁中翻譯字幕：
-
-1. 以英文逐字稿或錄製字幕作為原語材料。
-2. 人工校對英文。
+1. 取得英文逐字稿或錄製字幕。
+2. 校對英文內容。
 3. 再製作繁中與日文字幕。
 
-不要把「Meet 當天能顯示繁中翻譯字幕」解讀成「會後一定能下載繁中逐字稿」。這兩項功能的語言支援與交付方式不同。
+Meet 能在活動當下顯示繁中翻譯字幕，不代表會後一定能下載一份繁中逐字稿；這是兩項不同功能。
 
-官方文件：[Google Meet 錄影](https://support.google.com/meet/answer/9308681)、[Google Meet Transcripts](https://support.google.com/meet/answer/12849897)、[Google Meet 翻譯字幕](https://support.google.com/meet/answer/10964115)。
+官方說明：[Google Meet 錄影](https://support.google.com/meet/answer/9308681)、[Google Meet Transcripts](https://support.google.com/meet/answer/12849897)、[Google Meet 翻譯字幕](https://support.google.com/meet/answer/10964115)。
 
-## 6. YouTube：把每種語言當成獨立字幕軌
+## 如果最後要放到 YouTube
 
-在 YouTube Studio 進入 **Subtitles → 選擇影片 → Add language → Add**，可以上傳已有時間碼的字幕檔，也可以貼上原語文字讓平台自動對時。
+在 YouTube Studio 進入 **Subtitles → 選擇影片 → Add language → Add**，就能為每種語言上傳一份字幕檔。
 
-對活動錄影，建議直接上傳已校對的字幕檔：
+- 已有 `SRT`：可以直接上傳。
+- 從 Zoom 或 Teams 取得 `VTT`：校對後也可以作為字幕來源。
+- 只有一份文字稿：YouTube 可以協助自動對時，但發布前仍建議播放檢查。
 
-- `SRT`：簡單、普遍，使用純文字 UTF-8。
-- `VTT`：可保留時間碼，也能從 Zoom 或 Teams 的輸出開始整理。
+每種語言各自建立一條字幕軌，觀眾就能自行選擇英文、繁中或日文。YouTube 的自動字幕可以當起點，但人名、數字與翻譯版本仍需要確認。
 
-YouTube 自動字幕只會以影片的預設語言產生，不能代替人工校對，也不能代替繁中、日文等翻譯字幕軌。
+官方說明：[YouTube 新增字幕](https://support.google.com/youtube/answer/2734796)、[YouTube 支援的字幕格式](https://support.google.com/youtube/answer/2734698)。
 
-官方文件：[YouTube 新增字幕](https://support.google.com/youtube/answer/2734796)、[YouTube 支援的字幕格式](https://support.google.com/youtube/answer/2734698)。
+## 最少需要留下哪些檔案？
 
-## 7. 最終交付清單
-
-一場需要會後回放的活動，至少應留下：
+一般公開活動可以先保留這幾項：
 
 | 檔案 | 用途 |
 |---|---|
-| `event-master.mp4` | 完成剪輯的母片 |
-| `event-source-en.vtt` | 已校對的原語字幕；檔名依實際語言調整 |
-| `event-zh-Hant.srt` | 已校對的繁中字幕 |
-| `event-ja.srt` | 已校對的日文字幕 |
-| `event-transcript.docx` 或網頁逐字稿 | 搜尋、引用與不方便播放影片時閱讀 |
-| `terminology.xlsx` 或 `terminology.csv` | 人名、組織、產品、縮寫與固定譯名 |
-| `qa-notes.txt` | 記錄已知問題、校對者、版本與日期 |
-| `permissions.txt` | 錄影、講者簡報、音樂及公開範圍的確認紀錄 |
+| 完成剪輯的影片 | 最後要上架的版本 |
+| 已校對的原語字幕 | 所有翻譯版本的共同起點 |
+| 繁中、日文等字幕 | 每種語言各一份 |
+| 講者與術語清單 | 保存人名、組織、產品和固定譯名 |
+| 版本紀錄 | 記下由誰校對、更新日期與已知問題 |
 
-若影片中的投影片、圖表或示範動作包含單靠語音無法理解的重要資訊，還要提供口述影像或描述性逐字稿。W3C 建議字幕涵蓋語音與重要非語音聲音，並另外處理理解內容所需的視覺資訊。
+檔名可以很簡單，例如 `event-en.vtt`、`event-zh-Hant.srt`、`event-ja.srt`。團隊看得懂、版本不會混在一起即可。
 
-## 8. 公開前最後檢查
+## 如果需要更完整的無障礙品質
 
-- [ ] 影片已完成剪輯，之後不再改時間軸。
-- [ ] 原語字幕已由人看過，不只跑拼字檢查。
-- [ ] 人名、組織、數字、日期與網址正確。
-- [ ] 每種翻譯字幕都從已校對原語產生。
+字幕除了講者說的話，也可以補上理解內容需要的重要聲音，例如 `[掌聲]`、`[笑聲]` 或 `[音訊中斷]`。
+
+如果投影片、圖表或示範動作包含重要資訊，但講者沒有說出來，可以在逐字稿補充文字描述，或另外安排口述影像。這類需求適合由熟悉無障礙媒體的人員一起確認，不需要讓活動行政人員獨自判斷所有細節。
+
+W3C 參考：[字幕說明](https://www.w3.org/WAI/media/av/captions/)、[逐字稿說明](https://www.w3.org/WAI/media/av/transcripts/)。
+
+## 公開前快速檢查
+
+- [ ] 原始錄影、音訊與字幕已有備份。
+- [ ] 影片已剪輯完成。
+- [ ] 原語字幕中的人名、組織與數字已確認。
+- [ ] 翻譯字幕來自校對後的原語版本。
 - [ ] 每種語言都在實際播放器開啟測試。
-- [ ] 字幕可以用鍵盤開關與切換語言。
-- [ ] 逐字稿或字幕下載位置容易找到。
-- [ ] 錄影、簡報、音樂與參與者公開範圍已確認。
-- [ ] 若有重要視覺資訊，已有口述或文字描述。
-- [ ] 原始檔、發布檔與字幕版本已備份。
-
-## 參考資料
-
-- [W3C WAI：Captions/Subtitles](https://www.w3.org/WAI/media/av/captions/)
-- [W3C WAI：Transcripts](https://www.w3.org/WAI/media/av/transcripts/)
-- [Zoom：Using audio transcription for cloud recordings](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064927)
-- [Microsoft Teams：Start, stop, and download live transcripts](https://support.microsoft.com/en-us/teams/meetings/start-stop-and-download-live-transcripts-in-microsoft-teams-meetings)
-- [Google Meet：Record a video meeting](https://support.google.com/meet/answer/9308681)
-- [Google Meet：Use Transcripts](https://support.google.com/meet/answer/12849897)
-- [YouTube：Add subtitles & captions](https://support.google.com/youtube/answer/2734796)
-- [YouTube：Supported subtitle and closed caption files](https://support.google.com/youtube/answer/2734698)
+- [ ] 字幕可以開關與切換語言。
+- [ ] 錄影、簡報、音樂與參與者的公開範圍已確認。
+- [ ] 團隊知道最後由誰核准發布。
 
 </main>
