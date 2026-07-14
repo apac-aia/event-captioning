@@ -826,16 +826,37 @@ function renderA11yPanel(){
 function renderSelbar(){
  const A=[...state.areas], T=[...state.types];
  const pill=(k,v)=>`<span class="seg-pill"><span class="pk">${esc(k)}</span><span class="pv">${esc(v)}</span></span>`;
- const row1=`<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("時間",PREPLABEL[state.prep])+pill("核心人力",TEAMLABEL[state.team])+pill("當日人力",TECHSTAFFLABEL[state.techstaff])+pill("目的",PURPOSELABEL[state.purpose]);
- const row2=pill("收費",CHARGELABEL[state.charge])+pill("贊助",SPONSORLABEL[state.sponsor])+pill("預算",BUDGETLABEL[state.budget])+pill("字幕",ACCESSLABEL[state.access])+pill("語言",languagePair())+pill("錄影",state.recording?"需要":"不需要")+(state.selectedTool?pill("工具",state.selectedTool):"");
  const narrow=window.matchMedia?window.matchMedia("(max-width:600px)").matches:false;
  const cityV=A.length===AREAS.length?"全部":(A.length?((narrow&&A.length>3)?A.length+" 個城市":A.map(a=>AREALABEL[a]).join("、")):"未選");
  const typeV=T.length===TYPES.length?"全部":(T.length?((narrow&&T.length>3)?T.length+" 種":T.join("、")):"未選");
  const venuePill=state.selectedVenue
    ? pill("場地",state.selectedVenue)
-   : `<a class="seg-pill warn-pill" href="#panel-venues" data-gotab="venues"><span class="pk">場地</span><span class="pv">尚未選定 ▸ 去「場地」選一個</span></a>`;
+   : `<a class="seg-pill warn-pill" href="#panel-venues" data-gotab="venues"><span class="pk">場地</span><span class="pv">${narrow?"尚未選定 ▸ 前往場地":"尚未選定 ▸ 去「場地」選一個"}</span></a>`;
+ const selbar=document.getElementById("selbar");
+ selbar.setAttribute("aria-label",`目前選擇：規模 ${state.size}（${SIZE_PEOPLE[state.size]}），時間 ${PREPLABEL[state.prep]}，核心人力 ${TEAMLABEL[state.team]}，當日人力 ${TECHSTAFFLABEL[state.techstaff]}，目的 ${PURPOSELABEL[state.purpose]}，收費 ${CHARGELABEL[state.charge]}，贊助 ${SPONSORLABEL[state.sponsor]}，預算 ${BUDGETLABEL[state.budget]}，字幕 ${ACCESSLABEL[state.access]}，語言 ${languagePair()}，錄影 ${state.recording?"需要":"不需要"}，城市 ${cityV}，場地類型 ${typeV}`);
+ if(narrow){
+  const techV={unapproved:"未同意",planning:"找人中",confirmed:"已確認"}[state.techstaff];
+  const accessV=state.access==="formal"?"無障礙基準":"體驗加值";
+  const purposeV={pilot:"前導／測試",roundtable:"閉門圓桌",publicFree:"公開免費",ticketed:"正式售票"}[state.purpose];
+  const sponsorV={none:"無贊助",talking:"贊助洽談中",confirmed:"贊助已確認"}[state.sponsor];
+  const chargeV=(state.purpose==="ticketed")===(state.charge==="ticketed")?"":`・${CHARGELABEL[state.charge]}`;
+  const mobileVenue=state.selectedVenue
+   ? pill("場地",state.selectedVenue)
+   : `<a class="seg-pill warn-pill" href="#panel-venues" data-gotab="venues"><span class="pk">場地</span><span class="pv">${cityV}城市・${typeV}・尚未選定 ▸</span></a>`;
+  const rows=[
+   `<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）・${PREPLABEL[state.prep]}`+(state.people?`・${state.people} 人`:"")),
+   pill("人力",`核心 ${TEAMLABEL[state.team]}・當日 ${techV}`),
+   pill("活動",`${purposeV}${chargeV}・${sponsorV}・預算${BUDGETLABEL[state.budget]}`),
+   pill("字幕",`${accessV}・${languagePair()}・${state.recording?"錄影":"不錄影"}`)+(state.selectedTool?pill("工具",state.selectedTool):""),
+   mobileVenue
+  ];
+  selbar.innerHTML=rows.map(row=>`<div class="selrow">${row}</div>`).join("");
+  return;
+ }
+ const row1=`<span class="lead-k">目前選擇</span>`+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("時間",PREPLABEL[state.prep])+pill("核心人力",TEAMLABEL[state.team])+pill("當日人力",TECHSTAFFLABEL[state.techstaff])+pill("目的",PURPOSELABEL[state.purpose]);
+ const row2=pill("收費",CHARGELABEL[state.charge])+pill("贊助",SPONSORLABEL[state.sponsor])+pill("預算",BUDGETLABEL[state.budget])+pill("字幕",ACCESSLABEL[state.access])+pill("語言",languagePair())+pill("錄影",state.recording?"需要":"不需要")+(state.selectedTool?pill("工具",state.selectedTool):"");
  const row3=pill("城市",cityV)+pill("場地類型",typeV)+venuePill;
- document.getElementById("selbar").innerHTML=`<div class="selrow">${row1}</div><div class="selrow">${row2}</div><div class="selrow">${row3}</div>`;
+ selbar.innerHTML=`<div class="selrow">${row1}</div><div class="selrow">${row2}</div><div class="selrow">${row3}</div>`;
 }
 // 列印轉 PDF：語意 HTML（h1/h2/h3 + 清單）→ 瀏覽器另存 tagged PDF。ponytail: 不用 jsPDF（產出無標籤、不無障礙）
 function buildPrintDoc(){
