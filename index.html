@@ -114,6 +114,8 @@ body.tour-open .sticky{z-index:0;}
 .seg input:focus-visible + span.opt{outline:3px solid var(--cta);outline-offset:-3px;z-index:1;}
 .people-in{min-height:34px;padding:.1rem .5rem;border:1px solid var(--line-strong);width:5.5rem;font-size:.85rem;}
 .hint{color:var(--muted);font-size:.76rem;}
+.planlist{margin:.2rem 0 .5rem;padding-left:1.15rem;font-size:.85rem;}
+.planlist li{margin:.3rem 0;}
 
 .reminders{margin:.55rem 0 0;background:var(--paper);border:1px solid var(--line);}
 .reminders>summary{cursor:pointer;padding:.5rem .8rem;font-size:.88rem;color:var(--accent);font-weight:600;transition:background .14s ease;}
@@ -315,9 +317,9 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
         <span class="hint">平台負責連線與錄影；字幕工具另外選</span>
       </div>
       <div class="cset" id="f-online-people">
-        <span class="lbl"><label for="online-people-in">預估同時在線人數（選填）</label></span>
-        <input class="people-in" type="number" id="online-people-in" min="1" inputmode="numeric" placeholder="如 40">
-        <span class="hint">用來估算平台方案；一般不是每位參與者各買一份授權</span>
+        <span class="lbl"><label for="online-people-in" id="online-people-label">預估同時連入 Zoom 的總人數（選填）</label></span>
+        <input class="people-in" type="number" id="online-people-in" min="1" inputmode="numeric" placeholder="如 150" aria-describedby="online-people-hint">
+        <span class="hint" id="online-people-hint">請計入主持人、共同主持人、講者、工作人員及線上觀眾；實體會場共用一台裝置，只計一個連線名額。這個數字不同於活動總人數。</span>
       </div>
       <div class="cset">
         <span class="lbl" id="lbl-prep">籌備時間</span>
@@ -357,7 +359,7 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
         <span class="lbl" id="lbl-charge">收費模式</span>
         <div class="seg" role="radiogroup" aria-labelledby="lbl-charge" id="f-charge">
           <label><input type="radio" name="charge" value="free"><span class="opt">免費參加</span></label>
-          <label><input type="radio" name="charge" value="ticketed" checked><span class="opt">正式售票</span></label>
+          <label><input type="radio" name="charge" value="ticketed" checked><span class="opt">需購票</span></label>
         </div>
       </div>
       <div class="cset">
@@ -476,7 +478,7 @@ const PREPLABEL={short:"2 個月內",mid:"3-4 個月",long:"6 個月+"};
 const TEAMLABEL={tiny:"1-2 人",small:"3-4 人",full:"5 人以上"};
 const TECHSTAFFLABEL={unapproved:"尚未同意配置",planning:"已同意／找人中",confirmed:"角色已確認"};
 const PURPOSELABEL={pilot:"內部測試 / 前導場",roundtable:"閉門圓桌 / 專家討論",publicFree:"公開免費活動",ticketed:"正式售票活動"};
-const CHARGELABEL={free:"免費參加",ticketed:"正式售票"};
+const CHARGELABEL={free:"免費參加",ticketed:"需購票"};
 const SPONSORLABEL={none:"無贊助",talking:"洽談中",confirmed:"已確認"};
 const SPEECHLABEL={en:"英文",zhtw:"中文",ja:"日文",multi:"多語混用"};
 const CAPTIONLANGLABEL={zhtw:"繁中",en:"英文",ja:"日文",other:"其他／多語"};
@@ -713,7 +715,25 @@ Object.assign(TOOLS.find(t=>t.name.startsWith("Google Meet")),{
  why:"基本字幕依 Google 帳號與 Workspace 版本提供；Translated Captions 適用 Business Standard、Business Plus、Enterprise Standard／Plus 與 Google AI Pro for Education 等符合資格方案，不應一概寫成另購 Gemini。錄影可選擇記錄字幕，但獨立逐字稿目前不含繁中，不能把即時繁中翻譯當成可直接下載的最終字幕。",
  capacityUrl:"https://support.google.com/meet/answer/10620582"
 });
-Object.assign(TOOLS.find(t=>t.name.startsWith("Zoom ")),{capacityUrl:"https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068002"});
+const ZOOM_CHECK_DATE="2026-07-21";
+const ZOOM_PLANS=[
+ {name:"Basic（免費）",cap:"100 人",dur:"單場約 40 分鐘",tc:"無",rec:"無雲端錄影",use:"測試連線；不適合正式活動"},
+ {name:"Workplace Pro",cap:"100 人",dur:"單場最多 30 小時",tc:"不含；可加購 Translated Captions add-on",rec:"雲端錄影（儲存空間另確認）",use:"同時連入 1-100 人"},
+ {name:"Workplace Business",cap:"300 人",dur:"單場最多 30 小時",tc:"不自動內含；Business Plus 內含，其餘需加購 add-on",rec:"雲端錄影（儲存空間另確認）",use:"同時連入 101-300 人"},
+ {name:"Enterprise",cap:"500 人",dur:"單場最多 30 小時",tc:"Essentials／Plus／Premier 內含",rec:"雲端錄影（儲存空間另確認）",use:"同時連入 301-500 人"},
+ {name:"Large Meeting（add-on）",cap:"擴充至 500 或 1,000 人（多份不可疊加）",dur:"依主方案",tc:"與翻譯字幕無關",rec:"依主方案",use:"人數超過主方案容量時搭配 Pro／Business"},
+ {name:"Translated Captions（add-on）",cap:"依主方案",dur:"依主方案",tc:"加購後指派給實際建立及主持會議的帳號；主持人啟用後參與者可自選語言，不需各買授權",rec:"依主方案",use:"方案未內含翻譯字幕時；價格洽 Zoom 銷售"}
+];
+Object.assign(TOOLS.find(t=>t.name.startsWith("Zoom ")),{
+ capacityUrl:"https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068002",
+ durationUrl:"https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067966",
+ largeMeetingUrl:"https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065116",
+ captionChangeUrl:"https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063899",
+ translationUrl:"https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059081",
+ plans:ZOOM_PLANS,plansChecked:ZOOM_CHECK_DATE,
+ why:"Zoom 授權看「同時連入的總人數」（含主持人、共同主持人、講者、工作人員與線上觀眾），不是活動總人數。普通 Pro 與普通 Business 都不內含 Translated Captions：內含的是 Business Plus 與 Enterprise Essentials／Plus／Premier；其他符合資格帳號可加購 add-on，並指派給實際建立及主持會議的帳號。主持人啟用後，參與者可自選字幕語言，不需各買授權。官方不公開固定價格，需洽 Zoom 銷售。",
+ recordingNote:"付費方案支援雲端錄影，儲存空間依方案另行確認。2026-05-18 起會議中的 closed captions 不能再直接儲存或下載；要保留文字紀錄，須先啟用 Meeting transcripts。即時字幕不能直接當可公開發布的最終字幕，會後仍要匯出、人工校對與處理語言版本；錄影、逐字稿與字幕的告知及資料處理由活動團隊確認。"
+});
 const TOOL_TRANSLATION_UPDATES={
  "Vurbo.ai":{why:"台灣優先的會議字幕／翻譯候選。官方會議版寫明可從 100+ 語言選最多 8 種，觀眾用 QR 或 session code 在瀏覽器選字幕或音訊語言；適合現場＋線上都要 BYOD 字幕的正式試用。採購前要確認本次英日中語言組合、同時語言數、現場音訊輸入與人數上限。",translationUrl:"https://vurbo.ai/conference-version",translationLabel:"Vurbo Conference Version",translationNote:"官方頁明確列即時字幕／音訊語言、QR/session code 與最多 8 種指定語言。"},
  "KKCO 人工智慧翻譯":{why:"台灣服務型候選。官方頁寫明 72 種語言、0.3 秒辨識＋0.8 秒翻譯，字幕可上大螢幕或讓觀眾掃 QR Code 用手機看；優點是有在地工程支援與術語準備，適合非技術團隊。採購前要確認報價、駐點範圍、可同時顯示語言數與資料處理條款。",translationUrl:"https://www.kkco.com.tw/solutions/ai-translation-system/",translationLabel:"KKCO 活動 AI 即時翻譯服務",translationNote:"官方頁明確列即時翻譯、72 語言、大螢幕／QR Code 呈現與逐字稿。"},
@@ -821,7 +841,7 @@ function recordingRecommendation(){
  const translated=[...state.captionLangs].some(x=>x!==state.speech);
  const source=state.speech==="multi"?"各發言語言":SPEECHLABEL[state.speech];
  if(state.format==="onsite")return `純現場錄影由場地或影音團隊保留原音；${source}逐字稿與${translated?"翻譯後字幕":"字幕"}須在會後另行產生並人工校對；`;
- if(state.platform==="zoom")return `Zoom 可集中雲端錄影與支援語言的原文逐字稿；${translated?"翻譯後字幕仍須會後另行產生並人工校對":"公開上架前仍須人工校對"}；`;
+ if(state.platform==="zoom")return `Zoom 付費方案可雲端錄影（儲存空間另確認）；2026-05-18 起會中字幕不能直接儲存或下載，要保留文字須先啟用 Meeting transcripts；${translated?"翻譯後字幕仍須會後另行產生並人工校對":"公開上架前仍須人工校對"}；`;
  if(state.platform==="teams")return `Teams 可錄影並保存原文逐字稿；即時翻譯字幕不等於會後可下載的翻譯逐字稿，${translated?"翻譯後字幕須另做並校對":"上架前仍須校對"}；`;
  if(state.platform==="meet")return `Google Meet 錄影可選擇記錄字幕，但獨立逐字稿的語言支援與即時翻譯字幕不同；${translated?"翻譯後字幕須另做並校對":"上架前仍須校對"}；`;
  return `請先確認所選平台能否匯出錄影、原音與逐字稿；${translated?"翻譯後字幕須另做並人工校對":"上架前仍須人工校對"}；`;
@@ -836,14 +856,24 @@ function toolRecommendation(){
 function peopleMax(){return state.people&&state.people>0?state.people:SIZE_RANGE[state.size][1];}
 function peopleMin(){return state.people&&state.people>0?state.people:SIZE_RANGE[state.size][0];}
 function sizeForPeople(n){return n<=49?"XS":n<=150?"S":n<=300?"M":"L";}
+// Zoom 授權分段（依官方容量／時長文件，查核日期見 ZOOM_CHECK_DATE）
+function zoomPlanAdvice(n){
+ if(n<=100)return {main:"Zoom Workplace Pro（100 人）即可",extra:"免費 Basic 單場約 40 分鐘，不適合正式活動"};
+ if(n<=300)return {main:"優先 Zoom Workplace Business（300 人）",alt:"已有 Pro 則可用 Pro＋Large Meeting 500 替代"};
+ if(n<=500)return {main:"Business 或 Pro 搭配 Large Meeting 500，或容量符合的 Enterprise（500 人）"};
+ return {main:"需更高容量的 Large Meeting、Zoom Webinar 或 Zoom Events",extra:"超過 500 人請先與 Zoom 確認可行方案"};
+}
 function platformCapacityNote(){
  if(state.format==="onsite")return "純現場活動不需要線上平台容量。";
- if(!state.onlinePeople)return `請填預估同時在線人數，再確認 ${PLATFORMLABEL[state.platform]} 容量；一般先估 1 個主辦／主持帳號授權，不是每位參與者各買一份。`;
+ if(!state.onlinePeople)return `請先填「預估同時連入的總人數」再確認 ${PLATFORMLABEL[state.platform]} 方案；活動總人數不能拿來推定授權。一般先估 1 個主辦／主持帳號授權，不是每位參與者各買一份。`;
  const n=state.onlinePeople;
- if(state.platform==="zoom")return n<=100?`${n} 人同時在線：預估 1 個主持人授權；Zoom Pro 的 100 人容量可能足夠，翻譯字幕另確認主持帳號是否有 Translated Captions。`:n<=300?`${n} 人同時在線：預估 1 個主持人授權；比較 Zoom Business 300 人與 Pro＋Large Meeting，Translated Captions 仍是另一項主持帳號授權。`:`${n} 人同時在線：預估至少 1 個主持人授權，再確認 Zoom Large Meeting／Events 容量；不要用活動總人數代替。`;
- if(state.platform==="teams")return n<=300?`${n} 人同時在線：預估 1 個主辦人帳號，需有 Teams 基礎授權；若全場要翻譯字幕，主辦人再具 Teams Premium 或符合資格的授權。`:`${n} 人同時在線：預估至少 1 個主辦人帳號，並確認約 1,000 人互動容量或改用 Town hall／view-only 模式。`;
- if(state.platform==="meet")return n<=100?`${n} 人同時在線：預估 1 個主辦人帳號；個人帳號或 Business Starter 的 100 人容量可能足夠，但翻譯字幕需符合資格的 Workspace 版本。`:n<=150?`${n} 人同時在線：預估 1 個主辦人帳號；Business Standard 的 150 人容量及翻譯字幕可能足夠。`:`${n} 人同時在線：預估至少 1 個主辦人帳號；需確認 Business Plus／Enterprise 等容量與翻譯字幕資格。`;
- return `${n} 人同時在線：預估至少 1 個主辦人帳號；請向平台確認容量、錄影、字幕與主持權限。`;
+ if(state.platform==="zoom"){
+  const a=zoomPlanAdvice(n);
+  return `${n} 人同時連入：${a.main}${a.alt?`；${a.alt}`:""}${a.extra?`；${a.extra}`:""}。付費方案單場最多 30 小時，全天活動不需另購時長；需要翻譯字幕另確認 Translated Captions 授權（見卡片方案速查）。預估 1 個主持帳號，不是每位參與者各買一份。`;
+ }
+ if(state.platform==="teams")return n<=300?`${n} 人同時連入：預估 1 個主辦人帳號，需有 Teams 基礎授權；若全場要翻譯字幕，主辦人再具 Teams Premium 或符合資格的授權。`:`${n} 人同時連入：預估至少 1 個主辦人帳號，並確認約 1,000 人互動容量或改用 Town hall／view-only 模式。`;
+ if(state.platform==="meet")return n<=100?`${n} 人同時連入：預估 1 個主辦人帳號；個人帳號或 Business Starter 的 100 人容量可能足夠，但翻譯字幕需符合資格的 Workspace 版本。`:n<=150?`${n} 人同時連入：預估 1 個主辦人帳號；Business Standard 的 150 人容量及翻譯字幕可能足夠。`:`${n} 人同時連入：預估至少 1 個主辦人帳號；需確認 Business Plus／Enterprise 等容量與翻譯字幕資格。`;
+ return `${n} 人同時連入：預估至少 1 個主辦人帳號；請向平台確認容量、錄影、字幕與主持權限。`;
 }
 const TOOL_LANG_SUPPORT={
  "Vurbo.ai":{confirmed:["en","zhtw","ja"]},"KKCO 人工智慧翻譯":{confirmed:["en","zhtw","ja"]},
@@ -909,11 +939,11 @@ function computeWarnings(){
  if(state.purpose==="roundtable"&&(state.size==="M"||state.size==="L")) out.push({s:"info",m:"<b>目的參考：</b>閉門圓桌通常不需要 M/L 場地規模；若目標是專家討論與紀錄，先看 XS/S、線上或小型 hybrid。"});
  if(state.sponsor==="talking"&&(state.purpose==="ticketed"||state.size==="M"||state.size==="L")) out.push({s:"high",m:"<b>贊助參考：</b>贊助洽談中不等於已確認預算。不要用未確認贊助支撐售票、CART／手語、直播製播或高規格場地承諾。"});
  if(state.purpose==="ticketed"&&state.charge!=="ticketed") out.push({s:"high",m:"<b>收費參考：</b>活動目的選了正式售票，但收費模式是免費參加。若這次不售票，請把活動目的改成公開免費、閉門圓桌或前導測試。"});
- if(state.purpose!=="ticketed"&&state.charge==="ticketed") out.push({s:"info",m:"<b>收費參考：</b>收費模式是正式售票，但活動目的不是正式售票。請確認是否真的要收費及承擔客服、退費與交付責任。"});
+ if(state.purpose!=="ticketed"&&state.charge==="ticketed") out.push({s:"info",m:"<b>收費參考：</b>收費模式是需購票，但活動目的不是正式售票。請確認是否真的要收費及承擔客服、退費與交付責任。"});
  if(!state.captionLangs.size) out.push({s:"high",m:"<b>語言參考：</b>尚未選目標字幕語言，工具無法判斷翻譯方向。至少選一種觀眾實際需要的字幕語言。"});
  if(state.speech==="multi") out.push({s:"info",m:"<b>語言參考：</b>主要發言語言選了多語混用。要確認工具如何切換發言語言、是否允許同時輸出多種字幕，以及當天由誰操作切換；不能只看語言總數。"});
  if(state.recording) out.push({s:"info",m:`<b>錄影參考：</b>${esc(recordingRecommendation().replace(/；$/,"。"))}現場 AI 翻譯字幕不能直接當最終影片字幕。`});
- if(state.format!=="onsite"&&!state.onlinePeople) out.push({s:"info",m:`<b>平台容量：</b>尚未填同時在線人數。活動總人數不能用來判斷 ${esc(PLATFORMLABEL[state.platform])} 授權；${esc(platformCapacityNote())}`});
+ if(state.format!=="onsite"&&!state.onlinePeople) out.push({s:"info",m:`<b>平台容量：</b>${esc(platformCapacityNote())}`});
  if(state.format!=="online"&&v&&venueConditionMismatch(v).length) out.push({s:"high",m:`<b>場地條件已改變：</b>已選場地「${esc(v.n)}」仍會保留，但目前不符：${esc(venueConditionMismatch(v).join("、"))}。請重新確認或改選。`});
  if(pickedTool&&toolConditionMismatch(pickedTool).length) out.push({s:"high",m:`<b>字幕工具條件已改變：</b>已選「${esc(pickedTool.name)}」仍會保留，但目前不符：${esc(toolConditionMismatch(pickedTool).join("、"))}。請實測、詢價或改選。`});
  if(state.format!=="online"&&v&&v.cap==="restricted") out.push({s:"high",m:`<b>重要：</b>你選的「${esc(v.n)}」對外接設備有限制（視聽器材不得自帶／同步翻譯設備不得自備／無法外接其他影音），可能不適合作字幕主場。接字幕筆電與乾淨人聲輸出的方式要簽約前向場地書面確認。`});
@@ -973,7 +1003,7 @@ function renderSelbar(){
    : `<a class="seg-pill warn-pill" href="#panel-venues" data-gotab="venues"><span class="pk">場地</span><span class="pv">${cityV}城市・${typeV}・尚未選定 ▸</span></a>`;
   const rows=[
    `<span class="lead-k">目前選擇</span>`+pill("活動",`${FORMATLABEL[state.format]}・${state.size} ${SIZE_PEOPLE[state.size]}・${PREPLABEL[state.prep]}`),
-   pill("執行",`${state.format!=="onsite"?`${PLATFORMLABEL[state.platform]}・${state.onlinePeople?`在線${state.onlinePeople}`:"在線未填"}・`:""}核心${TEAMLABEL[state.team]}・${techV}`),
+   pill("執行",`${state.format!=="onsite"?`${PLATFORMLABEL[state.platform]}・${state.onlinePeople?`連入${state.onlinePeople}`:"連入未填"}・`:""}核心${TEAMLABEL[state.team]}・${techV}`),
    pill("交付",`${purposeV}${chargeV}・${sponsorV}・${BUDGETLABEL[state.budget]}・${langV}・${accessV}・${state.recording?"錄影":"不錄影"}${state.selectedTool?`・${state.selectedTool}`:""}`),
    state.format==="online"?"":mobileVenue
   ];
@@ -981,7 +1011,7 @@ function renderSelbar(){
   return;
  }
  const row1=`<span class="lead-k">目前選擇</span>`+pill("形式",FORMATLABEL[state.format])+pill("規模",`${state.size}（${SIZE_PEOPLE[state.size]}）`+(state.people?`・精確 ${state.people}`:""))+pill("時間",PREPLABEL[state.prep])+pill("核心人力",TEAMLABEL[state.team])+pill("當日人力",TECHSTAFFLABEL[state.techstaff]);
- const platformPill=state.format!=="onsite"?pill("平台",`${PLATFORMLABEL[state.platform]}${state.onlinePeople?`・同時 ${state.onlinePeople} 人`:"・在線人數未填"}`):"";
+ const platformPill=state.format!=="onsite"?pill("平台",`${PLATFORMLABEL[state.platform]}${state.onlinePeople?`・同時連入 ${state.onlinePeople} 人`:"・連入人數未填"}`):"";
  const row2=platformPill+pill("目的",PURPOSELABEL[state.purpose])+pill("收費",CHARGELABEL[state.charge])+pill("贊助",SPONSORLABEL[state.sponsor])+pill("字幕",ACCESSLABEL[state.access])+pill("語言",languagePair())+pill("錄影",state.recording?"需要":"不需要")+(state.selectedTool?pill("工具",state.selectedTool+(toolConditionMismatch(getTool(state.selectedTool)).length?"（需重看）":"")):"");
  const row3=state.format==="online"?pill("場地","純線上不需要"):pill("城市",cityV)+pill("場地類型",typeV)+venuePill;
  selbar.innerHTML=`<div class="selrow">${row1}</div><div class="selrow">${row2}</div><div class="selrow">${row3}</div>`;
@@ -991,7 +1021,7 @@ function buildPrintDoc(){
  const t=TIERS.find(x=>x.id===state.size);
  const short=venueList().list.slice(0,5);
  const toolLine=toolRecommendation();
- const sel=`形式 ${FORMATLABEL[state.format]}｜平台 ${state.format==="onsite"?"不需要":PLATFORMLABEL[state.platform]}${state.onlinePeople?`（同時在線 ${state.onlinePeople} 人）`:""}｜規模 ${state.size}（${SIZE_PEOPLE[state.size]}）｜籌備時間 ${PREPLABEL[state.prep]}｜核心人力 ${TEAMLABEL[state.team]}｜當日技術人力 ${TECHSTAFFLABEL[state.techstaff]}｜活動目的 ${PURPOSELABEL[state.purpose]}｜收費模式 ${CHARGELABEL[state.charge]}｜贊助狀態 ${SPONSORLABEL[state.sponsor]}｜預算 ${BUDGETLABEL[state.budget]}｜字幕定位 ${ACCESSLABEL[state.access]}｜語言 ${languagePair()}｜錄影 ${state.recording?"需要":"不需要"}`;
+ const sel=`形式 ${FORMATLABEL[state.format]}｜平台 ${state.format==="onsite"?"不需要":PLATFORMLABEL[state.platform]}${state.onlinePeople?`（同時連入 ${state.onlinePeople} 人）`:""}｜規模 ${state.size}（${SIZE_PEOPLE[state.size]}）｜籌備時間 ${PREPLABEL[state.prep]}｜核心人力 ${TEAMLABEL[state.team]}｜當日技術人力 ${TECHSTAFFLABEL[state.techstaff]}｜活動目的 ${PURPOSELABEL[state.purpose]}｜收費模式 ${CHARGELABEL[state.charge]}｜贊助狀態 ${SPONSORLABEL[state.sponsor]}｜預算 ${BUDGETLABEL[state.budget]}｜字幕定位 ${ACCESSLABEL[state.access]}｜語言 ${languagePair()}｜錄影 ${state.recording?"需要":"不需要"}`;
  const venues=short.length?short.map(v=>`<li>${esc(v.n)}（${esc(v.priceText)}）${v.phone?"　電話 "+esc(v.phone):""}</li>`).join(""):"<li>目前條件下沒有符合的場地</li>";
  const adv=`<h2>整合建議</h2>
    <p><b>條件：</b>${esc(sel)}</p>
@@ -1206,6 +1236,9 @@ function platformCard(id){
   <p class="note">${esc(t.why)}</p>
   ${t.pricingUrl?`<p class="note"><b>官方價格：</b>${esc(t.pricingNote)} <a href="${escAttr(t.pricingUrl)}" target="_blank" rel="noopener">官方頁 ↗</a></p>`:""}
   <p class="note"><b>訂閱與容量估算：</b>${esc(platformCapacityNote())}</p>
+  ${t.plans?`<p class="note"><b>方案速查（最後查核 ${esc(t.plansChecked)}）：</b></p>
+  <ul class="planlist">${t.plans.map(p=>`<li><b>${esc(p.name)}</b>：容量 ${esc(p.cap)}；${esc(p.dur)}；翻譯字幕 ${esc(p.tc)}；錄影 ${esc(p.rec)}。適用：${esc(p.use)}。</li>`).join("")}</ul>
+  <p class="note"><b>官方資訊：</b>${[["容量",t.capacityUrl],["會議時長",t.durationUrl],["Large Meeting",t.largeMeetingUrl],["Translated Captions",t.translationUrl],["字幕與逐字稿變更",t.captionChangeUrl]].filter(x=>x[1]).map(([l,u])=>`<a href="${escAttr(u)}" target="_blank" rel="noopener">${l} ↗</a>`).join("　")}</p>`:""}
   <button class="btn ${picked?"primary":""}" data-pickplatform="${id}">${picked?"目前平台":"改用此平台"}</button>
   <a href="${escAttr(t.source)}" target="_blank" rel="noopener">官方字幕資訊 ↗</a>${t.capacityUrl?`　<a href="${escAttr(t.capacityUrl)}" target="_blank" rel="noopener">官方容量資訊 ↗</a>`:""}</article>`;
 }
@@ -1384,6 +1417,7 @@ function render(){
  const onlineFields=state.format!=="onsite";
  document.getElementById("f-platform-wrap").hidden=!onlineFields;
  document.getElementById("f-online-people").hidden=!onlineFields;
+ document.getElementById("online-people-label").textContent=`預估同時連入 ${state.platform==="other"?"線上平台":PLATFORMLABEL[state.platform]} 的總人數（選填）`;
  if(state.size!==lastSize){lastSize=state.size;if(!state.typesCustomized)state.types=new Set(TYPE_PRESET[state.size]);}
  renderSelbar();
  renderWarnbar();
@@ -1444,27 +1478,27 @@ document.getElementById("app").addEventListener("click",e=>{
 });
 
 document.getElementById("reminders-body").innerHTML=PERSISTENT.map(m=>`<div>${m}</div>`).join("");
-const TOUR_KEY="captioningToolTourClosedV9";
+const TOUR_KEY="captioningToolTourClosedV10";
 const TOUR_STEPS=[
  {target:'[data-tour-open]',title:"之後從這裡重新開啟引導",text:"這個逐步引導第一次進頁面會自動出現；你按「關閉引導」或走到最後一步之後，下一次就不會再自動跳出。之後如果有人忘記怎麼用，直接按上方導覽列的「開啟引導」，就會重新從這一步開始。"},
  {target:'input[name="format"][value="hybrid"] + .opt',title:"活動形式：混合式",text:"本次範例先選混合式，代表現場與線上同時進行。這個選項會決定是否需要線上平台與平台主控；日後規劃純現場或純線上活動時請直接改選，工具不會把混合式當成所有活動的預設答案。"},
- {target:'input[name="platform"][value="zoom"] + .opt',title:"線上平台：Zoom",text:"本次範例先用 Zoom。平台只負責線上連線、容量與錄影；Akkadu、UDTalk、Vurbo、EventCAT 等是另一層字幕／翻譯工具，不會再和 Zoom 互相取代。改選 Teams 或 Google Meet 後，錄影與逐字稿提醒也會跟著更新。"},
- {target:'#online-people-in',title:"預估同時在線人數：和活動總人數分開",text:"這裡只填同一時間連進線上平台的人數，用來估算 Zoom、Teams 或 Google Meet 的容量與主辦帳號方案。活動總人數 120、線上 40 人時，平台容量要用 40 判斷。一般不是替 40 位參與者各買一份授權，而是先準備至少 1 個具合適方案的主辦／主持帳號；若要翻譯字幕，再確認該帳號是否具備對應資格。還不知道人數時可以先留空，總覽會提醒你補確認。"},
+ {target:'input[name="platform"][value="zoom"] + .opt',title:"線上平台：Zoom",text:"本次範例先用 Zoom。平台只負責線上連線、容量與錄影；Akkadu、UDTalk、Vurbo、EventCAT 等是另一層字幕／翻譯工具，不會再和 Zoom 互相取代。改選 Teams 或 Google Meet 後，錄影與逐字稿提醒也會跟著更新。這輪教學的示例條件：全天約 9 小時、同時連入 150 人、需要即時翻譯字幕、可能需要錄影。"},
+ {target:'#online-people-in',title:"同時連入的總人數：和活動總人數分開",text:"這裡填同一時間連進平台的總人數：主持人、共同主持人、講者、工作人員與線上觀眾都要計入；實體會場共用一台裝置只計一個連線名額，所以這個數字不同於活動總人數。示例：全天活動同時連入 150 人就填 150，Zoom 會建議 Workplace Business（300 人），而不是原生容量只有 100 人的 Pro。一般先準備 1 個具合適方案的主持帳號，不是每位參與者各買授權。還不知道人數時可以先留空，總覽會提醒你補確認。"},
  {target:'input[name="size"][value="S"] + .opt',title:"活動人數規模：S（50-150）",text:"這次預估是 150 人以下，所以先用 S 級距。S 只代表活動總人數，不代表低成本、試跑、正式程度或無障礙完成；是否正式售票與是否試跑由其他設定決定。之後填入精確總人數時，工具會自動切換到不重疊的 XS、S、M 或 L 級距。"},
  {target:'input[name="prep"][value="short"] + .opt',title:"籌備時間：2 個月內",text:"這會讓風險提醒變得比較嚴格。兩個月內可以做混合式活動，但不能假設臨時找到場地、字幕工具、音控配合、志工與跨協會支援；提醒區會把這些不舒服的缺口先攤開。"},
  {target:'input[name="team"][value="small"] + .opt',title:"核心人力：3-4 人",text:"這裡只算核心籌備人力，不算活動當天臨時志工。3-4 人可以推進單日混合式；重點是場地、講者、製播／Zoom、字幕與現場流程都有明確 owner，可以由核心團隊、場地或外包廠商承擔。若仍有缺口，先補人或外包，無法補齊時再縮小活動承諾。"},
  {target:'input[name="techstaff"][value="planning"] + .opt',title:"當日技術人力：已同意／找人中",text:"這和核心籌備人力是兩件事。預設代表主辦人願意配置平台／錄影主控、字幕工具操作與音控對接，但人或外包廠商還沒全部確認。切到「角色已確認」只表示有人負責操作，不代表平台授權、字幕工具與人工服務都已完成。"},
- {target:'input[name="purpose"][value="ticketed"] + .opt',title:"活動目的：正式售票",text:"這次預設為正式售票，所以工具會把責任拉高：票務頁、客服、退費、報名資料、無障礙需求蒐集、現場動線、線上觀看品質與字幕品質，都會變成對外承諾的一部分。售票不是只多一個收入來源，而是把活動從公開報名提升到需要交付體驗的產品。"},
- {target:'input[name="charge"][value="ticketed"] + .opt',title:"收費模式：正式售票",text:"收費模式只回答參加者是否要買票，不再混入贊助進度。正式售票可以分擔基本成本，但也會增加票務頁、客服、退費與交付責任；如果活動改成免費參加，請同時檢查活動目的是否仍選為正式售票。"},
+ {target:'input[name="purpose"][value="ticketed"] + .opt',title:"活動目的：正式售票",text:"這次預設為正式售票，所以工具會把責任拉高：票務頁、客服、退費、報名資料、無障礙需求蒐集、現場動線、線上觀看品質與字幕品質，都會變成對外承諾的一部分。售票不是只多一個收入來源，而是把活動從公開報名提升到需要交付體驗的產品。旁邊的「收費模式」只管參加者要不要買票，是另一題。"},
+ {target:'input[name="charge"][value="ticketed"] + .opt',title:"收費模式：需購票",text:"收費模式只回答參加者是否要買票，和「活動目的」的正式程度是兩題，不再混入贊助進度。需購票可以分擔基本成本，但也會增加票務頁、客服、退費與交付責任；如果活動改成免費參加，請同時檢查活動目的是否仍選為正式售票。"},
  {target:'input[name="sponsor"][value="confirmed"] + .opt',title:"贊助狀態：已確認",text:"贊助狀態獨立記錄無贊助、洽談中或已確認。這次預設為已確認，和正式售票組合後就是「售票＋贊助」；贊助可以優先綁定字幕／翻譯、製播、錄影後製、正式無障礙服務或講者差旅。洽談中不能當成已可支出的預算。"},
  {target:'input[name="budget"][value="mid"] + .opt',title:"預算傾向：平衡",text:"平衡不是花最少，也不是不限預算；它的意思是把錢優先放在會讓混合式不翻車的地方：乾淨人聲、穩定連線、字幕工具、現場操作與必要的會後交付。預算傾向只會改變場地排序與提醒，不會直接隱藏場地，因為每小時、每人、每場與需詢價的價格不能直接相比。"},
  {target:'input[name="access"][value="convenience"] + .opt',title:"字幕需求：一般翻譯字幕",text:"這代表用翻譯字幕協助聽不懂發言語言的一般觀眾。若有人需要字幕或手語才能參加，請切到另一個選項，再直接詢問對方需要人工字幕、同步聽打或哪一種手語；AI 翻譯字幕只能補充。"},
  {target:'input[name="speech"][value="en"] + .opt',title:"本次範例：主要發言語言為英文",text:"這只是第一次進入工具時的範例預設，不是所有活動的固定前提。主要發言語言會決定工具要辨識哪一種語音；日後規劃中文、日文或多語活動時，請在這裡改選，推薦、總覽、錄影提醒與列印內容都會跟著更新。"},
  {target:"#f-captionlangs",title:"本次範例：需要繁中與日文字幕",text:"本次範例先勾繁中與日文，代表英文發言要提供這兩種字幕。這裡可以複選，也可以取消全部後重選；工具會用目前的「發言語言 → 字幕語言」組合產生建議。若選其他／多語，採購時仍要列出實際語言對逐一測試，不能只接受供應商宣稱支援很多語言。"},
- {target:"#f-recording",title:"會後交付：需要錄影／回放",text:"錄影建議會跟著活動形式與所選平台改變，不會一律推 Zoom。純現場由場地或影音團隊錄影；Zoom、Teams、Meet 各有不同的錄影與逐字稿限制。會後翻譯字幕仍要另外產生並人工校對，不能直接沿用當天未校對的 AI 即時翻譯。"},
+ {target:"#f-recording",title:"會後交付：需要錄影／回放",text:"錄影建議會跟著活動形式與所選平台改變，不會一律推 Zoom。純現場由場地或影音團隊錄影；Zoom、Teams、Meet 各有不同的錄影與逐字稿限制。Zoom 自 2026-05-18 起不能直接儲存或下載會中字幕，要保留文字紀錄須先啟用 Meeting transcripts。會後翻譯字幕仍要另外產生並人工校對，不能直接沿用當天未校對的 AI 即時翻譯。"},
  {target:"#people-in",title:"精確總人數：可以先留空",text:"空白時會用目前級距上限判斷場地容量。有更準確的售票目標或報名上限後再填入；工具會自動把規模同步成 XS 20-49、S 50-150、M 151-300 或 L 301 以上，避免人數與級距互相衝突。"},
  {target:"#venue-search",tab:"venues",title:"場地快速篩選",text:"場地資料比字幕工具更長，所以這裡可以直接搜尋名稱、城市、場地類型、價格或備註。例如輸入 TCCC、新北、圖書館、飯店、錄影，都會在目前的人數、城市與場地類型條件內再縮小結果。預算只影響排序，不會隱藏場地；搜尋也不會取消其他篩選。找不到時先清空搜尋，再檢查城市與場地類型。"},
- {target:"#tab-tools",title:"下一步看平台與字幕工具",text:"工具頁先顯示 Zoom、Teams、Meet 的平台比較，再列獨立字幕／翻譯工具。平台處理連線、容量與錄影；字幕工具處理現場或線上翻譯。兩者可以同時選，不再互相覆蓋。"},
+ {target:"#tab-tools",title:"下一步看平台與字幕工具",text:"工具頁先顯示 Zoom、Teams、Meet 的平台比較，再列獨立字幕／翻譯工具。平台卡會依你填的同時連入人數給授權建議。以示例（150 人全天＋翻譯字幕）來說，主推薦是 Zoom Workplace Business（300 人）＋Translated Captions add-on；已有 Workplace Pro 則可用 Pro＋Large Meeting 500＋Translated Captions add-on 替代。付費主持帳號單場最多 30 小時，全天活動不需另購時長。"},
  {target:"#tool-search",tab:"tools",title:"字幕工具快速篩選",text:"搜尋只篩獨立字幕工具，可找 UDTalk、Akkadu、EventCAT、Vurbo、日文、QR、人工、CART 等。結果會依目前語言標示「官方資訊可確認」「需要實測／詢價」或「已知不支援」，但不會因不確定就偷偷隱藏。"},
  {target:"#tab-tiers",tab:"tiers",title:"方案：把選擇整理成執行配置",text:"方案頁不是要你重新填一次活動條件。它會依目前的人數級距，把收音設備、字幕／影音相關人力、候選工具、預算級距與無障礙注意事項整理在同一張方案卡；如果你先在字幕工具頁按了「選這個工具」，目前方案也會顯示該工具，提醒團隊接著確認授權、語言、收音、顯示與備援。請注意，方案卡列的是字幕／影音相關角色，不是報到、票務、主持、講者接待等活動當日總人力。"},
  {target:"#tab-overview",title:"最後到總覽收斂",text:"總覽會把場地、字幕工具、成本、人力與風險提醒合在一起。這個頁面適合拿去討論：如果團隊不在意紅色提醒，可以保留規模；如果在意，就回頭縮小規模、改閉門/線上，或先鎖贊助與人力。"}
@@ -1473,22 +1507,22 @@ const TOUR_STEPS=[
  "這個引導只會自動出現一次。之後要重看，按上方「開啟引導」。",
  "本次範例是混合式。日後規劃純現場或純線上時直接改選，後續平台與人力建議會一起更新。",
  "本次範例先用 Zoom。平台負責連線、容量與錄影；字幕／翻譯工具另外選。",
- "只填同時連進平台的人數。活動總人數 120、線上 40 人時，平台容量用 40 判斷；未知可先留空。",
+ "填同時連入的總人數：主持、講者、工作人員、觀眾都算；共用裝置算一個。示例 150 人 → 建議 Business（300 人），不是 Pro（100 人）。未知可先留空。",
  "本次先用 150 人以下的 S 級距。S 只代表規模，不代表試跑；Zoom 另看同時連線人數。",
  "2 個月內要先鎖場地、音控、字幕工具與當天分工。提醒區會列出時間不足的風險。",
  "3-4 人是核心籌備人力，不含當天人力。各工作有明確 owner 即可；有缺口先補人或外包，無法補齊再縮小承諾。",
  "當日技術人力另計。角色確認只表示有人操作，不代表平台、字幕工具與人工服務都已完成。",
  "正式售票代表對外承諾：票務、客服、退費、報名資料、動線、線上觀看與字幕品質都要有人負責。",
- "收費只回答是否賣票。正式售票會增加票務、客服、退費與交付責任。",
+ "收費只回答是否賣票，和活動目的的正式程度是兩題。需購票會增加票務、客服、退費與交付責任。",
  "贊助另記無、洽談中或已確認。已確認和售票組合後才是售票＋贊助。",
  "平衡不是最省，而是先保住乾淨人聲、連線、字幕操作與會後交付。預算只改變排序與提醒，不隱藏場地。",
  "一般翻譯字幕協助聽不懂發言語言的觀眾。若有人需要字幕或手語才能參加，請切到另一選項並詢問需求。",
  "本次範例以英文為主要發言語言。其他活動請改選，後續建議會依目前選項更新。",
  "本次範例需要繁中與日文字幕。可複選；選其他／多語時仍要列出實際語言對測試。",
- "錄影建議會跟活動形式與平台改變，不會一律推 Zoom。翻譯影片字幕仍要另行製作與校對。",
+ "錄影建議會跟活動形式與平台改變。Zoom 會中字幕 2026-05-18 起不能直接儲存，要保留文字需啟用 Meeting transcripts。翻譯影片字幕仍要另行製作與校對。",
  "可先留空。有明確總人數後再填入，工具會自動同步 XS、S、M、L，並用該數字判斷場地容量。",
  "搜尋名稱、城市、類型、價格或備註。預算只排序、不隱藏；找不到先清空搜尋。",
- "看完設定後切到平台與字幕工具。平台和字幕工具分開選，可以同時使用。",
+ "平台卡依同時連入人數給授權建議：示例 150 人全天＋翻譯字幕 → Business＋Translated Captions add-on；已有 Pro 可加 Large Meeting 500 替代。",
  "可搜 UDTalk、Akkadu、日文、QR、人工、CART。結果會標示語言支援狀態，不會因不確定就隱藏。",
  "方案頁會整理目前規模的設備、字幕／影音人力、工具與預算，不用再重填。這裡的人力不是活動當日總人力。",
  "總覽會合併場地、工具、成本、人力與紅色提醒。若提醒不可接受，就回頭縮小規模或先鎖資源。"
