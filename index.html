@@ -224,7 +224,12 @@ footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line-strong
 .wrap a:not(.btn):hover,.wrap a:not(.btn):focus-visible{background:var(--cta);color:var(--cta-text);text-decoration-thickness:2px;outline:3px solid var(--accent);outline-offset:1px;}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}}
 @media (max-width:600px){.banner h1{font-size:1.45rem;}.banner-in{padding:.85rem 1.1rem .85rem;align-items:flex-start;flex-direction:column;gap:.5rem;}.banner-links a,.banner-links button{margin-left:0;margin-right:1.3rem;}}
-@media (max-width:600px){#f-online-people{width:100%;flex-wrap:wrap;}#f-online-people .hint{flex-basis:100%;}}
+@media (max-width:600px){
+ #f-online-people{width:100%;}
+ .cset{flex-wrap:wrap;align-items:flex-start;}
+ .cset>span.lbl{display:inline-flex;align-items:center;min-height:34px;}
+ .cset .hint{flex-basis:100%;}
+}
 .vphone{font-size:.92rem;margin:.15rem 0 .1rem;color:var(--ink);}
 .pdfrow{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:.3rem 0 .7rem;}
 @media print{
