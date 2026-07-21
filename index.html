@@ -1494,25 +1494,15 @@ function clamp(n,min,max){return Math.min(Math.max(n,min),max);}
 function placeTourCard(target){
  const card=document.querySelector(".tour-card"),r=target.getBoundingClientRect(),gap=14,margin=12;
  const w=Math.min(560,window.innerWidth-margin*2);
- const sticky=document.querySelector(".sticky"),sr=sticky&&sticky.getBoundingClientRect();
- const stickyBetween=sr&&sr.top>r.bottom;
- const lowerLimit=stickyBetween?Math.min(window.innerHeight-margin,sr.top-gap):window.innerHeight-margin;
- const below=lowerLimit-r.bottom-gap,above=r.top-gap-margin;
- const useBelow=below>=220||below>=above;
- const room=Math.max(180,useBelow?below:above);
  card.style.width=w+"px";
  card.style.left=clamp(r.left+r.width/2-w/2,margin,window.innerWidth-w-margin)+"px";
- if(useBelow&&stickyBetween&&below<220){
-  const top=clamp(sr.bottom+gap,margin,window.innerHeight-margin-120);
-  card.style.maxHeight=Math.max(80,window.innerHeight-top-margin)+"px";
-  card.style.top=top+"px";
-  return;
- }
- card.style.maxHeight=Math.min(room,window.innerHeight-margin*2)+"px";
+ card.style.maxHeight=(window.innerHeight-margin*2)+"px";
  const h=card.offsetHeight;
- let top=useBelow?r.bottom+gap:r.top-gap-h;
- if(top<margin)top=margin;
- if(top+h>window.innerHeight-margin)top=Math.max(margin,window.innerHeight-margin-h);
+ const below=window.innerHeight-margin-(r.bottom+gap),above=r.top-gap-margin;
+ let top;
+ if(h<=below)top=r.bottom+gap;
+ else if(h<=above)top=r.top-gap-h;
+ else top=r.top+r.height/2<window.innerHeight/2?window.innerHeight-margin-h:margin;
  card.style.top=top+"px";
 }
 function closeTour(save){
